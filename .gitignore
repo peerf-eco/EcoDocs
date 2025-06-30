@@ -1,0 +1,36 @@
+# Ignore all binary files
+*.a
+*.so
+*.dll
+*.tgz
+*.rar
+*.exe
+*.bin
+*.dll
+*.o
+*.so
+*.class
+*.jar
+*.obj
+*.pdb
+*.app
+*.dmg
+*.iso
+*.zip
+*.tar
+*.gz
+*.7z
+# Allow specific file types
+!*.fodt
+!*.txt
+!*.md
+# Allow all folders
+!*/
+# Allow common image file types
+!*.png
+!*.jpg
+!*.jpeg
+!*.gif
+!*.bmp
+!*.svg
+!*.webp
