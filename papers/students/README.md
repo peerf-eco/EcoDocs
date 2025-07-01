@@ -8,8 +8,9 @@ please follow the fuidline below:
 4. create a document's unique code in `ESPD` format (see reference below); add that number to all documents being added, as a new line under the doc's header, like:
 `ESPD: Your_ESPD`
 5. save document in `.fodt` (Flat ODF Format) under name `Your_ESPD_number.fodt` and place into corresponding language subfolders (use LibraOffice or similar editor to SaveAs `.fodt`)
-6. create commit with message, like: `dimploma of NameSurname is added, in en language`
-7. create GitHub pull request
+6. create brief.md file for each language folder around half a page long with main context (abstract) of your paper. Good to answer questions: describe the problem that was solved, how it was solved (how to use), differences from the alternative solutions, features for ToDo (not yet solved)
+7. add files to git and create commit with message, like: `dimploma of NameSurname is added, in en language`
+8. create GitHub pull request
 
 # Reference on creation document unique number
 
