@@ -1,3 +1,8 @@
+# ignore folders
+logs
+logs/*
+.vscode
+.idea
 # Ignore all binary files
 *.a
 *.so
