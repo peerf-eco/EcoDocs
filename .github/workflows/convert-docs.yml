@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'docs/components/**/*.fodt'
+      - 'docs/components/**/**/Eco.Core1_EN.fodt'  # for tests purpose one file only
 
 jobs:
   convert-and-sync:
