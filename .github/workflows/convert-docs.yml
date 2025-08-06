@@ -115,7 +115,9 @@ jobs:
             
             console.log('Cloning docs repository with token-in-URL...')
             const remoteUrl = `https://x-access-token:${token}@github.com/peerf-eco/docs-vitepress.git`
-            execSync(`git clone ${remoteUrl} docs-vitepress`, { stdio: 'inherit' })
+            // Use array form to avoid shell parsing issues with special characters
+            execSync('git', { stdio: 'inherit', shell: false }) // no-op to ensure execSync available
+            require('child_process').execFileSync('git', ['clone', remoteUrl, 'docs-vitepress'], { stdio: 'inherit' })
             
             // Ensure target directory exists
             const targetDir = 'docs-vitepress/docs/components'
@@ -166,7 +168,7 @@ jobs:
               execSync(`git commit -m "Auto-update docs from ${process.env.GITHUB_SHA || 'unknown-sha'}"`, { stdio: 'inherit' })
               
               // Use token URL for push as well to avoid relying on stored credentials
-              execSync(`git push ${remoteUrl} HEAD:main`, { stdio: 'inherit' })
+              require('child_process').execFileSync('git', ['push', remoteUrl, 'HEAD:main'], { stdio: 'inherit' })
               console.log('Successfully pushed to docs repository')
             } else {
               console.log('No changes to commit - files may already be up to date')
@@ -188,8 +190,8 @@ jobs:
         TOKEN=$(echo -n "${{ secrets.VITEPRESS_DEPLOY_TOKEN }}" | tr -d '\r\n')
         echo "Token length: ${#TOKEN}"
         
-        # Clone using token in URL
-        git clone "https://x-access-token:${TOKEN}@github.com/peerf-eco/docs-vitepress.git" manifest-gen-repo
+        # Clone using token in URL (quote to avoid word-splitting)
+        git clone "https://x-access-token:${TOKEN}@github.com/peerf-eco/docs-vitepress.git" "manifest-gen-repo"
         
         cd manifest-gen-repo
         
@@ -229,7 +231,7 @@ jobs:
           echo "Changes detected in manifest, committing..."
           git commit -m "Auto-update components manifest"
           # Push using token URL to avoid relying on stored credentials
-          git push "https://x-access-token:${TOKEN}@github.com/peerf-eco/docs-vitepress.git" HEAD:main
+          git push "https://x-access-token:${TOKEN}@github.com/peerf-eco/docs-vitepress.git" "HEAD:main"
           echo "Manifest updated successfully"
         else
           echo "No changes in manifest to commit"
