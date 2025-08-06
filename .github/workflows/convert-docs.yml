@@ -93,9 +93,16 @@ jobs:
         TARGET_REPO_TOKEN: ${{ secrets.VITEPRESS_DEPLOY_TOKEN }}
       with:
         script: |
-          const { execSync } = require('child_process')
+          const cp = require('child_process')
           const fs = require('fs')
           const path = require('path')
+          
+          function run(cmd, args = [], opts = {}) {
+            const result = cp.spawnSync(cmd, args, { stdio: 'inherit', ...opts })
+            if (result.status !== 0) {
+              throw new Error(`${cmd} ${args.join(' ')} exited with code ${result.status}`)
+            }
+          }
           
           try {
             console.log('=== PUSH TO DOCS REPO START ===')
@@ -113,14 +120,13 @@ jobs:
             }
             console.log(`Token length: ${token.length}`)
             
+            // Clone with execFile-style API to avoid shell parsing issues
             console.log('Cloning docs repository with token-in-URL...')
             const remoteUrl = `https://x-access-token:${token}@github.com/peerf-eco/docs-vitepress.git`
-            // Use array form to avoid shell parsing issues with special characters
-            execSync('git', { stdio: 'inherit', shell: false }) // no-op to ensure execSync available
-            require('child_process').execFileSync('git', ['clone', remoteUrl, 'docs-vitepress'], { stdio: 'inherit' })
+            run('git', ['clone', remoteUrl, 'docs-vitepress'])
             
             // Ensure target directory exists
-            const targetDir = 'docs-vitepress/docs/components'
+            const targetDir = path.join('docs-vitepress', 'docs', 'components')
             if (!fs.existsSync(targetDir)) {
               console.log(`Creating target directory: ${targetDir}`)
               fs.mkdirSync(targetDir, { recursive: true })
@@ -129,9 +135,8 @@ jobs:
             // Copy converted files
             let filesCopied = 0
             filesToPush.forEach(file => {
-              const sourcePath = `converted_docs/${file}`
-              const targetPath = `${targetDir}/${file}`
-              
+              const sourcePath = path.join('converted_docs', file)
+              const targetPath = path.join(targetDir, file)
               if (fs.existsSync(sourcePath)) {
                 fs.copyFileSync(sourcePath, targetPath)
                 console.log(`Copied: ${file}`)
@@ -140,7 +145,6 @@ jobs:
                 console.log(`Warning: Source file not found: ${sourcePath}`)
               }
             })
-            
             console.log(`Total files copied: ${filesCopied}`)
             
             // List files in target directory after copy
@@ -154,21 +158,23 @@ jobs:
             
             // Remove any conflicting auth headers from the original checkout
             console.log('Cleaning up authentication headers...')
-            try { execSync('git config --unset-all http.https://github.com/.extraheader') } catch {}
+            try { run('git', ['config', '--unset-all', 'http.https://github.com/.extraheader']) } catch (e) {}
             
             // Configure git locally for the push
-            execSync('git config user.name "Docs CI Bot"')
-            execSync('git config user.email "docs-bot@ecoos.dev"')
-            execSync('git add docs/components/', { stdio: 'inherit' })
+            run('git', ['config', 'user.name', 'Docs CI Bot'])
+            run('git', ['config', 'user.email', 'docs-bot@ecoos.dev'])
+            run('git', ['add', 'docs/components/'])
             
             // Check if there are changes to commit
-            const hasChanges = execSync('git diff --staged --name-only', { encoding: 'utf8' }).trim()
+            const diff = cp.spawnSync('git', ['diff', '--staged', '--name-only'], { encoding: 'utf8' })
+            const hasChanges = (diff.stdout || '').trim()
             if (hasChanges) {
               console.log(`Changes detected: ${hasChanges.split('\n').length} files`)
-              execSync(`git commit -m "Auto-update docs from ${process.env.GITHUB_SHA || 'unknown-sha'}"`, { stdio: 'inherit' })
+              const sha = process.env.GITHUB_SHA || 'unknown-sha'
+              run('git', ['commit', '-m', `Auto-update docs from ${sha}`])
               
               // Use token URL for push as well to avoid relying on stored credentials
-              require('child_process').execFileSync('git', ['push', remoteUrl, 'HEAD:main'], { stdio: 'inherit' })
+              run('git', ['push', remoteUrl, 'HEAD:main'])
               console.log('Successfully pushed to docs repository')
             } else {
               console.log('No changes to commit - files may already be up to date')
