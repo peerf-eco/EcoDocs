@@ -114,15 +114,16 @@ jobs:
             
             // Prepare token and safe URL
             const rawToken = process.env.TARGET_REPO_TOKEN || ''
-            const token = rawToken.replace(/[\r\n]+/g, '')
+            // Remove CR/LF and any accidental surrounding quotes, spaces
+            const token = rawToken.replace(/[\r\n"' ]+/g, '')
             if (!token) {
               throw new Error('TARGET_REPO_TOKEN is empty')
             }
             console.log(`Token length: ${token.length}`)
             
-            // Clone with execFile-style API to avoid shell parsing issues
+            // Build remote URL explicitly with correct username "x-access-token"
             console.log('Cloning docs repository with token-in-URL...')
-            const remoteUrl = `https://x-access-token:${token}@github.com/peerf-eco/docs-vitepress.git`
+            const remoteUrl = `https://x-access-token:${encodeURIComponent(token)}@github.com/peerf-eco/docs-vitepress.git`
             run('git', ['clone', remoteUrl, 'docs-vitepress'])
             
             // Ensure target directory exists
@@ -174,7 +175,8 @@ jobs:
               run('git', ['commit', '-m', `Auto-update docs from ${sha}`])
               
               // Use token URL for push as well to avoid relying on stored credentials
-              run('git', ['push', remoteUrl, 'HEAD:main'])
+              const pushUrl = `https://x-access-token:${encodeURIComponent(token)}@github.com/peerf-eco/docs-vitepress.git`
+              run('git', ['push', pushUrl, 'HEAD:main'])
               console.log('Successfully pushed to docs repository')
             } else {
               console.log('No changes to commit - files may already be up to date')
@@ -193,10 +195,10 @@ jobs:
         
         # Clone docs-vitepress repo again in a separate directory for manifest generation
         echo "Cloning docs-vitepress for manifest generation..."
-        TOKEN=$(echo -n "${{ secrets.VITEPRESS_DEPLOY_TOKEN }}" | tr -d '\r\n')
+        TOKEN=$(printf "%s" "${{ secrets.VITEPRESS_DEPLOY_TOKEN }}" | tr -d '\r\n"'\'' ')
         echo "Token length: ${#TOKEN}"
         
-        # Clone using token in URL (quote to avoid word-splitting)
+        # Clone using token in URL (quote to avoid word-splitting). Use correct username "x-access-token"
         git clone "https://x-access-token:${TOKEN}@github.com/peerf-eco/docs-vitepress.git" "manifest-gen-repo"
         
         cd manifest-gen-repo
