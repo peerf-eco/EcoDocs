@@ -37,26 +37,14 @@ jobs:
           docs/components/**/*.fodt
 
     - name: Convert to Markdown
-    if: steps.changed-files.outputs.any_changed == 'true'
-    run: |
-      mkdir -p converted_docs
-      for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-        base="${file%.*}"
-        pandoc "$file" -f odt -t markdown -o "converted_docs/${base##*/}.md"
-        
-        # Add frontmatter
-        python -c "
-import frontmatter
-post = frontmatter.load(f'converted_docs/{base.split('/')[-1]}.md')
-post.metadata.update({
-    'title': f'{base.split('/')[-1].replace('_', ' ').title()}',
-    'layout': 'component',
-    'source': f'{github.server_url}/{github.repository}/blob/{github.sha}/{file}'
-})
-with open(f'converted_docs/{base.split('/')[-1]}.md', 'wb') as f:
-    frontmatter.dump(post, f)
-"
-      done
+      if: steps.changed-files.outputs.any_changed == 'true'
+      run: |
+        # Export GitHub environment variables for the script
+        echo "GITHUB_SERVER_URL=${github.server_url}" >> $GITHUB_ENV
+        echo "GITHUB_REPOSITORY=${github.repository}" >> $GITHUB_ENV
+        echo "GITHUB_SHA=${github.sha}" >> $GITHUB_ENV
+        # Call the external shell script with changed files as arguments
+        bash ${{ github.action_path }}/create_metadata.sh ${{ steps.changed-files.outputs.all_changed_files }}
 
     - name: Push to Docs Repo
       if: steps.changed-files.outputs.any_changed == 'true'
