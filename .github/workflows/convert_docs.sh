@@ -27,25 +27,47 @@ for file in "$@"; do
   
   # Check file extension and use appropriate conversion
   if [[ "$file" == *.fodt ]]; then
-    echo "Detected FODT format, attempting direct FODT->Markdown conversion..."
+    echo "Detected FODT format, attempting FODT->HTML->Markdown conversion..."
     
-    # Try direct FODT to Markdown conversion using LibreOffice
-    echo "Attempting LibreOffice conversion with explicit format..."
-    if soffice --headless --convert-to "markdown:Markdown" "$file" --outdir "converted_docs/"; then
-      # LibreOffice creates the file in the specified output directory
-      # The extension will be .markdown, so we need to rename it
-      temp_md="converted_docs/${filename}.markdown"
-      if [[ -f "$temp_md" ]]; then
-        mv "$temp_md" "$output_file"
-        echo "✓ Successfully converted FODT directly to Markdown: $filename"
-        ((converted_count++))
+    # Use HTML as intermediate format since LibreOffice doesn't support direct Markdown export
+    echo "Attempting LibreOffice FODT->HTML conversion..."
+    temp_html="converted_docs/${filename}.html"
+    
+    if soffice --headless --convert-to html:"HTML (StarWriter)" "$file" --outdir "converted_docs/"; then
+      echo "✓ Successfully converted FODT to HTML: ${filename}.html"
+      
+      # Now convert HTML to Markdown using pandoc
+      if [[ -f "converted_docs/${filename}.html" ]]; then
+        if pandoc "converted_docs/${filename}.html" -f html -t markdown -o "$output_file"; then
+          echo "✓ Successfully converted HTML to Markdown: $filename"
+          
+          # Check if Python script exists
+          if [[ -f ".github/workflows/create_metadata.py" ]]; then
+            echo "Adding metadata to: $output_file"
+            python .github/workflows/create_metadata.py "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}"
+          else
+            echo "WARNING: create_metadata.py not found"
+          fi
+          
+          # Verify output file exists
+          if [[ -f "$output_file" ]]; then
+            echo "✓ Output file created: $output_file ($(stat -c%s "$output_file") bytes)"
+            ((converted_count++))
+            
+            # Clean up intermediate HTML file
+            rm -f "converted_docs/${filename}.html"
+          else
+            echo "ERROR: Output file not created: $output_file"
+          fi
+        else
+          echo "ERROR: Failed to convert HTML to Markdown: ${filename}.html"
+          # Keep HTML file for debugging
+        fi
       else
-        echo "ERROR: LibreOffice conversion succeeded but output file not found at: $temp_md"
-        echo "Listing converted_docs/ contents:"
-        ls -la converted_docs/
+        echo "ERROR: HTML file not found after LibreOffice conversion"
       fi
     else
-      echo "ERROR: Direct FODT->Markdown conversion failed, trying FODT->ODT->MD..."
+      echo "ERROR: LibreOffice FODT->HTML conversion failed, trying FODT->ODT->MD..."
       
       # Fallback: FODT->ODT->MD conversion
       temp_odt="${file%.fodt}.odt"
@@ -53,7 +75,22 @@ for file in "$@"; do
         echo "✓ Converted FODT to ODT: $temp_odt"
         if pandoc "$temp_odt" -f odt -t markdown -o "$output_file"; then
           echo "✓ Successfully converted ODT to MD: $filename"
-          ((converted_count++))
+          
+          # Check if Python script exists
+          if [[ -f ".github/workflows/create_metadata.py" ]]; then
+            echo "Adding metadata to: $output_file"
+            python .github/workflows/create_metadata.py "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}"
+          else
+            echo "WARNING: create_metadata.py not found"
+          fi
+          
+          # Verify output file exists
+          if [[ -f "$output_file" ]]; then
+            echo "✓ Output file created: $output_file ($(stat -c%s "$output_file") bytes)"
+            ((converted_count++))
+          else
+            echo "ERROR: Output file not created: $output_file"
+          fi
         else
           echo "ERROR: Failed to convert ODT to MD: $temp_odt"
         fi
@@ -64,6 +101,7 @@ for file in "$@"; do
     fi
   else
     # Original ODT conversion for regular .odt files
+    echo "Processing ODT file: $file"
     if pandoc "$file" -f odt -t markdown -o "$output_file"; then
       echo "✓ Successfully converted: $filename"
       
