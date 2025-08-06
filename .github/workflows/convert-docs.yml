@@ -83,7 +83,7 @@ jobs:
             
             // Clone docs repo with correct JavaScript syntax
             console.log('Cloning docs repository...')
-            execSync(`git clone https://x-access-token:${process.env.TARGET_REPO_TOKEN}@github.com/peerf-eco/docs-vitepress.git`)
+            execSync(`git clone https://x-access-token:${process.env.TARGET_REPO_TOKEN}@github.com/peerf-eco/docs-vitepress.git docs-vitepress`)
             
             // Ensure target directory exists
             const targetDir = 'docs-vitepress/docs/components'
@@ -100,37 +100,43 @@ jobs:
               
               if (fs.existsSync(sourcePath)) {
                 fs.copyFileSync(sourcePath, targetPath)
-                console.log(`Copied: ${file}`)
-                filesCopied++
-              } else {
-                console.log(`Warning: Source file not found: ${sourcePath}`)
-              }
-            })
-            
-            console.log(`Total files copied: ${filesCopied}`)
-            
-            // List files in target directory after copy
-            const targetFiles = fs.readdirSync(targetDir)
-            console.log(`Files in target directory: ${targetFiles.length}`)
-            targetFiles.forEach(file => console.log(`  - ${file}`))
-            
-            // Commit and push
-            console.log('Committing and pushing changes...')
-            process.chdir('docs-vitepress')
-            execSync('git config --global user.name "Docs CI Bot"')
-            execSync('git config --global user.email "docs-bot@ecoos.dev"')
-            execSync('git add docs/components/')
-            
-            // Check if there are changes to commit
-            const hasChanges = execSync('git diff --staged --name-only', { encoding: 'utf8' }).trim()
-            if (hasChanges) {
-              console.log(`Changes detected: ${hasChanges.split('\n').length} files`)
-              execSync(`git commit -m "Auto-update docs from ${{ github.sha }}"`)
-              execSync('git push origin main')
-              console.log('Successfully pushed to docs repository')
-            } else {
-              console.log('No changes to commit - files may already be up to date')
-            }
+                 console.log(`Copied: ${file}`)
+                 filesCopied++
+               } else {
+                 console.log(`Warning: Source file not found: ${sourcePath}`)
+               }
+             })
+             
+             console.log(`Total files copied: ${filesCopied}`)
+             
+             // List files in target directory after copy
+             const targetFiles = fs.readdirSync(targetDir)
+             console.log(`Files in target directory: ${targetFiles.length}`)
+             targetFiles.forEach(file => console.log(`  - ${file}`))
+             
+             // Commit and push
+             console.log('Committing and pushing changes...')
+             process.chdir('docs-vitepress')
+             
+             // Remove any conflicting auth headers from the original checkout
+             console.log('Cleaning up authentication headers...')
+             execSync('git config --unset-all http.https://github.com/.extraheader || true')
+             
+             // Configure git for the push
+             execSync('git config --global user.name "Docs CI Bot"')
+             execSync('git config --global user.email "docs-bot@ecoos.dev"')
+             execSync('git add docs/components/')
+             
+             // Check if there are changes to commit
+             const hasChanges = execSync('git diff --staged --name-only', { encoding: 'utf8' }).trim()
+             if (hasChanges) {
+               console.log(`Changes detected: ${hasChanges.split('\n').length} files`)
+               execSync(`git commit -m "Auto-update docs from ${{ github.sha }}"`)
+               execSync('git push origin main')
+               console.log('Successfully pushed to docs repository')
+             } else {
+               console.log('No changes to commit - files may already be up to date')
+             }
             
             console.log('=== PUSH TO DOCS REPO COMPLETE ===')
           } catch (error) {
@@ -147,6 +153,10 @@ jobs:
         echo "Cloning docs-vitepress for manifest generation..."
         git clone https://x-access-token:${{ secrets.VITEPRESS_DEPLOY_TOKEN }}@github.com/peerf-eco/docs-vitepress.git manifest-gen-repo
         cd manifest-gen-repo
+        
+        # Remove any conflicting auth headers
+        echo "Cleaning up authentication headers..."
+        git config --unset-all http.https://github.com/.extraheader || true
         
         # Check if docs/components directory exists
         echo "Checking docs/components directory..."
