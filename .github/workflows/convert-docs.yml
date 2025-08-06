@@ -27,7 +27,8 @@ jobs:
 
     - name: Install converters
       run: |
-        sudo apt-get install pandoc -y
+        sudo apt-get update
+        sudo apt-get install pandoc libreoffice -y
         pip install pandoc frontmatter
 
     - name: Find changed files
@@ -57,6 +58,9 @@ jobs:
         # Call the external shell script with changed files as arguments
         bash .github/workflows/convert_docs.sh ${{ steps.changed-files.outputs.all_changed_files }}
         
+    - name: List converted files
+      if: steps.changed-files.outputs.any_changed == 'true'
+      run: |
         echo "=== CONVERSION COMPLETE ==="
         echo "Files converted:"
         ls -la converted_docs/
@@ -81,12 +85,20 @@ jobs:
             console.log(`Files to push: ${filesToPush.length}`)
             filesToPush.forEach(file => console.log(`  - ${file}`))
             
-            // Clone docs repo with correct JavaScript syntax
+            // Clone docs repo using credential helper to avoid URL issues
             console.log('Cloning docs repository...')
-            const token = process.env.TARGET_REPO_TOKEN
-            const cloneUrl = `https://x-access-token:${token}@github.com/peerf-eco/docs-vitepress.git`
-            console.log('Clone URL:', cloneUrl.replace(token, '***'))
-            execSync(`git clone "${cloneUrl}" docs-vitepress`)
+            const token = process.env.TARGET_REPO_TOKEN.trim()
+            
+            // Use credential helper instead of embedding in URL
+            execSync('git config --global credential.helper store')
+            execSync(`echo "https://x-access-token:${token}@github.com" > ~/.git-credentials`)
+            
+            console.log('Cloning with credential helper...')
+            execSync('git clone https://github.com/peerf-eco/docs-vitepress.git docs-vitepress')
+            
+            // Clean up credentials
+            execSync('rm ~/.git-credentials')
+            execSync('git config --global --unset credential.helper')
             
             // Ensure target directory exists
             const targetDir = 'docs-vitepress/docs/components'
@@ -154,7 +166,18 @@ jobs:
         
         # Clone docs-vitepress repo again in a separate directory for manifest generation
         echo "Cloning docs-vitepress for manifest generation..."
-        git clone "https://x-access-token:${{ secrets.VITEPRESS_DEPLOY_TOKEN }}@github.com/peerf-eco/docs-vitepress.git" manifest-gen-repo
+        TOKEN=$(echo -n "${{ secrets.VITEPRESS_DEPLOY_TOKEN }}" | tr -d '\r\n')
+        echo "Token length: ${#TOKEN}"
+        
+        # Use a safer approach - configure git credentials instead of URL embedding
+        git config --global credential.helper store
+        echo "https://x-access-token:${TOKEN}@github.com" > ~/.git-credentials
+        git clone https://github.com/peerf-eco/docs-vitepress.git manifest-gen-repo
+        
+        # Clean up credentials file
+        rm ~/.git-credentials
+        git config --global --unset credential.helper
+        
         cd manifest-gen-repo
         
         # Remove any conflicting auth headers
