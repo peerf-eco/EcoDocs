@@ -43,23 +43,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-
 
-    - name: Cache APT packages
-      uses: actions/cache@v3
-      with:
-        path: |
-          /var/cache/apt/archives
-          /var/lib/apt/lists
-        key: ${{ runner.os }}-apt-${{ hashFiles('**/convert-docs.yml') }}
-        restore-keys: |
-          ${{ runner.os }}-apt-
 
-    - name: Cache Python packages
-      uses: actions/cache@v3
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/convert-docs.yml') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
 
     - name: Install converters
       run: |
@@ -121,20 +105,17 @@ jobs:
             console.log(`Files to push: ${filesToPush.length}`)
             filesToPush.forEach(file => console.log(`  - ${file}`))
             
-            // Clone docs repo using credential helper to avoid URL issues
-            console.log('Cloning docs repository...')
-            const token = process.env.TARGET_REPO_TOKEN.trim()
+            // Prepare token and safe URL
+            const rawToken = process.env.TARGET_REPO_TOKEN || ''
+            const token = rawToken.replace(/[\r\n]+/g, '')
+            if (!token) {
+              throw new Error('TARGET_REPO_TOKEN is empty')
+            }
+            console.log(`Token length: ${token.length}`)
             
-            // Use credential helper instead of embedding in URL
-            execSync('git config --global credential.helper store')
-            execSync(`echo "https://x-access-token:${token}@github.com" > ~/.git-credentials`)
-            
-            console.log('Cloning with credential helper...')
-            execSync('git clone https://github.com/peerf-eco/docs-vitepress.git docs-vitepress')
-            
-            // Clean up credentials
-            execSync('rm ~/.git-credentials')
-            execSync('git config --global --unset credential.helper')
+            console.log('Cloning docs repository with token-in-URL...')
+            const remoteUrl = `https://x-access-token:${token}@github.com/peerf-eco/docs-vitepress.git`
+            execSync(`git clone ${remoteUrl} docs-vitepress`, { stdio: 'inherit' })
             
             // Ensure target directory exists
             const targetDir = 'docs-vitepress/docs/components'
@@ -151,48 +132,50 @@ jobs:
               
               if (fs.existsSync(sourcePath)) {
                 fs.copyFileSync(sourcePath, targetPath)
-                 console.log(`Copied: ${file}`)
-                 filesCopied++
-               } else {
-                 console.log(`Warning: Source file not found: ${sourcePath}`)
-               }
-             })
-             
-             console.log(`Total files copied: ${filesCopied}`)
-             
-             // List files in target directory after copy
-             const targetFiles = fs.readdirSync(targetDir)
-             console.log(`Files in target directory: ${targetFiles.length}`)
-             targetFiles.forEach(file => console.log(`  - ${file}`))
-             
-             // Commit and push
-             console.log('Committing and pushing changes...')
-             process.chdir('docs-vitepress')
-             
-             // Remove any conflicting auth headers from the original checkout
-             console.log('Cleaning up authentication headers...')
-             execSync('git config --unset-all http.https://github.com/.extraheader || true')
-             
-             // Configure git for the push
-             execSync('git config --global user.name "Docs CI Bot"')
-             execSync('git config --global user.email "docs-bot@ecoos.dev"')
-             execSync('git add docs/components/')
-             
-             // Check if there are changes to commit
-             const hasChanges = execSync('git diff --staged --name-only', { encoding: 'utf8' }).trim()
-             if (hasChanges) {
-               console.log(`Changes detected: ${hasChanges.split('\n').length} files`)
-               execSync(`git commit -m "Auto-update docs from ${{ github.sha }}"`)
-               execSync('git push origin main')
-               console.log('Successfully pushed to docs repository')
-             } else {
-               console.log('No changes to commit - files may already be up to date')
-             }
+                console.log(`Copied: ${file}`)
+                filesCopied++
+              } else {
+                console.log(`Warning: Source file not found: ${sourcePath}`)
+              }
+            })
+            
+            console.log(`Total files copied: ${filesCopied}`)
+            
+            // List files in target directory after copy
+            const targetFiles = fs.readdirSync(targetDir)
+            console.log(`Files in target directory: ${targetFiles.length}`)
+            targetFiles.forEach(file => console.log(`  - ${file}`))
+            
+            // Commit and push
+            console.log('Committing and pushing changes...')
+            process.chdir('docs-vitepress')
+            
+            // Remove any conflicting auth headers from the original checkout
+            console.log('Cleaning up authentication headers...')
+            try { execSync('git config --unset-all http.https://github.com/.extraheader') } catch {}
+            
+            // Configure git locally for the push
+            execSync('git config user.name "Docs CI Bot"')
+            execSync('git config user.email "docs-bot@ecoos.dev"')
+            execSync('git add docs/components/', { stdio: 'inherit' })
+            
+            // Check if there are changes to commit
+            const hasChanges = execSync('git diff --staged --name-only', { encoding: 'utf8' }).trim()
+            if (hasChanges) {
+              console.log(`Changes detected: ${hasChanges.split('\n').length} files`)
+              execSync(`git commit -m "Auto-update docs from ${process.env.GITHUB_SHA || 'unknown-sha'}"`, { stdio: 'inherit' })
+              
+              // Use token URL for push as well to avoid relying on stored credentials
+              execSync(`git push ${remoteUrl} HEAD:main`, { stdio: 'inherit' })
+              console.log('Successfully pushed to docs repository')
+            } else {
+              console.log('No changes to commit - files may already be up to date')
+            }
             
             console.log('=== PUSH TO DOCS REPO COMPLETE ===')
           } catch (error) {
-            console.error('Error in push process:', error.message)
-            core.setFailed(`Failed to update docs: ${error.message}`)
+            console.error('Error in push process:', error && error.message ? error.message : String(error))
+            core.setFailed(`Failed to update docs: ${error && error.message ? error.message : String(error)}`)
           }
   
     - name: Generate and update components manifest
@@ -205,14 +188,8 @@ jobs:
         TOKEN=$(echo -n "${{ secrets.VITEPRESS_DEPLOY_TOKEN }}" | tr -d '\r\n')
         echo "Token length: ${#TOKEN}"
         
-        # Use a safer approach - configure git credentials instead of URL embedding
-        git config --global credential.helper store
-        echo "https://x-access-token:${TOKEN}@github.com" > ~/.git-credentials
-        git clone https://github.com/peerf-eco/docs-vitepress.git manifest-gen-repo
-        
-        # Clean up credentials file
-        rm ~/.git-credentials
-        git config --global --unset credential.helper
+        # Clone using token in URL
+        git clone "https://x-access-token:${TOKEN}@github.com/peerf-eco/docs-vitepress.git" manifest-gen-repo
         
         cd manifest-gen-repo
         
@@ -225,7 +202,7 @@ jobs:
         if [ -d "docs/components" ]; then
           echo "Files in docs/components:"
           find docs/components -name "*.md" | wc -l
-          ls -la docs/components/
+          ls -la docs/components/ || true
         else
           echo "WARNING: docs/components directory not found!"
           mkdir -p docs/components
@@ -241,7 +218,7 @@ jobs:
         # Check if manifest was generated
         if [ -f ".vitepress/components.json" ]; then
           echo "Manifest generated successfully:"
-          cat .vitepress/components.json | jq '.components | length' 2>/dev/null || echo "Manifest exists but couldn't parse"
+          (command -v jq >/dev/null 2>&1 && cat .vitepress/components.json | jq '.components | length') || echo "Manifest exists"
         else
           echo "ERROR: Manifest file not generated!"
         fi
@@ -251,7 +228,8 @@ jobs:
         if ! git diff --quiet && ! git diff --staged --quiet; then
           echo "Changes detected in manifest, committing..."
           git commit -m "Auto-update components manifest"
-          git push origin main
+          # Push using token URL to avoid relying on stored credentials
+          git push "https://x-access-token:${TOKEN}@github.com/peerf-eco/docs-vitepress.git" HEAD:main
           echo "Manifest updated successfully"
         else
           echo "No changes in manifest to commit"
