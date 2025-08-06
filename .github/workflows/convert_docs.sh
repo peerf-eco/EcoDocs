@@ -30,14 +30,19 @@ for file in "$@"; do
     echo "Detected FODT format, attempting direct FODT->Markdown conversion..."
     
     # Try direct FODT to Markdown conversion using LibreOffice
-    if soffice --headless --convert-to markdown "$file" --outdir "$(dirname "$output_file")"; then
-      temp_md="${file%.fodt}.md"
+    echo "Attempting LibreOffice conversion with explicit format..."
+    if soffice --headless --convert-to "markdown:Markdown" "$file" --outdir "converted_docs/"; then
+      # LibreOffice creates the file in the specified output directory
+      # The extension will be .markdown, so we need to rename it
+      temp_md="converted_docs/${filename}.markdown"
       if [[ -f "$temp_md" ]]; then
         mv "$temp_md" "$output_file"
         echo "✓ Successfully converted FODT directly to Markdown: $filename"
         ((converted_count++))
       else
-        echo "ERROR: LibreOffice conversion succeeded but output file not found"
+        echo "ERROR: LibreOffice conversion succeeded but output file not found at: $temp_md"
+        echo "Listing converted_docs/ contents:"
+        ls -la converted_docs/
       fi
     else
       echo "ERROR: Direct FODT->Markdown conversion failed, trying FODT->ODT->MD..."
