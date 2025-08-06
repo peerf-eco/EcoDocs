@@ -44,7 +44,7 @@ jobs:
         echo "GITHUB_REPOSITORY=${github.repository}" >> $GITHUB_ENV
         echo "GITHUB_SHA=${github.sha}" >> $GITHUB_ENV
         # Call the external shell script with changed files as arguments
-        bash ${{ github.action_path }}/create_metadata.sh ${{ steps.changed-files.outputs.all_changed_files }}
+        bash ${{ github.action_path }}/convert_docs.sh ${{ steps.changed-files.outputs.all_changed_files }}
 
     - name: Push to Docs Repo
       if: steps.changed-files.outputs.any_changed == 'true'
