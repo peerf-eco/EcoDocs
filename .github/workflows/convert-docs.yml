@@ -4,7 +4,8 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'docs/components/**/**/Eco.Core1_EN.fodt'  # for tests purpose one file only
+      - 'components/**/**/Eco.Core1_EN.fodt'  # for tests purpose one file only
+  workflow_dispatch:  # Allow manual triggering
 
 jobs:
   convert-and-sync:
@@ -40,11 +41,11 @@ jobs:
       if: steps.changed-files.outputs.any_changed == 'true'
       run: |
         # Export GitHub environment variables for the script
-        echo "GITHUB_SERVER_URL=${github.server_url}" >> $GITHUB_ENV
-        echo "GITHUB_REPOSITORY=${github.repository}" >> $GITHUB_ENV
-        echo "GITHUB_SHA=${github.sha}" >> $GITHUB_ENV
+        echo "GITHUB_SERVER_URL=${{ github.server_url }}" >> $GITHUB_ENV
+        echo "GITHUB_REPOSITORY=${{ github.repository }}" >> $GITHUB_ENV
+        echo "GITHUB_SHA=${{ github.sha }}" >> $GITHUB_ENV
         # Call the external shell script with changed files as arguments or use ${{ github.action_path }}/ prefix
-        bash convert_docs.sh ${{ steps.changed-files.outputs.all_changed_files }}
+        bash .github/workflows/convert_docs.sh ${{ steps.changed-files.outputs.all_changed_files }}
 
     - name: Push to Docs Repo
       if: steps.changed-files.outputs.any_changed == 'true'
@@ -57,8 +58,8 @@ jobs:
           const fs = require('fs')
           
           try {
-            // Clone docs repo
-            execSync('git clone https://x-access-token:${{ secrets.TARGET_REPO_TOKEN }}@github.com/peerf-eco/docs-vitepress.git')
+            // Clone docs repo with correct JavaScript syntax
+            execSync(`git clone https://x-access-token:${process.env.TARGET_REPO_TOKEN}@github.com/peerf-eco/docs-vitepress.git`)
             
             // Copy converted files
             const files = fs.readdirSync('converted_docs')
@@ -84,7 +85,7 @@ jobs:
       if: steps.changed-files.outputs.any_changed == 'true'
       run: |
         # Clone docs-itepress repo again in a separate directory for manifest generation
-        git clone https://x-access-token:${{ secrets.DOCS_REPO_TOKEN }}@github.com/peerf-eco/docs-vitepress.git manifest-gen-repo
+        git clone https://x-access-token:${{ secrets.VITEPRESS_DEPLOY_TOKEN }}@github.com/peerf-eco/docs-vitepress.git manifest-gen-repo
         cd manifest-gen-repo
     
         # Install dependencies and generate manifest
