@@ -22,7 +22,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.12'
 
     - name: Install converters
       run: |
@@ -37,31 +37,32 @@ jobs:
           docs/components/**/*.fodt
 
     - name: Convert to Markdown
-      if: steps.changed-files.outputs.any_changed == 'true'
-      run: |
-        mkdir -p converted_docs
-        for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-          base="${file%.*}"
-          pandoc "$file" -f odt -t markdown -o "converted_docs/${base##*/}.md"
-          # Add frontmatter
-          python -c "
+    if: steps.changed-files.outputs.any_changed == 'true'
+    run: |
+      mkdir -p converted_docs
+      for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+        base="${file%.*}"
+        pandoc "$file" -f odt -t markdown -o "converted_docs/${base##*/}.md"
+        
+        # Add frontmatter
+        python -c "
 import frontmatter
-post = frontmatter.load('converted_docs/${base##*/}.md')
+post = frontmatter.load(f'converted_docs/{base.split('/')[-1]}.md')
 post.metadata.update({
-    'title': '${base##*/}'.replace('_', ' ').title(),
+    'title': f'{base.split('/')[-1].replace('_', ' ').title()}',
     'layout': 'component',
-    'source': '${{ github.server_url }}/${{ github.repository }}/blob/${{ github.sha }}/$file'
+    'source': f'{github.server_url}/{github.repository}/blob/{github.sha}/{file}'
 })
-with open('converted_docs/${base##*/}.md', 'wb') as f:
+with open(f'converted_docs/{base.split('/')[-1]}.md', 'wb') as f:
     frontmatter.dump(post, f)
 "
-        done
+      done
 
     - name: Push to Docs Repo
       if: steps.changed-files.outputs.any_changed == 'true'
       uses: actions/github-script@v6
       env:
-        DOCS_REPO_TOKEN: ${{ secrets.DOCS_REPO_DEPLOY_TOKEN }}
+        TARGET_REPO_TOKEN: ${{ secrets.VITEPRESS_DEPLOY_TOKEN }}
       with:
         script: |
           const { execSync } = require('child_process')
@@ -69,7 +70,7 @@ with open('converted_docs/${base##*/}.md', 'wb') as f:
           
           try {
             // Clone docs repo
-            execSync('git clone https://x-access-token:${{ secrets.DOCS_REPO_TOKEN }}@github.com/peerf-eco/docs-vitepress.git')
+            execSync('git clone https://x-access-token:${{ secrets.TARGET_REPO_TOKEN }}@github.com/peerf-eco/docs-vitepress.git')
             
             // Copy converted files
             const files = fs.readdirSync('converted_docs')
