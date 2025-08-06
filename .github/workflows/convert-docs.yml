@@ -85,7 +85,7 @@ jobs:
       run: |
         # Clone docs-itepress repo again in a separate directory for manifest generation
         git clone https://x-access-token:${{ secrets.DOCS_REPO_TOKEN }}@github.com/peerf-eco/docs-vitepress.git manifest-gen-repo
-    cd manifest-gen-repo
+        cd manifest-gen-repo
     
         # Install dependencies and generate manifest
         npm install
