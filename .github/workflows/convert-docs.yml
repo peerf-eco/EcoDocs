@@ -35,17 +35,32 @@ jobs:
       uses: tj-actions/changed-files@v41
       with:
         files: |
-          docs/components/**/*.fodt
+          components/**/*.fodt
 
     - name: Convert to Markdown
       if: steps.changed-files.outputs.any_changed == 'true'
       run: |
+        echo "=== CONVERSION START ==="
+        echo "Found changed files: ${{ steps.changed-files.outputs.all_changed_files }}"
+        echo "Number of files to convert: $(echo '${{ steps.changed-files.outputs.all_changed_files }}' | wc -w)"
+        
         # Export GitHub environment variables for the script
         echo "GITHUB_SERVER_URL=${{ github.server_url }}" >> $GITHUB_ENV
         echo "GITHUB_REPOSITORY=${{ github.repository }}" >> $GITHUB_ENV
         echo "GITHUB_SHA=${{ github.sha }}" >> $GITHUB_ENV
-        # Call the external shell script with changed files as arguments or use ${{ github.action_path }}/ prefix
+        
+        # Create converted_docs directory and list contents before conversion
+        mkdir -p converted_docs
+        echo "Contents before conversion:"
+        ls -la converted_docs/ || echo "Directory is empty"
+        
+        # Call the external shell script with changed files as arguments
         bash .github/workflows/convert_docs.sh ${{ steps.changed-files.outputs.all_changed_files }}
+        
+        echo "=== CONVERSION COMPLETE ==="
+        echo "Files converted:"
+        ls -la converted_docs/
+        echo "Total .md files created: $(find converted_docs -name "*.md" | wc -l)"
 
     - name: Push to Docs Repo
       if: steps.changed-files.outputs.any_changed == 'true'
@@ -56,42 +71,118 @@ jobs:
         script: |
           const { execSync } = require('child_process')
           const fs = require('fs')
+          const path = require('path')
           
           try {
+            console.log('=== PUSH TO DOCS REPO START ===')
+            
+            // List files to be pushed
+            const filesToPush = fs.readdirSync('converted_docs')
+            console.log(`Files to push: ${filesToPush.length}`)
+            filesToPush.forEach(file => console.log(`  - ${file}`))
+            
             // Clone docs repo with correct JavaScript syntax
+            console.log('Cloning docs repository...')
             execSync(`git clone https://x-access-token:${process.env.TARGET_REPO_TOKEN}@github.com/peerf-eco/docs-vitepress.git`)
             
+            // Ensure target directory exists
+            const targetDir = 'docs-vitepress/docs/components'
+            if (!fs.existsSync(targetDir)) {
+              console.log(`Creating target directory: ${targetDir}`)
+              fs.mkdirSync(targetDir, { recursive: true })
+            }
+            
             // Copy converted files
-            const files = fs.readdirSync('converted_docs')
-            files.forEach(file => {
-              fs.copyFileSync(
-                `converted_docs/${file}`,
-                `docs-vitepress/docs/components/${file}`
-              )
+            let filesCopied = 0
+            filesToPush.forEach(file => {
+              const sourcePath = `converted_docs/${file}`
+              const targetPath = `${targetDir}/${file}`
+              
+              if (fs.existsSync(sourcePath)) {
+                fs.copyFileSync(sourcePath, targetPath)
+                console.log(`Copied: ${file}`)
+                filesCopied++
+              } else {
+                console.log(`Warning: Source file not found: ${sourcePath}`)
+              }
             })
             
+            console.log(`Total files copied: ${filesCopied}`)
+            
+            // List files in target directory after copy
+            const targetFiles = fs.readdirSync(targetDir)
+            console.log(`Files in target directory: ${targetFiles.length}`)
+            targetFiles.forEach(file => console.log(`  - ${file}`))
+            
             // Commit and push
+            console.log('Committing and pushing changes...')
             process.chdir('docs-vitepress')
             execSync('git config --global user.name "Docs CI Bot"')
             execSync('git config --global user.email "docs-bot@ecoos.dev"')
             execSync('git add docs/components/')
-            execSync('git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update docs from ${{ github.sha }}"')
-            execSync('git push origin main')
+            
+            // Check if there are changes to commit
+            const hasChanges = execSync('git diff --staged --name-only', { encoding: 'utf8' }).trim()
+            if (hasChanges) {
+              console.log(`Changes detected: ${hasChanges.split('\n').length} files`)
+              execSync(`git commit -m "Auto-update docs from ${{ github.sha }}"`)
+              execSync('git push origin main')
+              console.log('Successfully pushed to docs repository')
+            } else {
+              console.log('No changes to commit - files may already be up to date')
+            }
+            
+            console.log('=== PUSH TO DOCS REPO COMPLETE ===')
           } catch (error) {
+            console.error('Error in push process:', error.message)
             core.setFailed(`Failed to update docs: ${error.message}`)
           }
   
     - name: Generate and update components manifest
       if: steps.changed-files.outputs.any_changed == 'true'
       run: |
-        # Clone docs-itepress repo again in a separate directory for manifest generation
+        echo "=== MANIFEST GENERATION START ==="
+        
+        # Clone docs-vitepress repo again in a separate directory for manifest generation
+        echo "Cloning docs-vitepress for manifest generation..."
         git clone https://x-access-token:${{ secrets.VITEPRESS_DEPLOY_TOKEN }}@github.com/peerf-eco/docs-vitepress.git manifest-gen-repo
         cd manifest-gen-repo
+        
+        # Check if docs/components directory exists
+        echo "Checking docs/components directory..."
+        if [ -d "docs/components" ]; then
+          echo "Files in docs/components:"
+          find docs/components -name "*.md" | wc -l
+          ls -la docs/components/
+        else
+          echo "WARNING: docs/components directory not found!"
+          mkdir -p docs/components
+        fi
     
         # Install dependencies and generate manifest
+        echo "Installing dependencies..."
         npm install
+        
+        echo "Generating components manifest..."
         npm run docs:generate-components
+        
+        # Check if manifest was generated
+        if [ -f ".vitepress/components.json" ]; then
+          echo "Manifest generated successfully:"
+          cat .vitepress/components.json | jq '.components | length' 2>/dev/null || echo "Manifest exists but couldn't parse"
+        else
+          echo "ERROR: Manifest file not generated!"
+        fi
     
         # Commit and push if manifest changed
         git add .vitepress/components.json
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update components manifest" && git push origin main)
+        if ! git diff --quiet && ! git diff --staged --quiet; then
+          echo "Changes detected in manifest, committing..."
+          git commit -m "Auto-update components manifest"
+          git push origin main
+          echo "Manifest updated successfully"
+        else
+          echo "No changes in manifest to commit"
+        fi
+        
+        echo "=== MANIFEST GENERATION COMPLETE ==="
