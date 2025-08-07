@@ -118,9 +118,26 @@ jobs:
               throw new Error('TARGET_REPO_SSH_KEY is empty')
             }
             
-            // Start SSH agent and add the key
-            run('eval', ['ssh-agent', '-s']);
-            run('ssh-add', ['-', { input: sshKey }]);  // Use heredoc to add the SSH key
+            // Start SSH agent and add the key using sh -c to evaluate env exports
+            const agentStart = cp.spawnSync('sh', ['-c', 'ssh-agent -s'], { encoding: 'utf8' });
+            if (agentStart.status !== 0) {
+              throw new Error(`ssh-agent start failed: ${agentStart.stderr || agentStart.stdout || agentStart.status}`);
+            }
+            // Parse output like: SSH_AUTH_SOCK=/tmp/ssh-XXXX/agent.PID; export SSH_AUTH_SOCK;
+            //                    SSH_AGENT_PID=PID; export SSH_AGENT_PID;
+            const agentEnv = { ...process.env };
+            for (const line of (agentStart.stdout || '').split('\n')) {
+              const m = line.match(/^(SSH_AUTH_SOCK|SSH_AGENT_PID)=([^;]+)/);
+              if (m) agentEnv[m[1]] = m[2];
+            }
+            if (!agentEnv.SSH_AUTH_SOCK || !agentEnv.SSH_AGENT_PID) {
+              throw new Error(`ssh-agent environment variables missing. Output: ${agentStart.stdout}`);
+            }
+            const addRes = cp.spawnSync('ssh-add', ['-'], { input: sshKey + '\n', env: agentEnv, encoding: 'utf8' });
+            if (addRes.status !== 0) {
+              throw new Error(`ssh-add failed: ${addRes.stderr || addRes.stdout || addRes.status}`);
+            }
+            // keep agentEnv for git operations below
             
             // Build remote URL for SSH
             const remoteUrl = 'git@github.com:peerf-eco/docs-vitepress.git';
@@ -191,8 +208,12 @@ jobs:
               // Use token URL for push as well to avoid relying on stored credentials
               // const pushUrl = `https://x-access-token:${encodeURIComponent(token)}@github.com/peerf-eco/docs-vitepress.git`
 
-              // Push using SSH
-              run('git', ['push', 'origin', 'HEAD:main'])
+              // Push using SSH with agent environment
+              const pushEnv = { ...process.env, SSH_AUTH_SOCK: agentEnv.SSH_AUTH_SOCK, SSH_AGENT_PID: agentEnv.SSH_AGENT_PID };
+              const pushRes = cp.spawnSync('git', ['push', 'origin', 'HEAD:main'], { stdio: 'inherit', env: pushEnv });
+              if (pushRes.status !== 0) {
+                throw new Error(`git push failed with code ${pushRes.status}`);
+              }
               console.log('Successfully pushed to docs-vitepress repository')
             } else {
               console.log('No changes to commit - files may already be up to date')
@@ -224,7 +245,7 @@ jobs:
         # Start SSH agent and add the key
         echo "ssa-agent initializing..."
         eval $(ssh-agent -s)
-        ssh-add - <<< "${sshKey}"  // Use heredoc to add the SSH key
+        ssh-add - <<< "${sshKey}"  # feed the key via stdin
         echo "ssa-agent is initialized; deployed with key length: ${#sshKey}"
 
         
