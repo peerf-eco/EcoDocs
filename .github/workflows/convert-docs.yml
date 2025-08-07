@@ -111,20 +111,34 @@ jobs:
             const filesToPush = fs.readdirSync('converted_docs')
             console.log(`Files to push: ${filesToPush.length}`)
             filesToPush.forEach(file => console.log(`  - ${file}`))
-            
-            // Prepare token and safe URL
-            const rawToken = process.env.TARGET_REPO_TOKEN || ''
-            // Remove CR/LF and any accidental surrounding quotes, spaces
-            const token = rawToken.replace(/[\r\n"' ]+/g, '')
-            if (!token) {
-              throw new Error('TARGET_REPO_TOKEN is empty')
+
+            // Prepare SSH key
+            const sshKey = process.env.TARGET_REPO_SSH_KEY || ''
+            if (!sshKey) {
+              throw new Error('TARGET_REPO_SSH_KEY is empty')
             }
-            console.log(`Token length: ${token.length}`)
             
-            // Build remote URL explicitly with correct username "x-access-token"
-            console.log('Cloning docs repository with token-in-URL...')
-            const remoteUrl = `https://x-access-token:${encodeURIComponent(token)}@github.com/peerf-eco/docs-vitepress.git`
+            // Start SSH agent and add the key
+            run('eval', ['ssh-agent', '-s']);
+            run('ssh-add', ['-', { input: sshKey }]);  // Use heredoc to add the SSH key
+            
+            // Build remote URL for SSH
+            const remoteUrl = 'git@github.com:peerf-eco/docs-vitepress.git';
             run('git', ['clone', remoteUrl, 'docs-vitepress'])
+            
+            # // Prepare token and safe URL
+            # const rawToken = process.env.TARGET_REPO_TOKEN || ''
+            # // Remove CR/LF and any accidental surrounding quotes, spaces
+            # const token = rawToken.replace(/[\r\n"' ]+/g, '')
+            # if (!token) {
+            #   throw new Error('TARGET_REPO_TOKEN is empty')
+            # }
+            console.log(`Key length: ${sshKey.length}`)
+            
+            # // Build remote URL explicitly with correct username "x-access-token"
+            # console.log('Cloning docs repository with token-in-URL...')
+            # const remoteUrl = `https://x-access-token:${encodeURIComponent(token)}@github.com/peerf-eco/docs-vitepress.git`
+            # run('git', ['clone', remoteUrl, 'docs-vitepress'])
             
             // Ensure target directory exists
             const targetDir = path.join('docs-vitepress', 'docs', 'components')
@@ -153,13 +167,13 @@ jobs:
             console.log(`Files in target directory: ${targetFiles.length}`)
             targetFiles.forEach(file => console.log(`  - ${file}`))
             
-            // Commit and push
+            // Commit and push starting
             console.log('Committing and pushing changes...')
             process.chdir('docs-vitepress')
             
-            // Remove any conflicting auth headers from the original checkout
-            console.log('Cleaning up authentication headers...')
-            try { run('git', ['config', '--unset-all', 'http.https://github.com/.extraheader']) } catch (e) {}
+            # // Remove any conflicting auth headers from the original checkout
+            # console.log('Cleaning up authentication headers...')
+            # try { run('git', ['config', '--unset-all', 'http.https://github.com/.extraheader']) } catch (e) {}
             
             // Configure git locally for the push
             run('git', ['config', 'user.name', 'Docs CI Bot'])
@@ -174,10 +188,12 @@ jobs:
               const sha = process.env.GITHUB_SHA || 'unknown-sha'
               run('git', ['commit', '-m', `Auto-update docs from ${sha}`])
               
-              // Use token URL for push as well to avoid relying on stored credentials
-              const pushUrl = `https://x-access-token:${encodeURIComponent(token)}@github.com/peerf-eco/docs-vitepress.git`
-              run('git', ['push', pushUrl, 'HEAD:main'])
-              console.log('Successfully pushed to docs repository')
+              # // Use token URL for push as well to avoid relying on stored credentials
+              # const pushUrl = `https://x-access-token:${encodeURIComponent(token)}@github.com/peerf-eco/docs-vitepress.git`
+
+              // Push using SSH
+              run('git', ['push', origin, 'HEAD:main'])
+              console.log('Successfully pushed to docs-vitepress repository')
             } else {
               console.log('No changes to commit - files may already be up to date')
             }
@@ -190,22 +206,36 @@ jobs:
   
     - name: Generate and update components manifest
       if: steps.changed-files.outputs.any_changed == 'true'
+      env:
+        TARGET_REPO_TOKEN: ${{ secrets.VITEPRESS_DEPLOY_TOKEN }}
       run: |
         echo "=== MANIFEST GENERATION START ==="
         
         # Clone docs-vitepress repo again in a separate directory for manifest generation
         echo "Cloning docs-vitepress for manifest generation..."
-        TOKEN=$(printf "%s" "${{ secrets.VITEPRESS_DEPLOY_TOKEN }}" | tr -d '\r\n"'\'' ')
-        echo "Token length: ${#TOKEN}"
+
+        // Prepare SSH key
+        const sshKey = process.env.TARGET_REPO_SSH_KEY || ''
+        if (!sshKey) {
+          throw new Error('TARGET_REPO_SSH_KEY is empty')
+        }
+        
+        // Start SSH agent and add the key
+        echo "ssa-agent initializing..."
+        eval $(ssh-agent -s)
+        ssh-add - <<< "${sshKey}"  // Use heredoc to add the SSH key
+        echo "ssa-agent is initialized; deploy with key length: ${ssKey}"
+
+        
         
         # Clone using token in URL (quote to avoid word-splitting). Use correct username "x-access-token"
-        git clone "https://x-access-token:${TOKEN}@github.com/peerf-eco/docs-vitepress.git" "manifest-gen-repo"
+        # git clone "https://x-access-token:${TOKEN}@github.com/peerf-eco/docs-vitepress.git" "manifest-gen-repo"
         
         cd manifest-gen-repo
         
         # Remove any conflicting auth headers
-        echo "Cleaning up authentication headers..."
-        git config --unset-all http.https://github.com/.extraheader || true
+        # echo "Cleaning up authentication headers..."
+        # git config --unset-all http.https://github.com/.extraheader || true
         
         # Check if docs/components directory exists
         echo "Checking docs/components directory..."
@@ -239,8 +269,9 @@ jobs:
           echo "Changes detected in manifest, committing..."
           git commit -m "Auto-update components manifest"
           # Push using token URL to avoid relying on stored credentials
-          git push "https://x-access-token:${TOKEN}@github.com/peerf-eco/docs-vitepress.git" "HEAD:main"
-          echo "Manifest updated successfully"
+          # git push "https://x-access-token:${TOKEN}@github.com/peerf-eco/docs-vitepress.git" "HEAD:main"
+          git push origin 'HEAD:main'
+          echo "Manifest pushed successfully"
         else
           echo "No changes in manifest to commit"
         fi
