@@ -140,45 +140,65 @@ jobs:
         TARGET_REPO_SSH_KEY: ${{ secrets.VITEPRESS_DEPLOY_TOKEN }}
       shell: bash
       run: |
-        set -euo pipefail
+        set -eo pipefail
         echo "=== MANIFEST GENERATION START ==="
-        
-        # Setup SSH again for this step
-        mkdir -p ~/.ssh
-        ssh-keyscan -t ed25519,rsa github.com >> ~/.ssh/known_hosts
-        eval "$(ssh-agent -s)"
-        ssh-add - <<< "$TARGET_REPO_SSH_KEY"
         
         pushd docs-vitepress >/dev/null
         
+        # Check if package.json exists and is valid
+        if [ ! -f "package.json" ]; then
+          echo "No package.json found, skipping manifest generation"
+          popd >/dev/null
+          exit 0
+        fi
+        
+        # Validate JSON syntax
+        if ! python3 -m json.tool package.json >/dev/null 2>&1; then
+          echo "Invalid package.json syntax, skipping manifest generation"
+          popd >/dev/null
+          exit 0
+        fi
+        
+        # Check if the required script exists
+        if ! grep -q '"docs:generate-components"' package.json; then
+          echo "docs:generate-components script not found, skipping manifest generation"
+          popd >/dev/null
+          exit 0
+        fi
+        
         echo "Installing dependencies..."
-        npm ci || npm install
+        if ! npm ci 2>/dev/null && ! npm install 2>/dev/null; then
+          echo "Failed to install dependencies, skipping manifest generation"
+          popd >/dev/null
+          exit 0
+        fi
         
         echo "Generating components manifest..."
-        npm run docs:generate-components
-        
-        git add .vitepress/components.json
-        if ! git diff --quiet && ! git diff --staged --quiet; then
-          echo "Changes detected in manifest, committing..."
-          git config user.name "Docs CI Bot"
-          git config user.email "docs-bot@ecoos.dev"
-          git commit -m "Auto-update components manifest from ${GITHUB_SHA:-unknown-sha}"
-          git push origin HEAD:main
-          echo "Successfully pushed manifest update"
-        else
-          echo "No manifest changes to commit"
+        if ! npm run docs:generate-components; then
+          echo "Failed to generate manifest, continuing without it"
+          popd >/dev/null
+          exit 0
         fi
         
-        popd >/dev/null
-        echo "=== MANIFEST GENERATION COMPLETE ===" Bot"
-          git config user.email "docs-bot@ecoos.dev"
-          git commit -m "Auto-update components manifest"
-          GIT_SSH_COMMAND="ssh -oHostKeyAlgorithms=ssh-ed25519,ecdsa-sha2-nistp256,rsa-sha2-512,rsa-sha2-256" \
-          git push origin 'HEAD:main'
-          echo "Manifest pushed successfully"
-        else
-          echo "No changes in manifest to commit"
+        # Setup SSH and push if manifest was generated
+        if [ -f ".vitepress/components.json" ]; then
+          mkdir -p ~/.ssh
+          ssh-keyscan -t ed25519,rsa github.com >> ~/.ssh/known_hosts
+          eval "$(ssh-agent -s)"
+          ssh-add - <<< "$TARGET_REPO_SSH_KEY"
+          
+          git add .vitepress/components.json
+          if ! git diff --staged --quiet; then
+            echo "Committing manifest changes..."
+            git config user.name "Docs CI Bot"
+            git config user.email "docs-bot@ecoos.dev"
+            git commit -m "Auto-update components manifest from ${GITHUB_SHA:-unknown-sha}"
+            git push origin HEAD:main
+            echo "Successfully pushed manifest update"
+          else
+            echo "No manifest changes to commit"
+          fi
         fi
-
+        
         popd >/dev/null
         echo "=== MANIFEST GENERATION COMPLETE ==="
