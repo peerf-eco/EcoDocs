@@ -110,16 +110,26 @@ jobs:
           exit 1
         fi
         # Preload GitHub host keys
-        ssh-keyscan -t rsa,ecdsa,ed25519 github.com >> ~/.ssh/known_hosts 2>/dev/null || true
-        # Start agent and add key
+        # Strictly ensure GitHub's ed25519 host key is present (supports ssh-ed25519 public keys)
+        # Fetch only ed25519 first; fall back to others as needed
+        ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts 2>/dev/null || true
+        ssh-keyscan -t rsa,ecdsa github.com >> ~/.ssh/known_hosts 2>/dev/null || true
+
+        # Start agent and add key (supports OpenSSH private key format: -----BEGIN OPENSSH PRIVATE KEY-----)
         eval "$(ssh-agent -s)"
         if ! ssh-add ~/.ssh/deploy_key; then
           echo "ssh-add failed; printing key header for inspection:"
           head -n 2 ~/.ssh/deploy_key || true
+          echo "Verifying key format via file(1) and ssh-keygen parse attempt:"
+          file ~/.ssh/deploy_key || true
+          ssh-keygen -lf ~/.ssh/deploy_key || true
           exit 1
         fi
+        echo "Identities loaded in agent:"
         ssh-add -l || true
-        # Clone target repo
+
+        # Clone target repo (GitHub supports ed25519 by default)
+        GIT_SSH_COMMAND="ssh -oHostKeyAlgorithms=ssh-ed25519,ecdsa-sha2-nistp256,rsa-sha2-512,rsa-sha2-256" \
         git clone git@github.com:peerf-eco/docs-vitepress.git docs-vitepress
         echo "=== SSH SETUP AND CLONE COMPLETE ==="
 
@@ -152,6 +162,7 @@ jobs:
         if ! git diff --staged --quiet; then
           sha="${GITHUB_SHA:-unknown-sha}"
           git commit -m "Auto-update docs from ${sha}"
+          GIT_SSH_COMMAND="ssh -oHostKeyAlgorithms=ssh-ed25519,ecdsa-sha2-nistp256,rsa-sha2-512,rsa-sha2-256" \
           git push origin HEAD:main
           echo "Successfully pushed to docs-vitepress repository"
         else
@@ -175,9 +186,12 @@ jobs:
           umask 077
           printf '%s\n' "$TARGET_REPO_SSH_KEY" | sed 's/\r$//' > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -t rsa,ecdsa,ed25519 github.com >> ~/.ssh/known_hosts 2>/dev/null || true
+          # Ensure ed25519 host key is available for GitHub
+          ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts 2>/dev/null || true
+          ssh-keyscan -t rsa,ecdsa github.com >> ~/.ssh/known_hosts 2>/dev/null || true
           eval "$(ssh-agent -s)"
           ssh-add ~/.ssh/deploy_key
+          GIT_SSH_COMMAND="ssh -oHostKeyAlgorithms=ssh-ed25519,ecdsa-sha2-nistp256,rsa-sha2-512,rsa-sha2-256" \
           git clone git@github.com:peerf-eco/docs-vitepress.git docs-vitepress
         fi
 
@@ -216,6 +230,7 @@ jobs:
           git config user.name "Docs CI Bot"
           git config user.email "docs-bot@ecoos.dev"
           git commit -m "Auto-update components manifest"
+          GIT_SSH_COMMAND="ssh -oHostKeyAlgorithms=ssh-ed25519,ecdsa-sha2-nistp256,rsa-sha2-512,rsa-sha2-256" \
           git push origin 'HEAD:main'
           echo "Manifest pushed successfully"
         else
