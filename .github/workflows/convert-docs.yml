@@ -90,7 +90,7 @@ jobs:
       if: steps.changed-files.outputs.any_changed == 'true'
       uses: actions/github-script@v6
       env:
-        TARGET_REPO_TOKEN: ${{ secrets.VITEPRESS_DEPLOY_TOKEN }}
+        TARGET_REPO_SSH_KEY: ${{ secrets.VITEPRESS_DEPLOY_TOKEN }}
       with:
         script: |
           const cp = require('child_process')
@@ -207,7 +207,7 @@ jobs:
     - name: Generate and update components manifest
       if: steps.changed-files.outputs.any_changed == 'true'
       env:
-        TARGET_REPO_TOKEN: ${{ secrets.VITEPRESS_DEPLOY_TOKEN }}
+        TARGET_REPO_SSH_KEY: ${{ secrets.VITEPRESS_DEPLOY_TOKEN }}
       run: |
         echo "=== MANIFEST GENERATION START ==="
         
@@ -215,16 +215,17 @@ jobs:
         echo "Cloning docs-vitepress for manifest generation..."
 
         # Prepare SSH key
-        const sshKey = process.env.TARGET_REPO_SSH_KEY || ''
-        if (!sshKey) {
-          throw new Error('TARGET_REPO_SSH_KEY is empty')
-        }
+        sshKey="$TARGET_REPO_SSH_KEY"
+        if [ -z "$sshKey" ]; then  
+          echo "ERROR: No SSH key is provided. Aborting workflow."
+          exit 1
+        fi
         
         # Start SSH agent and add the key
         echo "ssa-agent initializing..."
         eval $(ssh-agent -s)
         ssh-add - <<< "${sshKey}"  // Use heredoc to add the SSH key
-        echo "ssa-agent is initialized; deploy with key length: ${ssKey}"
+        echo "ssa-agent is initialized; deployed with key length: ${#sshKey}"
 
         
         
