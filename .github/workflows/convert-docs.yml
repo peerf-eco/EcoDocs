@@ -94,42 +94,20 @@ jobs:
       run: |
         set -euo pipefail
         echo "=== SSH SETUP AND CLONE START ==="
+        
+        # Setup SSH known hosts
         mkdir -p ~/.ssh
-        umask 077
-        # Normalize CRLF -> LF and write key
-        printf '%s\n' "$TARGET_REPO_SSH_KEY" | sed 's/\r$//' > ~/.ssh/deploy_key
-        chmod 600 ~/.ssh/deploy_key
-        # Basic diagnostics
-        if ssh-keygen -lf ~/.ssh/deploy_key >/dev/null 2>&1; then
-          echo "Key is parsable:"
-          ssh-keygen -lf ~/.ssh/deploy_key || true
-        else
-          echo "ERROR: ssh-keygen could not parse the key. Dump first lines and CR bytes:"
-          head -n 5 ~/.ssh/deploy_key | sed -n '1,5p'
-          od -An -t x1 -c -w16 ~/.ssh/deploy_key | sed -n '1,10p' || true
-          exit 1
-        fi
-        # Preload GitHub host keys
-        # Strictly ensure GitHub's ed25519 host key is present (supports ssh-ed25519 public keys)
-        # Fetch only ed25519 first; fall back to others as needed
-        ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts 2>/dev/null || true
-        ssh-keyscan -t rsa,ecdsa github.com >> ~/.ssh/known_hosts 2>/dev/null || true
-
-        # Start agent and add key (supports OpenSSH private key format: -----BEGIN OPENSSH PRIVATE KEY-----)
+        ssh-keyscan -t ed25519,rsa github.com >> ~/.ssh/known_hosts
+        
+        # Start SSH agent and add key directly from environment
         eval "$(ssh-agent -s)"
-        if ! ssh-add ~/.ssh/deploy_key; then
-          echo "ssh-add failed; printing key header for inspection:"
-          head -n 2 ~/.ssh/deploy_key || true
-          echo "Verifying key format via file(1) and ssh-keygen parse attempt:"
-          file ~/.ssh/deploy_key || true
-          ssh-keygen -lf ~/.ssh/deploy_key || true
-          exit 1
-        fi
-        echo "Identities loaded in agent:"
-        ssh-add -l || true
-
-        # Clone target repo (GitHub supports ed25519 by default)
-        GIT_SSH_COMMAND="ssh -oHostKeyAlgorithms=ssh-ed25519,ecdsa-sha2-nistp256,rsa-sha2-512,rsa-sha2-256" \
+        ssh-add - <<< "$TARGET_REPO_SSH_KEY"
+        
+        # Verify key was added
+        echo "SSH identities loaded:"
+        ssh-add -l
+        
+        # Clone target repo
         git clone git@github.com:peerf-eco/docs-vitepress.git docs-vitepress
         echo "=== SSH SETUP AND CLONE COMPLETE ==="
 
@@ -162,7 +140,6 @@ jobs:
         if ! git diff --staged --quiet; then
           sha="${GITHUB_SHA:-unknown-sha}"
           git commit -m "Auto-update docs from ${sha}"
-          GIT_SSH_COMMAND="ssh -oHostKeyAlgorithms=ssh-ed25519,ecdsa-sha2-nistp256,rsa-sha2-512,rsa-sha2-256" \
           git push origin HEAD:main
           echo "Successfully pushed to docs-vitepress repository"
         else
@@ -173,27 +150,11 @@ jobs:
   
     - name: Generate and update components manifest
       if: steps.changed-files.outputs.any_changed == 'true'
-      env:
-        TARGET_REPO_SSH_KEY: ${{ secrets.VITEPRESS_DEPLOY_TOKEN }}
       shell: bash
       run: |
         set -euo pipefail
         echo "=== MANIFEST GENERATION START ==="
-        # Reuse existing clone if present; otherwise clone fresh with robust SSH setup
-        if [ ! -d "docs-vitepress/.git" ]; then
-          echo "docs-vitepress not found, setting up SSH and cloning..."
-          mkdir -p ~/.ssh
-          umask 077
-          printf '%s\n' "$TARGET_REPO_SSH_KEY" | sed 's/\r$//' > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          # Ensure ed25519 host key is available for GitHub
-          ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts 2>/dev/null || true
-          ssh-keyscan -t rsa,ecdsa github.com >> ~/.ssh/known_hosts 2>/dev/null || true
-          eval "$(ssh-agent -s)"
-          ssh-add ~/.ssh/deploy_key
-          GIT_SSH_COMMAND="ssh -oHostKeyAlgorithms=ssh-ed25519,ecdsa-sha2-nistp256,rsa-sha2-512,rsa-sha2-256" \
-          git clone git@github.com:peerf-eco/docs-vitepress.git docs-vitepress
-        fi
+        # The docs-vitepress directory should already exist from previous step
 
         pushd docs-vitepress >/dev/null
 
@@ -228,6 +189,16 @@ jobs:
         if ! git diff --quiet && ! git diff --staged --quiet; then
           echo "Changes detected in manifest, committing..."
           git config user.name "Docs CI Bot"
+          git config user.email "docs-bot@ecoos.dev"
+          git commit -m "Auto-update components manifest from ${GITHUB_SHA:-unknown-sha}"
+          git push origin HEAD:main
+          echo "Successfully pushed manifest update"
+        else
+          echo "No manifest changes to commit"
+        fi
+        
+        popd >/dev/null
+        echo "=== MANIFEST GENERATION COMPLETE ===" Bot"
           git config user.email "docs-bot@ecoos.dev"
           git commit -m "Auto-update components manifest"
           GIT_SSH_COMMAND="ssh -oHostKeyAlgorithms=ssh-ed25519,ecdsa-sha2-nistp256,rsa-sha2-512,rsa-sha2-256" \
