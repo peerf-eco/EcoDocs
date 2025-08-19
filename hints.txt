@@ -1,0 +1,1 @@
+python convert_test_pandoc.py components/000000000000000000000000000000AA/en/ --output-dir test_converted_pandoc
