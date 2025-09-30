@@ -51,10 +51,10 @@ jobs:
         sudo apt-get install libreoffice -y
         pip install frontmatter
         
-        # Install the DocExport extension using unopkg
+        # Install the DocExport extension using unopkg for current user
         echo "Installing DocExport extension..."
         if [ -f ".github/workflows/DocExport.oxt" ]; then
-          unopkg add --shared .github/workflows/DocExport.oxt
+          unopkg add .github/workflows/DocExport.oxt
           echo "Extension installation completed"
         else
           echo "ERROR: DocExport.oxt not found!"
