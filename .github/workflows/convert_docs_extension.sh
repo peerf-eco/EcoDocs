@@ -51,9 +51,18 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
   echo "=== BATCH CONVERSION WITH LIBREOFFICE EXTENSION ==="
   echo "Converting ${#odt_files[@]} ODT files using DocExport extension..."
   
+  # List files before conversion for debugging
+  echo "Files in temp directory before conversion:"
+  ls -la "$temp_odt_dir"
+  
   # Run LibreOffice macro to export all ODT files in the directory to Markdown
+  echo "Executing macro: macro:///DocExport.DocModel.ExportDir(&quot;$temp_odt_dir&quot;,1)"
   if soffice --invisible --nofirststartwizard --headless --norestore "macro:///DocExport.DocModel.ExportDir(&quot;$temp_odt_dir&quot;,1)"; then
     echo "✓ LibreOffice macro execution completed"
+    
+    # List files after conversion for debugging
+    echo "Files in temp directory after conversion:"
+    ls -la "$temp_odt_dir"
     
     # Move converted markdown files to output directory
     for odt_file in "${odt_files[@]}"; do
@@ -86,6 +95,14 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
     done
   else
     echo "ERROR: LibreOffice macro execution failed"
+    
+    # Try alternative macro execution method
+    echo "Trying alternative macro execution..."
+    soffice --headless --invisible --nologo --norestore --calc-macro "macro:///DocExport.DocModel.ExportDir(&quot;$temp_odt_dir&quot;,1)" || true
+    
+    # List files after alternative attempt
+    echo "Files after alternative attempt:"
+    ls -la "$temp_odt_dir"
     
     # Fallback: Try individual file conversion
     echo "Attempting individual file conversion as fallback..."

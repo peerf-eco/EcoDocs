@@ -51,25 +51,10 @@ jobs:
         sudo apt-get install libreoffice -y
         pip install frontmatter
         
-        # Make sure LibreOffice is properly initialized
-        echo "Initializing LibreOffice..."
-        soffice --headless --invisible --nodefault --nolockcheck --nologo --norestore --accept="socket,host=localhost,port=2002;urp;" &
-        SOFFICE_PID=$!
-        sleep 10
-        kill $SOFFICE_PID 2>/dev/null || true
-        sleep 3
-        
-        # Install the DocExport extension
+        # Install the DocExport extension using unopkg
         echo "Installing DocExport extension..."
         if [ -f ".github/workflows/DocExport.oxt" ]; then
-          soffice --headless --invisible --nodefault --nolockcheck --nologo --norestore \
-            --accept="socket,host=localhost,port=2002;urp;" \
-            "uno:socket,host=localhost,port=2002;urp;StarOffice.ComponentContext" \
-            .github/workflows/DocExport.oxt &
-          INSTALL_PID=$!
-          sleep 10
-          kill $INSTALL_PID 2>/dev/null || true
-          sleep 3
+          unopkg add --shared .github/workflows/DocExport.oxt
           echo "Extension installation completed"
         else
           echo "ERROR: DocExport.oxt not found!"
@@ -78,7 +63,7 @@ jobs:
         
         # Verify LibreOffice is working
         echo "Verifying LibreOffice installation..."
-        soffice --version || echo "LibreOffice version check failed"
+        soffice --version
 
     - name: Find changed files
       id: changed-files
