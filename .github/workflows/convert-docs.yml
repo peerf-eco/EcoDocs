@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'components/**/**/Eco.Core1_EN.fodt'  # for tests purpose one file only
+      - 'components/**/Eco.Core1_EN.fodt'  # for tests purpose one file only
   workflow_dispatch:  # Allow manual triggering
 
 jobs:
@@ -45,11 +45,40 @@ jobs:
 
 
 
-    - name: Install converters
+    - name: Install LibreOffice and extension
       run: |
         sudo apt-get update
-        sudo apt-get install pandoc libreoffice -y
-        pip install pandoc frontmatter
+        sudo apt-get install libreoffice -y
+        pip install frontmatter
+        
+        # Make sure LibreOffice is properly initialized
+        echo "Initializing LibreOffice..."
+        soffice --headless --invisible --nodefault --nolockcheck --nologo --norestore --accept="socket,host=localhost,port=2002;urp;" &
+        SOFFICE_PID=$!
+        sleep 10
+        kill $SOFFICE_PID 2>/dev/null || true
+        sleep 3
+        
+        # Install the DocExport extension
+        echo "Installing DocExport extension..."
+        if [ -f ".github/workflows/DocExport.oxt" ]; then
+          soffice --headless --invisible --nodefault --nolockcheck --nologo --norestore \
+            --accept="socket,host=localhost,port=2002;urp;" \
+            "uno:socket,host=localhost,port=2002;urp;StarOffice.ComponentContext" \
+            .github/workflows/DocExport.oxt &
+          INSTALL_PID=$!
+          sleep 10
+          kill $INSTALL_PID 2>/dev/null || true
+          sleep 3
+          echo "Extension installation completed"
+        else
+          echo "ERROR: DocExport.oxt not found!"
+          exit 1
+        fi
+        
+        # Verify LibreOffice is working
+        echo "Verifying LibreOffice installation..."
+        soffice --version || echo "LibreOffice version check failed"
 
     - name: Find changed files
       id: changed-files
@@ -75,8 +104,8 @@ jobs:
         echo "Contents before conversion:"
         ls -la converted_docs/ || echo "Directory is empty"
         
-        # Call the external shell script with changed files as arguments
-        bash .github/workflows/convert_docs.sh ${{ steps.changed-files.outputs.all_changed_files }}
+        # Call the new extension-based conversion script with changed files as arguments
+        bash .github/workflows/convert_docs_extension.sh ${{ steps.changed-files.outputs.all_changed_files }}
         
     - name: List converted files
       if: steps.changed-files.outputs.any_changed == 'true'
