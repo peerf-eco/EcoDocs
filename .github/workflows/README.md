@@ -1,5 +1,97 @@
-1. Using Workflow Dispatch
-You can configure your workflow to allow manual triggering via the GitHub UI. To do this, you need to add the workflow_dispatch event to your workflow YAML file. Here’s how you can modify your existing workflow:
+# EcoDocs Workflow Documentation
+
+## Current Conversion Workflow
+
+The workflow converts FODT (Flat XML ODT) documentation files in the current repository (which have been changed since previous workflow run) to Markdown using LibreOffice extension DocExport.oxt and syncs them to the target documentation repository.
+
+### Conversion Process
+1. **Extension Installation**: DocExport.oxt is installed in LibreOffice using `unopkg add`
+2. **FODT to ODT**: Source FODT files are converted to ODT format using LibreOffice
+3. **ODT to Markdown**: LibreOffice macro `DocExport.DocModel.ExportDir(directory,1)` converts ODT files to Markdown
+4. **Sync to Target**: Converted files are pushed to the target documentation repository
+
+## Current Change Detection Logic
+
+### How It Works Now
+The workflow uses `tj-actions/changed-files@v41` with `fetch-depth: 2`:
+- Fetches only the last 2 commits from Git history
+- Compares current commit (HEAD) with previous commit (HEAD~1)
+- Only detects files changed between these 2 specific commits
+
+### Problems Identified
+1. **Limited Scope**: Only sees changes from the last single commit
+2. **No Persistence**: No memory of what was previously converted successfully
+3. **Manual Triggers**: Don't work as expected for accumulated changes
+4. **No Failure Recovery**: If conversion fails, those changes are lost on next run
+5. **Multi-commit Scenarios**: If 5 commits contain changes, only the last commit's changes are processed
+
+## Improvement Plan
+
+### Phase 1: Enhanced Logging
+- Add explicit file count and names in workflow logs
+- Output a clear "no changes made" messages when no changed files are detected
+- Debug output showing which commits are being compared and which file were found as changed
+- Better error reporting for conversion failures
+
+### Phase 2: State Tracking Implementation
+**Create `.conversion-state.json` in target repository:**
+```json
+{
+  "lastProcessedCommit": "abc123...",
+  "lastSuccessfulRun": "2024-01-15T10:30:00Z",
+  "successfulFiles": {
+    "components/path/file1.fodt": {
+      "convertedAt": "2024-01-15T10:30:00Z",
+      "sourceCommit": "abc123...",
+      "sourceHash": "sha256hash..."
+    }
+  },
+  "failedFiles": {
+    "components/path/file2.fodt": {
+      "lastAttempt": "2024-01-15T10:30:00Z",
+      "attemptCount": 2,
+      "lastError": "conversion failed",
+      "sourceCommit": "def456..."
+    }
+  }
+}
+```
+
+**New Workflow Logic:**
+1. Load state from target repo's `.conversion-state.json`
+2. Identify files to process:
+   - All files changed since `lastProcessedCommit`
+   - All files in `failedFiles` list (retry failed conversions)
+3. Process files and track results
+4. Update state:
+   - Move successful conversions from `failedFiles` to `successfulFiles`
+   - Add new failures to `failedFiles`
+   - Update `lastProcessedCommit` to current HEAD
+   - Increment `attemptCount` for retry failures
+
+### Phase 3: Failure Recovery
+- Handle partial conversion failures gracefully
+- Retry failed files on subsequent runs
+- Maintain detailed error logs for debugging
+- Implement maximum retry limits to prevent infinite loops
+
+### Phase 4: Content Verification
+- Add file hash comparison as backup verification
+- Detect when source files are modified but git doesn't catch changes
+- Handle edge cases like file renames or moves
+- Verify target files match source content
+
+## Benefits of Improved Approach
+- **Complete Coverage**: Processes all changes since last successful conversion
+- **Retry Logic**: Failed files automatically retried on next run
+- **No Lost Work**: Progress saved even if workflow fails partially
+- **Manual Trigger Support**: Works correctly regardless of trigger method
+- **Multi-commit Support**: Handles scenarios with multiple commits containing changes
+
+## Workflow Triggers
+
+### 1. Using Workflow Dispatch
+Manual triggering via GitHub UI:
 
 ```yaml
 name: Convert Documentation
@@ -7,40 +99,32 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'docs/components/**/**/Eco.Core1_EN.fodt'  # for tests purpose one file only
-  workflow_dispatch:  # Allow manual triggering of the workflow
-
+      - 'components/**/*.fodt'
+  workflow_dispatch:  # Allow manual triggering
 ```
 
-With this configuration, you can manually trigger the workflow from the "Actions" tab in your GitHub repository.
-
-2. Using Push Events
-If you want the workflow to run automatically whenever certain conditions are met (like pushing to a specific branch or changing specific files), ensure that you have the correct on triggers defined in your workflow YAML. For instance, your existing configuration already listens to pushes to the main branch and changes to specific paths.
-
-3. Using Repository Dispatch
-You can trigger workflows from another workflow or from an external system using the repository_dispatch event. This requires you to send a POST request to the GitHub API. Here’s an example of how to set it up:
-
-In Workflow YAML:
-
-
-Add the following to your workflow to listen for a repository dispatch event:
-
+### 2. Using Push Events
+Automatic triggering on file changes:
 
 ```yaml
-
-
-   on:
-     repository_dispatch:
-       types: [run-workflow]  # Custom event type
-Triggering the Event:
-
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'components/**/*.fodt'
 ```
-trigger this event using a curl command or any HTTP client. Here’s an example using curl:
 
+### 3. Using Repository Dispatch
+Triggering from external systems:
 
+```yaml
+on:
+  repository_dispatch:
+    types: [run-workflow]
+```
+
+Trigger with curl:
 ```bash
-
-
 curl -X POST \
      -H "Accept: application/vnd.github.v3+json" \
      -H "Authorization: token YOUR_GITHUB_TOKEN" \
@@ -48,16 +132,11 @@ curl -X POST \
      -d '{"event_type": "run-workflow"}'
 ```
 
-Replace YOUR_GITHUB_TOKEN, YOUR_USERNAME, and YOUR_REPO with your actual GitHub token and repository details.
-
-4. Using Scheduled Events
-If you want your workflow to run at specific intervals, you can set up a scheduled event using schedule. Here’s an example:
+### 4. Using Scheduled Events
+Periodic execution:
 
 ```yaml
-
-
 on:
   schedule:
     - cron: '0 * * * *'  # Runs every hour
-
 ```
