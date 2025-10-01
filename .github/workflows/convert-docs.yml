@@ -79,10 +79,18 @@ jobs:
           echo "✅ DocExport.oxt file found"
           echo "📊 Extension file size: $(stat -c%s .github/workflows/DocExport.oxt) bytes"
           
-          if unopkg add .github/workflows/DocExport.oxt; then
+          if unopkg add --shared .github/workflows/DocExport.oxt; then
             echo "✅ Extension installation completed successfully"
-            echo "🔍 Listing installed extensions:"
-            unopkg list --user 2>/dev/null || echo "Cannot list extensions"
+            echo "🔍 Verifying extension installation:"
+            if unopkg list 2>/dev/null | grep -i docexport; then
+              echo "✅ DocExport extension verified successfully"
+            else
+              echo "❌ CRITICAL: DocExport extension not found after installation"
+              echo "Available extensions:"
+              unopkg list 2>/dev/null || echo "No extensions listed"
+              echo "❌ WORKFLOW TERMINATED: Extension verification failed"
+              exit 1
+            fi
           else
             echo "❌ Extension installation failed"
             echo "🔍 Checking unopkg availability:"

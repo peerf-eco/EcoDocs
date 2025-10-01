@@ -48,12 +48,15 @@ done
 
 # Verify extension is installed
 echo "=== VERIFYING DOCEXPORT EXTENSION ==="
-if unopkg list --user | grep -i docexport; then
+if unopkg list | grep -i docexport; then
   echo "✓ DocExport extension found"
 else
-  echo "❌ DocExport extension not found in user extensions"
+  echo "❌ CRITICAL: DocExport extension not found"
   echo "Available extensions:"
-  unopkg list --user || echo "No extensions listed"
+  unopkg list || echo "No extensions listed"
+  echo "❌ CONVERSION SCRIPT TERMINATED: Extension verification failed"
+  rm -rf "$temp_odt_dir"
+  exit 1
 fi
 
 # Second pass: Use LibreOffice extension to convert all ODT files to Markdown
