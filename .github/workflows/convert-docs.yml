@@ -79,7 +79,7 @@ jobs:
           echo "✅ DocExport.oxt file found"
           echo "📊 Extension file size: $(stat -c%s .github/workflows/DocExport.oxt) bytes"
           
-          if unopkg add --shared .github/workflows/DocExport.oxt; then
+          if unopkg add .github/workflows/DocExport.oxt; then
             echo "✅ Extension installation completed successfully"
             echo "🔍 Verifying extension installation:"
             if unopkg list 2>/dev/null | grep -i docexport; then
