@@ -53,16 +53,26 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
   
   # List files before conversion for debugging
   echo "Files in temp directory before conversion:"
-  ls -la "$temp_odt_dir"
+  file_count=$(find "$temp_odt_dir" -type f | wc -l)
+  echo "Total files: $file_count"
+  find "$temp_odt_dir" -type f -exec basename {} \;
   
-  # Run LibreOffice macro to export all ODT files in the directory to Markdown
+  # Run LibreOffice macro with timeout to prevent hanging
   echo "Executing macro: macro:///DocExport.DocModel.ExportDir(&quot;$temp_odt_dir&quot;,1)"
-  if soffice --invisible --nofirststartwizard --headless --norestore "macro:///DocExport.DocModel.ExportDir(&quot;$temp_odt_dir&quot;,1)"; then
+  
+  # Kill any existing LibreOffice processes
+  pkill -f soffice || true
+  sleep 2
+  
+  # Run with timeout (5 minutes max)
+  if timeout 300 soffice --invisible --nofirststartwizard --headless --norestore "macro:///DocExport.DocModel.ExportDir(&quot;$temp_odt_dir&quot;,1)"; then
     echo "✓ LibreOffice macro execution completed"
     
     # List files after conversion for debugging
     echo "Files in temp directory after conversion:"
-    ls -la "$temp_odt_dir"
+    file_count=$(find "$temp_odt_dir" -type f | wc -l)
+    echo "Total files: $file_count"
+    find "$temp_odt_dir" -type f -exec basename {} \;
     
     # Move converted markdown files to output directory
     for odt_file in "${odt_files[@]}"; do
@@ -96,13 +106,17 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
   else
     echo "ERROR: LibreOffice macro execution failed"
     
-    # Try alternative macro execution method
+    # Try alternative macro execution method with timeout
     echo "Trying alternative macro execution..."
-    soffice --headless --invisible --nologo --norestore --calc-macro "macro:///DocExport.DocModel.ExportDir(&quot;$temp_odt_dir&quot;,1)" || true
+    pkill -f soffice || true
+    sleep 2
+    timeout 300 soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel.ExportDir(&quot;$temp_odt_dir&quot;,1)" || true
     
     # List files after alternative attempt
     echo "Files after alternative attempt:"
-    ls -la "$temp_odt_dir"
+    file_count=$(find "$temp_odt_dir" -type f | wc -l)
+    echo "Total files: $file_count"
+    find "$temp_odt_dir" -type f -exec basename {} \;
     
     # Fallback: Try individual file conversion
     echo "Attempting individual file conversion as fallback..."
@@ -111,7 +125,9 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
       output_file="converted_docs/${base_name}.md"
       
       echo "Converting individual file: $odt_file"
-      if soffice --invisible --nofirststartwizard --headless --norestore "macro:///DocExport.DocModel.ExportDir(&quot;$(dirname "$odt_file")&quot;,1)"; then
+      pkill -f soffice || true
+      sleep 1
+      if timeout 120 soffice --invisible --nofirststartwizard --headless --norestore "macro:///DocExport.DocModel.ExportDir(&quot;$(dirname "$odt_file")&quot;,1)"; then
         md_file="$(dirname "$odt_file")/${base_name}.md"
         if [[ -f "$md_file" ]]; then
           mv "$md_file" "$output_file"
@@ -143,7 +159,9 @@ echo "=== CONVERT_DOCS_EXTENSION.SH SUMMARY ==="
 echo "Total files processed: $#"
 echo "Successfully converted: $converted_count"
 echo "Final files in converted_docs/:"
-ls -la converted_docs/ 2>/dev/null || echo "No files found"
+final_count=$(find converted_docs -type f 2>/dev/null | wc -l)
+echo "Total files: $final_count"
+find converted_docs -type f -exec basename {} \; 2>/dev/null || echo "No files found"
 
 # Exit with error if no files were successfully converted
 if [[ $converted_count -eq 0 ]]; then

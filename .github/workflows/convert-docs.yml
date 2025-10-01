@@ -320,43 +320,35 @@ jobs:
         echo "Contents before conversion:"
         ls -la converted_docs/ || echo "Directory is empty"
         
-        # Call the new extension-based conversion script with changed files as arguments
-        echo "🚀 Executing conversion script..."
+        # Call the extension-based conversion script with ALL files as arguments
+        echo "🚀 Executing batch conversion script..."
         
-        # Track files for state management
-        PROCESSED_FILES=""
-        FAILED_FILES=""
-        
+        # Filter out non-existent files
+        EXISTING_FILES=""
         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
           if [ -f "$file" ]; then
-            echo "🔄 Processing: $file"
-            if bash .github/workflows/convert_docs_extension.sh "$file"; then
-              echo "✅ Successfully converted: $file"
-              PROCESSED_FILES="$PROCESSED_FILES $file"
-            else
-              echo "❌ Failed to convert: $file"
-              FAILED_FILES="$FAILED_FILES $file"
-            fi
+            EXISTING_FILES="$EXISTING_FILES $file"
           else
             echo "⚠️  Skipping non-existent file: $file"
           fi
         done
         
-        # Export for state tracking
-        echo "PROCESSED_FILES=$PROCESSED_FILES" >> $GITHUB_ENV
-        echo "FAILED_FILES=$FAILED_FILES" >> $GITHUB_ENV
-        
-        # Overall status
-        if [ -n "$FAILED_FILES" ]; then
-          echo "⚠️  Some files failed conversion but continuing with successful ones"
-        fi
-        
-        if [ -z "$PROCESSED_FILES" ]; then
-          echo "❌ No files were successfully converted"
+        if [ -n "$EXISTING_FILES" ]; then
+          echo "🔄 Processing batch: $EXISTING_FILES"
+          if bash .github/workflows/convert_docs_extension.sh $EXISTING_FILES; then
+            echo "✅ Batch conversion completed successfully"
+            echo "PROCESSED_FILES=$EXISTING_FILES" >> $GITHUB_ENV
+            echo "FAILED_FILES=" >> $GITHUB_ENV
+          else
+            echo "❌ Batch conversion failed"
+            echo "PROCESSED_FILES=" >> $GITHUB_ENV
+            echo "FAILED_FILES=$EXISTING_FILES" >> $GITHUB_ENV
+            exit 1
+          fi
+        else
+          echo "❌ No valid files to process"
           exit 1
         fi
-        
-        echo "✅ Conversion completed with $(echo $PROCESSED_FILES | wc -w) successful files"
         
     - name: Verify Conversion Results
       if: steps.changed-files.outputs.any_changed == 'true'
