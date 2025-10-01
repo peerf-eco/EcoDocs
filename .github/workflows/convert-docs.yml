@@ -165,7 +165,7 @@ try:
         state = json.load(f)
     failed_count = len(state.get('failedFiles', {}))
     if failed_count > 0:
-        print(f'🔍 Found {failed_count} previously failed files that will be retried')
+        print(f'Found {failed_count} previously failed files that will be retried')
         for file_path, details in state.get('failedFiles', {}).items():
             attempt_count = details.get('attemptCount', 0)
             print(f'  - {file_path} (attempt #{attempt_count + 1})')
