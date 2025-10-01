@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'components/**/Eco.Core1_EN.fodt'  # for tests purpose one file only
+      - 'components/**/*.fodt'
   workflow_dispatch:  # Allow manual triggering
 
 jobs:
@@ -195,15 +195,10 @@ jobs:
             CHANGED_FILES=$(git diff --name-only HEAD~1..HEAD -- 'components/**/*.fodt' 2>/dev/null || echo "")
           fi
         else
-          echo "🔍 No previous state, using HEAD~1 comparison"
-          
-          # Handle single commit repository
-          if git rev-parse --verify HEAD~1 >/dev/null 2>&1; then
-            CHANGED_FILES=$(git diff --name-only HEAD~1..HEAD -- 'components/**/*.fodt' 2>/dev/null || echo "")
-          else
-            echo "ℹ️  Single commit repository, checking all .fodt files"
-            CHANGED_FILES=$(find components -name "*.fodt" -type f 2>/dev/null | head -20 || echo "")
-          fi
+          echo "🔍 No previous state - initial run detected"
+          echo "ℹ️  Processing all .fodt files matching workflow trigger pattern"
+          echo "🔍 Path pattern: components/**/*.fodt"
+          CHANGED_FILES=$(find components -name "*.fodt" -type f 2>/dev/null || echo "")
         fi
         
         echo "📊 Changed files found: $(echo "$CHANGED_FILES" | wc -w)"
