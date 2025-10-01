@@ -46,6 +46,16 @@ for file in "$@"; do
   fi
 done
 
+# Verify extension is installed
+echo "=== VERIFYING DOCEXPORT EXTENSION ==="
+if unopkg list --user | grep -i docexport; then
+  echo "✓ DocExport extension found"
+else
+  echo "❌ DocExport extension not found in user extensions"
+  echo "Available extensions:"
+  unopkg list --user || echo "No extensions listed"
+fi
+
 # Second pass: Use LibreOffice extension to convert all ODT files to Markdown
 if [[ ${#odt_files[@]} -gt 0 ]]; then
   echo "=== BATCH CONVERSION WITH LIBREOFFICE EXTENSION ==="
@@ -58,14 +68,14 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
   find "$temp_odt_dir" -type f -exec basename {} \;
   
   # Run LibreOffice macro with timeout to prevent hanging
-  echo "Executing macro: macro:///DocExport.DocModel.ExportDir(&quot;$temp_odt_dir&quot;,1)"
+  echo "Executing macro: macro:///DocExport.DocModel.ExportDir(\"$temp_odt_dir\",1)"
   
   # Kill any existing LibreOffice processes
   pkill -f soffice || true
   sleep 2
   
   # Run with timeout (5 minutes max)
-  if timeout 300 soffice --invisible --nofirststartwizard --headless --norestore "macro:///DocExport.DocModel.ExportDir(&quot;$temp_odt_dir&quot;,1)"; then
+  if timeout 300 soffice --invisible --nofirststartwizard --headless --norestore "macro:///DocExport.DocModel.ExportDir(\"$temp_odt_dir\",1)"; then
     echo "✓ LibreOffice macro execution completed"
     
     # List files after conversion for debugging
@@ -110,7 +120,7 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
     echo "Trying alternative macro execution..."
     pkill -f soffice || true
     sleep 2
-    timeout 300 soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel.ExportDir(&quot;$temp_odt_dir&quot;,1)" || true
+    timeout 300 soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel.ExportDir(\"$temp_odt_dir\",1)" || true
     
     # List files after alternative attempt
     echo "Files after alternative attempt:"
@@ -123,12 +133,18 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
     for odt_file in "${odt_files[@]}"; do
       base_name=$(basename "$odt_file" .odt)
       output_file="converted_docs/${base_name}.md"
+      individual_dir=$(mktemp -d)
       
       echo "Converting individual file: $odt_file"
+      # Copy single file to individual directory
+      cp "$odt_file" "$individual_dir/"
+      
       pkill -f soffice || true
       sleep 1
-      if timeout 120 soffice --invisible --nofirststartwizard --headless --norestore "macro:///DocExport.DocModel.ExportDir(&quot;$(dirname "$odt_file")&quot;,1)"; then
-        md_file="$(dirname "$odt_file")/${base_name}.md"
+      
+      echo "Running individual macro on: $individual_dir"
+      if timeout 120 soffice --invisible --nofirststartwizard --headless --norestore "macro:///DocExport.DocModel.ExportDir(\"$individual_dir\",1)"; then
+        md_file="$individual_dir/${base_name}.md"
         if [[ -f "$md_file" ]]; then
           mv "$md_file" "$output_file"
           echo "✓ Individual conversion successful: $output_file"
@@ -141,10 +157,16 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
           if [[ -f "$output_file" ]]; then
             ((converted_count++))
           fi
+        else
+          echo "ERROR: Markdown file not created: $md_file"
+          echo "Files in individual directory after conversion:"
+          find "$individual_dir" -type f -exec basename {} \;
         fi
       else
         echo "ERROR: Individual conversion failed for: $odt_file"
       fi
+      
+      rm -rf "$individual_dir"
     done
   fi
 else
