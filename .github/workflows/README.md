@@ -132,6 +132,80 @@ Using emojis for quick status identification:
 4. **User-Friendly Messages**: Clear explanations for both technical and non-technical users
 5. **Progress Tracking**: Visual indicators show workflow progress and status
 
+## Phase 2 Implementation Details
+
+### State Tracking Features Implemented
+
+#### 1. Persistent State Management
+- **Load Conversion State** step loads `.conversion-state.json` from target repository
+- Tracks `lastProcessedCommit` to enable multi-commit change detection
+- Maintains `successfulFiles` and `failedFiles` collections
+- Creates initial state if none exists
+
+#### 2. Enhanced Change Detection
+- **State-Based Change Detection** compares against `lastProcessedCommit` instead of just HEAD~1
+- Automatically includes previously failed files for retry
+- Combines changed files and failed files for comprehensive processing
+- Handles repositories with no previous state gracefully
+
+#### 3. File-Level Success/Failure Tracking
+- **Individual File Processing** tracks each file's conversion status
+- Successful conversions move from `failedFiles` to `successfulFiles`
+- Failed conversions increment `attemptCount` and update `lastError`
+- Partial failures don't stop the entire workflow
+
+#### 4. State Persistence
+- **Update Conversion State** step creates new state after processing
+- **State Deployment** copies state file to target repository
+- State survives workflow failures and is available for next run
+- Includes timestamps, commit hashes, and error details
+
+#### 5. Retry Logic
+- Previously failed files automatically included in next run (up to 3 attempts)
+- Maximum retry limit prevents infinite retry loops
+- Files exceeding retry limit are permanently excluded
+- Failed files retain error information for debugging
+- Success moves files from failed to successful state
+- **Edge cases covered**: Corrupted state files, missing commits, single commit repositories, state validation failures
+
+### State File Structure (Implemented)
+```json
+{
+  "lastProcessedCommit": "abc123...",
+  "lastSuccessfulRun": "2024-01-15T10:30:00Z",
+  "successfulFiles": {
+    "components/path/file1.fodt": {
+      "convertedAt": "2024-01-15T10:30:00Z",
+      "sourceCommit": "abc123...",
+      "sourceHash": "sha256-placeholder"
+    }
+  },
+  "failedFiles": {
+    "components/path/file2.fodt": {
+      "lastAttempt": "2024-01-15T10:30:00Z",
+      "attemptCount": 2,
+      "lastError": "conversion failed",
+      "sourceCommit": "def456..."
+    }
+  }
+}
+```
+
+**Key State Management Rules:**
+- `successfulFiles`: Contains **ONLY** files from the most recent successful conversion session
+- `failedFiles`: **Cumulative** list of all failed files until they are successfully processed
+- `attemptCount`: Tracks retry attempts with maximum limit of 3 attempts
+- Files exceeding retry limit are excluded from future processing
+- Successful conversion moves files from `failedFiles` to `successfulFiles`
+
+### Benefits Achieved
+1. **Complete Coverage**: Processes all changes since last successful conversion
+2. **Retry Logic**: Failed files automatically retried on next run
+3. **No Lost Work**: Progress saved even if workflow fails partially
+4. **Manual Trigger Support**: Works correctly regardless of trigger method
+5. **Multi-commit Support**: Handles scenarios with multiple commits containing changes
+6. **Failure Recovery**: Individual file failures don't prevent other files from processing
+
 ## Improvement Plan
 
 ### Phase 1: Enhanced Logging ✅ IMPLEMENTED
@@ -144,7 +218,7 @@ Using emojis for quick status identification:
 - ✅ File-by-file processing status with size information
 - ✅ Enhanced error handling with detailed diagnostics
 
-### Phase 2: State Tracking Implementation (PLANNED)
+### Phase 2: State Tracking Implementation ✅ IMPLEMENTED
 **Create `.conversion-state.json` in target repository:**
 ```json
 {
@@ -168,17 +242,18 @@ Using emojis for quick status identification:
 }
 ```
 
-**New Workflow Logic:**
-1. Load state from target repo's `.conversion-state.json`
-2. Identify files to process:
+**Implemented Workflow Logic:** ✅
+1. ✅ Load state from target repo's `.conversion-state.json`
+2. ✅ Identify files to process:
    - All files changed since `lastProcessedCommit`
    - All files in `failedFiles` list (retry failed conversions)
-3. Process files and track results
-4. Update state:
+3. ✅ Process files and track results individually
+4. ✅ Update state:
    - Move successful conversions from `failedFiles` to `successfulFiles`
    - Add new failures to `failedFiles`
    - Update `lastProcessedCommit` to current HEAD
    - Increment `attemptCount` for retry failures
+5. ✅ Deploy updated state back to target repository
 
 ### Phase 3: Failure Recovery (PLANNED)
 - Handle partial conversion failures gracefully
@@ -244,6 +319,39 @@ Using emojis for quick status identification:
 - **Workflow Summary**: Check individual step outcomes and overall status
 - **Specific indicators**: Step-by-step success/failure status, troubleshooting guidance
 - **Solution**: Address failed steps individually based on their specific error messages
+
+#### Scenario 9: State tracking issues (Phase 2)
+**Look for these log sections:**
+- **Load Conversion State**: Check if state file was found and loaded
+- **Update Conversion State**: Verify state update completed successfully
+- **Specific indicators**: State file size, successful/failed file counts, commit tracking
+- **Solution**: Check target repository permissions and state file integrity
+
+#### Scenario 10: Files not retrying after previous failure (Phase 2)
+**Look for these log sections:**
+- **State-Based Change Detection**: Check if failed files are included
+- **Workflow Summary**: Review state summary showing failed file counts
+- **Specific indicators**: "Files to process" should include previously failed files
+- **Solution**: Verify state file contains failed files and is accessible
+
+#### Scenario 11: State file corruption or validation failures (Phase 2)
+**Look for these log sections:**
+- **Load Conversion State**: Check for "State file is corrupted" or "State file is empty" warnings
+- **Clone, copy files, and push**: Look for "State file validation failed" messages
+- **Specific indicators**: State file size of 0 bytes, JSON parsing errors
+- **Solution**: Corrupted state files are automatically recreated, but previous failure history is lost
+
+#### Scenario 12: Maximum retry limit exceeded (Phase 2)
+**Look for these log sections:**
+- **State-Based Change Detection**: Check for "Skipping [file] - exceeded max retries" messages
+- **Specific indicators**: Files with attemptCount >= 3 are excluded from processing
+- **Solution**: Files exceeding retry limit require manual intervention or workflow modification
+
+#### Scenario 13: Git commit not found or single commit repository (Phase 2)
+**Look for these log sections:**
+- **State-Based Change Detection**: Check for "Last processed commit not found" or "Single commit repository" messages
+- **Specific indicators**: Fallback to HEAD~1 comparison or all .fodt files processing
+- **Solution**: Normal behavior for new repositories or when commit history is modified
 
 ### Log Level Meanings
 - ✅ **Success**: Operation completed without issues

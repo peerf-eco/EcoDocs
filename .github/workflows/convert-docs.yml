@@ -106,12 +106,92 @@ jobs:
         fi
         echo "=== LIBREOFFICE INSTALLATION COMPLETE ==="
 
+    - name: Load Conversion State
+      id: load-state
+      run: |
+        echo "=== LOADING CONVERSION STATE ==="
+        
+        # Clone target repo to check for existing state
+        mkdir -p ~/.ssh
+        ssh-keyscan -t ed25519,rsa github.com >> ~/.ssh/known_hosts
+        eval "$(ssh-agent -s)"
+        ssh-add - <<< "${{ secrets.VITEPRESS_DEPLOY_TOKEN }}"
+        
+        if git clone git@github.com:peerf-eco/docs-vitepress.git state-check; then
+          echo "✅ Target repository cloned for state check"
+          
+          if [ -f "state-check/.conversion-state.json" ]; then
+            echo "📄 Found existing conversion state"
+            cp state-check/.conversion-state.json ./current-state.json
+            
+            file_size=$(stat -c%s ./current-state.json 2>/dev/null || echo '0')
+            echo "📊 State file size: $file_size bytes"
+            
+            # Validate state file is not empty or corrupted
+            if [ "$file_size" -eq 0 ]; then
+              echo "⚠️  State file is empty, creating fresh state"
+              echo '{}' > ./current-state.json
+              LAST_COMMIT=""
+            else
+              # Extract last processed commit with error handling
+              LAST_COMMIT=$(python3 -c "
+try:
+    import json
+    with open('current-state.json') as f:
+        state = json.load(f)
+    print(state.get('lastProcessedCommit', ''))
+except (json.JSONDecodeError, FileNotFoundError, KeyError) as e:
+    print('', end='')
+" 2>/dev/null || echo "")
+              
+              # Validate state file structure
+              if ! python3 -c "import json; json.load(open('current-state.json'))" 2>/dev/null; then
+                echo "⚠️  State file is corrupted, creating fresh state"
+                echo '{}' > ./current-state.json
+                LAST_COMMIT=""
+              else
+                echo "✅ State file validated successfully"
+              fi
+            fi
+            
+            echo "🔍 Last processed commit: ${LAST_COMMIT:-'none'}"
+            echo "LAST_PROCESSED_COMMIT=${LAST_COMMIT}" >> $GITHUB_ENV
+            
+            # Show current state summary
+            python3 -c "
+try:
+    import json
+    with open('current-state.json') as f:
+        state = json.load(f)
+    failed_count = len(state.get('failedFiles', {}))
+    if failed_count > 0:
+        print(f'🔍 Found {failed_count} previously failed files that will be retried')
+        for file_path, details in state.get('failedFiles', {}).items():
+            attempt_count = details.get('attemptCount', 0)
+            print(f'  - {file_path} (attempt #{attempt_count + 1})')
+except:
+    pass
+" 2>/dev/null
+          else
+            echo "ℹ️  No existing state found, creating initial state"
+            echo '{}' > ./current-state.json
+            echo "LAST_PROCESSED_COMMIT=" >> $GITHUB_ENV
+          fi
+        else
+          echo "❌ Failed to clone target repository for state check"
+          exit 1
+        fi
+        
+        rm -rf state-check
+        echo "=== STATE LOADING COMPLETE ==="
+
     - name: Debug Git State
       id: debug-git
       run: |
         echo "=== GIT STATE DEBUG ==="
         echo "Current commit (HEAD): $(git rev-parse HEAD)"
         echo "Previous commit (HEAD~1): $(git rev-parse HEAD~1 2>/dev/null || echo 'N/A - single commit')"
+        echo "Last processed commit: ${LAST_PROCESSED_COMMIT:-'none'}"
         echo "Fetch depth used: 2"
         echo "Git log (last 3 commits):"
         git log --oneline -3 || echo "Less than 3 commits available"
@@ -121,10 +201,75 @@ jobs:
 
     - name: Find changed files
       id: changed-files
-      uses: tj-actions/changed-files@v41
-      with:
-        files: |
-          components/**/*.fodt
+      run: |
+        echo "=== STATE-BASED CHANGE DETECTION ==="
+        
+        if [ -n "${LAST_PROCESSED_COMMIT}" ]; then
+          echo "🔍 Using state-based detection from commit: ${LAST_PROCESSED_COMMIT}"
+          
+          # Verify the commit exists
+          if git rev-parse --verify "${LAST_PROCESSED_COMMIT}" >/dev/null 2>&1; then
+            CHANGED_FILES=$(git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD -- 'components/**/*.fodt' 2>/dev/null || echo "")
+            echo "✅ Successfully compared against last processed commit"
+          else
+            echo "⚠️  Last processed commit ${LAST_PROCESSED_COMMIT} not found, falling back to HEAD~1"
+            CHANGED_FILES=$(git diff --name-only HEAD~1..HEAD -- 'components/**/*.fodt' 2>/dev/null || echo "")
+          fi
+        else
+          echo "🔍 No previous state, using HEAD~1 comparison"
+          
+          # Handle single commit repository
+          if git rev-parse --verify HEAD~1 >/dev/null 2>&1; then
+            CHANGED_FILES=$(git diff --name-only HEAD~1..HEAD -- 'components/**/*.fodt' 2>/dev/null || echo "")
+          else
+            echo "ℹ️  Single commit repository, checking all .fodt files"
+            CHANGED_FILES=$(find components -name "*.fodt" -type f 2>/dev/null | head -20 || echo "")
+          fi
+        fi
+        
+        echo "📊 Changed files found: $(echo "$CHANGED_FILES" | wc -w)"
+        
+        # Check for failed files from previous runs (with retry limit)
+        FAILED_FILES=$(python3 -c "
+import json
+try:
+    with open('current-state.json') as f:
+        state = json.load(f)
+    failed = state.get('failedFiles', {})
+    # Only include files that haven't exceeded retry limit (max 3 attempts)
+    retry_files = []
+    max_retries = 3
+    for file_path, details in failed.items():
+        attempt_count = details.get('attemptCount', 0)
+        if attempt_count < max_retries:
+            retry_files.append(file_path)
+        else:
+            print(f'Skipping {file_path} - exceeded max retries ({attempt_count}/{max_retries})', file=__import__('sys').stderr)
+    print(' '.join(retry_files))
+except Exception as e:
+    pass
+" 2>/dev/null || echo "")
+        
+        failed_count=$(echo "$FAILED_FILES" | wc -w)
+        if [ $failed_count -gt 0 ]; then
+          echo "🔄 Including $failed_count previously failed files for retry (within retry limit)"
+        fi
+        
+        # Combine changed and failed files
+        ALL_FILES="${CHANGED_FILES} ${FAILED_FILES}"
+        ALL_FILES=$(echo $ALL_FILES | tr ' ' '\n' | sort -u | tr '\n' ' ' | sed 's/ $//')
+        
+        if [ -n "$ALL_FILES" ]; then
+          echo "any_changed=true" >> $GITHUB_OUTPUT
+          echo "all_changed_files=$ALL_FILES" >> $GITHUB_OUTPUT
+          echo "✅ Files to process: $ALL_FILES"
+        else
+          echo "any_changed=false" >> $GITHUB_OUTPUT
+          echo "all_changed_files=" >> $GITHUB_OUTPUT
+          echo "ℹ️  No files to process"
+        fi
+        
+        echo "=== END STATE-BASED CHANGE DETECTION ==="
 
     - name: Process Change Detection Results
       run: |
@@ -221,14 +366,41 @@ jobs:
         
         # Call the new extension-based conversion script with changed files as arguments
         echo "🚀 Executing conversion script..."
-        if bash .github/workflows/convert_docs_extension.sh ${{ steps.changed-files.outputs.all_changed_files }}; then
-          echo "✅ Conversion script completed successfully"
-        else
-          echo "❌ Conversion script failed with exit code $?"
-          echo "🔍 Checking for partial results..."
-          ls -la converted_docs/ 2>/dev/null || echo "No converted_docs directory found"
+        
+        # Track files for state management
+        PROCESSED_FILES=""
+        FAILED_FILES=""
+        
+        for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          if [ -f "$file" ]; then
+            echo "🔄 Processing: $file"
+            if bash .github/workflows/convert_docs_extension.sh "$file"; then
+              echo "✅ Successfully converted: $file"
+              PROCESSED_FILES="$PROCESSED_FILES $file"
+            else
+              echo "❌ Failed to convert: $file"
+              FAILED_FILES="$FAILED_FILES $file"
+            fi
+          else
+            echo "⚠️  Skipping non-existent file: $file"
+          fi
+        done
+        
+        # Export for state tracking
+        echo "PROCESSED_FILES=$PROCESSED_FILES" >> $GITHUB_ENV
+        echo "FAILED_FILES=$FAILED_FILES" >> $GITHUB_ENV
+        
+        # Overall status
+        if [ -n "$FAILED_FILES" ]; then
+          echo "⚠️  Some files failed conversion but continuing with successful ones"
+        fi
+        
+        if [ -z "$PROCESSED_FILES" ]; then
+          echo "❌ No files were successfully converted"
           exit 1
         fi
+        
+        echo "✅ Conversion completed with $(echo $PROCESSED_FILES | wc -w) successful files"
         
     - name: Verify Conversion Results
       if: steps.changed-files.outputs.any_changed == 'true'
@@ -366,9 +538,31 @@ jobs:
         git config user.name "Docs CI Bot"
         git config user.email "docs-bot@ecoos.dev"
         git add docs/components/
+        # Copy state file to target repository with validation
+        if [ -f "../new-state.json" ]; then
+          echo "📄 Copying conversion state to target repository"
+          
+          # Validate state file before copying
+          if python3 -c "import json; json.load(open('../new-state.json'))" 2>/dev/null; then
+            cp ../new-state.json .conversion-state.json
+            echo "✅ State file copied and validated"
+            echo "📊 New state file size: $(stat -c%s .conversion-state.json) bytes"
+            git add .conversion-state.json
+          else
+            echo "❌ State file validation failed, not copying corrupted state"
+            # Keep existing state file if new one is corrupted
+            if [ -f ".conversion-state.json" ]; then
+              echo "ℹ️  Keeping existing state file"
+            fi
+          fi
+        else
+          echo "⚠️  No new state file found, state will not be updated"
+          # This is an edge case that shouldn't happen if update-state step succeeded
+        fi
+        
         # Check for changes and commit
         echo "🔍 Checking for changes in target repository..."
-        git status --porcelain docs/components/
+        git status --porcelain docs/components/ .conversion-state.json
         
         if ! git diff --staged --quiet; then
           sha="${GITHUB_SHA:-unknown-sha}"
@@ -489,6 +683,103 @@ jobs:
         popd >/dev/null
         echo "=== MANIFEST GENERATION COMPLETE ==="
 
+    - name: Update Conversion State
+      id: update-state
+      if: steps.changed-files.outputs.any_changed == 'true'
+      run: |
+        echo "=== UPDATING CONVERSION STATE ==="
+        
+        # Create new state with corrected logic
+        python3 << 'EOF'
+import json
+import os
+from datetime import datetime
+
+# Load current state
+try:
+    with open('current-state.json') as f:
+        state = json.load(f)
+except:
+    state = {}
+
+# Initialize state structure
+if 'failedFiles' not in state:
+    state['failedFiles'] = {}
+
+# Get current info
+current_commit = os.environ.get('GITHUB_SHA', '')
+current_time = datetime.utcnow().isoformat() + 'Z'
+processed_files = [f.strip() for f in os.environ.get('PROCESSED_FILES', '').split() if f.strip()]
+failed_files = [f.strip() for f in os.environ.get('FAILED_FILES', '').split() if f.strip()]
+
+# IMPORTANT: successfulFiles contains ONLY current session files
+# This replaces any previous successful files from earlier sessions
+successful_files_current_session = {}
+for file_path in processed_files:
+    if file_path and file_path not in failed_files:
+        # Remove from failed files if it was previously failed (now successful)
+        if file_path in state['failedFiles']:
+            del state['failedFiles'][file_path]
+            print(f"Moved {file_path} from failed to successful")
+        
+        # Add to current session successful files
+        successful_files_current_session[file_path] = {
+            'convertedAt': current_time,
+            'sourceCommit': current_commit,
+            'sourceHash': 'sha256-placeholder'  # TODO: implement actual hash
+        }
+
+# Update failed files (cumulative - keep existing failures)
+for file_path in failed_files:
+    if file_path:
+        if file_path in state['failedFiles']:
+            # Increment attempt count for existing failed file
+            state['failedFiles'][file_path]['attemptCount'] += 1
+            print(f"Incremented attempt count for {file_path} to {state['failedFiles'][file_path]['attemptCount']}")
+        else:
+            # New failed file
+            state['failedFiles'][file_path] = {
+                'attemptCount': 1
+            }
+            print(f"Added new failed file: {file_path}")
+        
+        # Update failure details
+        state['failedFiles'][file_path].update({
+            'lastAttempt': current_time,
+            'lastError': 'conversion failed',
+            'sourceCommit': current_commit
+        })
+
+# Set successful files to ONLY current session (not cumulative)
+state['successfulFiles'] = successful_files_current_session
+
+# Update global state
+state['lastProcessedCommit'] = current_commit
+state['lastSuccessfulRun'] = current_time
+
+# Save state
+with open('new-state.json', 'w') as f:
+    json.dump(state, f, indent=2)
+
+print(f"✅ State updated:")
+print(f"  - Current session successful: {len(successful_files_current_session)}")
+print(f"  - Total cumulative failed: {len(state['failedFiles'])}")
+print(f"  - Last processed commit: {current_commit[:8]}...")
+EOF
+        
+        echo "📊 New state file created:"
+        ls -la new-state.json
+        echo "📄 State summary:"
+        python3 -c "
+import json
+with open('new-state.json') as f:
+    state = json.load(f)
+print(f'Successful files: {len(state.get(\"successfulFiles\", {}))}')
+print(f'Failed files: {len(state.get(\"failedFiles\", {}))}')
+print(f'Last commit: {state.get(\"lastProcessedCommit\", \"none\")}')
+"
+        echo "=== STATE UPDATE COMPLETE ==="
+
     - name: Workflow Summary
       if: always()
       run: |
@@ -526,6 +817,22 @@ jobs:
           echo "📄 Files in scope: $(echo '${{ steps.changed-files.outputs.all_changed_files }}' | wc -w)"
           echo "🎯 Target repository: peerf-eco/docs-vitepress"
           
+          # State tracking summary
+          if [ -f "new-state.json" ]; then
+            echo "📄 State tracking summary:"
+            python3 -c "
+import json
+try:
+    with open('new-state.json') as f:
+        state = json.load(f)
+    print(f'  - Total successful files: {len(state.get(\"successfulFiles\", {}))}')
+    print(f'  - Total failed files: {len(state.get(\"failedFiles\", {}))}')
+    print(f'  - Last processed commit: {state.get(\"lastProcessedCommit\", \"none\")[:8]}...')
+except Exception as e:
+    print(f'  - State file error: {e}')
+" 2>/dev/null || echo "  - State information unavailable"
+          fi
+          
           # Check if conversion actually succeeded
           if [ "${{ steps.convert.outcome }}" == "success" ]; then
             echo "✅ Conversion completed successfully"
@@ -539,10 +846,33 @@ jobs:
           elif [ "${{ steps.deploy.outcome }}" == "failure" ]; then
             echo "❌ Deployment failed - check deployment logs"
           fi
+          
+          # Check if state update succeeded
+          if [ "${{ steps.update-state.outcome }}" == "success" ]; then
+            echo "✅ State tracking updated successfully"
+          elif [ "${{ steps.update-state.outcome }}" == "failure" ]; then
+            echo "❌ State tracking update failed"
+          fi
         else
           echo "🟡 PROCESSING RESULT: NO CHANGES DETECTED"
           echo "📄 Files processed: 0"
           echo "🎯 Target repository: No updates needed"
+          
+          # Show current state even when no changes
+          if [ -f "current-state.json" ]; then
+            echo "📄 Current state summary:"
+            python3 -c "
+import json
+try:
+    with open('current-state.json') as f:
+        state = json.load(f)
+    print(f'  - Total successful files: {len(state.get(\"successfulFiles\", {}))}')
+    print(f'  - Total failed files: {len(state.get(\"failedFiles\", {}))}')
+    print(f'  - Last processed commit: {state.get(\"lastProcessedCommit\", \"none\")[:8] if state.get(\"lastProcessedCommit\") else \"none\"}...')
+except Exception as e:
+    print(f'  - State file error: {e}')
+" 2>/dev/null || echo "  - No state information available"
+          fi
         fi
         
         # Troubleshooting guidance
