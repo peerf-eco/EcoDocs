@@ -46,24 +46,78 @@ jobs:
 
 
     - name: Install LibreOffice and extension
+      id: install-libreoffice
       run: |
-        sudo apt-get update
-        sudo apt-get install libreoffice -y
-        pip install frontmatter
+        echo "=== LIBREOFFICE INSTALLATION START ==="
+        echo "📦 Updating package lists..."
+        if sudo apt-get update; then
+          echo "✅ Package lists updated successfully"
+        else
+          echo "❌ Failed to update package lists"
+          exit 1
+        fi
+        
+        echo "📦 Installing LibreOffice..."
+        if sudo apt-get install libreoffice -y; then
+          echo "✅ LibreOffice installed successfully"
+        else
+          echo "❌ Failed to install LibreOffice"
+          exit 1
+        fi
+        
+        echo "🐍 Installing Python dependencies..."
+        if pip install frontmatter; then
+          echo "✅ Python frontmatter package installed"
+        else
+          echo "❌ Failed to install frontmatter package"
+          exit 1
+        fi
         
         # Install the DocExport extension using unopkg for current user
-        echo "Installing DocExport extension..."
+        echo "🔧 Installing DocExport extension..."
         if [ -f ".github/workflows/DocExport.oxt" ]; then
-          unopkg add .github/workflows/DocExport.oxt
-          echo "Extension installation completed"
+          echo "✅ DocExport.oxt file found"
+          echo "📊 Extension file size: $(stat -c%s .github/workflows/DocExport.oxt) bytes"
+          
+          if unopkg add .github/workflows/DocExport.oxt; then
+            echo "✅ Extension installation completed successfully"
+            echo "🔍 Listing installed extensions:"
+            unopkg list --user 2>/dev/null || echo "Cannot list extensions"
+          else
+            echo "❌ Extension installation failed"
+            echo "🔍 Checking unopkg availability:"
+            which unopkg || echo "unopkg not found in PATH"
+            exit 1
+          fi
         else
-          echo "ERROR: DocExport.oxt not found!"
+          echo "❌ ERROR: DocExport.oxt not found!"
+          echo "🔍 Contents of .github/workflows directory:"
+          ls -la .github/workflows/ || echo "Directory not accessible"
           exit 1
         fi
         
         # Verify LibreOffice is working
-        echo "Verifying LibreOffice installation..."
-        soffice --version
+        echo "🔍 Verifying LibreOffice installation..."
+        if soffice --version; then
+          echo "✅ LibreOffice verification successful"
+        else
+          echo "❌ LibreOffice verification failed"
+          exit 1
+        fi
+        echo "=== LIBREOFFICE INSTALLATION COMPLETE ==="
+
+    - name: Debug Git State
+      id: debug-git
+      run: |
+        echo "=== GIT STATE DEBUG ==="
+        echo "Current commit (HEAD): $(git rev-parse HEAD)"
+        echo "Previous commit (HEAD~1): $(git rev-parse HEAD~1 2>/dev/null || echo 'N/A - single commit')"
+        echo "Fetch depth used: 2"
+        echo "Git log (last 3 commits):"
+        git log --oneline -3 || echo "Less than 3 commits available"
+        echo "Files in components directory:"
+        find components -name "*.fodt" -type f | head -10 || echo "No .fodt files found"
+        echo "=== END GIT STATE DEBUG ==="
 
     - name: Find changed files
       id: changed-files
@@ -72,12 +126,88 @@ jobs:
         files: |
           components/**/*.fodt
 
+    - name: Process Change Detection Results
+      run: |
+        echo "=== CHANGE DETECTION RESULTS ==="
+        echo "Any files changed: ${{ steps.changed-files.outputs.any_changed }}"
+        echo "Files added: ${{ steps.changed-files.outputs.added_files }}"
+        echo "Files modified: ${{ steps.changed-files.outputs.modified_files }}"
+        echo "Files deleted: ${{ steps.changed-files.outputs.deleted_files }}"
+        echo "All changed files: ${{ steps.changed-files.outputs.all_changed_files }}"
+        
+        if [ "${{ steps.changed-files.outputs.any_changed }}" == "true" ]; then
+          file_count=$(echo '${{ steps.changed-files.outputs.all_changed_files }}' | wc -w)
+          echo "✅ CHANGES DETECTED: $file_count file(s) to process"
+          
+          # Check for deleted files
+          deleted_files="${{ steps.changed-files.outputs.deleted_files }}"
+          if [ -n "$deleted_files" ]; then
+            echo "⚠️  DELETED FILES DETECTED: $deleted_files"
+            echo "Note: Deleted files cannot be converted but may need cleanup in target repo"
+          fi
+          
+          echo "Files to convert:"
+          processable_files=0
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "  - $file"
+            if [ -f "$file" ]; then
+              file_size=$(stat -c%s "$file" 2>/dev/null || echo '0')
+              echo "    ✅ File exists and is readable"
+              echo "    📊 File size: $file_size bytes"
+              
+              if [ "$file_size" -eq 0 ]; then
+                echo "    ⚠️  WARNING: File is empty (0 bytes)"
+              elif [ "$file_size" -lt 100 ]; then
+                echo "    ⚠️  WARNING: File is very small ($file_size bytes) - may be incomplete"
+              fi
+              processable_files=$((processable_files + 1))
+            else
+              echo "    ❌ WARNING: File not found or not readable (likely deleted)"
+            fi
+          done
+          
+          echo "📊 Summary: $processable_files processable files out of $file_count total changes"
+        else
+          echo "ℹ️  NO CHANGES DETECTED"
+          echo "Reason: No .fodt files in components/** have been modified since the last commit"
+          echo "This is normal behavior - the workflow will skip conversion steps"
+          
+          # Additional debugging for no-changes scenario
+          echo "🔍 Additional debugging information:"
+          echo "  - Current workflow path filter: components/**/*.fodt"
+          echo "  - Actual path filter used: ${{ steps.changed-files.outputs.files }}"
+          echo "  - Comparison: HEAD vs HEAD~1"
+          echo "  - Repository has $(git rev-list --count HEAD) total commits"
+        fi
+        echo "=== END CHANGE DETECTION RESULTS ==="
+
+    - name: No Changes Detected
+      if: steps.changed-files.outputs.any_changed != 'true'
+      run: |
+        echo "=== NO CONVERSION NEEDED ==="
+        echo "ℹ️  WORKFLOW RESULT: No changes detected"
+        echo ""
+        echo "This means:"
+        echo "  • No .fodt files in components/** have been modified since the last commit"
+        echo "  • The workflow is working correctly by skipping unnecessary conversions"
+        echo "  • No files will be converted or pushed to the target repository"
+        echo ""
+        echo "If you expected changes to be detected:"
+        echo "  1. Verify your .fodt files are in the components/ directory"
+        echo "  2. Check that files were actually modified in the last commit"
+        echo "  3. Ensure the workflow path filter matches your file locations"
+        echo ""
+        echo "Current workflow path filter: components/**/*.fodt"
+        echo "=== WORKFLOW COMPLETE (NO ACTION REQUIRED) ==="
+
     - name: Convert to Markdown
+      id: convert
       if: steps.changed-files.outputs.any_changed == 'true'
       run: |
         echo "=== CONVERSION START ==="
-        echo "Found changed files: ${{ steps.changed-files.outputs.all_changed_files }}"
-        echo "Number of files to convert: $(echo '${{ steps.changed-files.outputs.all_changed_files }}' | wc -w)"
+        file_count=$(echo '${{ steps.changed-files.outputs.all_changed_files }}' | wc -w)
+        echo "🔄 Starting conversion of $file_count file(s)"
+        echo "Files to convert: ${{ steps.changed-files.outputs.all_changed_files }}"
         
         # Export GitHub environment variables for the script
         echo "GITHUB_SERVER_URL=${{ github.server_url }}" >> $GITHUB_ENV
@@ -90,65 +220,176 @@ jobs:
         ls -la converted_docs/ || echo "Directory is empty"
         
         # Call the new extension-based conversion script with changed files as arguments
-        bash .github/workflows/convert_docs_extension.sh ${{ steps.changed-files.outputs.all_changed_files }}
+        echo "🚀 Executing conversion script..."
+        if bash .github/workflows/convert_docs_extension.sh ${{ steps.changed-files.outputs.all_changed_files }}; then
+          echo "✅ Conversion script completed successfully"
+        else
+          echo "❌ Conversion script failed with exit code $?"
+          echo "🔍 Checking for partial results..."
+          ls -la converted_docs/ 2>/dev/null || echo "No converted_docs directory found"
+          exit 1
+        fi
         
-    - name: List converted files
+    - name: Verify Conversion Results
       if: steps.changed-files.outputs.any_changed == 'true'
       run: |
-        echo "=== CONVERSION COMPLETE ==="
-        echo "Files converted:"
-        ls -la converted_docs/
-        echo "Total .md files created: $(find converted_docs -name "*.md" | wc -l)"
+        echo "=== CONVERSION VERIFICATION ==="
+        
+        if [ -d "converted_docs" ]; then
+          echo "📁 Converted docs directory contents:"
+          ls -la converted_docs/
+          
+          md_count=$(find converted_docs -name "*.md" | wc -l)
+          echo "📄 Total .md files created: $md_count"
+          
+          if [ $md_count -gt 0 ]; then
+            echo "✅ Conversion successful - found $md_count markdown file(s)"
+            echo "📋 Generated files:"
+            find converted_docs -name "*.md" -exec basename {} \; | sort
+            
+            echo "📊 File sizes:"
+            find converted_docs -name "*.md" -exec ls -lh {} \; | awk '{print "  " $9 ": " $5}'
+          else
+            echo "⚠️  WARNING: No markdown files were created"
+            echo "🔍 Checking for other file types:"
+            find converted_docs -type f | head -10
+          fi
+        else
+          echo "❌ ERROR: converted_docs directory not found"
+          echo "🔍 Current directory contents:"
+          ls -la
+          exit 1
+        fi
+        echo "=== END CONVERSION VERIFICATION ==="
 
     - name: Clone, copy files, and push to docs repo
+      id: deploy
       if: steps.changed-files.outputs.any_changed == 'true'
       env:
         TARGET_REPO_SSH_KEY: ${{ secrets.VITEPRESS_DEPLOY_TOKEN }}
       shell: bash
       run: |
         set -euo pipefail
-        echo "=== SSH SETUP, CLONE, AND PUSH START ==="
+        echo "=== DEPLOYMENT TO TARGET REPOSITORY START ==="
+        echo "🎯 Target repository: peerf-eco/docs-vitepress"
+        echo "📂 Source directory: converted_docs/"
+        echo "📂 Target directory: docs/components/"
         
         # Setup SSH
-        mkdir -p ~/.ssh
-        ssh-keyscan -t ed25519,rsa github.com >> ~/.ssh/known_hosts
-        eval "$(ssh-agent -s)"
-        ssh-add - <<< "$TARGET_REPO_SSH_KEY"
+        echo "🔐 Setting up SSH authentication..."
+        if mkdir -p ~/.ssh; then
+          echo "✅ SSH directory created"
+        else
+          echo "❌ Failed to create SSH directory"
+          exit 1
+        fi
+        
+        echo "🔑 Adding GitHub to known hosts..."
+        if ssh-keyscan -t ed25519,rsa github.com >> ~/.ssh/known_hosts; then
+          echo "✅ GitHub added to known hosts"
+        else
+          echo "❌ Failed to add GitHub to known hosts"
+          exit 1
+        fi
+        
+        echo "🔑 Starting SSH agent..."
+        if eval "$(ssh-agent -s)"; then
+          echo "✅ SSH agent started"
+        else
+          echo "❌ Failed to start SSH agent"
+          exit 1
+        fi
+        
+        echo "🔑 Adding SSH key..."
+        if ssh-add - <<< "$TARGET_REPO_SSH_KEY"; then
+          echo "✅ SSH key added successfully"
+        else
+          echo "❌ Failed to add SSH key"
+          echo "🔍 SSH key length: ${#TARGET_REPO_SSH_KEY} characters"
+          exit 1
+        fi
         
         # Clone and copy files
-        git clone git@github.com:peerf-eco/docs-vitepress.git docs-vitepress
+        echo "💾 Cloning target repository..."
+        if git clone git@github.com:peerf-eco/docs-vitepress.git docs-vitepress; then
+          echo "✅ Repository cloned successfully"
+          echo "📁 Cloned repository contents:"
+          ls -la docs-vitepress/ | head -10
+        else
+          echo "❌ Failed to clone repository"
+          echo "🔍 Testing SSH connection to GitHub:"
+          ssh -T git@github.com || echo "SSH connection test failed"
+          exit 1
+        fi
         
-        ls -la converted_docs/ || { echo "No converted_docs directory"; exit 1; }
+        # Verify source directory exists
+        if [ ! -d "converted_docs" ]; then
+          echo "❌ ERROR: converted_docs directory not found"
+          exit 1
+        fi
+        
+        echo "📋 Files available for deployment:"
+        ls -la converted_docs/
+        
         targetDir="docs-vitepress/docs/components"
         mkdir -p "$targetDir"
+        echo "📁 Created target directory: $targetDir"
+        
         filesCopied=0
+        filesSkipped=0
+        echo "🔄 Starting file copy process..."
+        
         while IFS= read -r file; do
           src="converted_docs/${file}"
           if [ -f "$src" ]; then
-            cp "$src" "$targetDir/"
-            echo "Copied: ${file}"
-            filesCopied=$((filesCopied+1))
+            if cp "$src" "$targetDir/"; then
+              echo "  ✅ Copied: ${file} ($(stat -c%s "$src" 2>/dev/null || echo '?') bytes)"
+              filesCopied=$((filesCopied+1))
+            else
+              echo "  ❌ Failed to copy: ${file}"
+              filesSkipped=$((filesSkipped+1))
+            fi
+          else
+            echo "  ⚠️  Skipped (not a file): ${file}"
+            filesSkipped=$((filesSkipped+1))
           fi
-        done < <(ls converted_docs)
-        echo "Total files copied: $filesCopied"
+        done < <(ls converted_docs 2>/dev/null || echo "")
+        
+        echo "📊 Copy summary: $filesCopied files copied, $filesSkipped files skipped"
+        
+        if [ $filesCopied -eq 0 ]; then
+          echo "⚠️  WARNING: No files were copied to target repository"
+        fi
         
         # Push changes
         pushd docs-vitepress >/dev/null
         git config user.name "Docs CI Bot"
         git config user.email "docs-bot@ecoos.dev"
         git add docs/components/
+        # Check for changes and commit
+        echo "🔍 Checking for changes in target repository..."
+        git status --porcelain docs/components/
+        
         if ! git diff --staged --quiet; then
           sha="${GITHUB_SHA:-unknown-sha}"
+          echo "✅ Changes detected, committing and pushing..."
+          echo "📝 Commit message: Auto-update docs from ${sha}"
           git commit -m "Auto-update docs from ${sha}"
-          git push origin HEAD:main
-          echo "Successfully pushed to docs-vitepress repository"
+          
+          if git push origin HEAD:main; then
+            echo "🚀 Successfully pushed to docs-vitepress repository"
+          else
+            echo "❌ Failed to push to target repository"
+            exit 1
+          fi
         else
-          echo "No changes to commit - files may already be up to date"
+          echo "ℹ️  No changes to commit - files may already be up to date"
         fi
         popd >/dev/null
-        echo "=== OPERATION COMPLETE ==="
+        echo "=== DEPLOYMENT COMPLETE ==="
   
     - name: Generate and update components manifest
+      id: manifest
       if: steps.changed-files.outputs.any_changed == 'true'
       env:
         TARGET_REPO_SSH_KEY: ${{ secrets.VITEPRESS_DEPLOY_TOKEN }}
@@ -156,46 +397,71 @@ jobs:
       run: |
         set -eo pipefail
         echo "=== MANIFEST GENERATION START ==="
+        echo "📄 Generating components manifest for updated documentation"
         
         pushd docs-vitepress >/dev/null
         
         # Check if package.json exists and is valid
         if [ ! -f "package.json" ]; then
-          echo "No package.json found, skipping manifest generation"
+          echo "⚠️  No package.json found in target repository, skipping manifest generation"
+          echo "This is normal if the target repository doesn't use npm-based manifest generation"
           popd >/dev/null
           exit 0
         fi
+        echo "✅ Found package.json in target repository"
         
         # Validate JSON syntax
         if ! python3 -m json.tool package.json >/dev/null 2>&1; then
-          echo "Invalid package.json syntax, skipping manifest generation"
+          echo "❌ Invalid package.json syntax, skipping manifest generation"
+          echo "🔍 First few lines of package.json:"
+          head -5 package.json || echo "Cannot read package.json"
           popd >/dev/null
           exit 0
         fi
+        echo "✅ package.json syntax is valid"
         
         # Check if the required script exists
         if ! grep -q '"docs:generate-components"' package.json; then
-          echo "docs:generate-components script not found, skipping manifest generation"
+          echo "⚠️  docs:generate-components script not found in package.json"
+          echo "Available scripts:"
+          grep -A 10 '"scripts"' package.json | head -15 || echo "No scripts section found"
+          echo "Skipping manifest generation"
+          popd >/dev/null
+          exit 0
+        fi
+        echo "✅ Found docs:generate-components script"
+        
+        echo "📦 Installing dependencies..."
+        if npm ci 2>/dev/null; then
+          echo "✅ Dependencies installed successfully using npm ci"
+        elif npm install 2>/dev/null; then
+          echo "✅ Dependencies installed successfully using npm install"
+        else
+          echo "❌ Failed to install dependencies"
+          echo "🔍 npm version: $(npm --version 2>/dev/null || echo 'not available')"
+          echo "🔍 node version: $(node --version 2>/dev/null || echo 'not available')"
+          echo "Skipping manifest generation"
           popd >/dev/null
           exit 0
         fi
         
-        echo "Installing dependencies..."
-        if ! npm ci 2>/dev/null && ! npm install 2>/dev/null; then
-          echo "Failed to install dependencies, skipping manifest generation"
-          popd >/dev/null
-          exit 0
-        fi
-        
-        echo "Generating components manifest..."
-        if ! npm run docs:generate-components; then
-          echo "Failed to generate manifest, continuing without it"
+        echo "🔄 Generating components manifest..."
+        if npm run docs:generate-components; then
+          echo "✅ Manifest generation completed successfully"
+        else
+          echo "❌ Failed to generate manifest"
+          echo "🔍 Checking for existing manifest file:"
+          ls -la .vitepress/components.json 2>/dev/null || echo "No existing manifest found"
+          echo "Continuing without manifest update"
           popd >/dev/null
           exit 0
         fi
         
         # Setup SSH and push if manifest was generated
         if [ -f ".vitepress/components.json" ]; then
+          echo "✅ Manifest file generated: .vitepress/components.json"
+          echo "📊 Manifest file size: $(stat -c%s .vitepress/components.json 2>/dev/null || echo 'unknown') bytes"
+          
           mkdir -p ~/.ssh
           ssh-keyscan -t ed25519,rsa github.com >> ~/.ssh/known_hosts
           eval "$(ssh-agent -s)"
@@ -203,16 +469,92 @@ jobs:
           
           git add .vitepress/components.json
           if ! git diff --staged --quiet; then
-            echo "Committing manifest changes..."
+            echo "📝 Committing manifest changes..."
             git config user.name "Docs CI Bot"
             git config user.email "docs-bot@ecoos.dev"
             git commit -m "Auto-update components manifest from ${GITHUB_SHA:-unknown-sha}"
-            git push origin HEAD:main
-            echo "Successfully pushed manifest update"
+            
+            if git push origin HEAD:main; then
+              echo "🚀 Successfully pushed manifest update"
+            else
+              echo "❌ Failed to push manifest update"
+            fi
           else
-            echo "No manifest changes to commit"
+            echo "ℹ️  No manifest changes to commit (manifest unchanged)"
           fi
+        else
+          echo "⚠️  No manifest file found after generation"
         fi
         
         popd >/dev/null
         echo "=== MANIFEST GENERATION COMPLETE ==="
+
+    - name: Workflow Summary
+      if: always()
+      run: |
+        echo "=== WORKFLOW EXECUTION SUMMARY ==="
+        echo "📅 Execution date: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+        echo "🌐 Repository: ${{ github.repository }}"
+        echo "🔗 Commit: ${{ github.sha }}"
+        echo "🏃 Triggered by: ${{ github.event_name }}"
+        echo "🕰️ Workflow run ID: ${{ github.run_id }}"
+        
+        # Check step outcomes
+        echo "🔍 Step execution status:"
+        echo "  - LibreOffice installation: ${{ steps.install-libreoffice.outcome || 'not executed' }}"
+        echo "  - Git state debug: ${{ steps.debug-git.outcome || 'not executed' }}"
+        echo "  - Change detection: ${{ steps.changed-files.outcome || 'not executed' }}"
+        echo "  - Conversion: ${{ steps.convert.outcome || 'skipped' }}"
+        echo "  - Deployment: ${{ steps.deploy.outcome || 'skipped' }}"
+        echo "  - Manifest generation: ${{ steps.manifest.outcome || 'skipped' }}"
+        
+        # Overall workflow status
+        if [ "${{ job.status }}" == "success" ]; then
+          echo "✅ WORKFLOW STATUS: SUCCESS"
+        elif [ "${{ job.status }}" == "failure" ]; then
+          echo "❌ WORKFLOW STATUS: FAILED"
+          echo "🔍 Check the failed steps above for error details"
+        elif [ "${{ job.status }}" == "cancelled" ]; then
+          echo "⚠️  WORKFLOW STATUS: CANCELLED"
+        else
+          echo "🔄 WORKFLOW STATUS: ${{ job.status }}"
+        fi
+        
+        # File processing summary
+        if [ "${{ steps.changed-files.outputs.any_changed }}" == "true" ]; then
+          echo "🟢 PROCESSING RESULT: CHANGES DETECTED AND PROCESSED"
+          echo "📄 Files in scope: $(echo '${{ steps.changed-files.outputs.all_changed_files }}' | wc -w)"
+          echo "🎯 Target repository: peerf-eco/docs-vitepress"
+          
+          # Check if conversion actually succeeded
+          if [ "${{ steps.convert.outcome }}" == "success" ]; then
+            echo "✅ Conversion completed successfully"
+          elif [ "${{ steps.convert.outcome }}" == "failure" ]; then
+            echo "❌ Conversion failed - check conversion logs"
+          fi
+          
+          # Check if deployment succeeded
+          if [ "${{ steps.deploy.outcome }}" == "success" ]; then
+            echo "✅ Deployment completed successfully"
+          elif [ "${{ steps.deploy.outcome }}" == "failure" ]; then
+            echo "❌ Deployment failed - check deployment logs"
+          fi
+        else
+          echo "🟡 PROCESSING RESULT: NO CHANGES DETECTED"
+          echo "📄 Files processed: 0"
+          echo "🎯 Target repository: No updates needed"
+        fi
+        
+        # Troubleshooting guidance
+        if [ "${{ job.status }}" != "success" ]; then
+          echo ""
+          echo "🔧 TROUBLESHOOTING GUIDANCE:"
+          echo "  1. Check the step-by-step logs above for specific error messages"
+          echo "  2. Look for ❌ (error) and ⚠️ (warning) indicators in the logs"
+          echo "  3. Verify that .fodt files exist in the components/ directory"
+          echo "  4. Ensure SSH keys and repository permissions are correct"
+          echo "  5. Check if LibreOffice and DocExport extension installed properly"
+        fi
+        
+        echo "🔍 For detailed logs, check the individual step outputs above"
+        echo "=== END WORKFLOW SUMMARY ==="
