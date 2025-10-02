@@ -4,11 +4,18 @@
 
 The workflow converts FODT (Flat XML ODT) documentation files in the current repository (which have been changed since previous workflow run) to Markdown using LibreOffice extension DocExport.oxt and syncs them to the target documentation repository.
 
+### Image Folder Handling
+When ODT files contain images, the DocExport extension automatically extracts them during conversion:
+- **Image Folder Pattern**: `img_` + source ODT filename (e.g., `document.odt` → `img_document/`)
+- **Automatic Detection**: Workflow detects image folders and copies them alongside markdown files
+- **Target Location**: Image folders are placed in the same directory as their corresponding markdown files in the target repository
+
 ### Conversion Process
 1. **Extension Installation**: DocExport.oxt is installed in LibreOffice using `unopkg add`
 2. **FODT to ODT**: Source FODT files are converted to ODT format using LibreOffice
 3. **ODT to Markdown**: LibreOffice macro `DocExport.DocModel.ExportDir(directory,1)` converts ODT files to Markdown
-4. **Sync to Target**: Converted files are pushed to the target documentation repository
+4. **Image Extraction**: Images from ODT files are extracted to folders named `img_` + source filename
+5. **Sync to Target**: Converted markdown files and their corresponding image folders are pushed to the target documentation repository
 
 ## Current Change Detection Logic
 

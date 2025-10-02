@@ -459,20 +459,45 @@ jobs:
         echo "📋 Files available for deployment:"
         ls -la converted_docs/
         
+        # Check for image folders
+        echo "🖼️ Checking for image folders..."
+        img_folders_found=$(find converted_docs -maxdepth 1 -type d -name "img_*" | wc -l)
+        if [ $img_folders_found -gt 0 ]; then
+          echo "  ✅ Found $img_folders_found image folder(s):"
+          find converted_docs -maxdepth 1 -type d -name "img_*" -exec basename {} \;
+        else
+          echo "  ℹ️ No image folders found (img_* pattern)"
+        fi
+        
         targetDir="docs-vitepress/docs/components"
         mkdir -p "$targetDir"
         echo "📁 Created target directory: $targetDir"
         
         filesCopied=0
         filesSkipped=0
+        imagesFoldersCopied=0
         echo "🔄 Starting file copy process..."
         
+        # Copy markdown files
         while IFS= read -r file; do
           src="converted_docs/${file}"
           if [ -f "$src" ]; then
             if cp "$src" "$targetDir/"; then
               echo "  ✅ Copied: ${file} ($(stat -c%s "$src" 2>/dev/null || echo '?') bytes)"
               filesCopied=$((filesCopied+1))
+              
+              # Check for corresponding image folder
+              base_name="${file%.md}"
+              img_folder="converted_docs/img_${base_name}"
+              if [ -d "$img_folder" ]; then
+                echo "  📁 Found image folder: img_${base_name}"
+                if cp -r "$img_folder" "$targetDir/"; then
+                  echo "  ✅ Copied image folder: img_${base_name}"
+                  imagesFoldersCopied=$((imagesFoldersCopied+1))
+                else
+                  echo "  ❌ Failed to copy image folder: img_${base_name}"
+                fi
+              fi
             else
               echo "  ❌ Failed to copy: ${file}"
               filesSkipped=$((filesSkipped+1))
@@ -483,10 +508,14 @@ jobs:
           fi
         done < <(ls converted_docs 2>/dev/null || echo "")
         
-        echo "📊 Copy summary: $filesCopied files copied, $filesSkipped files skipped"
+        echo "📊 Copy summary: $filesCopied files copied, $imagesFoldersCopied image folders copied, $filesSkipped files skipped"
         
         if [ $filesCopied -eq 0 ]; then
           echo "⚠️  WARNING: No files were copied to target repository"
+        fi
+        
+        if [ $imagesFoldersCopied -gt 0 ]; then
+          echo "✅ Successfully copied $imagesFoldersCopied image folder(s) with markdown files"
         fi
         
         # Push changes
