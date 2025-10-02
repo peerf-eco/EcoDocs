@@ -11,7 +11,7 @@ jobs:
   convert-and-sync:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/${{ github.repository }}/libreoffice-docexport:latest
+      image: ghcr.io/${{ github.repository_owner }}/ecodocs-libreoffice:latest
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
