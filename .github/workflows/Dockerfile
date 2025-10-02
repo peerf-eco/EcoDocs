@@ -15,13 +15,11 @@ RUN pip3 install frontmatter
 # Copy and install DocExport extension
 COPY DocExport.oxt /tmp/DocExport.oxt
 RUN unopkg add --shared /tmp/DocExport.oxt
-RUN unopkg add /tmp/DocExport.oxt
 RUN rm /tmp/DocExport.oxt
 
 # Verify LibreOffice installation and extension
 RUN soffice --version
 RUN unopkg list --shared | grep -i docexport
-RUN unopkg list | grep -i docexport
 
 # Set working directory
 WORKDIR /workspace
