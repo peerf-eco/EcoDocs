@@ -78,7 +78,7 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
   sleep 2
   
   # Run with timeout (5 minutes max)
-  if timeout 300 soffice --invisible --nofirststartwizard --headless --norestore macro:///DocExport.DocModel.ExportDir\(\"$temp_odt_dir\",1\); then
+  if timeout 300 soffice --invisible --nofirststartwizard --headless --norestore "macro:///DocExport.DocModel.ExportDir(\"$temp_odt_dir\",1)"; then
     echo "✓ LibreOffice macro execution completed"
     
     # List files after conversion for debugging
