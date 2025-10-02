@@ -46,7 +46,7 @@ jobs:
         mkdir -p ~/.ssh
         ssh-keyscan -t ed25519,rsa github.com >> ~/.ssh/known_hosts
         eval "$(ssh-agent -s)"
-        ssh-add - <<< "${{ secrets.VITEPRESS_DEPLOY_TOKEN }}"
+        echo "${{ secrets.VITEPRESS_DEPLOY_TOKEN }}" | ssh-add -
         
         if git clone git@github.com:peerf-eco/docs-vitepress.git state-check; then
           echo "✅ Target repository cloned for state check"
@@ -352,7 +352,7 @@ jobs:
         fi
         
         echo "🔑 Adding SSH key..."
-        if ssh-add - <<< "$TARGET_REPO_SSH_KEY"; then
+        if echo "$TARGET_REPO_SSH_KEY" | ssh-add -; then
           echo "✅ SSH key added successfully"
         else
           echo "❌ Failed to add SSH key"
@@ -567,7 +567,7 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -t ed25519,rsa github.com >> ~/.ssh/known_hosts
           eval "$(ssh-agent -s)"
-          ssh-add - <<< "$TARGET_REPO_SSH_KEY"
+          echo "$TARGET_REPO_SSH_KEY" | ssh-add -
           
           git add .vitepress/components.json
           if ! git diff --staged --quiet; then
