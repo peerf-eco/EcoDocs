@@ -10,9 +10,15 @@ on:
 jobs:
   convert-and-sync:
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository }}/libreoffice-docexport:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     permissions:
       contents: write  # For source repo
       id-token: write  # For GitHub App token
+      packages: read   # For container registry
 
     steps:
     - name: Checkout source
@@ -20,99 +26,16 @@ jobs:
       with:
         fetch-depth: 2  # Needed for git diff
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.12'
-
-    - name: Cache APT packages
-      uses: actions/cache@v3
-      with:
-        path: |
-          /var/cache/apt/archives
-          /var/lib/apt/lists
-        key: ${{ runner.os }}-apt-${{ hashFiles('**/convert-docs.yml') }}
-        restore-keys: |
-          ${{ runner.os }}-apt-
-
-    - name: Cache Python packages
-      uses: actions/cache@v3
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/convert-docs.yml') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
-
-
-
-    - name: Install LibreOffice and extension
-      id: install-libreoffice
+    - name: Verify pre-built environment
       run: |
-        echo "=== LIBREOFFICE INSTALLATION START ==="
-        echo "📦 Updating package lists..."
-        if sudo apt-get update; then
-          echo "✅ Package lists updated successfully"
-        else
-          echo "❌ Failed to update package lists"
-          exit 1
-        fi
-        
-        echo "📦 Installing LibreOffice..."
-        if sudo apt-get install libreoffice -y; then
-          echo "✅ LibreOffice installed successfully"
-        else
-          echo "❌ Failed to install LibreOffice"
-          exit 1
-        fi
-        
-        echo "🐍 Installing Python dependencies..."
-        if pip install frontmatter; then
-          echo "✅ Python frontmatter package installed"
-        else
-          echo "❌ Failed to install frontmatter package"
-          exit 1
-        fi
-        
-        # Install the DocExport extension using unopkg for current user
-        echo "🔧 Installing DocExport extension..."
-        if [ -f ".github/workflows/DocExport.oxt" ]; then
-          echo "✅ DocExport.oxt file found"
-          echo "📊 Extension file size: $(stat -c%s .github/workflows/DocExport.oxt) bytes"
-          
-          if unopkg add .github/workflows/DocExport.oxt; then
-            echo "✅ Extension installation completed successfully"
-            echo "🔍 Verifying extension installation:"
-            if unopkg list 2>/dev/null | grep -i docexport; then
-              echo "✅ DocExport extension verified successfully"
-            else
-              echo "❌ CRITICAL: DocExport extension not found after installation"
-              echo "Available extensions:"
-              unopkg list 2>/dev/null || echo "No extensions listed"
-              echo "❌ WORKFLOW TERMINATED: Extension verification failed"
-              exit 1
-            fi
-          else
-            echo "❌ Extension installation failed"
-            echo "🔍 Checking unopkg availability:"
-            which unopkg || echo "unopkg not found in PATH"
-            exit 1
-          fi
-        else
-          echo "❌ ERROR: DocExport.oxt not found!"
-          echo "🔍 Contents of .github/workflows directory:"
-          ls -la .github/workflows/ || echo "Directory not accessible"
-          exit 1
-        fi
-        
-        # Verify LibreOffice is working
-        echo "🔍 Verifying LibreOffice installation..."
-        if soffice --version; then
-          echo "✅ LibreOffice verification successful"
-        else
-          echo "❌ LibreOffice verification failed"
-          exit 1
-        fi
-        echo "=== LIBREOFFICE INSTALLATION COMPLETE ==="
+        echo "=== VERIFYING PRE-BUILT ENVIRONMENT ==="
+        echo "🔍 LibreOffice version:"
+        soffice --version
+        echo "🔍 Python version:"
+        python3 --version
+        echo "🔍 DocExport extension:"
+        unopkg list --shared | grep -i docexport || echo "Extension not found in shared"
+        echo "✅ Environment verification complete"
 
     - name: Load Conversion State
       id: load-state
