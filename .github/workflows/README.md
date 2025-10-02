@@ -10,6 +10,13 @@ When ODT files contain images, the DocExport extension automatically extracts th
 - **Automatic Detection**: Workflow detects image folders and copies them alongside markdown files
 - **Target Location**: Image folders are placed in the same directory as their corresponding markdown files in the target repository
 
+#### Filename Dependencies
+1. **Image Folder Detection**: Uses markdown filename to construct expected image folder name (`img_` + base filename)
+2. **File Processing**: Copies any `.md` files found, regardless of specific names
+3. **Image-Markdown Pairing**: Correct pairing requires matching filenames (wrong filename = missing images)
+4. **Workflow Robustness**: Missing image folders don't cause failures, just skip image copying
+5. **State Tracking**: Tracks source files, not generated markdown filenames
+
 ### Conversion Process
 1. **Extension Installation**: DocExport.oxt is installed in LibreOffice using `unopkg add`
 2. **FODT to ODT**: Source FODT files are converted to ODT format using LibreOffice
