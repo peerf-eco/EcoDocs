@@ -567,7 +567,9 @@ Using emojis for quick status identification:
 - ✅ Enhanced error handling with detailed diagnostics
 
 ### Phase 2: State Tracking Implementation ✅ IMPLEMENTED
-**Create `.conversion-state.json` in target repository:**
+**State File Location:** `.conversion-state.json` in target repository root
+
+**State File Structure:**
 ```json
 {
   "lastProcessedCommit": "abc123...",
@@ -603,17 +605,111 @@ Using emojis for quick status identification:
    - Increment `attemptCount` for retry failures
 5. ✅ Deploy updated state back to target repository
 
-### Phase 3: Failure Recovery (PLANNED)
-- Handle partial conversion failures gracefully
-- Retry failed files on subsequent runs
-- Maintain detailed error logs for debugging
-- Implement maximum retry limits to prevent infinite loops
+### Phase 2.5: Individual File Conversion ✅ IMPLEMENTED
+**Conversion Strategy: One-by-one Processing**
+
+**Implementation Details:**
+- **Removed**: Bulk batch conversion using `ExportDir` macro
+- **Implemented**: Individual file conversion loop with process isolation
+- **Conversion Method**: `MakeDocHfmView` macro for single ODT files
+- **Process Management**: 
+  - `pkill -f soffice` before each conversion (clears lingering processes)
+  - 1 second sleep after process cleanup
+  - 5 second sleep after conversion (allows file system to settle)
+- **File Tracking**: Maps original source files to conversion results for accurate state reporting
+- **Error Handling**: Individual file failures don't stop processing of remaining files
+
+**Conversion Flow:**
+```bash
+for odt_file in *.odt; do
+  pkill -f soffice 2>/dev/null
+  sleep 1
+  soffice --headless --invisible --nologo --norestore "$odt_file" 'macro:///DocExport.DocModel.MakeDocHfmView'
+  sleep 5
+  # Process results and track success/failure
+done
+```
+
+**Enhanced Logging:**
+- Phase 1: FODT→ODT conversion with file size validation
+- Phase 2: ODT→Markdown conversion with detailed progress tracking
+- File-by-file status: Processing [N/Total], success/failure indicators
+- Empty file detection (0 bytes) with error reporting
+- Image folder detection and copy status
+- Metadata addition status (non-critical failures logged)
+- Final statistics: Success rate, file counts, output sizes
+
+**State Tracking Integration:**
+- Exports `PROCESSED_FILES` list (successfully converted source files)
+- Exports `FAILED_FILES` list (failed source files for retry)
+- Environment variables used by `update_state.py` for state file generation
+- Accurate tracking enables retry logic and failure recovery
+
+**Edge Cases Handled:**
+- Empty input files (0 bytes)
+- Missing files (skipped with error)
+- Failed FODT→ODT conversions
+- Failed ODT→Markdown conversions
+- Missing image folders (normal for text-only documents)
+- Metadata addition failures (non-critical, logged as warning)
+- LibreOffice process cleanup failures (non-blocking)
+
+### Phase 3: Target Repository Deployment ✅ IMPLEMENTED
+**Deployment Strategy: Complete Overwrite**
+
+**Current Behavior:**
+- **No Diff Calculation**: Workflow does NOT compare new vs existing markdown files
+- **Overwrite Strategy**: All generated markdown files copied to target repository
+- **Git-Level Detection**: Git determines if content actually changed
+- **Commit Only If Changed**: Empty commits prevented by git diff check
+
+**Deployment Flow:**
+```bash
+# Copy all generated files (overwrites existing)
+cp "$src" "$targetDir/"
+
+# Git detects actual changes
+git add docs/components/
+if ! git diff --staged --quiet; then
+  git commit -m "Auto-update docs from ${sha}"
+  git push
+fi
+```
+
+**What IS Tracked:**
+- Source file changes (which `.fodt` files changed)
+- Conversion success/failure (state tracking)
+- Last processed commit (for change detection)
+
+**What is NOT Tracked:**
+- Target markdown content hashes
+- Incremental markdown updates
+- Content differences between old and new markdown
+- Manual edits in target repository (will be overwritten)
+
+**Implications:**
+- ✅ Simple, predictable behavior
+- ✅ Git handles change detection automatically
+- ✅ Always ensures target matches source
+- ✅ No stale content issues
+- ⚠️ Always copies files even if unchanged
+- ⚠️ Manual edits in target repo get overwritten
+- ⚠️ No detection if conversion output changed for same input
+
+**State File Deployment:**
+- `.conversion-state.json` validated before copying
+- JSON syntax checked to prevent corruption
+- Existing state preserved if new state is invalid
+- State file committed alongside markdown files
 
 ### Phase 4: Content Verification (PLANNED)
-- Add file hash comparison as backup verification
-- Detect when source files are modified but git doesn't catch changes
+**Proposed Enhancements:**
+- Add file hash comparison for target markdown files
+- Detect when source files unchanged but conversion output differs
 - Handle edge cases like file renames or moves
-- Verify target files match source content
+- Verify target files match expected source content
+- Skip copying if markdown content identical (optimization)
+- Detect and warn about manual edits in target repository
 
 ## Troubleshooting with Enhanced Logging
 
@@ -701,6 +797,24 @@ Using emojis for quick status identification:
 - **Specific indicators**: Fallback to HEAD~1 comparison or all .fodt files processing
 - **Solution**: Normal behavior for new repositories or when commit history is modified
 
+#### Scenario 14: Individual file conversion failures (Phase 2.5)
+**Look for these log sections:**
+- **PHASE 2: ODT TO MARKDOWN CONVERSION**: Check per-file processing status
+- **Specific indicators**: "ERROR: Markdown file not created", "ERROR: Generated markdown file is empty"
+- **Solution**: Check LibreOffice macro execution, verify ODT file integrity, review temp directory contents
+
+#### Scenario 15: Process cleanup issues (Phase 2.5)
+**Look for these log sections:**
+- **Processing [N/Total]**: Check for pkill warnings or sleep interruptions
+- **Specific indicators**: Multiple LibreOffice processes running, conversion timeouts
+- **Solution**: Verify process cleanup between conversions, check system resource availability
+
+#### Scenario 16: State export failures (Phase 2.5)
+**Look for these log sections:**
+- **STATE TRACKING EXPORT**: Check if PROCESSED_FILES and FAILED_FILES exported
+- **Specific indicators**: "No processed files to export", "No failed files to export"
+- **Solution**: Verify conversion script completed, check GITHUB_ENV availability
+
 ### Log Level Meanings
 - ✅ **Success**: Operation completed without issues
 - ❌ **Error**: Critical failure that stops the workflow
@@ -709,14 +823,17 @@ Using emojis for quick status identification:
 - 🔍 **Debug**: Detailed information for troubleshooting
 
 ## Benefits of Improved Approach
-- **Complete Coverage**: Processes all changes since last successful conversion
-- **Retry Logic**: Failed files automatically retried on next run
-- **No Lost Work**: Progress saved even if workflow fails partially
-- **Manual Trigger Support**: Works correctly regardless of trigger method
-- **Multi-commit Support**: Handles scenarios with multiple commits containing changes
+- **Complete Coverage**: Processes all changes since last successful conversion (Phase 2 ✅)
+- **Retry Logic**: Failed files automatically retried on next run (Phase 2 ✅)
+- **No Lost Work**: Progress saved even if workflow fails partially (Phase 2 ✅)
+- **Manual Trigger Support**: Works correctly regardless of trigger method (Phase 2 ✅)
+- **Multi-commit Support**: Handles scenarios with multiple commits containing changes (Phase 2 ✅)
 - **Enhanced Debugging**: Comprehensive logging for quick issue resolution (Phase 1 ✅)
 - **User-Friendly Feedback**: Clear status messages and troubleshooting guidance (Phase 1 ✅)
 - **Visual Status Indicators**: Quick identification of workflow status (Phase 1 ✅)
+- **Reliable Conversion**: Individual file processing with process isolation (Phase 2.5 ✅)
+- **Accurate State Tracking**: File-level success/failure tracking for retry logic (Phase 2.5 ✅)
+- **Predictable Deployment**: Simple overwrite strategy with git-level change detection (Phase 3 ✅)
 
 ## Workflow Triggers
 

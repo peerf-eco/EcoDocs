@@ -1,26 +1,43 @@
 #!/bin/bash
+set -euo pipefail
+
 echo "=== CONVERT_DOCS_EXTENSION.SH START ==="
 echo "Script received arguments: $#"
 echo "Files to process: $@"
 
 # Create the output directory if it doesn't exist
 mkdir -p converted_docs
-echo "Output directory created: converted_docs/"
+echo "✓ Output directory created: converted_docs/"
 
 # Create temporary directory for ODT files
 temp_odt_dir=$(mktemp -d)
-echo "Temporary ODT directory created: $temp_odt_dir"
+echo "✓ Temporary ODT directory created: $temp_odt_dir"
 
-# Counter for tracking conversions
+# Tracking arrays and lists
 converted_count=0
+failed_count=0
 odt_files=()
+original_file_map=()
+processed_files_list=""
+failed_files_list=""
 
 # First pass: Convert FODT files to ODT and collect all ODT files
+echo "=== PHASE 1: FODT TO ODT CONVERSION ==="
 for file in "$@"; do
-  echo "Processing file: $file"
+  echo "📄 Processing input file: $file"
   
   if [[ ! -f "$file" ]]; then
-    echo "ERROR: File not found: $file"
+    echo "❌ ERROR: File not found: $file"
+    ((failed_count++))
+    continue
+  fi
+  
+  file_size=$(stat -c%s "$file" 2>/dev/null || echo '0')
+  echo "   File size: $file_size bytes"
+  
+  if [[ $file_size -eq 0 ]]; then
+    echo "❌ ERROR: File is empty (0 bytes): $file"
+    ((failed_count++))
     continue
   fi
   
@@ -28,23 +45,40 @@ for file in "$@"; do
   filename="${base##*/}"
   
   if [[ "$file" == *.fodt ]]; then
-    echo "Converting FODT to ODT: $file"
+    echo "🔄 Converting FODT to ODT: $file"
     temp_odt="$temp_odt_dir/${filename}.odt"
     
-    if soffice --headless --convert-to odt:"writer8" "$file" --outdir "$temp_odt_dir"; then
-      echo "✓ Successfully converted FODT to ODT: ${filename}.odt"
-      odt_files+=("$temp_odt")
+    if soffice --headless --convert-to odt:"writer8" "$file" --outdir "$temp_odt_dir" 2>&1; then
+      if [[ -f "$temp_odt" ]]; then
+        odt_size=$(stat -c%s "$temp_odt" 2>/dev/null || echo '0')
+        echo "✓ Successfully converted FODT to ODT: ${filename}.odt ($odt_size bytes)"
+        odt_files+=("${filename}.odt")
+        original_file_map+=("$file")
+      else
+        echo "❌ ERROR: ODT file not created: $temp_odt"
+        ((failed_count++))
+      fi
     else
-      echo "ERROR: Failed to convert FODT to ODT: $file"
+      echo "❌ ERROR: Failed to convert FODT to ODT: $file"
+      ((failed_count++))
     fi
   elif [[ "$file" == *.odt ]]; then
-    # Copy existing ODT files to temp directory
     temp_odt="$temp_odt_dir/${filename}.odt"
-    cp "$file" "$temp_odt"
-    echo "✓ Copied ODT file to temp directory: ${filename}.odt"
-    odt_files+=("$temp_odt")
+    if cp "$file" "$temp_odt"; then
+      echo "✓ Copied ODT file to temp directory: ${filename}.odt"
+      odt_files+=("${filename}.odt")
+      original_file_map+=("$file")
+    else
+      echo "❌ ERROR: Failed to copy ODT file: $file"
+      ((failed_count++))
+    fi
+  else
+    echo "⚠️  WARNING: Unsupported file type: $file"
+    ((failed_count++))
   fi
 done
+
+echo "📊 Phase 1 Summary: ${#odt_files[@]} ODT files ready, $failed_count files failed"
 
 # Verify extension is installed
 echo "=== VERIFYING DOCEXPORT EXTENSION ==="
@@ -59,180 +93,171 @@ else
   exit 1
 fi
 
-# Second pass: Use LibreOffice extension to convert all ODT files to Markdown
+# Convert ODT files to Markdown individually
 if [[ ${#odt_files[@]} -gt 0 ]]; then
-  echo "=== BATCH CONVERSION WITH LIBREOFFICE EXTENSION ==="
-  echo "Converting ${#odt_files[@]} ODT files using DocExport extension..."
+  echo "=== PHASE 2: ODT TO MARKDOWN CONVERSION ==="
+  echo "Converting ${#odt_files[@]} ODT files one by one..."
   
-  # List files before conversion for debugging
-  echo "Files in temp directory before conversion:"
-  echo "ODT files to convert:"
-  find "$temp_odt_dir" -type f -name "*.odt" -exec basename {} \;
-  odt_count=$(find "$temp_odt_dir" -type f -name "*.odt" | wc -l)
-  echo "Total ODT files: $odt_count"
+  cd "$temp_odt_dir" || exit 1
   
-  # Run LibreOffice macro with timeout to prevent hanging
-  echo "Executing macro: macro:///DocExport.DocModel.ExportDir($temp_odt_dir,1)"
-  
-  # Kill any existing LibreOffice processes
-  pkill -f soffice || true
-  sleep 2
-  
-  # Run with timeout (5 minutes max)
-  if timeout 300 soffice --invisible --nofirststartwizard --headless --norestore "macro:///DocExport.DocModel.ExportDir(\"$temp_odt_dir\",1)"; then
-    echo "✓ LibreOffice macro execution completed"
-    
-    # List files after conversion for debugging
-    echo "Files in temp directory after conversion:"
-    echo "Markdown files:"
-    find "$temp_odt_dir" -type f -name "*.md" -exec basename {} \;
-    echo "Image folders:"
-    find "$temp_odt_dir" -type d -name "img_*" -exec basename {} \;
-    md_count=$(find "$temp_odt_dir" -type f -name "*.md" | wc -l)
-    echo "Total MD files: $md_count"
-    
-    # Move converted markdown files to output directory
-    for odt_file in "${odt_files[@]}"; do
-      base_name=$(basename "$odt_file" .odt)
-      md_file="$temp_odt_dir/${base_name}.md"
-      output_file="converted_docs/${base_name}.md"
+  file_index=0
+  for odt_file in *.odt; do
+    if [ -f "$odt_file" ]; then
+      echo ""
+      echo "📄 Processing [$((file_index+1))/${#odt_files[@]}]: $odt_file"
       
-      if [[ -f "$md_file" ]]; then
-        # Convert to UTF-8 encoding
-        python3 -c "import sys; open('$output_file','wb').write(open('$md_file','rb').read().decode(errors='ignore').encode('utf-8'))" 2>/dev/null || cp "$md_file" "$output_file"
-        echo "✓ Moved converted file: $output_file (UTF-8)"
-        
-        # Find and move image folder
-        correct_img="$temp_odt_dir/img_${base_name}"
-        if [[ -d "$correct_img" ]]; then
-          mv "$correct_img" "converted_docs/img_${base_name}"
-          echo "✓ Moved image folder: converted_docs/img_${base_name}"
-        else
-          # Fallback: find folder with full path prefix (old macro behavior)
-          img_folder=$(find "$temp_odt_dir" -type d -name "img_*${base_name}*" | head -1)
-          if [[ -n "$img_folder" && -d "$img_folder" ]]; then
-            mv "$img_folder" "converted_docs/img_${base_name}"
-            echo "✓ Moved image folder: converted_docs/img_${base_name} (renamed from old format)"
-            sed -i "s|img_[^/]*/|img_${base_name}/|g" "$output_file"
-          fi
-        fi
-        
-        # Add metadata if script exists
-        if [[ -f ".github/workflows/create_metadata.py" ]]; then
-          echo "Adding metadata to: $output_file"
-          python3 .github/workflows/create_metadata.py "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}"
-        else
-          echo "WARNING: create_metadata.py not found"
-        fi
-        
-        # Verify output file exists and count
-        if [[ -f "$output_file" ]]; then
-          echo "✓ Output file created: $output_file ($(stat -c%s "$output_file") bytes)"
-          ((converted_count++))
-        else
-          echo "ERROR: Output file not created: $output_file"
-        fi
-      else
-        echo "ERROR: Markdown file not found after conversion: $md_file"
-      fi
-    done
-  else
-    echo "ERROR: LibreOffice macro execution failed"
-    
-    # Try alternative macro execution method with timeout
-    echo "Trying alternative macro execution..."
-    pkill -f soffice || true
-    sleep 2
-    timeout 300 soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel.ExportDir(\"$temp_odt_dir\",1)" || true
-    
-    # List files after alternative attempt
-    echo "Files after alternative attempt:"
-    echo "Markdown files:"
-    find "$temp_odt_dir" -type f -name "*.md" -exec basename {} \;
-    echo "Image folders:"
-    find "$temp_odt_dir" -type d -name "img_*" -exec basename {} \;
-    md_count=$(find "$temp_odt_dir" -type f -name "*.md" | wc -l)
-    echo "Total MD files: $md_count"
-    
-    # Fallback: Try individual file conversion
-    echo "Attempting individual file conversion as fallback..."
-    for odt_file in "${odt_files[@]}"; do
-      base_name=$(basename "$odt_file" .odt)
-      output_file="converted_docs/${base_name}.md"
-      individual_dir=$(mktemp -d)
-      
-      echo "Converting individual file: $odt_file"
-      # Copy single file to individual directory
-      cp "$odt_file" "$individual_dir/"
-      
-      pkill -f soffice || true
+      # Clean up any lingering LibreOffice processes
+      pkill -f soffice 2>/dev/null || true
       sleep 1
       
-      echo "Running individual macro on: $individual_dir"
-      if timeout 120 soffice --invisible --nofirststartwizard --headless --norestore "macro:///DocExport.DocModel.ExportDir(\"$individual_dir\",1)"; then
-        md_file="$individual_dir/${base_name}.md"
-        if [[ -f "$md_file" ]]; then
+      # Run conversion macro
+      echo "🔄 Running conversion macro..."
+      if soffice --headless --invisible --nologo --norestore "$odt_file" 'macro:///DocExport.DocModel.MakeDocHfmView' 2>&1; then
+        echo "✓ Macro execution completed"
+      else
+        echo "⚠️  Macro execution returned non-zero exit code (may be normal)"
+      fi
+      
+      # Wait for file system to settle
+      sleep 5
+      
+      base_name=$(basename "$odt_file" .odt)
+      md_file="${base_name}.md"
+      output_file="$OLDPWD/converted_docs/${base_name}.md"
+      original_file="${original_file_map[$file_index]}"
+      
+      # Check if markdown file was created
+      if [[ -f "$md_file" ]]; then
+        md_size=$(stat -c%s "$md_file" 2>/dev/null || echo '0')
+        echo "✓ Markdown file created: $md_file ($md_size bytes)"
+        
+        if [[ $md_size -eq 0 ]]; then
+          echo "❌ ERROR: Generated markdown file is empty"
+          ((failed_count++))
+        else
           # Convert to UTF-8 encoding
-          python3 -c "import sys; open('$output_file','wb').write(open('$md_file','rb').read().decode(errors='ignore').encode('utf-8'))" 2>/dev/null || cp "$md_file" "$output_file"
-          echo "✓ Individual conversion successful: $output_file (UTF-8)"
-          
-          # Find and move image folder
-          correct_img="$individual_dir/img_${base_name}"
-          if [[ -d "$correct_img" ]]; then
-            mv "$correct_img" "converted_docs/img_${base_name}"
-            echo "✓ Moved image folder: converted_docs/img_${base_name}"
+          if python3 -c "import sys; open('$output_file','wb').write(open('$md_file','rb').read().decode(errors='ignore').encode('utf-8'))" 2>/dev/null; then
+            echo "✓ Converted to UTF-8: $output_file"
           else
-            # Fallback: find folder with full path prefix (old macro behavior)
-            img_folder=$(find "$individual_dir" -type d -name "img_*${base_name}*" | head -1)
-            if [[ -n "$img_folder" && -d "$img_folder" ]]; then
-              mv "$img_folder" "converted_docs/img_${base_name}"
-              echo "✓ Moved image folder: converted_docs/img_${base_name} (renamed from old format)"
-              sed -i "s|img_[^/]*/|img_${base_name}/|g" "$output_file"
+            cp "$md_file" "$output_file"
+            echo "✓ Copied (fallback): $output_file"
+          fi
+          
+          # Handle image folder
+          img_folder="img_${base_name}"
+          if [[ -d "$img_folder" ]]; then
+            img_count=$(find "$img_folder" -type f | wc -l)
+            echo "📁 Found image folder: $img_folder ($img_count images)"
+            if mv "$img_folder" "$OLDPWD/converted_docs/img_${base_name}"; then
+              echo "✓ Moved image folder: converted_docs/img_${base_name}"
+            else
+              echo "❌ ERROR: Failed to move image folder"
+            fi
+          else
+            echo "ℹ️  No image folder found (this is normal for text-only documents)"
+          fi
+          
+          # Add metadata
+          if [[ -f "$OLDPWD/.github/workflows/create_metadata.py" ]]; then
+            if python3 "$OLDPWD/.github/workflows/create_metadata.py" "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}" 2>&1; then
+              echo "✓ Metadata added"
+            else
+              echo "⚠️  WARNING: Failed to add metadata (non-critical)"
             fi
           fi
           
-          # Add metadata if script exists
-          if [[ -f ".github/workflows/create_metadata.py" ]]; then
-            python3 .github/workflows/create_metadata.py "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}"
-          fi
-          
+          # Verify final output
           if [[ -f "$output_file" ]]; then
+            final_size=$(stat -c%s "$output_file" 2>/dev/null || echo '0')
+            echo "✅ SUCCESS: $original_file → $output_file ($final_size bytes)"
             ((converted_count++))
+            processed_files_list="$processed_files_list $original_file"
+          else
+            echo "❌ ERROR: Output file verification failed"
+            ((failed_count++))
+            failed_files_list="$failed_files_list $original_file"
           fi
-        else
-          echo "ERROR: Markdown file not created: $md_file"
-          echo "Files in individual directory after conversion:"
-          find "$individual_dir" -type f -name "*.md" -o -name "*.odt" -exec basename {} \;
-          echo "Folders in individual directory:"
-          find "$individual_dir" -type d -name "img_*" -exec basename {} \;
         fi
       else
-        echo "ERROR: Individual conversion failed for: $odt_file"
+        echo "❌ ERROR: Markdown file not created: $md_file"
+        echo "🔍 Files in temp directory:"
+        ls -la | head -10
+        ((failed_count++))
+        failed_files_list="$failed_files_list $original_file"
       fi
       
-      rm -rf "$individual_dir"
-    done
-  fi
+      ((file_index++))
+    fi
+  done
+  
+  cd "$OLDPWD" || exit 1
 else
-  echo "No ODT files to convert"
+  echo "⚠️  No ODT files to convert"
 fi
 
 # Cleanup temporary directory
-rm -rf "$temp_odt_dir"
-echo "Temporary directory cleaned up"
+echo ""
+echo "=== CLEANUP ==="
+if rm -rf "$temp_odt_dir"; then
+  echo "✓ Temporary directory cleaned up"
+else
+  echo "⚠️  WARNING: Failed to clean up temporary directory"
+fi
 
+# Final cleanup of LibreOffice processes
+pkill -f soffice 2>/dev/null || true
+
+# Export processed and failed files for state tracking
+echo ""
+echo "=== STATE TRACKING EXPORT ==="
+if [[ -n "$processed_files_list" ]]; then
+  echo "PROCESSED_FILES=$processed_files_list" >> "${GITHUB_ENV:-/dev/null}"
+  echo "✓ Exported processed files: $processed_files_list"
+else
+  echo "PROCESSED_FILES=" >> "${GITHUB_ENV:-/dev/null}"
+  echo "ℹ️  No processed files to export"
+fi
+
+if [[ -n "$failed_files_list" ]]; then
+  echo "FAILED_FILES=$failed_files_list" >> "${GITHUB_ENV:-/dev/null}"
+  echo "✓ Exported failed files: $failed_files_list"
+else
+  echo "FAILED_FILES=" >> "${GITHUB_ENV:-/dev/null}"
+  echo "ℹ️  No failed files to export"
+fi
+
+echo ""
 echo "=== CONVERT_DOCS_EXTENSION.SH SUMMARY ==="
-echo "Total files processed: $#"
-echo "Successfully converted: $converted_count"
-echo "Final files in converted_docs/:"
-final_count=$(find converted_docs -type f 2>/dev/null | wc -l)
-echo "Total files: $final_count"
-find converted_docs -type f -exec basename {} \; 2>/dev/null || echo "No files found"
+echo "📊 Conversion Statistics:"
+echo "   Input files received: $#"
+echo "   Successfully converted: $converted_count"
+echo "   Failed conversions: $failed_count"
+echo "   Success rate: $(( converted_count * 100 / $# ))%"
 
+echo ""
+echo "📁 Output directory contents:"
+if [[ -d "converted_docs" ]]; then
+  md_count=$(find converted_docs -name "*.md" -type f 2>/dev/null | wc -l)
+  img_count=$(find converted_docs -type d -name "img_*" 2>/dev/null | wc -l)
+  echo "   Markdown files: $md_count"
+  echo "   Image folders: $img_count"
+  
+  if [[ $md_count -gt 0 ]]; then
+    echo ""
+    echo "📄 Generated files:"
+    find converted_docs -name "*.md" -type f -exec bash -c 'echo "   - $(basename {}) ($(stat -c%s {} 2>/dev/null || echo 0) bytes)"' \; 2>/dev/null | sort
+  fi
+else
+  echo "   ❌ ERROR: Output directory not found"
+fi
+
+echo ""
 # Exit with error if no files were successfully converted
 if [[ $converted_count -eq 0 ]]; then
-  echo "ERROR: No files were successfully converted. Aborting workflow."
+  echo "❌ RESULT: No files were successfully converted. Aborting workflow."
+  echo "=== CONVERT_DOCS_EXTENSION.SH FAILED ==="
   exit 1
 fi
 
+echo "✅ RESULT: Successfully converted $converted_count out of $# files"
 echo "=== CONVERT_DOCS_EXTENSION.SH COMPLETE ==="

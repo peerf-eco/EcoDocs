@@ -263,17 +263,8 @@ jobs:
         done
         
         if [ -n "$EXISTING_FILES" ]; then
-          echo "🔄 Processing batch: $EXISTING_FILES"
-          if bash .github/workflows/convert_docs_extension.sh $EXISTING_FILES; then
-            echo "✅ Batch conversion completed successfully"
-            echo "PROCESSED_FILES=$EXISTING_FILES" >> $GITHUB_ENV
-            echo "FAILED_FILES=" >> $GITHUB_ENV
-          else
-            echo "❌ Batch conversion failed"
-            echo "PROCESSED_FILES=" >> $GITHUB_ENV
-            echo "FAILED_FILES=$EXISTING_FILES" >> $GITHUB_ENV
-            exit 1
-          fi
+          echo "🔄 Processing files: $EXISTING_FILES"
+          bash .github/workflows/convert_docs_extension.sh $EXISTING_FILES
         else
           echo "❌ No valid files to process"
           exit 1
