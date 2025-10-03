@@ -56,10 +56,9 @@ The `build-container.yml` workflow creates a pre-built container with:
 ### Setting Up Container Build
 
 #### Step 1: Create Container Build Workflow
-The `build-container.yml` workflow is automatically triggered when:
-- Dockerfile changes in `.github/workflows/`
-- DocExport.oxt extension file changes
-- Manual workflow dispatch
+The `build-container.yml` workflow is triggered:
+- Manual workflow dispatch only (prevents unnecessary builds)
+- Optimized for GitHub Container Registry with caching
 
 #### Step 2: Initial Container Build
 1. **Trigger Build**: Push changes to Dockerfile or run workflow manually
@@ -151,9 +150,110 @@ jobs:
 
 #### Container Update Process
 1. **Modify Files**: Update Dockerfile or DocExport.oxt
-2. **Automatic Build**: Push triggers container rebuild
+2. **Manual Build**: Trigger container rebuild manually (workflow_dispatch only)
 3. **New Image**: Updated image available for next workflow run
 4. **Gradual Rollout**: New workflows use updated container automatically
+
+### GitHub CI Container Optimization Tips
+
+#### Build Optimization Strategies
+1. **Layer Caching**: 
+   - Use `--cache-from type=gha --cache-to type=gha,mode=max` for GitHub Actions cache
+   - Order Dockerfile commands from least to most frequently changing
+   - Combine related RUN commands to reduce layers
+
+2. **Package Management**:
+   - Use `rm -rf /var/lib/apt/lists/*` instead of `apt-get clean` for better cleanup
+   - Add `--no-cache-dir` flag to pip installs to prevent cache buildup
+   - Combine package installation and cleanup in single RUN command
+
+3. **Image Size Reduction**:
+   - Remove temporary files immediately after use
+   - Use multi-stage builds if needed for complex setups
+   - Avoid installing unnecessary packages or documentation
+
+4. **Security and Metadata**:
+   - Add container labels for better organization and tracking
+   - Pre-configure SSH known_hosts to avoid runtime setup
+   - Use specific package versions for reproducible builds
+
+#### Dockerfile Best Practices Applied
+```dockerfile
+# Metadata for container identification
+LABEL org.opencontainers.image.title="LibreOffice DocExport Container"
+LABEL org.opencontainers.image.description="Pre-built container with LibreOffice and DocExport extension"
+LABEL org.opencontainers.image.source="https://github.com/peerf-eco/EcoDocs"
+
+# Efficient package installation with cleanup
+RUN apt-get update && apt-get install -y \
+    libreoffice \
+    python3 \
+    python3-pip \
+    git \
+    openssh-client \
+    && rm -rf /var/lib/apt/lists/*
+
+# Pre-configure SSH to avoid runtime setup
+RUN mkdir -p /root/.ssh && \
+    ssh-keyscan -t rsa,ed25519 github.com >> /root/.ssh/known_hosts && \
+    chmod 700 /root/.ssh && \
+    chmod 644 /root/.ssh/known_hosts
+
+# Optimized Python package installation
+RUN pip3 install --no-cache-dir frontmatter
+
+# Extension installation with proper cleanup
+COPY DocExport.oxt /tmp/DocExport.oxt
+RUN unopkg add --shared /tmp/DocExport.oxt && rm /tmp/DocExport.oxt
+```
+
+#### Registry and Caching Configuration
+1. **GitHub Container Registry**:
+   - Use lowercase repository names: `ghcr.io/owner/repo-name:tag`
+   - Leverage GitHub Actions built-in GITHUB_TOKEN for authentication
+   - Enable package read permissions for workflow access
+
+2. **Build Triggers**:
+   - Manual-only triggers (`workflow_dispatch`) prevent unnecessary rebuilds
+   - Automatic rebuilds only when Dockerfile or extension files change
+   - Version tagging with both `latest` and commit SHA for flexibility
+
+3. **Performance Optimizations**:
+   - GitHub Actions cache integration reduces build times
+   - Layer reuse across builds when dependencies don't change
+   - Parallel builds when multiple architectures needed
+
+#### Troubleshooting Container Optimization Issues
+1. **Build Time Issues**:
+   - Check cache hit rates in build logs
+   - Verify layer ordering for optimal caching
+   - Monitor package download times and consider mirrors
+
+2. **Image Size Issues**:
+   - Use `docker history` to identify large layers
+   - Verify cleanup commands are effective
+   - Consider using distroless or alpine base images for smaller footprint
+
+3. **Runtime Performance**:
+   - Pre-install and configure all dependencies at build time
+   - Avoid runtime package installations
+   - Use health checks to verify container readiness
+
+#### Container Security Considerations
+1. **Extension Installation**:
+   - Install extensions as shared (system-wide) for better security
+   - Verify extension integrity during build
+   - Use specific extension versions when possible
+
+2. **SSH Configuration**:
+   - Pre-configure known hosts to prevent MITM attacks
+   - Use proper file permissions for SSH directories
+   - Avoid storing private keys in container images
+
+3. **Package Management**:
+   - Keep base image updated with security patches
+   - Use official package repositories
+   - Regularly rebuild containers to include latest updates
 
 ## Current Change Detection Logic
 

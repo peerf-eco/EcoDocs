@@ -43,8 +43,6 @@ jobs:
         echo "=== LOADING CONVERSION STATE ==="
         
         # Clone target repo to check for existing state
-        mkdir -p ~/.ssh
-        ssh-keyscan -t ed25519,rsa github.com >> ~/.ssh/known_hosts
         eval "$(ssh-agent -s)"
         echo "${{ secrets.VITEPRESS_DEPLOY_TOKEN }}" | ssh-add -
         
