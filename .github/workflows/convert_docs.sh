@@ -39,6 +39,8 @@ for file in "$@"; do
       # Now convert HTML to Markdown using pandoc
       if [[ -f "converted_docs/${filename}.html" ]]; then
         if pandoc "converted_docs/${filename}.html" -f html -t markdown -o "$output_file"; then
+          # Ensure UTF-8 encoding
+          iconv -f $(file -b --mime-encoding "$output_file") -t UTF-8 "$output_file" -o "${output_file}.utf8" && mv "${output_file}.utf8" "$output_file"
           echo "✓ Successfully converted HTML to Markdown: $filename"
           
           # Check if Python script exists
@@ -74,6 +76,8 @@ for file in "$@"; do
       if soffice --headless --convert-to odt:"writer8" "$file" --outdir "$(dirname "$file")"; then
         echo "✓ Converted FODT to ODT: $temp_odt"
         if pandoc "$temp_odt" -f odt -t markdown -o "$output_file"; then
+          # Ensure UTF-8 encoding
+          iconv -f $(file -b --mime-encoding "$output_file") -t UTF-8 "$output_file" -o "${output_file}.utf8" && mv "${output_file}.utf8" "$output_file"
           echo "✓ Successfully converted ODT to MD: $filename"
           
           # Check if Python script exists
@@ -103,6 +107,8 @@ for file in "$@"; do
     # Original ODT conversion for regular .odt files
     echo "Processing ODT file: $file"
     if pandoc "$file" -f odt -t markdown -o "$output_file"; then
+      # Ensure UTF-8 encoding
+      iconv -f $(file -b --mime-encoding "$output_file") -t UTF-8 "$output_file" -o "${output_file}.utf8" && mv "${output_file}.utf8" "$output_file"
       echo "✓ Successfully converted: $filename"
       
       # Check if Python script exists

@@ -16,13 +16,41 @@ When ODT files contain images, the DocExport extension automatically extracts th
 3. **Image-Markdown Pairing**: Correct pairing requires matching filenames (wrong filename = missing images)
 4. **Workflow Robustness**: Missing image folders don't cause failures, just skip image copying
 5. **State Tracking**: Tracks source files, not generated markdown filenames
+6. **Path Correction**: Automatically handles and corrects legacy image folder naming from macro
 
 ### Conversion Process
 1. **Pre-built Container**: Uses containerized environment with LibreOffice and DocExport.oxt pre-installed
 2. **FODT to ODT**: Source FODT files are converted to ODT format using LibreOffice
 3. **ODT to Markdown**: LibreOffice macro `DocExport.DocModel.ExportDir(directory,1)` converts ODT files to Markdown
-4. **Image Extraction**: Images from ODT files are extracted to folders named `img_` + source filename
-5. **Sync to Target**: Converted markdown files and their corresponding image folders are pushed to the target documentation repository
+4. **UTF-8 Encoding**: All generated markdown files are converted to UTF-8 encoding using Python (handles various source encodings like Windows CP1251)
+5. **Image Extraction**: Images from ODT files are extracted to folders; workflow handles both correct naming (`img_filename`) and legacy full-path naming
+6. **Image Path Correction**: Markdown image references are automatically corrected to use proper relative paths
+7. **Sync to Target**: Converted markdown files and their corresponding image folders are pushed to the target documentation repository
+
+### Character Encoding Handling
+**Problem**: Source ODT/FODT files may be created on different systems with various text encodings (Windows CP1251, ISO-8859-1, etc.)
+
+**Solution**: Post-conversion UTF-8 normalization
+- All markdown files are converted to UTF-8 after LibreOffice export
+- Uses Python's built-in encoding detection and conversion
+- Handles encoding errors gracefully with `errors='ignore'`
+- Ensures GitHub markdown viewer compatibility
+- No additional dependencies required (Python3 already in container)
+
+### Image Folder Naming
+**Expected Format**: `img_<filename>/` (e.g., `document.odt` → `img_document/`)
+
+**Workflow Compatibility**:
+- **Correct Format**: Directly moves `img_filename/` folders without modification
+- **Legacy Format**: Detects and renames folders with full path prefixes (e.g., `img_/tmp/tmp.xxx/filename/`)
+- **Path Correction**: Automatically fixes markdown image references using `sed` when renaming occurs
+- **Backward Compatible**: Works with both old and new DocExport macro versions
+
+**Implementation Details**:
+1. First checks for correctly named folder (`img_<basename>`)
+2. Falls back to pattern search if not found (`img_*<basename>*`)
+3. Renames to correct format and updates markdown paths
+4. Logs which path was taken for debugging
 
 ## Containerized Environment
 
@@ -214,7 +242,74 @@ RUN unopkg add --shared /tmp/DocExport.oxt && rm /tmp/DocExport.oxt
    - Enable package read permissions for workflow access
 
 2. **Build Triggers**:
-   - Manual-only triggers (`workflow_dispatch`) prevent unnecessary rebuilds
+   - Manual-only triggers (`workflow_dispatch`)
+
+## Recent Improvements
+
+### Issue #1: UTF-8 Character Encoding (Fixed)
+**Problem**: Generated markdown files inherited encoding from source ODT files, causing display issues with non-ASCII characters.
+
+**Solution**: Added Python-based UTF-8 conversion after markdown generation:
+```python
+python3 -c "import sys; open('output.md','wb').write(open('input.md','rb').read().decode(errors='ignore').encode('utf-8'))"
+```
+- Portable solution using Python3 (already in Docker image)
+- Handles any source encoding automatically
+- Graceful error handling for invalid characters
+- Applied to both batch and individual conversion paths
+
+### Issue #2: Image Folder Path Correction (Fixed)
+**Problem**: DocExport macro created image folders with full temp path prefix (`img_/tmp/tmp.xxx/filename/`) instead of simple name (`img_filename/`).
+
+**Root Cause**: Macro uses full ODT file path to construct image folder name.
+
+**Solution**: Dual-path handling in workflow:
+1. **Primary Path**: Check for correctly named folder first (fast, no modification needed)
+2. **Fallback Path**: Search for legacy format, rename to correct format, fix markdown paths
+3. **Logging Improvements**: 
+   - Show only relevant files (`.odt` before conversion, `.md` and `img_*` after)
+   - Separate counts for ODT files vs total files (excludes lock files, temp files)
+   - Clear indication of which path was taken
+
+**Benefits**:
+- Works with updated macro (when fixed to output correct names)
+- Maintains backward compatibility with current macro
+- No workflow changes needed when macro is updated
+
+### Issue #3: Workflow Summary Corrections (Fixed)
+**Problem**: Shell syntax errors and incorrect status reporting in workflow summary.
+
+**Errors Found**:
+1. Using `==` instead of `=` in POSIX shell `[ ]` tests (caused "unexpected operator" errors)
+2. Reference to non-existent step (`steps.install-libreoffice.outcome`)
+
+**Solution**: 
+- Changed all `[ "$var" == "value" ]` to `[ "$var" = "value" ]` (POSIX compliant)
+- Removed invalid step reference
+- Summary now correctly displays state tracking from `new-state.json`
+
+**Result**: Accurate reporting of:
+- Files in scope (from change detection)
+- Successful conversions (from state file)
+- Failed conversions (from state file)
+- Step execution status
+
+## Technical Notes
+
+### Shell Compatibility
+- GitHub Actions uses `/bin/sh` (POSIX shell), not bash
+- Use `=` for string comparison in `[ ]` tests, not `==`
+- Use `[ "$var" = "value" ]` syntax for portability
+
+### File Listing Best Practices
+- Filter by file type when counting (`.odt`, `.md`) to avoid including temp files
+- Use `find` with `-name` pattern for accurate counts
+- List files separately by type for better debugging
+
+### Encoding Tools Available
+- `iconv`: Available by default in Ubuntu 22.04 (part of glibc)
+- Python3: More portable, already required in container
+- Recommendation: Use Python for encoding tasks (better error handling)) prevent unnecessary rebuilds
    - Automatic rebuilds only when Dockerfile or extension files change
    - Version tagging with both `latest` and commit SHA for flexibility
 

@@ -66,9 +66,10 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
   
   # List files before conversion for debugging
   echo "Files in temp directory before conversion:"
-  file_count=$(find "$temp_odt_dir" -type f | wc -l)
-  echo "Total files: $file_count"
-  find "$temp_odt_dir" -type f -exec basename {} \;
+  echo "ODT files to convert:"
+  find "$temp_odt_dir" -type f -name "*.odt" -exec basename {} \;
+  odt_count=$(find "$temp_odt_dir" -type f -name "*.odt" | wc -l)
+  echo "Total ODT files: $odt_count"
   
   # Run LibreOffice macro with timeout to prevent hanging
   echo "Executing macro: macro:///DocExport.DocModel.ExportDir($temp_odt_dir,1)"
@@ -83,9 +84,12 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
     
     # List files after conversion for debugging
     echo "Files in temp directory after conversion:"
-    file_count=$(find "$temp_odt_dir" -type f | wc -l)
-    echo "Total files: $file_count"
-    find "$temp_odt_dir" -type f -exec basename {} \;
+    echo "Markdown files:"
+    find "$temp_odt_dir" -type f -name "*.md" -exec basename {} \;
+    echo "Image folders:"
+    find "$temp_odt_dir" -type d -name "img_*" -exec basename {} \;
+    md_count=$(find "$temp_odt_dir" -type f -name "*.md" | wc -l)
+    echo "Total MD files: $md_count"
     
     # Move converted markdown files to output directory
     for odt_file in "${odt_files[@]}"; do
@@ -94,13 +98,29 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
       output_file="converted_docs/${base_name}.md"
       
       if [[ -f "$md_file" ]]; then
-        mv "$md_file" "$output_file"
-        echo "✓ Moved converted file: $output_file"
+        # Convert to UTF-8 encoding
+        python3 -c "import sys; open('$output_file','wb').write(open('$md_file','rb').read().decode(errors='ignore').encode('utf-8'))" 2>/dev/null || cp "$md_file" "$output_file"
+        echo "✓ Moved converted file: $output_file (UTF-8)"
+        
+        # Find and move image folder
+        correct_img="$temp_odt_dir/img_${base_name}"
+        if [[ -d "$correct_img" ]]; then
+          mv "$correct_img" "converted_docs/img_${base_name}"
+          echo "✓ Moved image folder: converted_docs/img_${base_name}"
+        else
+          # Fallback: find folder with full path prefix (old macro behavior)
+          img_folder=$(find "$temp_odt_dir" -type d -name "img_*${base_name}*" | head -1)
+          if [[ -n "$img_folder" && -d "$img_folder" ]]; then
+            mv "$img_folder" "converted_docs/img_${base_name}"
+            echo "✓ Moved image folder: converted_docs/img_${base_name} (renamed from old format)"
+            sed -i "s|img_[^/]*/|img_${base_name}/|g" "$output_file"
+          fi
+        fi
         
         # Add metadata if script exists
         if [[ -f ".github/workflows/create_metadata.py" ]]; then
           echo "Adding metadata to: $output_file"
-          python .github/workflows/create_metadata.py "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}"
+          python3 .github/workflows/create_metadata.py "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}"
         else
           echo "WARNING: create_metadata.py not found"
         fi
@@ -127,9 +147,12 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
     
     # List files after alternative attempt
     echo "Files after alternative attempt:"
-    file_count=$(find "$temp_odt_dir" -type f | wc -l)
-    echo "Total files: $file_count"
-    find "$temp_odt_dir" -type f -exec basename {} \;
+    echo "Markdown files:"
+    find "$temp_odt_dir" -type f -name "*.md" -exec basename {} \;
+    echo "Image folders:"
+    find "$temp_odt_dir" -type d -name "img_*" -exec basename {} \;
+    md_count=$(find "$temp_odt_dir" -type f -name "*.md" | wc -l)
+    echo "Total MD files: $md_count"
     
     # Fallback: Try individual file conversion
     echo "Attempting individual file conversion as fallback..."
@@ -149,12 +172,28 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
       if timeout 120 soffice --invisible --nofirststartwizard --headless --norestore "macro:///DocExport.DocModel.ExportDir(\"$individual_dir\",1)"; then
         md_file="$individual_dir/${base_name}.md"
         if [[ -f "$md_file" ]]; then
-          mv "$md_file" "$output_file"
-          echo "✓ Individual conversion successful: $output_file"
+          # Convert to UTF-8 encoding
+          python3 -c "import sys; open('$output_file','wb').write(open('$md_file','rb').read().decode(errors='ignore').encode('utf-8'))" 2>/dev/null || cp "$md_file" "$output_file"
+          echo "✓ Individual conversion successful: $output_file (UTF-8)"
+          
+          # Find and move image folder
+          correct_img="$individual_dir/img_${base_name}"
+          if [[ -d "$correct_img" ]]; then
+            mv "$correct_img" "converted_docs/img_${base_name}"
+            echo "✓ Moved image folder: converted_docs/img_${base_name}"
+          else
+            # Fallback: find folder with full path prefix (old macro behavior)
+            img_folder=$(find "$individual_dir" -type d -name "img_*${base_name}*" | head -1)
+            if [[ -n "$img_folder" && -d "$img_folder" ]]; then
+              mv "$img_folder" "converted_docs/img_${base_name}"
+              echo "✓ Moved image folder: converted_docs/img_${base_name} (renamed from old format)"
+              sed -i "s|img_[^/]*/|img_${base_name}/|g" "$output_file"
+            fi
+          fi
           
           # Add metadata if script exists
           if [[ -f ".github/workflows/create_metadata.py" ]]; then
-            python .github/workflows/create_metadata.py "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}"
+            python3 .github/workflows/create_metadata.py "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}"
           fi
           
           if [[ -f "$output_file" ]]; then
@@ -163,7 +202,9 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
         else
           echo "ERROR: Markdown file not created: $md_file"
           echo "Files in individual directory after conversion:"
-          find "$individual_dir" -type f -exec basename {} \;
+          find "$individual_dir" -type f -name "*.md" -o -name "*.odt" -exec basename {} \;
+          echo "Folders in individual directory:"
+          find "$individual_dir" -type d -name "img_*" -exec basename {} \;
         fi
       else
         echo "ERROR: Individual conversion failed for: $odt_file"

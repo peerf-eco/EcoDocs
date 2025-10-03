@@ -616,7 +616,6 @@ jobs:
         
         # Check step outcomes
         echo "🔍 Step execution status:"
-        echo "  - LibreOffice installation: ${{ steps.install-libreoffice.outcome || 'not executed' }}"
         echo "  - Git state debug: ${{ steps.debug-git.outcome || 'not executed' }}"
         echo "  - Change detection: ${{ steps.changed-files.outcome || 'not executed' }}"
         echo "  - Conversion: ${{ steps.convert.outcome || 'skipped' }}"
@@ -624,19 +623,19 @@ jobs:
         echo "  - Manifest generation: ${{ steps.manifest.outcome || 'skipped' }}"
         
         # Overall workflow status
-        if [ "${{ job.status }}" == "success" ]; then
+        if [ "${{ job.status }}" = "success" ]; then
           echo "✅ WORKFLOW STATUS: SUCCESS"
-        elif [ "${{ job.status }}" == "failure" ]; then
+        elif [ "${{ job.status }}" = "failure" ]; then
           echo "❌ WORKFLOW STATUS: FAILED"
           echo "🔍 Check the failed steps above for error details"
-        elif [ "${{ job.status }}" == "cancelled" ]; then
+        elif [ "${{ job.status }}" = "cancelled" ]; then
           echo "⚠️  WORKFLOW STATUS: CANCELLED"
         else
           echo "🔄 WORKFLOW STATUS: ${{ job.status }}"
         fi
         
         # File processing summary
-        if [ "${{ steps.changed-files.outputs.any_changed }}" == "true" ]; then
+        if [ "${{ steps.changed-files.outputs.any_changed }}" = "true" ]; then
           echo "🟢 PROCESSING RESULT: CHANGES DETECTED AND PROCESSED"
           echo "📄 Files in scope: $(echo '${{ steps.changed-files.outputs.all_changed_files }}' | wc -w)"
           echo "🎯 Target repository: peerf-eco/docs-vitepress"
@@ -648,23 +647,23 @@ jobs:
           fi
           
           # Check if conversion actually succeeded
-          if [ "${{ steps.convert.outcome }}" == "success" ]; then
+          if [ "${{ steps.convert.outcome }}" = "success" ]; then
             echo "✅ Conversion completed successfully"
-          elif [ "${{ steps.convert.outcome }}" == "failure" ]; then
+          elif [ "${{ steps.convert.outcome }}" = "failure" ]; then
             echo "❌ Conversion failed - check conversion logs"
           fi
           
           # Check if deployment succeeded
-          if [ "${{ steps.deploy.outcome }}" == "success" ]; then
+          if [ "${{ steps.deploy.outcome }}" = "success" ]; then
             echo "✅ Deployment completed successfully"
-          elif [ "${{ steps.deploy.outcome }}" == "failure" ]; then
+          elif [ "${{ steps.deploy.outcome }}" = "failure" ]; then
             echo "❌ Deployment failed - check deployment logs"
           fi
           
           # Check if state update succeeded
-          if [ "${{ steps.update-state.outcome }}" == "success" ]; then
+          if [ "${{ steps.update-state.outcome }}" = "success" ]; then
             echo "✅ State tracking updated successfully"
-          elif [ "${{ steps.update-state.outcome }}" == "failure" ]; then
+          elif [ "${{ steps.update-state.outcome }}" = "failure" ]; then
             echo "❌ State tracking update failed"
           fi
         else
