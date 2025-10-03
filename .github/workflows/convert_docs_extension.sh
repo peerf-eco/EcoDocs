@@ -48,12 +48,12 @@ done
 
 # Verify extension is installed
 echo "=== VERIFYING DOCEXPORT EXTENSION ==="
-if unopkg list | grep -i docexport; then
+if unopkg list --shared | grep -i docexport; then
   echo "✓ DocExport extension found"
 else
   echo "❌ CRITICAL: DocExport extension not found"
   echo "Available extensions:"
-  unopkg list || echo "No extensions listed"
+  unopkg list --shared || echo "No extensions listed"
   echo "❌ CONVERSION SCRIPT TERMINATED: Extension verification failed"
   rm -rf "$temp_odt_dir"
   exit 1
@@ -123,7 +123,7 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
     echo "Trying alternative macro execution..."
     pkill -f soffice || true
     sleep 2
-    timeout 300 soffice --headless --invisible --nologo --norestore macro:///DocExport.DocModel.ExportDir\(\"$temp_odt_dir\",1\) || true
+    timeout 300 soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel.ExportDir(\"$temp_odt_dir\",1)" || true
     
     # List files after alternative attempt
     echo "Files after alternative attempt:"
@@ -146,7 +146,7 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
       sleep 1
       
       echo "Running individual macro on: $individual_dir"
-      if timeout 120 soffice --invisible --nofirststartwizard --headless --norestore macro:///DocExport.DocModel.ExportDir\(\"$individual_dir\",1\); then
+      if timeout 120 soffice --invisible --nofirststartwizard --headless --norestore "macro:///DocExport.DocModel.ExportDir(\"$individual_dir\",1)"; then
         md_file="$individual_dir/${base_name}.md"
         if [[ -f "$md_file" ]]; then
           mv "$md_file" "$output_file"
