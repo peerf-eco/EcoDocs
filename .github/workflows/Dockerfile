@@ -26,8 +26,11 @@ RUN pip3 install --no-cache-dir frontmatter
 # Copy and install DocExport extension
 COPY DocExport.oxt /tmp/DocExport.oxt
 
-# Install DocExport extension (shared only)
-RUN unopkg add --shared /tmp/DocExport.oxt && rm /tmp/DocExport.oxt
+# Clean extension cache and install fresh
+RUN rm -rf /var/lib/libreoffice/share/uno_packages/cache/* 2>/dev/null || true && \
+    rm -rf /root/.libreoffice 2>/dev/null || true && \
+    unopkg add --shared /tmp/DocExport.oxt && \
+    rm /tmp/DocExport.oxt
 
 # Verify LibreOffice and extension
 RUN soffice --version

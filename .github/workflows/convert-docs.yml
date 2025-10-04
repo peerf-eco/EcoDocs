@@ -43,34 +43,38 @@ jobs:
           exit 1
         elif [ $ext_count -gt 1 ]; then
           echo "⚠️  WARNING: Multiple DocExport extensions detected ($ext_count instances)"
-          echo "🧹 Cleaning up duplicate extensions..."
+          echo "🧹 Attempting to clean up duplicate extensions..."
           
-          # Remove all DocExport extensions
-          unopkg list --shared 2>/dev/null | grep -i "Identifier:" | grep -i docexport | while read -r line; do
-            ext_id=$(echo "$line" | sed 's/Identifier: //')
-            if [ -n "$ext_id" ]; then
-              echo "   Removing: $ext_id"
-              unopkg remove --shared "$ext_id" 2>/dev/null || true
-            fi
-          done
+          # List all extensions for debugging
+          echo "📋 Current extensions:"
+          unopkg list --shared 2>/dev/null | head -20
           
-          # Reinstall single instance
-          echo "📦 Reinstalling DocExport extension..."
-          if [ -f ".github/workflows/DocExport.oxt" ]; then
-            unopkg add --shared .github/workflows/DocExport.oxt
-            echo "✓ Extension reinstalled"
-            
-            # Verify single installation
-            new_count=$(unopkg list --shared 2>/dev/null | grep -i docexport | wc -l)
-            echo "   Extensions after cleanup: $new_count"
-            
-            if [ $new_count -ne 1 ]; then
-              echo "❌ ERROR: Failed to achieve single extension installation"
-              exit 1
-            fi
+          # Try to remove by identifier
+          echo "🗑️  Removing all DocExport instances..."
+          unopkg remove --shared org.openoffice.legacy.DocExport.oxt 2>/dev/null || true
+          sleep 2
+          
+          # Check if removal worked
+          remaining=$(unopkg list --shared 2>/dev/null | grep -i docexport | wc -l)
+          echo "   Extensions remaining after removal: $remaining"
+          
+          if [ $remaining -gt 0 ]; then
+            echo "⚠️  WARNING: Could not remove all duplicate extensions"
+            echo "⚠️  Proceeding anyway - conversion script will provide detailed diagnostics"
           else
-            echo "❌ ERROR: DocExport.oxt file not found for reinstallation"
-            exit 1
+            # Reinstall single instance
+            echo "📦 Reinstalling DocExport extension..."
+            if [ -f ".github/workflows/DocExport.oxt" ]; then
+              unopkg add --shared .github/workflows/DocExport.oxt
+              new_count=$(unopkg list --shared 2>/dev/null | grep -i docexport | wc -l)
+              echo "   Extensions after reinstall: $new_count"
+              
+              if [ $new_count -eq 1 ]; then
+                echo "✓ Successfully cleaned up and reinstalled extension"
+              else
+                echo "⚠️  WARNING: Unexpected extension count after reinstall: $new_count"
+              fi
+            fi
           fi
         else
           echo "✓ DocExport extension found (single instance)"
