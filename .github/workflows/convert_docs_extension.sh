@@ -135,12 +135,17 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
   sleep 2
   
   echo "   Running test conversion using ExportDir macro..."
-  echo "   Command: soffice --headless --invisible --nologo --norestore 'macro:///DocExport.DocModel.ExportDir(\"$(pwd)\",1)'"
+  
+  # Create single-file directory for test (same as main loop)
+  test_single_dir=$(mktemp -d)
+  cp "$first_odt" "$test_single_dir/"
+  echo "   Test directory: $test_single_dir"
+  echo "   Command: soffice --headless --invisible --nologo --norestore 'macro:///DocExport.DocModel.ExportDir(\"$test_single_dir\",1)'"
   
   # Use exact timing pattern that works
   pkill -9 -f soffice 2>/dev/null || true
   sleep 2
-  soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel.ExportDir(\"$(pwd)\",1)" 2>&1 &
+  soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel.ExportDir(\"$test_single_dir\",1)" 2>&1 &
   soffice_pid=$!
   sleep 5
   
@@ -213,17 +218,21 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
   fi
   
   sleep 2
-  test_md="${first_odt%.odt}.md"
+  test_base_name=$(basename "$first_odt" .odt)
+  test_md="$test_single_dir/${test_base_name}.md"
   if [[ -f "$test_md" ]]; then
     test_size=$(stat -c%s "$test_md" 2>/dev/null || echo '0')
-    echo "✅ Test conversion successful: $test_md created ($test_size bytes)"
+    echo "✅ Test conversion successful: ${test_base_name}.md created ($test_size bytes)"
     echo "✓ Macro is working, proceeding with all files..."
   else
     echo "❌ WARNING: Test conversion did not create markdown file"
-    echo "🔍 Files in directory:"
-    ls -lh | head -10
+    echo "🔍 Files in test directory:"
+    ls -lh "$test_single_dir/" | head -10
     echo "⚠️  Proceeding anyway, but conversions may fail..."
   fi
+  
+  # Cleanup test directory
+  rm -rf "$test_single_dir"
   echo ""
   
   file_index=0
