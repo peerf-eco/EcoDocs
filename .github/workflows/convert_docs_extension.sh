@@ -130,15 +130,16 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
   first_odt=$(ls *.odt | head -1)
   echo "   Test file: $first_odt ($(stat -c%s "$first_odt") bytes)"
   
-  pkill -f soffice 2>/dev/null || true
-  sleep 1
+  # Aggressive process cleanup
+  pkill -9 -f soffice 2>/dev/null || true
+  sleep 2
   
   echo "   Running test conversion using ExportDir macro..."
-  echo "   Command: soffice --headless --invisible --nologo --norestore 'macro:///DocExport.DocModel.ExportDir($(pwd),1)'"
+  echo "   Command: soffice --headless --invisible --nologo --norestore 'macro:///DocExport.DocModel.ExportDir(\"$(pwd)\",1)'"
   
   # Use exact timing pattern that works
-  pkill -f soffice 2>/dev/null
-  sleep 1
+  pkill -9 -f soffice 2>/dev/null || true
+  sleep 2
   soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel.ExportDir(\"$(pwd)\",1)" 2>&1 &
   soffice_pid=$!
   sleep 5
