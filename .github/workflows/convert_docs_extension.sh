@@ -126,11 +126,25 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
   pkill -f soffice 2>/dev/null || true
   sleep 1
   
-  echo "   Running test conversion (30s timeout)..."
-  echo "   Command: timeout 30 soffice --headless --invisible --nologo --norestore \"$first_odt\" 'macro:///DocExport.DocModel.MakeDocHfmView'"
+  echo "   Running test conversion using ExportDir macro..."
+  echo "   Command: soffice --headless --invisible --nologo --norestore 'macro:///DocExport.DocModel.ExportDir($(pwd),1)'"
   
-  # Capture output for debugging
-  test_output=$(timeout 30 soffice --headless --invisible --nologo --norestore "$first_odt" 'macro:///DocExport.DocModel.MakeDocHfmView' 2>&1) || test_exit=$?
+  # Use exact timing pattern that works
+  pkill -f soffice 2>/dev/null
+  sleep 1
+  soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel.ExportDir($(pwd),1)" 2>&1 &
+  soffice_pid=$!
+  sleep 5
+  
+  # Check if process completed
+  if kill -0 $soffice_pid 2>/dev/null; then
+    echo "   Process still running after 5 seconds, killing..."
+    kill $soffice_pid 2>/dev/null || true
+    test_exit=124
+  else
+    wait $soffice_pid
+    test_exit=$?
+  fi
   
   if [ ${test_exit:-0} -eq 0 ]; then
     echo "✓ Test conversion command completed"
@@ -183,15 +197,11 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
       echo "❌ ABORTING: Cannot proceed with hanging macro"
       echo ""
       echo "💡 DIAGNOSIS:"
-      echo "   The macro 'macro:///DocExport.DocModel.MakeDocHfmView' is not responding."
-      echo "   This is likely because:"
-      echo "   1. The macro requires GUI interaction (not compatible with --headless)"
-      echo "   2. The macro path is incorrect"
-      echo "   3. The extension is not properly loaded in headless mode"
+      echo "   The macro 'macro:///DocExport.DocModel.ExportDir' is not responding."
+      echo "   This indicates a problem with the DocExport extension in headless mode."
       echo ""
       echo "🔧 RECOMMENDATION:"
-      echo "   The DocExport extension may not support headless macro execution."
-      echo "   Consider using LibreOffice's built-in conversion or a different tool."
+      echo "   Try rebuilding the container or check extension installation."
       
       pkill -9 -f soffice 2>/dev/null || true
       cd "$OLDPWD" || exit 1
@@ -262,27 +272,40 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
         echo "   ✓ No LibreOffice processes running"
       fi
       
-      # Run conversion macro with timeout
-      echo "🔄 Running conversion macro (60s timeout)..."
-      echo "   Command: soffice --headless --invisible --nologo --norestore \"$odt_file\" 'macro:///DocExport.DocModel.MakeDocHfmView'"
+      # Run conversion using ExportDir macro with exact timing from tested pattern
+      echo "🔄 Running conversion macro..."
       
-      if timeout 60 soffice --headless --invisible --nologo --norestore "$odt_file" 'macro:///DocExport.DocModel.MakeDocHfmView' 2>&1; then
-        echo "✓ Macro execution completed"
+      # Create single-file directory for ExportDir
+      single_dir=$(mktemp -d)
+      cp "$odt_file" "$single_dir/"
+      
+      echo "   Processing: $odt_file"
+      pkill -f soffice 2>/dev/null
+      sleep 1
+      soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel.ExportDir($single_dir,1)"
+      sleep 5
+      echo "   Completed: $odt_file"
+      
+      # Move results back
+      base_name=$(basename "$odt_file" .odt)
+      if [ -f "$single_dir/${base_name}.md" ]; then
+        mv "$single_dir/${base_name}.md" "./"
+        echo "✓ Markdown file retrieved"
       else
-        exit_code=$?
-        if [ $exit_code -eq 124 ]; then
-          echo "❌ ERROR: Macro execution timed out after 60 seconds"
-          echo "🔍 Checking for hung processes..."
-          pgrep -af soffice || echo "No soffice processes found"
-          pkill -9 -f soffice 2>/dev/null || true
-          failed_files_list="$failed_files_list ${original_file_map[$file_index]}"
-          ((failed_count++))
-          ((file_index++))
-          continue
-        else
-          echo "⚠️  Macro execution returned exit code: $exit_code (may be normal)"
-        fi
+        echo "❌ ERROR: No markdown file created"
+        failed_files_list="$failed_files_list ${original_file_map[$file_index]}"
+        ((failed_count++))
+        rm -rf "$single_dir"
+        ((file_index++))
+        continue
       fi
+      
+      if [ -d "$single_dir/img_${base_name}" ]; then
+        mv "$single_dir/img_${base_name}" "./"
+        echo "✓ Image folder retrieved"
+      fi
+      
+      rm -rf "$single_dir"
       
       # Wait for file system to settle
       echo "⏳ Waiting for file system to settle..."
