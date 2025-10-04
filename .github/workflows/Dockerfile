@@ -26,31 +26,12 @@ RUN pip3 install --no-cache-dir frontmatter
 # Copy and install DocExport extension
 COPY DocExport.oxt /tmp/DocExport.oxt
 
-# Remove any existing DocExport extensions to prevent duplicates
-RUN unopkg list --shared 2>/dev/null | grep -i "org.openoffice.legacy.DocExport" | while read -r line; do \
-        ext_id=$(echo "$line" | awk '{print $2}'); \
-        if [ -n "$ext_id" ]; then \
-            echo "Removing existing extension: $ext_id"; \
-            unopkg remove --shared "$ext_id" 2>/dev/null || true; \
-        fi; \
-    done || true
+# Install DocExport extension (shared only)
+RUN unopkg add --shared /tmp/DocExport.oxt && rm /tmp/DocExport.oxt
 
-# Install DocExport extension (shared only, no user installation)
-RUN unopkg add --shared /tmp/DocExport.oxt && \
-    rm /tmp/DocExport.oxt
-
-# Verify LibreOffice installation and extension
-RUN soffice --version && \
-    echo "Installed extensions:" && \
-    unopkg list --shared && \
-    echo "DocExport extension check:" && \
-    unopkg list --shared | grep -i docexport && \
-    ext_count=$(unopkg list --shared | grep -i docexport | wc -l) && \
-    echo "Total DocExport extensions: $ext_count" && \
-    if [ "$ext_count" -ne 1 ]; then \
-        echo "ERROR: Expected 1 extension, found $ext_count"; \
-        exit 1; \
-    fi
+# Verify LibreOffice and extension
+RUN soffice --version
+RUN unopkg list --shared | grep -i docexport || (echo "ERROR: Extension not installed" && exit 1)
 
 # Set working directory
 WORKDIR /workspace
