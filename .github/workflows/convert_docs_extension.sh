@@ -228,6 +228,13 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
     echo "❌ WARNING: Test conversion did not create markdown file"
     echo "🔍 Files in test directory:"
     ls -lh "$test_single_dir/" | head -10
+    
+    # Check conversion log for clues
+    if [[ -f "$test_single_dir/conversion.log" ]]; then
+      echo "📋 Conversion log contents:"
+      head -10 "$test_single_dir/conversion.log" | sed 's/^/   /'
+    fi
+    
     echo "⚠️  Proceeding anyway, but conversions may fail..."
   fi
   
