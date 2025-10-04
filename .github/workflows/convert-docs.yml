@@ -233,6 +233,7 @@ jobs:
     - name: Convert to Markdown
       id: convert
       if: steps.changed-files.outputs.any_changed == 'true'
+      timeout-minutes: 15
       run: |
         echo "=== CONVERSION START ==="
         file_count=$(echo '${{ steps.changed-files.outputs.all_changed_files }}' | wc -w)

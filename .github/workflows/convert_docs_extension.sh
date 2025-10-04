@@ -100,6 +100,50 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
   
   cd "$temp_odt_dir" || exit 1
   
+  # Fast-fail test: Try converting first file with short timeout
+  echo ""
+  echo "🧪 FAST-FAIL TEST: Testing macro on first file..."
+  first_odt=$(ls *.odt | head -1)
+  echo "   Test file: $first_odt"
+  
+  pkill -f soffice 2>/dev/null || true
+  sleep 1
+  
+  echo "   Running test conversion (30s timeout)..."
+  if timeout 30 soffice --headless --invisible --nologo --norestore "$first_odt" 'macro:///DocExport.DocModel.MakeDocHfmView' 2>&1; then
+    echo "✓ Test conversion command completed"
+  else
+    test_exit=$?
+    if [ $test_exit -eq 124 ]; then
+      echo "❌ CRITICAL: Test conversion timed out after 30 seconds"
+      echo "❌ This indicates the macro is not working or hanging"
+      echo "🔍 Debugging information:"
+      echo "   - Extension installed: $(unopkg list --shared | grep -i docexport | wc -l) shared"
+      echo "   - Extension installed: $(unopkg list | grep -i docexport | wc -l) user"
+      echo "   - LibreOffice version: $(soffice --version)"
+      echo "   - Test file: $first_odt ($(stat -c%s "$first_odt") bytes)"
+      echo "❌ ABORTING: Cannot proceed with hanging macro"
+      pkill -9 -f soffice 2>/dev/null || true
+      cd "$OLDPWD" || exit 1
+      rm -rf "$temp_odt_dir"
+      exit 1
+    fi
+  fi
+  
+  sleep 2
+  test_md="${first_odt%.odt}.md"
+  if [[ -f "$test_md" ]]; then
+    test_size=$(stat -c%s "$test_md" 2>/dev/null || echo '0')
+    echo "✅ Test conversion successful: $test_md created ($test_size bytes)"
+    echo "✓ Macro is working, proceeding with all files..."
+  else
+    echo "❌ WARNING: Test conversion did not create markdown file"
+    echo "🔍 Files in directory:"
+    ls -lh | head -10
+    echo "⚠️  Proceeding anyway, but conversions may fail..."
+  fi
+  echo ""
+  
   file_index=0
   for odt_file in *.odt; do
     if [ -f "$odt_file" ]; then
@@ -107,19 +151,51 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
       echo "📄 Processing [$((file_index+1))/${#odt_files[@]}]: $odt_file"
       
       # Clean up any lingering LibreOffice processes
+      echo "🧹 Cleaning up LibreOffice processes..."
       pkill -f soffice 2>/dev/null || true
       sleep 1
       
-      # Run conversion macro
-      echo "🔄 Running conversion macro..."
-      if soffice --headless --invisible --nologo --norestore "$odt_file" 'macro:///DocExport.DocModel.MakeDocHfmView' 2>&1; then
+      # Verify no processes remain
+      if pgrep -f soffice >/dev/null 2>&1; then
+        echo "⚠️  WARNING: LibreOffice processes still running after pkill"
+        pgrep -af soffice || true
+      else
+        echo "✓ No LibreOffice processes running"
+      fi
+      
+      # Run conversion macro with timeout
+      echo "🔄 Running conversion macro (60s timeout)..."
+      echo "   Command: soffice --headless --invisible --nologo --norestore \"$odt_file\" 'macro:///DocExport.DocModel.MakeDocHfmView'"
+      
+      if timeout 60 soffice --headless --invisible --nologo --norestore "$odt_file" 'macro:///DocExport.DocModel.MakeDocHfmView' 2>&1; then
         echo "✓ Macro execution completed"
       else
-        echo "⚠️  Macro execution returned non-zero exit code (may be normal)"
+        exit_code=$?
+        if [ $exit_code -eq 124 ]; then
+          echo "❌ ERROR: Macro execution timed out after 60 seconds"
+          echo "🔍 Checking for hung processes..."
+          pgrep -af soffice || echo "No soffice processes found"
+          pkill -9 -f soffice 2>/dev/null || true
+          failed_files_list="$failed_files_list ${original_file_map[$file_index]}"
+          ((failed_count++))
+          ((file_index++))
+          continue
+        else
+          echo "⚠️  Macro execution returned exit code: $exit_code (may be normal)"
+        fi
       fi
       
       # Wait for file system to settle
+      echo "⏳ Waiting for file system to settle..."
       sleep 5
+      
+      # Check if conversion produced output immediately
+      echo "🔍 Checking for conversion output..."
+      if ls -lh "${odt_file%.odt}.md" 2>/dev/null; then
+        echo "✓ Output file detected"
+      else
+        echo "⚠️  No .md file found yet"
+      fi
       
       base_name=$(basename "$odt_file" .odt)
       md_file="${base_name}.md"
