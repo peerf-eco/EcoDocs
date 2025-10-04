@@ -148,10 +148,6 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
   
   if [ ${test_exit:-0} -eq 0 ]; then
     echo "✓ Test conversion command completed"
-    if [ -n "$test_output" ]; then
-      echo "📋 Command output:"
-      echo "$test_output" | head -20
-    fi
   else
     if [ $test_exit -eq 124 ]; then
       echo "❌ CRITICAL: Test conversion timed out after 30 seconds"
@@ -209,10 +205,6 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
       exit 1
     else
       echo "⚠️  Test conversion returned exit code: $test_exit"
-      if [ -n "$test_output" ]; then
-        echo "📋 Command output:"
-        echo "$test_output" | head -20
-      fi
     fi
   fi
   
