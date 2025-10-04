@@ -147,12 +147,12 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
       echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
       
       echo "📦 Extension Status:"
-      shared_ext=$(unopkg list --shared 2>/dev/null | grep -i docexport | wc -l)
-      echo "   - Shared extensions: $shared_ext"
+      shared_ext=$(unopkg list --shared 2>/dev/null | grep "^Identifier:" | grep -i docexport | wc -l)
+      echo "   - Shared extension packages: $shared_ext"
       if [ $shared_ext -gt 1 ]; then
-        echo "   ⚠️  PROBLEM: Multiple extensions detected!"
-        echo "   📋 All DocExport extensions:"
-        unopkg list --shared 2>/dev/null | grep -B 1 -A 3 -i docexport | sed 's/^/      /'
+        echo "   ⚠️  PROBLEM: Multiple extension packages detected!"
+        echo "   📋 All DocExport identifiers:"
+        unopkg list --shared 2>/dev/null | grep "^Identifier:" | grep -i docexport | sed 's/^/      /'
       fi
       
       echo "🖥️  System Information:"
@@ -181,11 +181,17 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
       
       echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
       echo "❌ ABORTING: Cannot proceed with hanging macro"
-      echo "💡 Possible causes:"
-      echo "   1. Multiple extension installations causing conflicts"
-      echo "   2. Macro path incorrect or macro not accessible"
-      echo "   3. LibreOffice unable to execute macros in headless mode"
-      echo "   4. Extension not properly registered"
+      echo ""
+      echo "💡 DIAGNOSIS:"
+      echo "   The macro 'macro:///DocExport.DocModel.MakeDocHfmView' is not responding."
+      echo "   This is likely because:"
+      echo "   1. The macro requires GUI interaction (not compatible with --headless)"
+      echo "   2. The macro path is incorrect"
+      echo "   3. The extension is not properly loaded in headless mode"
+      echo ""
+      echo "🔧 RECOMMENDATION:"
+      echo "   The DocExport extension may not support headless macro execution."
+      echo "   Consider using LibreOffice's built-in conversion or a different tool."
       
       pkill -9 -f soffice 2>/dev/null || true
       cd "$OLDPWD" || exit 1
@@ -222,15 +228,38 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
       
       # Clean up any lingering LibreOffice processes
       echo "🧹 Cleaning up LibreOffice processes..."
-      pkill -f soffice 2>/dev/null || true
-      sleep 1
       
-      # Verify no processes remain
-      if pgrep -f soffice >/dev/null 2>&1; then
-        echo "⚠️  WARNING: LibreOffice processes still running after pkill"
-        pgrep -af soffice || true
+      # Check for existing processes
+      existing_procs=$(pgrep -f soffice 2>/dev/null | wc -l)
+      if [ $existing_procs -gt 0 ]; then
+        echo "   Found $existing_procs soffice process(es) running"
+        pgrep -af soffice | sed 's/^/   - /'
+        
+        # Kill processes
+        echo "   Sending TERM signal..."
+        pkill -f soffice 2>/dev/null || true
+        sleep 1
+        
+        # Check if processes are gone
+        remaining=$(pgrep -f soffice 2>/dev/null | wc -l)
+        if [ $remaining -gt 0 ]; then
+          echo "   ⚠️  $remaining process(es) still running, sending KILL signal..."
+          pkill -9 -f soffice 2>/dev/null || true
+          sleep 1
+          
+          # Final check
+          final_check=$(pgrep -f soffice 2>/dev/null | wc -l)
+          if [ $final_check -gt 0 ]; then
+            echo "   ❌ ERROR: Failed to kill $final_check process(es)"
+            pgrep -af soffice | sed 's/^/   - /'
+          else
+            echo "   ✓ All processes killed"
+          fi
+        else
+          echo "   ✓ All processes terminated"
+        fi
       else
-        echo "✓ No LibreOffice processes running"
+        echo "   ✓ No LibreOffice processes running"
       fi
       
       # Run conversion macro with timeout
