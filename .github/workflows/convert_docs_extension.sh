@@ -14,6 +14,7 @@ temp_odt_dir=$(mktemp -d)
 echo "✓ Temporary ODT directory created: $temp_odt_dir"
 
 # Tracking arrays and lists
+phase1_failed_count=0
 converted_count=0
 failed_count=0
 odt_files=()
@@ -28,7 +29,8 @@ for file in "$@"; do
   
   if [[ ! -f "$file" ]]; then
     echo "❌ ERROR: File not found: $file"
-    ((failed_count++))
+    failed_files_list="$failed_files_list $file"
+    ((phase1_failed_count++))
     continue
   fi
   
@@ -37,7 +39,8 @@ for file in "$@"; do
   
   if [[ $file_size -eq 0 ]]; then
     echo "❌ ERROR: File is empty (0 bytes): $file"
-    ((failed_count++))
+    failed_files_list="$failed_files_list $file"
+    ((phase1_failed_count++))
     continue
   fi
   
@@ -56,11 +59,13 @@ for file in "$@"; do
         original_file_map+=("$file")
       else
         echo "❌ ERROR: ODT file not created: $temp_odt"
-        ((failed_count++))
+        failed_files_list="$failed_files_list $file"
+        ((phase1_failed_count++))
       fi
     else
       echo "❌ ERROR: Failed to convert FODT to ODT: $file"
-      ((failed_count++))
+      failed_files_list="$failed_files_list $file"
+      ((phase1_failed_count++))
     fi
   elif [[ "$file" == *.odt ]]; then
     temp_odt="$temp_odt_dir/${filename}.odt"
@@ -70,15 +75,17 @@ for file in "$@"; do
       original_file_map+=("$file")
     else
       echo "❌ ERROR: Failed to copy ODT file: $file"
-      ((failed_count++))
+      failed_files_list="$failed_files_list $file"
+      ((phase1_failed_count++))
     fi
   else
     echo "⚠️  WARNING: Unsupported file type: $file"
-    ((failed_count++))
+    failed_files_list="$failed_files_list $file"
+    ((phase1_failed_count++))
   fi
 done
 
-echo "📊 Phase 1 Summary: ${#odt_files[@]} ODT files ready, $failed_count files failed"
+echo "📊 Phase 1 Summary: ${#odt_files[@]} ODT files ready, $phase1_failed_count files failed"
 
 # Verify extension is installed
 echo "=== VERIFYING DOCEXPORT EXTENSION ==="
@@ -132,7 +139,7 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
   # Use exact timing pattern that works
   pkill -f soffice 2>/dev/null
   sleep 1
-  soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel.ExportDir($(pwd),1)" 2>&1 &
+  soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel.ExportDir(\"$(pwd)\",1)" 2>&1 &
   soffice_pid=$!
   sleep 5
   
@@ -183,11 +190,7 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
       fi
       
       echo "📋 Command Output (if any):"
-      if [ -n "$test_output" ]; then
-        echo "$test_output" | sed 's/^/   /'
-      else
-        echo "   - No output captured"
-      fi
+      echo "   - No output captured (using background process)"
       
       echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
       echo "❌ ABORTING: Cannot proceed with hanging macro"
@@ -274,7 +277,7 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
       echo "   Processing: $odt_file"
       pkill -f soffice 2>/dev/null
       sleep 1
-      soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel.ExportDir($single_dir,1)"
+      soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel.ExportDir(\"$single_dir\",1)"
       sleep 5
       echo "   Completed: $odt_file"
       
@@ -323,6 +326,7 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
         
         if [[ $md_size -eq 0 ]]; then
           echo "❌ ERROR: Generated markdown file is empty"
+          failed_files_list="$failed_files_list $original_file"
           ((failed_count++))
         else
           # Convert to UTF-8 encoding
@@ -372,8 +376,8 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
         echo "❌ ERROR: Markdown file not created: $md_file"
         echo "🔍 Files in temp directory:"
         ls -la | head -10
-        ((failed_count++))
         failed_files_list="$failed_files_list $original_file"
+        ((failed_count++))
       fi
       
       ((file_index++))
@@ -419,9 +423,12 @@ fi
 echo ""
 echo "=== CONVERT_DOCS_EXTENSION.SH SUMMARY ==="
 echo "📊 Conversion Statistics:"
+total_failed=$((phase1_failed_count + failed_count))
 echo "   Input files received: $#"
+echo "   Phase 1 failures (FODT→ODT): $phase1_failed_count"
+echo "   Phase 2 failures (ODT→MD): $failed_count"
 echo "   Successfully converted: $converted_count"
-echo "   Failed conversions: $failed_count"
+echo "   Total failed: $total_failed"
 echo "   Success rate: $(( converted_count * 100 / $# ))%"
 
 echo ""

@@ -38,7 +38,7 @@ for odt_file in *.odt; do
         # Use exact timing pattern
         pkill -f soffice 2>/dev/null
         sleep 1
-        soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel.ExportDir($single_dir,1)"
+        soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel.ExportDir(\"$single_dir\",1)"
         sleep 5
         echo "  Completed: $odt_file"
         
