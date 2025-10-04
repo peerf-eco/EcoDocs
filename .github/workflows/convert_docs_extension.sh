@@ -82,16 +82,41 @@ echo "📊 Phase 1 Summary: ${#odt_files[@]} ODT files ready, $failed_count file
 
 # Verify extension is installed
 echo "=== VERIFYING DOCEXPORT EXTENSION ==="
-if unopkg list --shared | grep -i docexport; then
-  echo "✓ DocExport extension found"
-else
+echo "🔍 Checking shared extensions (as root)..."
+shared_count=$(unopkg list --shared 2>/dev/null | grep -i docexport | wc -l)
+echo "   Found $shared_count DocExport extension(s) in shared context"
+
+if [ $shared_count -eq 0 ]; then
   echo "❌ CRITICAL: DocExport extension not found"
   echo "Available extensions:"
-  unopkg list --shared || echo "No extensions listed"
+  unopkg list --shared 2>/dev/null || echo "No extensions listed"
   echo "❌ CONVERSION SCRIPT TERMINATED: Extension verification failed"
   rm -rf "$temp_odt_dir"
   exit 1
+elif [ $shared_count -gt 1 ]; then
+  echo "⚠️  WARNING: Multiple DocExport extensions detected ($shared_count instances)"
+  echo "📋 Extension details:"
+  unopkg list --shared 2>/dev/null | grep -A 2 -i docexport
+  echo "⚠️  This may cause macro execution issues"
+else
+  echo "✓ DocExport extension found (single instance)"
 fi
+
+echo "🔍 Extension details:"
+unopkg list --shared 2>/dev/null | grep -A 3 -i docexport || true
+
+echo "🔍 Checking user extensions..."
+if unopkg list 2>&1 | grep -q "Cannot run unopkg as root"; then
+  echo "ℹ️  Running as root - user extensions not accessible (expected)"
+else
+  user_count=$(unopkg list 2>/dev/null | grep -i docexport | wc -l)
+  echo "   Found $user_count DocExport extension(s) in user context"
+fi
+
+echo "🔍 LibreOffice environment:"
+echo "   Version: $(soffice --version)"
+echo "   User: $(whoami)"
+echo "   UID: $(id -u)"
 
 # Convert ODT files to Markdown individually
 if [[ ${#odt_files[@]} -gt 0 ]]; then
@@ -104,29 +129,82 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
   echo ""
   echo "🧪 FAST-FAIL TEST: Testing macro on first file..."
   first_odt=$(ls *.odt | head -1)
-  echo "   Test file: $first_odt"
+  echo "   Test file: $first_odt ($(stat -c%s "$first_odt") bytes)"
   
   pkill -f soffice 2>/dev/null || true
   sleep 1
   
   echo "   Running test conversion (30s timeout)..."
-  if timeout 30 soffice --headless --invisible --nologo --norestore "$first_odt" 'macro:///DocExport.DocModel.MakeDocHfmView' 2>&1; then
+  echo "   Command: timeout 30 soffice --headless --invisible --nologo --norestore \"$first_odt\" 'macro:///DocExport.DocModel.MakeDocHfmView'"
+  
+  # Capture output for debugging
+  test_output=$(timeout 30 soffice --headless --invisible --nologo --norestore "$first_odt" 'macro:///DocExport.DocModel.MakeDocHfmView' 2>&1) || test_exit=$?
+  
+  if [ ${test_exit:-0} -eq 0 ]; then
     echo "✓ Test conversion command completed"
+    if [ -n "$test_output" ]; then
+      echo "📋 Command output:"
+      echo "$test_output" | head -20
+    fi
   else
-    test_exit=$?
     if [ $test_exit -eq 124 ]; then
       echo "❌ CRITICAL: Test conversion timed out after 30 seconds"
       echo "❌ This indicates the macro is not working or hanging"
-      echo "🔍 Debugging information:"
-      echo "   - Extension installed: $(unopkg list --shared | grep -i docexport | wc -l) shared"
-      echo "   - Extension installed: $(unopkg list | grep -i docexport | wc -l) user"
-      echo "   - LibreOffice version: $(soffice --version)"
-      echo "   - Test file: $first_odt ($(stat -c%s "$first_odt") bytes)"
+      echo ""
+      echo "🔍 DETAILED DEBUGGING INFORMATION:"
+      echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+      
+      echo "📦 Extension Status:"
+      shared_ext=$(unopkg list --shared 2>/dev/null | grep -i docexport | wc -l)
+      echo "   - Shared extensions: $shared_ext"
+      if [ $shared_ext -gt 1 ]; then
+        echo "   ⚠️  PROBLEM: Multiple extensions detected!"
+        echo "   📋 All DocExport extensions:"
+        unopkg list --shared 2>/dev/null | grep -B 1 -A 3 -i docexport | sed 's/^/      /'
+      fi
+      
+      echo "🖥️  System Information:"
+      echo "   - LibreOffice: $(soffice --version)"
+      echo "   - User: $(whoami) (UID: $(id -u))"
+      echo "   - Working directory: $(pwd)"
+      
+      echo "📄 Test File:"
+      echo "   - Name: $first_odt"
+      echo "   - Size: $(stat -c%s "$first_odt") bytes"
+      echo "   - Readable: $([ -r "$first_odt" ] && echo 'yes' || echo 'no')"
+      
+      echo "🔍 LibreOffice Processes:"
+      if pgrep -af soffice >/dev/null 2>&1; then
+        pgrep -af soffice | sed 's/^/   /'
+      else
+        echo "   - No soffice processes running"
+      fi
+      
+      echo "📋 Command Output (if any):"
+      if [ -n "$test_output" ]; then
+        echo "$test_output" | sed 's/^/   /'
+      else
+        echo "   - No output captured"
+      fi
+      
+      echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
       echo "❌ ABORTING: Cannot proceed with hanging macro"
+      echo "💡 Possible causes:"
+      echo "   1. Multiple extension installations causing conflicts"
+      echo "   2. Macro path incorrect or macro not accessible"
+      echo "   3. LibreOffice unable to execute macros in headless mode"
+      echo "   4. Extension not properly registered"
+      
       pkill -9 -f soffice 2>/dev/null || true
       cd "$OLDPWD" || exit 1
       rm -rf "$temp_odt_dir"
       exit 1
+    else
+      echo "⚠️  Test conversion returned exit code: $test_exit"
+      if [ -n "$test_output" ]; then
+        echo "📋 Command output:"
+        echo "$test_output" | head -20
+      fi
     fi
   fi
   

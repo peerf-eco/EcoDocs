@@ -33,8 +33,49 @@ jobs:
         soffice --version
         echo "🔍 Python version:"
         python3 --version
-        echo "🔍 DocExport extension:"
-        unopkg list --shared | grep -i docexport || echo "Extension not found in shared"
+        
+        echo "🔍 Checking DocExport extension..."
+        ext_count=$(unopkg list --shared 2>/dev/null | grep -i docexport | wc -l)
+        echo "   Found $ext_count DocExport extension(s)"
+        
+        if [ $ext_count -eq 0 ]; then
+          echo "❌ ERROR: DocExport extension not found"
+          exit 1
+        elif [ $ext_count -gt 1 ]; then
+          echo "⚠️  WARNING: Multiple DocExport extensions detected ($ext_count instances)"
+          echo "🧹 Cleaning up duplicate extensions..."
+          
+          # Remove all DocExport extensions
+          unopkg list --shared 2>/dev/null | grep -i "Identifier:" | grep -i docexport | while read -r line; do
+            ext_id=$(echo "$line" | sed 's/Identifier: //')
+            if [ -n "$ext_id" ]; then
+              echo "   Removing: $ext_id"
+              unopkg remove --shared "$ext_id" 2>/dev/null || true
+            fi
+          done
+          
+          # Reinstall single instance
+          echo "📦 Reinstalling DocExport extension..."
+          if [ -f ".github/workflows/DocExport.oxt" ]; then
+            unopkg add --shared .github/workflows/DocExport.oxt
+            echo "✓ Extension reinstalled"
+            
+            # Verify single installation
+            new_count=$(unopkg list --shared 2>/dev/null | grep -i docexport | wc -l)
+            echo "   Extensions after cleanup: $new_count"
+            
+            if [ $new_count -ne 1 ]; then
+              echo "❌ ERROR: Failed to achieve single extension installation"
+              exit 1
+            fi
+          else
+            echo "❌ ERROR: DocExport.oxt file not found for reinstallation"
+            exit 1
+          fi
+        else
+          echo "✓ DocExport extension found (single instance)"
+        fi
+        
         echo "✅ Environment verification complete"
 
     - name: Load Conversion State
