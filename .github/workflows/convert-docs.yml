@@ -35,8 +35,8 @@ jobs:
         python3 --version
         
         echo "🔍 Checking DocExport extension..."
-        ext_count=$(unopkg list --shared 2>/dev/null | grep -i docexport | wc -l)
-        echo "   Found $ext_count DocExport extension(s)"
+        ext_count=$(unopkg list --shared 2>/dev/null | grep "^Identifier:" | grep -i docexport | wc -l)
+        echo "   Found $ext_count DocExport extension package(s)"
         
         if [ $ext_count -eq 0 ]; then
           echo "❌ ERROR: DocExport extension not found"
@@ -55,8 +55,8 @@ jobs:
           sleep 2
           
           # Check if removal worked
-          remaining=$(unopkg list --shared 2>/dev/null | grep -i docexport | wc -l)
-          echo "   Extensions remaining after removal: $remaining"
+          remaining=$(unopkg list --shared 2>/dev/null | grep "^Identifier:" | grep -i docexport | wc -l)
+          echo "   Extension packages remaining after removal: $remaining"
           
           if [ $remaining -gt 0 ]; then
             echo "⚠️  WARNING: Could not remove all duplicate extensions"
@@ -66,8 +66,8 @@ jobs:
             echo "📦 Reinstalling DocExport extension..."
             if [ -f ".github/workflows/DocExport.oxt" ]; then
               unopkg add --shared .github/workflows/DocExport.oxt
-              new_count=$(unopkg list --shared 2>/dev/null | grep -i docexport | wc -l)
-              echo "   Extensions after reinstall: $new_count"
+              new_count=$(unopkg list --shared 2>/dev/null | grep "^Identifier:" | grep -i docexport | wc -l)
+              echo "   Extension packages after reinstall: $new_count"
               
               if [ $new_count -eq 1 ]; then
                 echo "✓ Successfully cleaned up and reinstalled extension"

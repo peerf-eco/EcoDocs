@@ -83,8 +83,10 @@ echo "📊 Phase 1 Summary: ${#odt_files[@]} ODT files ready, $failed_count file
 # Verify extension is installed
 echo "=== VERIFYING DOCEXPORT EXTENSION ==="
 echo "🔍 Checking shared extensions (as root)..."
-shared_count=$(unopkg list --shared 2>/dev/null | grep -i docexport | wc -l)
-echo "   Found $shared_count DocExport extension(s) in shared context"
+
+# Count only top-level Identifier lines (not sub-components)
+shared_count=$(unopkg list --shared 2>/dev/null | grep "^Identifier:" | grep -i docexport | wc -l)
+echo "   Found $shared_count DocExport extension package(s) in shared context"
 
 if [ $shared_count -eq 0 ]; then
   echo "❌ CRITICAL: DocExport extension not found"
@@ -94,29 +96,19 @@ if [ $shared_count -eq 0 ]; then
   rm -rf "$temp_odt_dir"
   exit 1
 elif [ $shared_count -gt 1 ]; then
-  echo "⚠️  WARNING: Multiple DocExport extensions detected ($shared_count instances)"
-  echo "📋 Extension details:"
-  unopkg list --shared 2>/dev/null | grep -A 2 -i docexport
-  echo "⚠️  This may cause macro execution issues"
+  echo "❌ CRITICAL: Multiple DocExport extension packages detected ($shared_count instances)"
+  echo "📋 Extension identifiers:"
+  unopkg list --shared 2>/dev/null | grep "^Identifier:" | grep -i docexport
+  echo "❌ CONVERSION SCRIPT TERMINATED: Multiple extensions will cause conflicts"
+  rm -rf "$temp_odt_dir"
+  exit 1
 else
-  echo "✓ DocExport extension found (single instance)"
-fi
-
-echo "🔍 Extension details:"
-unopkg list --shared 2>/dev/null | grep -A 3 -i docexport || true
-
-echo "🔍 Checking user extensions..."
-if unopkg list 2>&1 | grep -q "Cannot run unopkg as root"; then
-  echo "ℹ️  Running as root - user extensions not accessible (expected)"
-else
-  user_count=$(unopkg list 2>/dev/null | grep -i docexport | wc -l)
-  echo "   Found $user_count DocExport extension(s) in user context"
+  echo "✓ DocExport extension found (1 package)"
 fi
 
 echo "🔍 LibreOffice environment:"
 echo "   Version: $(soffice --version)"
-echo "   User: $(whoami)"
-echo "   UID: $(id -u)"
+echo "   User: $(whoami) (UID: $(id -u))"
 
 # Convert ODT files to Markdown individually
 if [[ ${#odt_files[@]} -gt 0 ]]; then
