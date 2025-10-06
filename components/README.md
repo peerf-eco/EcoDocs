@@ -3,20 +3,17 @@
 please follow the guidlines below:
 
 1. clone the repository and create branch with your component name, like `add/ComponentName`
-2. add new folder inside `components/` named with your component unique UGUID. If folder exists contact repository maintainers (PeerF)
-3. create language subfolders. Use ISO notation for language of the documents: de - Germain, en - English, fr - France, ru for Russian, etc
-4. create a document unique code in `ESPD` format (see reference below); add that number to all documents being added, as a new line under the header, like:
-`ESPD: Your_ESPD`
-5. save document in `.fodt` (Flat ODF Format) under name `Your_ESPD_number.fodt` and place into corresponding language subfolders (use LibraOffice or similar editor to SaveAs `.fodt`)
-6. create commit with message, like: `new ComponentName spec is added, in EN language`
-7. create GitHub pull request
+2. add new folder inside `components/` named with your component unique CID (Component ID) in UGUID format. If folder exists contact repository maintainers (PeerF)
+3. Use ISO notation for language of the documents: de - Germain, en - English, fr - France, ru for Russian, etc and create a document unique code in `ESPD` format (see reference below); add that number to all documents being added, as a new line under the header, like:
+`ESPD: Your_ESPD` (see generation guide below)
+4. save document in `.fodt` (Flat ODF Format) under name `Your_ESPD_number.fodt` and place into corresponding language subfolders (use LibraOffice or similar editor to SaveAs `.fodt`)
+5. create commit with message, like: `new ComponentName spec is added, in EN language`
+6. create GitHub pull request
 
 
 # Reference on creation document unique number
 
 ## TLDR
-
-ESPD number standard:
 
 ESPD number standard:
 
