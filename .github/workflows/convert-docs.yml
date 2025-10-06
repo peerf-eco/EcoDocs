@@ -166,11 +166,31 @@ jobs:
           
           # Verify the commit exists
           if git rev-parse --verify "${LAST_PROCESSED_COMMIT}" >/dev/null 2>&1; then
-            CHANGED_FILES=$(git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD -- components/**/*.fodt 2>/dev/null || echo "")
+            echo "🔍 Debug: Running git diff to find all changed .fodt files"
+            # Get all changed files, then filter for .fodt files in components directory
+            ALL_CHANGED=$(git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD 2>/dev/null || echo "")
+            CHANGED_FILES=""
+            for file in $ALL_CHANGED; do
+              if [[ "$file" == components/*/*.fodt ]]; then
+                CHANGED_FILES="$CHANGED_FILES $file"
+              fi
+            done
+            CHANGED_FILES=$(echo $CHANGED_FILES | sed 's/^ *//' | sed 's/ *$//')
+            echo "🔍 Debug: Filtered .fodt files: '$CHANGED_FILES'"
             echo "✅ Successfully compared against last processed commit"
           else
             echo "⚠️  Last processed commit ${LAST_PROCESSED_COMMIT} not found, falling back to HEAD~1"
-            CHANGED_FILES=$(git diff --name-only HEAD~1..HEAD -- components/**/*.fodt 2>/dev/null || echo "")
+            echo "🔍 Debug: Running git diff HEAD~1..HEAD to find changed .fodt files"
+            # Get all changed files, then filter for .fodt files in components directory
+            ALL_CHANGED=$(git diff --name-only HEAD~1..HEAD 2>/dev/null || echo "")
+            CHANGED_FILES=""
+            for file in $ALL_CHANGED; do
+              if [[ "$file" == components/*/*.fodt ]]; then
+                CHANGED_FILES="$CHANGED_FILES $file"
+              fi
+            done
+            CHANGED_FILES=$(echo $CHANGED_FILES | sed 's/^ *//' | sed 's/ *$//')
+            echo "🔍 Debug: Filtered .fodt files: '$CHANGED_FILES'"
           fi
         else
           echo "🔍 No previous state - initial run detected"
