@@ -24,7 +24,7 @@ jobs:
     - name: Checkout source
       uses: actions/checkout@v4
       with:
-        fetch-depth: 2  # Needed for git diff
+        fetch-depth: 50  # Needed for state-based git diff comparisons
 
     - name: Verify pre-built environment
       run: |
@@ -164,8 +164,10 @@ jobs:
         if [ -n "${LAST_PROCESSED_COMMIT}" ]; then
           echo "🔍 Using state-based detection from commit: ${LAST_PROCESSED_COMMIT}"
           
-          # Verify the commit exists
+          # Verify the commit exists and try to fetch more history if needed
+          echo "🔍 Debug: Checking if commit ${LAST_PROCESSED_COMMIT} exists..."
           if git rev-parse --verify "${LAST_PROCESSED_COMMIT}" >/dev/null 2>&1; then
+            echo "✅ Commit ${LAST_PROCESSED_COMMIT} exists"
             echo "🔍 Debug: Running git diff to find all changed .fodt files"
             # Get all changed files, then filter for .fodt files in components directory
             ALL_CHANGED=$(git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD 2>/dev/null || echo "")
@@ -186,7 +188,46 @@ jobs:
             echo "🔍 Debug: Filtered .fodt files: '$CHANGED_FILES'"
             echo "✅ Successfully compared against last processed commit"
           else
-            echo "⚠️  Last processed commit ${LAST_PROCESSED_COMMIT} not found, falling back to HEAD~1"
+            echo "❌ Commit ${LAST_PROCESSED_COMMIT} not found in current repository"
+            echo "🔍 Debug: Trying to fetch more history..."
+            
+            # Try progressively deeper fetches until we find the commit
+            for depth in 100 500 1000; do
+              echo "🔍 Debug: Fetching depth $depth from main..."
+              git fetch --depth=$depth origin main || echo "Failed to fetch depth $depth"
+              if git rev-parse --verify "${LAST_PROCESSED_COMMIT}" >/dev/null 2>&1; then
+                echo "✅ Found commit at depth $depth"
+                break
+              fi
+            done
+            
+            # Final attempt with full history if still not found
+            if ! git rev-parse --verify "${LAST_PROCESSED_COMMIT}" >/dev/null 2>&1; then
+              echo "🔍 Debug: Fetching full history from main..."
+              git fetch --unshallow origin main || echo "Failed to fetch full history"
+            fi
+            
+            if git rev-parse --verify "${LAST_PROCESSED_COMMIT}" >/dev/null 2>&1; then
+              echo "✅ Found commit after fetching more history"
+              echo "🔍 Debug: Running git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD"
+              ALL_CHANGED=$(git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD 2>/dev/null || echo "")
+              echo "🔍 Debug: All changed files: '$ALL_CHANGED'"
+              echo "🔍 Debug: Number of changed files: $(echo "$ALL_CHANGED" | wc -w)"
+              
+              CHANGED_FILES=""
+              for file in $ALL_CHANGED; do
+                echo "🔍 Debug: Checking file: '$file'"
+                if [[ "$file" == components/*/*.fodt ]]; then
+                  echo "🔍 Debug: File matches pattern: '$file'"
+                  CHANGED_FILES="$CHANGED_FILES $file"
+                else
+                  echo "🔍 Debug: File does not match pattern: '$file'"
+                fi
+              done
+              CHANGED_FILES=$(echo $CHANGED_FILES | sed 's/^ *//' | sed 's/ *$//')
+              echo "🔍 Debug: Filtered .fodt files: '$CHANGED_FILES'"
+            else
+              echo "⚠️  Last processed commit ${LAST_PROCESSED_COMMIT} still not found, falling back to HEAD~1"
             echo "🔍 Debug: Running git diff HEAD~1..HEAD to find changed .fodt files"
             # Get all changed files, then filter for .fodt files in components directory
             ALL_CHANGED=$(git diff --name-only HEAD~1..HEAD 2>/dev/null || echo "")
