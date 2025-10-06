@@ -142,6 +142,10 @@ jobs:
       id: debug-git
       run: |
         echo "=== GIT STATE DEBUG ==="
+        
+        # Fix git ownership issue
+        git config --global --add safe.directory /__w/EcoDocs/EcoDocs
+        
         echo "Current commit (HEAD): $(git rev-parse HEAD)"
         echo "Previous commit (HEAD~1): $(git rev-parse HEAD~1 2>/dev/null || echo 'N/A - single commit')"
         echo "Last processed commit: ${LAST_PROCESSED_COMMIT:-'none'}"
@@ -150,7 +154,7 @@ jobs:
         git log --oneline -3 || echo "Less than 3 commits available"
         echo "Files in components directory:"
         find components -name "*.fodt" -type f | head -10 || echo "No .fodt files found"
-        echo "=== END GIT STATE DEBUG ==="
+        echo "=== END GIT STATE DEBUG ===
 
     - name: Find changed files
       id: changed-files
@@ -205,22 +209,12 @@ jobs:
       run: |
         echo "=== CHANGE DETECTION RESULTS ==="
         echo "Any files changed: ${{ steps.changed-files.outputs.any_changed }}"
-        echo "Files added: ${{ steps.changed-files.outputs.added_files }}"
-        echo "Files modified: ${{ steps.changed-files.outputs.modified_files }}"
-        echo "Files deleted: ${{ steps.changed-files.outputs.deleted_files }}"
         echo "All changed files: ${{ steps.changed-files.outputs.all_changed_files }}"
         
-        if [ "${{ steps.changed-files.outputs.any_changed }}" == "true" ]; then
+        # Fix boolean comparison syntax
+        if [ "${{ steps.changed-files.outputs.any_changed }}" = "true" ]; then
           file_count=$(echo '${{ steps.changed-files.outputs.all_changed_files }}' | wc -w)
           echo "✅ CHANGES DETECTED: $file_count file(s) to process"
-          
-          # Check for deleted files
-          deleted_files="${{ steps.changed-files.outputs.deleted_files }}"
-          if [ -n "$deleted_files" ]; then
-            echo "⚠️  DELETED FILES DETECTED: $deleted_files"
-            echo "Note: Deleted files cannot be converted but may need cleanup in target repo"
-          fi
-          
           echo "Files to convert:"
           processable_files=0
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
@@ -250,9 +244,8 @@ jobs:
           # Additional debugging for no-changes scenario
           echo "🔍 Additional debugging information:"
           echo "  - Current workflow path filter: components/**/*.fodt"
-          echo "  - Actual path filter used: ${{ steps.changed-files.outputs.files }}"
-          echo "  - Comparison: HEAD vs HEAD~1"
-          echo "  - Repository has $(git rev-list --count HEAD) total commits"
+          echo "  - Comparison method: State-based or HEAD~1 fallback"
+          echo "  - Repository has $(git rev-list --count HEAD 2>/dev/null || echo 'unknown') total commits"
         fi
         echo "=== END CHANGE DETECTION RESULTS ==="
 
