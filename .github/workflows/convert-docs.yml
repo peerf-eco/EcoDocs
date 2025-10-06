@@ -166,11 +166,11 @@ jobs:
           
           # Verify the commit exists
           if git rev-parse --verify "${LAST_PROCESSED_COMMIT}" >/dev/null 2>&1; then
-            CHANGED_FILES=$(git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD -- 'components/**/*.fodt' 2>/dev/null || echo "")
+            CHANGED_FILES=$(git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD -- components/**/*.fodt 2>/dev/null || echo "")
             echo "✅ Successfully compared against last processed commit"
           else
             echo "⚠️  Last processed commit ${LAST_PROCESSED_COMMIT} not found, falling back to HEAD~1"
-            CHANGED_FILES=$(git diff --name-only HEAD~1..HEAD -- 'components/**/*.fodt' 2>/dev/null || echo "")
+            CHANGED_FILES=$(git diff --name-only HEAD~1..HEAD -- components/**/*.fodt 2>/dev/null || echo "")
           fi
         else
           echo "🔍 No previous state - initial run detected"
