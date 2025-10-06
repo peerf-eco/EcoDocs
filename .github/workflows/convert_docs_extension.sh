@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -uo pipefail
 
 echo "=== CONVERT_DOCS_EXTENSION.SH START ==="
 echo "Script received arguments: $#"
@@ -292,8 +292,8 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
       cp "$odt_file" "$single_dir/"
       
       echo "   Processing: $odt_file"
-      pkill -f soffice 2>/dev/null
-      sleep 1
+      pkill -9 -f soffice 2>/dev/null || true
+      sleep 2
       soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel.ExportDir(\"$single_dir\",1)"
       sleep 5
       echo "   Completed: $odt_file"
@@ -399,7 +399,10 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
       
       ((file_index++))
       echo "🔄 Continuing to next file..."
-    fi
+    fi || {
+      echo "⚠️  Error in processing loop, but continuing..."
+      ((file_index++))
+    }
   done
   
   echo "🏁 Completed processing all ODT files in directory"
