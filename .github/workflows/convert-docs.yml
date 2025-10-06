@@ -341,6 +341,21 @@ jobs:
         fi
         echo "=== END CONVERSION VERIFICATION ==="
 
+    - name: Update Conversion State
+      id: update-state
+      if: steps.changed-files.outputs.any_changed == 'true'
+      run: |
+        echo "=== UPDATING CONVERSION STATE ==="
+        
+        # Create new state with corrected logic
+        python3 .github/workflows/update_state.py
+        
+        echo "📊 New state file created:"
+        ls -la new-state.json
+        echo "📄 State summary:"
+        python3 -c "import json; s=json.load(open('new-state.json')); print(f'Successful: {len(s.get(\"successfulFiles\",{}))} Failed: {len(s.get(\"failedFiles\",{}))} Commit: {s.get(\"lastProcessedCommit\",\"none\")}')"
+        echo "=== STATE UPDATE COMPLETE ==="
+
     - name: Clone, copy files, and push to docs repo
       id: deploy
       if: steps.changed-files.outputs.any_changed == 'true'
@@ -617,22 +632,7 @@ jobs:
         fi
         
         popd >/dev/null
-        echo "=== MANIFEST GENERATION COMPLETE ==="
-
-    - name: Update Conversion State
-      id: update-state
-      if: steps.changed-files.outputs.any_changed == 'true'
-      run: |
-        echo "=== UPDATING CONVERSION STATE ==="
-        
-        # Create new state with corrected logic
-        python3 .github/workflows/update_state.py
-        
-        echo "📊 New state file created:"
-        ls -la new-state.json
-        echo "📄 State summary:"
-        python3 -c "import json; s=json.load(open('new-state.json')); print(f'Successful: {len(s.get(\"successfulFiles\",{}))} Failed: {len(s.get(\"failedFiles\",{}))} Commit: {s.get(\"lastProcessedCommit\",\"none\")}')"
-        echo "=== STATE UPDATE COMPLETE ==="
+        echo "=== MANIFEST GENERATION COMPLETE ===
 
     - name: Workflow Summary
       if: always()
