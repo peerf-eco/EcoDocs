@@ -1,5 +1,24 @@
 # EcoDocs Workflow Documentation
 
+## Introduction
+the execution of Libreoffice Writer macros from command line is not an obvious task. There are several source on Internet discussing this:
+https://forum.openoffice.org/en/forum/viewtopic.php?f=20&t=8232#p38910
+
+https://superuser.com/questions/1135850/how-do-i-run-a-libreoffice-macro-from-the-command-line-without-the-gui
+
+https://ask.libreoffice.org/t/execute-macro-in-calc-from-terminal/32101/6
+
+https://stackoverflow.com/questions/52623426/how-to-run-a-single-macro-for-all-xls-xlsx-files-for-libreoffice
+
+https://stackoverflow.com/questions/71244677/how-do-i-run-a-libreoffice-macro-from-the-command-line-without-gui
+
+youtube: https://www.youtube.com/watch?v=my1QIFNgNhY
+
+
+abd even using Python: https://christopher5106.github.io/office/2015/12/06/openoffice-libreoffice-automate-your-office-tasks-with-python-macros.html
+
+At the moment the problem of bulk libreoffice documents processing under linux cli is not fully understood / investigates and working. It looks there is an inherent libreoffice macro limitation limited to context of one file only (may be for Basic language only?). That's why the current approach is to organize a loop with filename given as a parameter to the macro.
+
 ## Current Conversion Workflow
 
 The workflow converts FODT (Flat XML ODT) documentation files in the current repository (which have been changed since previous workflow run) to Markdown using LibreOffice extension DocExport.oxt and syncs them to the target documentation repository.

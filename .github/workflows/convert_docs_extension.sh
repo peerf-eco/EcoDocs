@@ -272,7 +272,7 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
           # Final check
           final_check=$(pgrep -f soffice 2>/dev/null | wc -l)
           if [ $final_check -gt 0 ]; then
-            echo "   ❌ ERROR: Failed to kill $final_check process(es)"
+            echo "   ⚠️  WARNING: $final_check process(es) still running (non-critical)"
             pgrep -af soffice | sed 's/^/   - /'
           else
             echo "   ✓ All processes killed"
