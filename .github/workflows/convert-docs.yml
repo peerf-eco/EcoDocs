@@ -169,10 +169,17 @@ jobs:
             echo "🔍 Debug: Running git diff to find all changed .fodt files"
             # Get all changed files, then filter for .fodt files in components directory
             ALL_CHANGED=$(git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD 2>/dev/null || echo "")
+            echo "🔍 Debug: All changed files: '$ALL_CHANGED'"
+            echo "🔍 Debug: Number of changed files: $(echo "$ALL_CHANGED" | wc -w)"
+            
             CHANGED_FILES=""
             for file in $ALL_CHANGED; do
+              echo "🔍 Debug: Checking file: '$file'"
               if [[ "$file" == components/*/*.fodt ]]; then
+                echo "🔍 Debug: File matches pattern: '$file'"
                 CHANGED_FILES="$CHANGED_FILES $file"
+              else
+                echo "🔍 Debug: File does not match pattern: '$file'"
               fi
             done
             CHANGED_FILES=$(echo $CHANGED_FILES | sed 's/^ *//' | sed 's/ *$//')
