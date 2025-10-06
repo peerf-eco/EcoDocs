@@ -347,10 +347,10 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
           ((failed_count++))
         else
           # Convert to UTF-8 encoding
-          if python3 -c "import sys; open('$output_file','wb').write(open('$md_file','rb').read().decode(errors='ignore').encode('utf-8'))" 2>/dev/null; then
+          if python3 -c "import sys; open('$output_file','wb').write(open('$md_file','rb').read().decode(errors='ignore').encode('utf-8'))" 2>/dev/null || true; then
             echo "✓ Converted to UTF-8: $output_file"
           else
-            cp "$md_file" "$output_file"
+            cp "$md_file" "$output_file" || true
             echo "✓ Copied (fallback): $output_file"
           fi
           
@@ -371,7 +371,7 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
           # Add metadata
           if [[ -f "$OLDPWD/.github/workflows/create_metadata.py" ]]; then
             if [[ -n "${GITHUB_SERVER_URL:-}" && -n "${GITHUB_REPOSITORY:-}" && -n "${GITHUB_SHA:-}" ]]; then
-              python3 "$OLDPWD/.github/workflows/create_metadata.py" "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}" 2>&1 && echo "✓ Metadata added" || echo "⚠️  WARNING: Failed to add metadata (non-critical)"
+              (python3 "$OLDPWD/.github/workflows/create_metadata.py" "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}" 2>&1 && echo "✓ Metadata added") || echo "⚠️  WARNING: Failed to add metadata (non-critical)"
             else
               echo "ℹ️  Skipping metadata (GitHub environment variables not set)"
             fi
