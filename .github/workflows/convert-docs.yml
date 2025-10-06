@@ -154,7 +154,7 @@ jobs:
         git log --oneline -3 || echo "Less than 3 commits available"
         echo "Files in components directory:"
         find components -name "*.fodt" -type f | head -10 || echo "No .fodt files found"
-        echo "=== END GIT STATE DEBUG ===
+        echo "=== END GIT STATE DEBUG ==="
 
     - name: Find changed files
       id: changed-files
