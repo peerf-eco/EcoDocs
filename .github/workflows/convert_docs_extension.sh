@@ -370,10 +370,10 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
           
           # Add metadata
           if [[ -f "$OLDPWD/.github/workflows/create_metadata.py" ]]; then
-            if python3 "$OLDPWD/.github/workflows/create_metadata.py" "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}" 2>&1; then
-              echo "✓ Metadata added"
+            if [[ -n "${GITHUB_SERVER_URL:-}" && -n "${GITHUB_REPOSITORY:-}" && -n "${GITHUB_SHA:-}" ]]; then
+              python3 "$OLDPWD/.github/workflows/create_metadata.py" "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}" 2>&1 && echo "✓ Metadata added" || echo "⚠️  WARNING: Failed to add metadata (non-critical)"
             else
-              echo "⚠️  WARNING: Failed to add metadata (non-critical)"
+              echo "ℹ️  Skipping metadata (GitHub environment variables not set)"
             fi
           fi
           
@@ -398,8 +398,11 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
       fi
       
       ((file_index++))
+      echo "🔄 Continuing to next file..."
     fi
   done
+  
+  echo "🏁 Completed processing all ODT files in directory"
   
   cd "$OLDPWD" || exit 1
 else
