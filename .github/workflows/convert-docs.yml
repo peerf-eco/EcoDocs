@@ -166,11 +166,17 @@ jobs:
           
           # Verify the commit exists and try to fetch more history if needed
           echo "🔍 Debug: Checking if commit ${LAST_PROCESSED_COMMIT} exists..."
+          echo "🔍 Debug: Current HEAD: $(git rev-parse HEAD)"
+          echo "🔍 Debug: Git log showing recent commits:"
+          git log --oneline -10 || echo "Failed to show git log"
+          echo "🔍 Debug: Checking commit existence..."
           if git rev-parse --verify "${LAST_PROCESSED_COMMIT}" >/dev/null 2>&1; then
             echo "✅ Commit ${LAST_PROCESSED_COMMIT} exists"
-            echo "🔍 Debug: Running git diff to find all changed .fodt files"
+            echo "🔍 Debug: Comparing commits ${LAST_PROCESSED_COMMIT}..$(git rev-parse HEAD)"
+            echo "🔍 Debug: Running: git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD"
             # Get all changed files, then filter for .fodt files in components directory
             ALL_CHANGED=$(git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD 2>/dev/null || echo "")
+            echo "🔍 Debug: Git diff exit code: $?"
             echo "🔍 Debug: All changed files: '$ALL_CHANGED'"
             echo "🔍 Debug: Number of changed files: $(echo "$ALL_CHANGED" | wc -w)"
             
@@ -209,8 +215,10 @@ jobs:
             
             if git rev-parse --verify "${LAST_PROCESSED_COMMIT}" >/dev/null 2>&1; then
               echo "✅ Found commit after fetching more history"
-              echo "🔍 Debug: Running git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD"
+              echo "🔍 Debug: Comparing commits ${LAST_PROCESSED_COMMIT}..$(git rev-parse HEAD)"
+              echo "🔍 Debug: Running: git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD"
               ALL_CHANGED=$(git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD 2>/dev/null || echo "")
+              echo "🔍 Debug: Git diff exit code: $?"
               echo "🔍 Debug: All changed files: '$ALL_CHANGED'"
               echo "🔍 Debug: Number of changed files: $(echo "$ALL_CHANGED" | wc -w)"
               
