@@ -122,6 +122,12 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
   echo "=== PHASE 2: ODT TO MARKDOWN CONVERSION ==="
   echo "Converting ${#odt_files[@]} ODT files one by one..."
   
+  # Set proper locale and encoding for LibreOffice to handle Cyrillic text
+  export LC_ALL=C.UTF-8
+  export LANG=C.UTF-8
+  export LANGUAGE=C.UTF-8
+  echo "✓ Set UTF-8 locale for LibreOffice"
+  
   cd "$temp_odt_dir" || exit 1
   
   # Fast-fail test: Try converting first file with short timeout
@@ -392,7 +398,7 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
             
             # Check line endings (should be LF only)
             crlf_count=$(grep -c $'\r' "$output_file" 2>/dev/null || echo '0')
-            if [[ $crlf_count -eq 0 ]]; then
+            if [ "$crlf_count" -eq 0 ]; then
               echo "✓ LF line endings verified"
             else
               echo "⚠️  WARNING: Found $crlf_count CRLF sequences (should be LF only)"
