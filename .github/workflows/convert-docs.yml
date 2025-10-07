@@ -228,17 +228,18 @@ jobs:
               echo "🔍 Debug: Filtered .fodt files: '$CHANGED_FILES'"
             else
               echo "⚠️  Last processed commit ${LAST_PROCESSED_COMMIT} still not found, falling back to HEAD~1"
-            echo "🔍 Debug: Running git diff HEAD~1..HEAD to find changed .fodt files"
-            # Get all changed files, then filter for .fodt files in components directory
-            ALL_CHANGED=$(git diff --name-only HEAD~1..HEAD 2>/dev/null || echo "")
-            CHANGED_FILES=""
-            for file in $ALL_CHANGED; do
-              if [[ "$file" == components/*/*.fodt ]]; then
-                CHANGED_FILES="$CHANGED_FILES $file"
-              fi
-            done
-            CHANGED_FILES=$(echo $CHANGED_FILES | sed 's/^ *//' | sed 's/ *$//')
-            echo "🔍 Debug: Filtered .fodt files: '$CHANGED_FILES'"
+              echo "🔍 Debug: Running git diff HEAD~1..HEAD to find changed .fodt files"
+              # Get all changed files, then filter for .fodt files in components directory
+              ALL_CHANGED=$(git diff --name-only HEAD~1..HEAD 2>/dev/null || echo "")
+              CHANGED_FILES=""
+              for file in $ALL_CHANGED; do
+                if [[ "$file" == components/*/*.fodt ]]; then
+                  CHANGED_FILES="$CHANGED_FILES $file"
+                fi
+              done
+              CHANGED_FILES=$(echo $CHANGED_FILES | sed 's/^ *//' | sed 's/ *$//')
+              echo "🔍 Debug: Filtered .fodt files: '$CHANGED_FILES'"
+            fi
           fi
         else
           echo "🔍 No previous state - initial run detected"
