@@ -5,6 +5,11 @@ LABEL org.opencontainers.image.title="LibreOffice DocExport Container"
 LABEL org.opencontainers.image.description="Pre-built container with LibreOffice and DocExport extension for document conversion"
 LABEL org.opencontainers.image.source="https://github.com/peerf-eco/EcoDocs"
 
+# Set UTF-8 locale for proper Cyrillic text handling
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
+ENV LANGUAGE=C.UTF-8
+
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     libreoffice \
