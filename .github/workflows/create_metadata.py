@@ -63,8 +63,8 @@ sidebar: true
     # Combine frontmatter with content
     final_content = frontmatter + existing_content
     
-    # Write back to file
-    with open(file_path, 'w', encoding='utf-8') as f:
+    # Write back to file with LF line endings
+    with open(file_path, 'w', encoding='utf-8', newline='\n') as f:
         f.write(final_content)
     
     return True

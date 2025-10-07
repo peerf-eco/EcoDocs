@@ -346,44 +346,9 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
           failed_files_list="$failed_files_list $original_file"
           ((failed_count++))
         else
-          # Convert to UTF-8 encoding with LF line endings
+          # Convert to UTF-8 encoding with LF line endings using Python script
           echo "🔄 Converting encoding and line endings..."
-          if python3 -c "
-import sys
-try:
-    # Try multiple encodings to handle Windows-1251 and other encodings
-    encodings = ['utf-8', 'windows-1251', 'cp1251', 'iso-8859-1', 'latin1']
-    content = None
-    used_encoding = None
-    
-    for encoding in encodings:
-        try:
-            with open('$md_file', 'r', encoding=encoding) as f:
-                content = f.read()
-            used_encoding = encoding
-            break
-        except (UnicodeDecodeError, UnicodeError):
-            continue
-    
-    if content is None:
-        # Fallback: read as binary and decode with error handling
-        with open('$md_file', 'rb') as f:
-            raw_data = f.read()
-        content = raw_data.decode('utf-8', errors='replace')
-        used_encoding = 'utf-8-fallback'
-    
-    # Normalize line endings to LF (Unix style)
-    content = content.replace('\\r\\n', '\\n').replace('\\r', '\\n')
-    
-    # Write as UTF-8 with LF line endings
-    with open('$output_file', 'w', encoding='utf-8', newline='\\n') as f:
-        f.write(content)
-    
-    print(f'SUCCESS: Converted from {used_encoding} to UTF-8 with LF endings')
-except Exception as e:
-    print(f'ERROR: {e}')
-    sys.exit(1)
-" 2>&1; then
+          if python3 "$OLDPWD/.github/workflows/convert_encoding.py" "$md_file" "$output_file"; then
             echo "✓ Successfully converted to UTF-8 with LF line endings: $output_file"
           else
             echo "❌ ERROR: Failed to convert encoding, using fallback copy"
