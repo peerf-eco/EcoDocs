@@ -183,12 +183,15 @@ jobs:
             CHANGED_FILES=""
             for file in $ALL_CHANGED; do
               echo "🔍 Debug: Checking file: '$file'"
-              if [[ "$file" == components/*/*.fodt ]]; then
-                echo "🔍 Debug: File matches pattern: '$file'"
-                CHANGED_FILES="$CHANGED_FILES $file"
-              else
-                echo "🔍 Debug: File does not match pattern: '$file'"
-              fi
+              case "$file" in
+                components/*/*.fodt)
+                  echo "🔍 Debug: File matches pattern: '$file'"
+                  CHANGED_FILES="$CHANGED_FILES $file"
+                  ;;
+                *)
+                  echo "🔍 Debug: File does not match pattern: '$file'"
+                  ;;
+              esac
             done
             CHANGED_FILES=$(echo $CHANGED_FILES | sed 's/^ *//' | sed 's/ *$//')
             echo "🔍 Debug: Filtered .fodt files: '$CHANGED_FILES'"
@@ -225,12 +228,15 @@ jobs:
               CHANGED_FILES=""
               for file in $ALL_CHANGED; do
                 echo "🔍 Debug: Checking file: '$file'"
-                if [[ "$file" == components/*/*.fodt ]]; then
-                  echo "🔍 Debug: File matches pattern: '$file'"
-                  CHANGED_FILES="$CHANGED_FILES $file"
-                else
-                  echo "🔍 Debug: File does not match pattern: '$file'"
-                fi
+                case "$file" in
+                  components/*/*.fodt)
+                    echo "🔍 Debug: File matches pattern: '$file'"
+                    CHANGED_FILES="$CHANGED_FILES $file"
+                    ;;
+                  *)
+                    echo "🔍 Debug: File does not match pattern: '$file'"
+                    ;;
+                esac
               done
               CHANGED_FILES=$(echo $CHANGED_FILES | sed 's/^ *//' | sed 's/ *$//')
               echo "🔍 Debug: Filtered .fodt files: '$CHANGED_FILES'"
@@ -241,9 +247,11 @@ jobs:
               ALL_CHANGED=$(git diff --name-only HEAD~1..HEAD 2>/dev/null || echo "")
               CHANGED_FILES=""
               for file in $ALL_CHANGED; do
-                if [[ "$file" == components/*/*.fodt ]]; then
-                  CHANGED_FILES="$CHANGED_FILES $file"
-                fi
+                case "$file" in
+                  components/*/*.fodt)
+                    CHANGED_FILES="$CHANGED_FILES $file"
+                    ;;
+                esac
               done
               CHANGED_FILES=$(echo $CHANGED_FILES | sed 's/^ *//' | sed 's/ *$//')
               echo "🔍 Debug: Filtered .fodt files: '$CHANGED_FILES'"
