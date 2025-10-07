@@ -5,6 +5,8 @@ on:
     branches: [ main ]
     paths:
       - 'components/**/*.fodt'
+      - 'libraries/**/*.fodt'
+      - 'guides/**/*.fodt'
   workflow_dispatch:  # Allow manual triggering
 
 jobs:
@@ -154,6 +156,10 @@ jobs:
         git log --oneline -3 || echo "Less than 3 commits available"
         echo "Files in components directory:"
         find components -name "*.fodt" -type f | head -10 || echo "No .fodt files found"
+        echo "Files in libraries directory:"
+        find libraries -name "*.fodt" -type f | head -10 || echo "No .fodt files found"
+        echo "Files in guides directory:"
+        find guides -name "*.fodt" -type f | head -10 || echo "No .fodt files found"
         echo "=== END GIT STATE DEBUG ==="
 
     - name: Find changed files
@@ -174,7 +180,7 @@ jobs:
             echo "✅ Commit ${LAST_PROCESSED_COMMIT} exists"
             echo "🔍 Debug: Comparing commits ${LAST_PROCESSED_COMMIT}..$(git rev-parse HEAD)"
             echo "🔍 Debug: Running: git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD"
-            # Get all changed files, then filter for .fodt files in components directory
+            # Get all changed files, then filter for .fodt files in components, libraries, and guides directories
             ALL_CHANGED=$(git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD 2>/dev/null || echo "")
             echo "🔍 Debug: Git diff exit code: $?"
             echo "🔍 Debug: All changed files: '$ALL_CHANGED'"
@@ -184,7 +190,7 @@ jobs:
             for file in $ALL_CHANGED; do
               echo "🔍 Debug: Checking file: '$file'"
               case "$file" in
-                components/*/*.fodt)
+                components/**/*.fodt|libraries/**/*.fodt|guides/**/*.fodt)
                   echo "🔍 Debug: File matches pattern: '$file'"
                   CHANGED_FILES="$CHANGED_FILES $file"
                   ;;
@@ -229,7 +235,7 @@ jobs:
               for file in $ALL_CHANGED; do
                 echo "🔍 Debug: Checking file: '$file'"
                 case "$file" in
-                  components/*/*.fodt)
+                  components/**/*.fodt|libraries/**/*.fodt|guides/**/*.fodt)
                     echo "🔍 Debug: File matches pattern: '$file'"
                     CHANGED_FILES="$CHANGED_FILES $file"
                     ;;
@@ -243,12 +249,12 @@ jobs:
             else
               echo "⚠️  Last processed commit ${LAST_PROCESSED_COMMIT} still not found, falling back to HEAD~1"
               echo "🔍 Debug: Running git diff HEAD~1..HEAD to find changed .fodt files"
-              # Get all changed files, then filter for .fodt files in components directory
+              # Get all changed files, then filter for .fodt files in components, libraries, and guides directories
               ALL_CHANGED=$(git diff --name-only HEAD~1..HEAD 2>/dev/null || echo "")
               CHANGED_FILES=""
               for file in $ALL_CHANGED; do
                 case "$file" in
-                  components/*/*.fodt)
+                  components/**/*.fodt|libraries/**/*.fodt|guides/**/*.fodt)
                     CHANGED_FILES="$CHANGED_FILES $file"
                     ;;
                 esac
@@ -260,8 +266,8 @@ jobs:
         else
           echo "🔍 No previous state - initial run detected"
           echo "ℹ️  Processing all .fodt files matching workflow trigger pattern"
-          echo "🔍 Path pattern: components/**/*.fodt"
-          CHANGED_FILES=$(find components -name "*.fodt" -type f 2>/dev/null || echo "")
+          echo "🔍 Path patterns: components/**/*.fodt, libraries/**/*.fodt, guides/**/*.fodt"
+          CHANGED_FILES=$(find components libraries guides -name "*.fodt" -type f 2>/dev/null || echo "")
         fi
         
         echo "📊 Changed files found: $(echo "$CHANGED_FILES" | wc -w)"
@@ -323,12 +329,12 @@ jobs:
           echo "📊 Summary: $processable_files processable files out of $file_count total changes"
         else
           echo "ℹ️  NO CHANGES DETECTED"
-          echo "Reason: No .fodt files in components/** have been modified since the last commit"
+          echo "Reason: No .fodt files in components/**, libraries/**, or guides/** have been modified since the last commit"
           echo "This is normal behavior - the workflow will skip conversion steps"
           
           # Additional debugging for no-changes scenario
           echo "🔍 Additional debugging information:"
-          echo "  - Current workflow path filter: components/**/*.fodt"
+          echo "  - Current workflow path filters: components/**/*.fodt, libraries/**/*.fodt, guides/**/*.fodt"
           echo "  - Comparison method: State-based or HEAD~1 fallback"
           echo "  - Repository has $(git rev-list --count HEAD 2>/dev/null || echo 'unknown') total commits"
         fi
@@ -341,16 +347,16 @@ jobs:
         echo "ℹ️  WORKFLOW RESULT: No changes detected"
         echo ""
         echo "This means:"
-        echo "  • No .fodt files in components/** have been modified since the last commit"
+        echo "  • No .fodt files in components/**, libraries/**, or guides/** have been modified since the last commit"
         echo "  • The workflow is working correctly by skipping unnecessary conversions"
         echo "  • No files will be converted or pushed to the target repository"
         echo ""
         echo "If you expected changes to be detected:"
-        echo "  1. Verify your .fodt files are in the components/ directory"
+        echo "  1. Verify your .fodt files are in the components/, libraries/, or guides/ directories"
         echo "  2. Check that files were actually modified in the last commit"
-        echo "  3. Ensure the workflow path filter matches your file locations"
+        echo "  3. Ensure the workflow path filters match your file locations"
         echo ""
-        echo "Current workflow path filter: components/**/*.fodt"
+        echo "Current workflow path filters: components/**/*.fodt, libraries/**/*.fodt, guides/**/*.fodt"
         echo "=== WORKFLOW COMPLETE (NO ACTION REQUIRED) ==="
 
     - name: Convert to Markdown
@@ -452,7 +458,7 @@ jobs:
         echo "=== DEPLOYMENT TO TARGET REPOSITORY START ==="
         echo "🎯 Target repository: peerf-eco/docs-vitepress"
         echo "📂 Source directory: converted_docs/"
-        echo "📂 Target directory: docs/components/"
+        echo "📂 Target directories: docs/components/, docs/libraries/, docs/guides/"
         
         # Setup SSH
         echo "🔐 Setting up SSH authentication..."
@@ -520,46 +526,81 @@ jobs:
           echo "  ℹ️ No image folders found (img_* pattern)"
         fi
         
-        targetDir="docs-vitepress/docs/components"
-        mkdir -p "$targetDir"
-        echo "📁 Created target directory: $targetDir"
+        # Create target directories
+        mkdir -p "docs-vitepress/docs/components"
+        mkdir -p "docs-vitepress/docs/libraries"
+        mkdir -p "docs-vitepress/docs/guides"
+        echo "📁 Created target directories: docs/components/, docs/libraries/, docs/guides/"
         
         filesCopied=0
         filesSkipped=0
         imagesFoldersCopied=0
         echo "🔄 Starting file copy process..."
         
-        # Copy markdown files
-        while IFS= read -r file; do
-          src="converted_docs/${file}"
-          if [ -f "$src" ]; then
-            if cp "$src" "$targetDir/"; then
-              echo "  ✅ Copied: ${file} ($(stat -c%s "$src" 2>/dev/null || echo '?') bytes)"
-              filesCopied=$((filesCopied+1))
-              
-              # Check for corresponding image folder
-              base_name="${file%.md}"
-              img_folder="converted_docs/img_${base_name}"
-              if [ -d "$img_folder" ]; then
-                echo "  📁 Found image folder: img_${base_name}"
-                if cp -r "$img_folder" "$targetDir/"; then
-                  echo "  ✅ Copied image folder: img_${base_name}"
-                  imagesFoldersCopied=$((imagesFoldersCopied+1))
-                else
-                  echo "  ❌ Failed to copy image folder: img_${base_name}"
-                fi
+        # Copy all files preserving directory structure
+        if [ -d "converted_docs/components" ]; then
+          echo "📁 Copying components files..."
+          if cp -r converted_docs/components/* docs-vitepress/docs/components/ 2>/dev/null; then
+            components_count=$(find converted_docs/components -name "*.md" -type f | wc -l)
+            echo "  ✅ Copied $components_count components files"
+            filesCopied=$((filesCopied + components_count))
+          fi
+        fi
+        
+        if [ -d "converted_docs/libraries" ]; then
+          echo "📁 Copying libraries files..."
+          if cp -r converted_docs/libraries/* docs-vitepress/docs/libraries/ 2>/dev/null; then
+            libraries_count=$(find converted_docs/libraries -name "*.md" -type f | wc -l)
+            echo "  ✅ Copied $libraries_count libraries files"
+            filesCopied=$((filesCopied + libraries_count))
+          fi
+        fi
+        
+        if [ -d "converted_docs/guides" ]; then
+          echo "📁 Copying guides files..."
+          if cp -r converted_docs/guides/* docs-vitepress/docs/guides/ 2>/dev/null; then
+            guides_count=$(find converted_docs/guides -name "*.md" -type f | wc -l)
+            echo "  ✅ Copied $guides_count guides files"
+            filesCopied=$((filesCopied + guides_count))
+          fi
+        fi
+        
+        # Handle any remaining files in root of converted_docs (legacy/fallback)
+        for file in converted_docs/*.md 2>/dev/null; do
+          if [ -f "$file" ]; then
+            filename=$(basename "$file")
+            if cp "$file" "docs-vitepress/docs/components/$filename"; then
+              echo "  ✅ Copied legacy file: $filename to components/"
+              filesCopied=$((filesCopied + 1))
+            fi
+          fi
+        done
+        
+        # Copy image folders
+        for img_dir in converted_docs/img_* 2>/dev/null; do
+          if [ -d "$img_dir" ]; then
+            img_name=$(basename "$img_dir")
+            base_name="${img_name#img_}"
+            
+            # Find where the corresponding markdown file was placed
+            md_file=$(find docs-vitepress/docs -name "${base_name}.md" -type f | head -1)
+            if [ -n "$md_file" ]; then
+              target_dir=$(dirname "$md_file")
+              if cp -r "$img_dir" "$target_dir/"; then
+                echo "  ✅ Copied image folder: $img_name to $(dirname "${md_file#docs-vitepress/}")/"
+                imagesFoldersCopied=$((imagesFoldersCopied + 1))
               fi
             else
-              echo "  ❌ Failed to copy: ${file}"
-              filesSkipped=$((filesSkipped+1))
+              # Fallback to components if markdown file not found
+              if cp -r "$img_dir" "docs-vitepress/docs/components/"; then
+                echo "  ✅ Copied image folder: $img_name to components/ (fallback)"
+                imagesFoldersCopied=$((imagesFoldersCopied + 1))
+              fi
             fi
-          else
-            echo "  ⚠️  Skipped (not a file): ${file}"
-            filesSkipped=$((filesSkipped+1))
           fi
-        done < <(ls converted_docs 2>/dev/null || echo "")
+        done
         
-        echo "📊 Copy summary: $filesCopied files copied, $imagesFoldersCopied image folders copied, $filesSkipped files skipped"
+        echo "📊 Copy summary: $filesCopied files copied, $imagesFoldersCopied image folders copied"
         
         if [ $filesCopied -eq 0 ]; then
           echo "⚠️  WARNING: No files were copied to target repository"
@@ -573,7 +614,7 @@ jobs:
         pushd docs-vitepress >/dev/null
         git config user.name "Docs CI Bot"
         git config user.email "docs-bot@ecoos.dev"
-        git add docs/components/
+        git add docs/components/ docs/libraries/ docs/guides/
         # Copy state file to target repository with validation
         if [ -f "../new-state.json" ]; then
           echo "📄 Copying conversion state to target repository"
@@ -598,7 +639,7 @@ jobs:
         
         # Check for changes and commit
         echo "🔍 Checking for changes in target repository..."
-        git status --porcelain docs/components/ .conversion-state.json
+        git status --porcelain docs/components/ docs/libraries/ docs/guides/ .conversion-state.json
         
         if ! git diff --staged --quiet; then
           sha="${GITHUB_SHA:-unknown-sha}"

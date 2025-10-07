@@ -72,20 +72,45 @@ soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel
 sleep 5
 ```
 
-### Shell Compatibility Tips
-- GitHub Actions uses POSIX shell (`/bin/sh`), not bash
-- Use `[ "$var" = "value" ]` instead of `[ "$var" == "value" ]`
-- Always quote variables in shell comparisons
+### Shell Compatibility Requirements
+**GitHub Actions Environment**: Uses POSIX shell (`/bin/sh`), not bash
+- **Pattern Matching**: Use `case` statements instead of `[[ ]]` bash extensions
+- **Comparisons**: Use `[ "$var" = "value" ]` instead of `[ "$var" == "value" ]`
+- **Variable Quoting**: Always quote variables in shell comparisons
+- **Arithmetic**: Use `[ "$count" -eq 0 ]` instead of `[[ $count -eq 0 ]]`
+
+```bash
+# ❌ Bash-specific (fails in GitHub Actions)
+if [[ "$file" == components/*/*.fodt ]]; then
+
+# ✅ POSIX-compatible
+case "$file" in
+  components/*/*.fodt) echo "Match" ;;
+esac
+```
 
 ### State File Management
 - **Temporary**: `new-state.json` (created during workflow)
 - **Persistent**: `.conversion-state.json` (committed to target repository)
 - **Location**: Target repository root (peerf-eco/docs-vitepress)
 
-### Encoding Handling
+### Encoding and Locale Handling
 **UTF-8 Normalization**: Essential for multi-platform compatibility
+- **Locale Settings**: LibreOffice requires UTF-8 locale for proper Cyrillic text handling
+- **Python Encoding**: Dedicated script handles multiple source encodings (Windows-1251, CP1251, ISO-8859-1)
+- **Line Endings**: Automatic CRLF→LF conversion for Unix compatibility
+
+```bash
+# Set UTF-8 locale for LibreOffice (prevents Cyrillic → question marks)
+export LC_ALL=C.UTF-8
+export LANG=C.UTF-8
+export LANGUAGE=C.UTF-8
+```
+
 ```python
-python3 -c "import sys; open('output.md','wb').write(open('input.md','rb').read().decode(errors='ignore').encode('utf-8'))"
+# Python encoding conversion script
+python3 convert_encoding.py input.md output.md
+# Handles: utf-8, windows-1251, cp1251, iso-8859-1, latin1 → UTF-8 + LF
 ```
 
 ## Local Container Testing
@@ -167,25 +192,82 @@ docker exec libreoffice_test soffice --headless --invisible --nologo --norestore
 ```
 
 ### Change Detection Logic (Fixed)
-**Problem**: Contradictory messages about file changes and boolean comparison errors
-**Root Cause**: Shell syntax errors and non-existent workflow outputs
+**Problem**: Git diff not detecting .fodt file changes between commits
+**Root Causes**: 
+1. Quoted glob patterns preventing shell expansion (`'components/**/*.fodt'`)
+2. Bash-specific `[[ ]]` pattern matching failing in POSIX shell
+3. Insufficient git history depth for state-based comparisons
+
+**Solutions**:
+- Removed quotes from git diff path patterns
+- Replaced `[[ ]]` with POSIX `case` statements
+- Progressive fetch depth increase (50→100→500→1000→unshallow)
+- Added detailed debug output for commit range verification
+
+### UTF-8 Encoding Implementation (Fixed)
+**Problem**: Cyrillic text converted to question marks in markdown output
+**Root Cause**: LibreOffice locale not set to UTF-8 during conversion
 **Solution**: 
-- Fixed boolean comparisons (`==` → `=`)
-- Removed references to non-existent outputs
-- Added git ownership configuration
+- Set `LC_ALL=C.UTF-8` environment variables before LibreOffice execution
+- Created dedicated Python script for encoding detection and conversion
+- Replaced complex bash encoding logic with reliable Python implementation
+
+**Result**: Proper Cyrillic text preservation in UTF-8 markdown with LF line endings
 
 ### Process Management Enhancement
 **Finding**: Aggressive process cleanup essential for workflow reliability
 **Implementation**: `pkill -9 -f soffice` with proper timing intervals
 **Result**: Eliminated hanging LibreOffice processes and conversion failures
 
+### Container Locale Configuration
+**Recommendation**: Set UTF-8 locale at container build time for additional robustness
+```dockerfile
+# Add to Dockerfile for permanent UTF-8 locale
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
+ENV LANGUAGE=C.UTF-8
+RUN locale-gen C.UTF-8
+```
+**Note**: Most modern Linux containers default to UTF-8, but explicit setting ensures consistency across different base images and environments.
+
+### Multi-Directory Support (Current Session)
+**Enhancement**: Extended workflow to process .fodt files from multiple source directories
+
+**Source Directory Patterns**:
+- `components/**/*.fodt` - Any nesting level, flattened to `docs/components/`
+- `libraries/**/*.fodt` - Any nesting level, preserves structure in `docs/libraries/`
+- `guides/**/*.fodt` - Any nesting level, preserves structure in `docs/guides/`
+
+**Directory Structure Handling**:
+```bash
+# Components: Flat structure (all files in root)
+components/subfolder/file.fodt → docs/components/file.md
+components/deep/nested/file.fodt → docs/components/file.md
+
+# Libraries & Guides: Preserve nested structure
+libraries/subfolder/file.fodt → docs/libraries/subfolder/file.md
+guides/deep/nested/file.fodt → docs/guides/deep/nested/file.md
+```
+
+**Implementation Changes**:
+- **Workflow Triggers**: Added `libraries/**/*.fodt` and `guides/**/*.fodt` patterns
+- **File Detection**: Updated git diff patterns to include new directories
+- **Conversion Script**: Modified output path logic based on source directory
+- **Deployment**: Simplified to copy entire directory trees while maintaining structure
+
+**Pattern Matching Fix**: Changed from `components/*/*.fodt` (exactly one level) to `components/**/*.fodt` (zero or multiple levels) to allow files directly in root directories.
+
 ## Troubleshooting
 
 ### Common Issues
 - **Hanging Conversions**: Check LibreOffice process cleanup and macro compatibility
 - **Missing State File**: Verify workflow step order and file permissions
-- **Encoding Problems**: Ensure UTF-8 conversion step is working
+- **Encoding Problems**: Verify UTF-8 locale settings and Python encoding script
 - **Image Folder Issues**: Check DocExport macro output and folder naming
+- **Shell Syntax Errors**: Use POSIX-compatible syntax, avoid bash-specific features
+- **Git Change Detection**: Ensure sufficient fetch depth and proper glob pattern handling
+- **Directory Structure Issues**: Verify source directory patterns match expected nesting levels
+- **File Path Conflicts**: Check for filename collisions when flattening components structure
 
 ### Debug Commands
 ```bash

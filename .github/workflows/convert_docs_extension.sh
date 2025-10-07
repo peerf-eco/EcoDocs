@@ -339,8 +339,45 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
       
       base_name=$(basename "$odt_file" .odt)
       md_file="${base_name}.md"
-      output_file="$OLDPWD/converted_docs/${base_name}.md"
       original_file="${original_file_map[$file_index]}"
+      
+      # Determine output path based on original source location
+      if [[ "$original_file" == components/* ]]; then
+        # Flatten components structure - all files go to docs/components
+        mkdir -p "$OLDPWD/converted_docs/components"
+        output_file="$OLDPWD/converted_docs/components/${base_name}.md"
+        img_output_dir="$OLDPWD/converted_docs/components"
+      elif [[ "$original_file" == libraries/* ]]; then
+        # Extract relative path within libraries directory
+        rel_path="${original_file#libraries/}"
+        rel_dir="$(dirname "$rel_path")"
+        if [ "$rel_dir" != "." ]; then
+          mkdir -p "$OLDPWD/converted_docs/libraries/$rel_dir"
+          output_file="$OLDPWD/converted_docs/libraries/$rel_dir/${base_name}.md"
+          img_output_dir="$OLDPWD/converted_docs/libraries/$rel_dir"
+        else
+          mkdir -p "$OLDPWD/converted_docs/libraries"
+          output_file="$OLDPWD/converted_docs/libraries/${base_name}.md"
+          img_output_dir="$OLDPWD/converted_docs/libraries"
+        fi
+      elif [[ "$original_file" == guides/* ]]; then
+        # Extract relative path within guides directory
+        rel_path="${original_file#guides/}"
+        rel_dir="$(dirname "$rel_path")"
+        if [ "$rel_dir" != "." ]; then
+          mkdir -p "$OLDPWD/converted_docs/guides/$rel_dir"
+          output_file="$OLDPWD/converted_docs/guides/$rel_dir/${base_name}.md"
+          img_output_dir="$OLDPWD/converted_docs/guides/$rel_dir"
+        else
+          mkdir -p "$OLDPWD/converted_docs/guides"
+          output_file="$OLDPWD/converted_docs/guides/${base_name}.md"
+          img_output_dir="$OLDPWD/converted_docs/guides"
+        fi
+      else
+        # Fallback to flat structure for unknown paths
+        output_file="$OLDPWD/converted_docs/${base_name}.md"
+        img_output_dir="$OLDPWD/converted_docs"
+      fi
       
       # Check if markdown file was created
       if [[ -f "$md_file" ]]; then
@@ -367,8 +404,8 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
           if [[ -d "$img_folder" ]]; then
             img_count=$(find "$img_folder" -type f | wc -l)
             echo "📁 Found image folder: $img_folder ($img_count images)"
-            if mv "$img_folder" "$OLDPWD/converted_docs/img_${base_name}"; then
-              echo "✓ Moved image folder: converted_docs/img_${base_name}"
+            if mv "$img_folder" "${img_output_dir}/img_${base_name}"; then
+              echo "✓ Moved image folder: ${img_output_dir#$OLDPWD/}/img_${base_name}"
             else
               echo "❌ ERROR: Failed to move image folder"
             fi
