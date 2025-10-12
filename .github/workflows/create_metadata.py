@@ -2,6 +2,33 @@
 import sys
 import os
 import re
+from datetime import datetime
+
+def extract_metadata_field(content, field_name):
+    """Extract metadata field value from content"""
+    patterns = [
+        rf'^{re.escape(field_name)}:\s*(.+)$',
+        rf'^\*\*{re.escape(field_name)}\*\*:\s*(.+)$',
+        rf'^{re.escape(field_name)}\s*:\s*(.+)$'
+    ]
+    
+    for pattern in patterns:
+        match = re.search(pattern, content, re.MULTILINE | re.IGNORECASE)
+        if match:
+            return match.group(1).strip()
+    return None
+
+def determine_document_type(title):
+    """Determine document type from title"""
+    title_lower = title.lower()
+    if any(word in title_lower for word in ['guide', 'tutorial', 'how-to']):
+        return 'Guide'
+    elif any(word in title_lower for word in ['paper', 'research', 'study']):
+        return 'Paper'
+    elif any(word in title_lower for word in ['tutorial', 'walkthrough']):
+        return 'Tutorial'
+    else:
+        return 'Specification'
 
 def create_meta(file_path, github_server_url, repository_name, commit_sha):
     """Add VitePress-compatible frontmatter to markdown file"""
@@ -15,20 +42,46 @@ def create_meta(file_path, github_server_url, repository_name, commit_sha):
     name_without_ext = os.path.splitext(base_name)[0]
     
     # Create a proper title from filename
-    # Convert underscores to spaces and handle component naming
     title = name_without_ext.replace('_', ' ').replace('.', ' ')
-    # Clean up multiple spaces
     title = re.sub(r'\s+', ' ', title).strip()
     
-    # Create source URL (assuming original files are in components/ directory)
+    # Extract metadata fields from content
+    uspd = extract_metadata_field(content, 'USPD') or extract_metadata_field(content, 'ЕСПД')
+    component_name = extract_metadata_field(content, 'Component Name')
+    short_description = extract_metadata_field(content, 'Short Description (max 300 char.)')
+    use_category = extract_metadata_field(content, 'Component Use Category')
+    component_type = extract_metadata_field(content, 'Component Type')
+    cid = extract_metadata_field(content, 'CID')
+    marketplace_url = extract_metadata_field(content, 'Marketplace URL')
+    version = extract_metadata_field(content, 'Version')
+    modified_date = extract_metadata_field(content, 'Modified Date') or extract_metadata_field(content, '**Modified **Date')
+    tags = extract_metadata_field(content, 'tags')
+    
+    # Determine document type
+    document_type = determine_document_type(title)
+    
+    # Format dates
+    last_modified = None
+    if modified_date:
+        try:
+            # Try to parse various date formats
+            for fmt in ['%B %d, %Y', '%Y-%m-%d', '%d.%m.%Y', '%m/%d/%Y']:
+                try:
+                    parsed_date = datetime.strptime(modified_date, fmt)
+                    last_modified = parsed_date.strftime('%Y-%m-%d')
+                    break
+                except ValueError:
+                    continue
+        except:
+            pass
+    
+    # Create source URL
     original_filename = name_without_ext + '.fodt'
-    # Find the component directory structure
     if 'Eco.' in name_without_ext:
-        # Extract component ID for directory structure
         component_match = re.search(r'(Eco\.[^_]+)', name_without_ext)
         if component_match:
-            component_name = component_match.group(1)
-            relative_path = f"components/{component_name}/{original_filename}"
+            component_name_from_file = component_match.group(1)
+            relative_path = f"components/{component_name_from_file}/{original_filename}"
         else:
             relative_path = f"components/{original_filename}"
     else:
@@ -38,36 +91,83 @@ def create_meta(file_path, github_server_url, repository_name, commit_sha):
     
     # Check if frontmatter already exists
     if content.startswith('---\n'):
-        # Find the end of existing frontmatter
         end_match = re.search(r'\n---\n', content)
         if end_match:
-            # Replace existing frontmatter
             existing_content = content[end_match.end():]
         else:
             existing_content = content
     else:
         existing_content = content
     
-    # Create VitePress-compatible frontmatter
-    frontmatter = f"""---
-title: {title}
-layout: doc
-source: {source_url}
-lastUpdated: true
-editLink: true
-sidebar: true
----
-
-"""
+    # Build frontmatter with all fields
+    frontmatter_lines = ['---']
+    frontmatter_lines.append(f'title: "{title}"')
+    frontmatter_lines.append('layout: doc')
+    
+    # Custom EcoOS Component Fields
+    frontmatter_lines.append(f'documentType: "{document_type}"')
+    
+    if uspd:
+        frontmatter_lines.append(f'documentEspd: "{uspd}"')
+    
+    if tags:
+        frontmatter_lines.append(f'tags: "{tags}"')
+    
+    if version:
+        frontmatter_lines.append(f'version: "{version}"')
+    
+    if last_modified:
+        frontmatter_lines.append(f'lastModified: "{last_modified}"')
+    
+    # Custom ECoOS Component Specific Fields
+    if component_name:
+        frontmatter_lines.append(f'componentName: "{component_name}"')
+    
+    if cid:
+        frontmatter_lines.append(f'CID: "{cid}"')
+    
+    if short_description:
+        frontmatter_lines.append(f'description: "{short_description}"')
+    
+    if use_category:
+        frontmatter_lines.append(f'useCategory: "{use_category.upper()}"')
+    
+    if component_type:
+        frontmatter_lines.append(f'type: "{component_type.upper()}"')
+    
+    if marketplace_url:
+        frontmatter_lines.append(f'registryUrl: "{marketplace_url}"')
+    
+    # Optional VitePress fields
+    frontmatter_lines.append(f'source: "{source_url}"')
+    frontmatter_lines.append('lastUpdated: true')
+    frontmatter_lines.append('editLink: true')
+    frontmatter_lines.append('sidebar: true')
+    frontmatter_lines.append('---')
+    frontmatter_lines.append('')
+    
+    frontmatter = '\n'.join(frontmatter_lines)
     
     # Combine frontmatter with content
     final_content = frontmatter + existing_content
     
-    # Write back to file with LF line endings
-    with open(file_path, 'w', encoding='utf-8', newline='\n') as f:
+    # Determine output file path based on CID
+    if cid:
+        file_dir = os.path.dirname(file_path)
+        clean_cid = cid.strip('"').strip("'")
+        new_file_path = os.path.join(file_dir, f"{clean_cid}.md")
+    else:
+        new_file_path = file_path
+    
+    # Write to the new file with LF line endings
+    with open(new_file_path, 'w', encoding='utf-8', newline='\n') as f:
         f.write(final_content)
     
-    return True
+    # Remove original file if renamed
+    if new_file_path != file_path and os.path.exists(file_path):
+        os.remove(file_path)
+    
+    return new_file_path
 
 if __name__ == "__main__":
     if len(sys.argv) != 5:
@@ -80,8 +180,8 @@ if __name__ == "__main__":
     commit_sha = sys.argv[4]
     
     try:
-        create_meta(file_path, github_server_url, repository_name, commit_sha)
-        print(f"✓ Metadata added to {os.path.basename(file_path)}")
+        result_path = create_meta(file_path, github_server_url, repository_name, commit_sha)
+        print(f"✓ Metadata added to {os.path.basename(result_path)}")
     except Exception as e:
         print(f"❌ Error adding metadata to {file_path}: {e}")
         sys.exit(1)
