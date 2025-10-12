@@ -540,7 +540,7 @@ jobs:
         # Copy all files preserving directory structure
         if [ -d "converted_docs/components" ]; then
           echo "📁 Copying components files..."
-          if cp -r converted_docs/components/* docs-vitepress/docs/components/ 2>/dev/null; then
+          if cp -r converted_docs/components/* docs-vitepress/docs/components/; then
             components_count=$(find converted_docs/components -name "*.md" -type f | wc -l)
             echo "  ✅ Copied $components_count components files"
             filesCopied=$((filesCopied + components_count))
@@ -549,7 +549,7 @@ jobs:
         
         if [ -d "converted_docs/libraries" ]; then
           echo "📁 Copying libraries files..."
-          if cp -r converted_docs/libraries/* docs-vitepress/docs/libraries/ 2>/dev/null; then
+          if cp -r converted_docs/libraries/* docs-vitepress/docs/libraries/; then
             libraries_count=$(find converted_docs/libraries -name "*.md" -type f | wc -l)
             echo "  ✅ Copied $libraries_count libraries files"
             filesCopied=$((filesCopied + libraries_count))
@@ -558,7 +558,7 @@ jobs:
         
         if [ -d "converted_docs/guides" ]; then
           echo "📁 Copying guides files..."
-          if cp -r converted_docs/guides/* docs-vitepress/docs/guides/ 2>/dev/null; then
+          if cp -r converted_docs/guides/* docs-vitepress/docs/guides/; then
             guides_count=$(find converted_docs/guides -name "*.md" -type f | wc -l)
             echo "  ✅ Copied $guides_count guides files"
             filesCopied=$((filesCopied + guides_count))
@@ -566,39 +566,43 @@ jobs:
         fi
         
         # Handle any remaining files in root of converted_docs (legacy/fallback)
-        for file in converted_docs/*.md 2>/dev/null; do
-          if [ -f "$file" ]; then
-            filename=$(basename "$file")
-            if cp "$file" "docs-vitepress/docs/components/$filename"; then
-              echo "  ✅ Copied legacy file: $filename to components/"
-              filesCopied=$((filesCopied + 1))
+        if ls converted_docs/*.md >/dev/null 2>&1; then
+          for file in converted_docs/*.md; do
+            if [ -f "$file" ]; then
+              filename=$(basename "$file")
+              if cp "$file" "docs-vitepress/docs/components/$filename"; then
+                echo "  ✅ Copied legacy file: $filename to components/"
+                filesCopied=$((filesCopied + 1))
+              fi
             fi
-          fi
-        done
+          done
+        fi
         
         # Copy image folders
-        for img_dir in converted_docs/img_* 2>/dev/null; do
-          if [ -d "$img_dir" ]; then
-            img_name=$(basename "$img_dir")
-            base_name="${img_name#img_}"
-            
-            # Find where the corresponding markdown file was placed
-            md_file=$(find docs-vitepress/docs -name "${base_name}.md" -type f | head -1)
-            if [ -n "$md_file" ]; then
-              target_dir=$(dirname "$md_file")
-              if cp -r "$img_dir" "$target_dir/"; then
-                echo "  ✅ Copied image folder: $img_name to $(dirname "${md_file#docs-vitepress/}")/"
-                imagesFoldersCopied=$((imagesFoldersCopied + 1))
-              fi
-            else
-              # Fallback to components if markdown file not found
-              if cp -r "$img_dir" "docs-vitepress/docs/components/"; then
-                echo "  ✅ Copied image folder: $img_name to components/ (fallback)"
-                imagesFoldersCopied=$((imagesFoldersCopied + 1))
+        if ls converted_docs/img_* >/dev/null 2>&1; then
+          for img_dir in converted_docs/img_*; do
+            if [ -d "$img_dir" ]; then
+              img_name=$(basename "$img_dir")
+              base_name="${img_name#img_}"
+              
+              # Find where the corresponding markdown file was placed
+              md_file=$(find docs-vitepress/docs -name "${base_name}.md" -type f | head -1)
+              if [ -n "$md_file" ]; then
+                target_dir=$(dirname "$md_file")
+                if cp -r "$img_dir" "$target_dir/"; then
+                  echo "  ✅ Copied image folder: $img_name to $(dirname "${md_file#docs-vitepress/}")/"
+                  imagesFoldersCopied=$((imagesFoldersCopied + 1))
+                fi
+              else
+                # Fallback to components if markdown file not found
+                if cp -r "$img_dir" "docs-vitepress/docs/components/"; then
+                  echo "  ✅ Copied image folder: $img_name to components/ (fallback)"
+                  imagesFoldersCopied=$((imagesFoldersCopied + 1))
+                fi
               fi
             fi
-          fi
-        done
+          done
+        fi
         
         echo "📊 Copy summary: $filesCopied files copied, $imagesFoldersCopied image folders copied"
         
