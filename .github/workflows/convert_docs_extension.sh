@@ -450,7 +450,7 @@ if [[ ${#source_files[@]} -gt 0 ]]; then
           if [[ -f "$PWD/.github/workflows/create_metadata.py" ]]; then
             if [[ -n "${GITHUB_SERVER_URL:-}" && -n "${GITHUB_REPOSITORY:-}" && -n "${GITHUB_SHA:-}" ]]; then
               echo "🔄 Processing metadata and applying CID-based renaming..."
-              if result_file=$(python3 "$PWD/.github/workflows/create_metadata.py" "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}" 2>&1); then
+              if result_file=$(python3 "$PWD/.github/workflows/create_metadata.py" "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}" "$original_file" 2>&1); then
                 echo "✓ Metadata processing completed"
                 echo "   Python script output: $result_file"
                 # Update output_file path if file was renamed based on CID

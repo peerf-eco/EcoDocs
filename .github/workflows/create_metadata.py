@@ -31,7 +31,7 @@ def determine_document_type(title):
     else:
         return 'Specification'
 
-def create_meta(file_path, github_server_url, repository_name, commit_sha):
+def create_meta(file_path, github_server_url, repository_name, commit_sha, original_source_path=None):
     """Add VitePress-compatible frontmatter to markdown file"""
     
     # Read the existing content
@@ -76,19 +76,22 @@ def create_meta(file_path, github_server_url, repository_name, commit_sha):
         except:
             pass
     
-    # Create source URL
-    original_filename = name_without_ext + '.fodt'
-    if 'Eco.' in name_without_ext:
-        component_match = re.search(r'(Eco\.[^_]+)', name_without_ext)
-        if component_match:
-            component_name_from_file = component_match.group(1)
-            relative_path = f"components/{component_name_from_file}/{original_filename}"
+    # Create source URL using original source path if provided
+    if original_source_path:
+        source_url = f"{github_server_url}/{repository_name}/blob/{commit_sha}/{original_source_path}"
+    else:
+        # Fallback to reconstructed path (legacy behavior)
+        original_filename = name_without_ext + '.fodt'
+        if 'Eco.' in name_without_ext:
+            component_match = re.search(r'(Eco\.[^_]+)', name_without_ext)
+            if component_match:
+                component_name_from_file = component_match.group(1)
+                relative_path = f"components/{component_name_from_file}/{original_filename}"
+            else:
+                relative_path = f"components/{original_filename}"
         else:
             relative_path = f"components/{original_filename}"
-    else:
-        relative_path = f"components/{original_filename}"
-    
-    source_url = f"{github_server_url}/{repository_name}/blob/{commit_sha}/{relative_path}"
+        source_url = f"{github_server_url}/{repository_name}/blob/{commit_sha}/{relative_path}"
     
     # Check if frontmatter already exists
     if content.startswith('---\n'):
@@ -171,17 +174,18 @@ def create_meta(file_path, github_server_url, repository_name, commit_sha):
     return new_file_path
 
 if __name__ == "__main__":
-    if len(sys.argv) != 5:
-        print("Usage: create_metadata.py <file> <github_server_url> <repository_name> <commit_sha>")
+    if len(sys.argv) < 5 or len(sys.argv) > 6:
+        print("Usage: create_metadata.py <file> <github_server_url> <repository_name> <commit_sha> [original_source_path]")
         sys.exit(1)
     
     file_path = sys.argv[1]
     github_server_url = sys.argv[2] 
     repository_name = sys.argv[3]
     commit_sha = sys.argv[4]
+    original_source_path = sys.argv[5] if len(sys.argv) == 6 else None
     
     try:
-        result_path = create_meta(file_path, github_server_url, repository_name, commit_sha)
+        result_path = create_meta(file_path, github_server_url, repository_name, commit_sha, original_source_path)
         print(f"✓ Metadata added to {os.path.basename(result_path)}")
     except Exception as e:
         print(f"❌ Error adding metadata to {file_path}: {e}")
