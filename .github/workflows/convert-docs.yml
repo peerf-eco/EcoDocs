@@ -341,7 +341,7 @@ jobs:
         echo "=== END CHANGE DETECTION RESULTS ==="
 
     - name: No Changes Detected
-      if: steps.changed-files.outputs.any_changed != 'true'
+      if: steps.changed-files.outputs.any_changed == 'false'
       run: |
         echo "=== NO CONVERSION NEEDED ==="
         echo "ℹ️  WORKFLOW RESULT: No changes detected"

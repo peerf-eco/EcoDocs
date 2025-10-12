@@ -377,39 +377,39 @@ if [[ ${#source_files[@]} -gt 0 ]]; then
       # Determine output path based on original source location
       if [[ "$original_file" == components/* ]]; then
         # Flatten components structure - all files go to docs/components
-        mkdir -p "$OLDPWD/converted_docs/components"
-        output_file="$OLDPWD/converted_docs/components/${base_name}.md"
-        img_output_dir="$OLDPWD/converted_docs/components"
+        mkdir -p "$PWD/converted_docs/components"
+        output_file="$PWD/converted_docs/components/${base_name}.md"
+        img_output_dir="$PWD/converted_docs/components"
       elif [[ "$original_file" == libraries/* ]]; then
         # Extract relative path within libraries directory
         rel_path="${original_file#libraries/}"
         rel_dir="$(dirname "$rel_path")"
         if [ "$rel_dir" != "." ]; then
-          mkdir -p "$OLDPWD/converted_docs/libraries/$rel_dir"
-          output_file="$OLDPWD/converted_docs/libraries/$rel_dir/${base_name}.md"
-          img_output_dir="$OLDPWD/converted_docs/libraries/$rel_dir"
+          mkdir -p "$PWD/converted_docs/libraries/$rel_dir"
+          output_file="$PWD/converted_docs/libraries/$rel_dir/${base_name}.md"
+          img_output_dir="$PWD/converted_docs/libraries/$rel_dir"
         else
-          mkdir -p "$OLDPWD/converted_docs/libraries"
-          output_file="$OLDPWD/converted_docs/libraries/${base_name}.md"
-          img_output_dir="$OLDPWD/converted_docs/libraries"
+          mkdir -p "$PWD/converted_docs/libraries"
+          output_file="$PWD/converted_docs/libraries/${base_name}.md"
+          img_output_dir="$PWD/converted_docs/libraries"
         fi
       elif [[ "$original_file" == guides/* ]]; then
         # Extract relative path within guides directory
         rel_path="${original_file#guides/}"
         rel_dir="$(dirname "$rel_path")"
         if [ "$rel_dir" != "." ]; then
-          mkdir -p "$OLDPWD/converted_docs/guides/$rel_dir"
-          output_file="$OLDPWD/converted_docs/guides/$rel_dir/${base_name}.md"
-          img_output_dir="$OLDPWD/converted_docs/guides/$rel_dir"
+          mkdir -p "$PWD/converted_docs/guides/$rel_dir"
+          output_file="$PWD/converted_docs/guides/$rel_dir/${base_name}.md"
+          img_output_dir="$PWD/converted_docs/guides/$rel_dir"
         else
-          mkdir -p "$OLDPWD/converted_docs/guides"
-          output_file="$OLDPWD/converted_docs/guides/${base_name}.md"
-          img_output_dir="$OLDPWD/converted_docs/guides"
+          mkdir -p "$PWD/converted_docs/guides"
+          output_file="$PWD/converted_docs/guides/${base_name}.md"
+          img_output_dir="$PWD/converted_docs/guides"
         fi
       else
         # Fallback to flat structure for unknown paths
-        output_file="$OLDPWD/converted_docs/${base_name}.md"
-        img_output_dir="$OLDPWD/converted_docs"
+        output_file="$PWD/converted_docs/${base_name}.md"
+        img_output_dir="$PWD/converted_docs"
       fi
       
       # Check if markdown file was created
@@ -424,7 +424,7 @@ if [[ ${#source_files[@]} -gt 0 ]]; then
         else
           # Convert to UTF-8 encoding with LF line endings using Python script
           echo "🔄 Converting encoding and line endings..."
-          if python3 "$OLDPWD/.github/workflows/convert_encoding.py" "$md_file" "$output_file"; then
+          if python3 "$PWD/.github/workflows/convert_encoding.py" "$md_file" "$output_file"; then
             echo "✓ Successfully converted to UTF-8 with LF line endings: $output_file"
           else
             echo "❌ ERROR: Failed to convert encoding, using fallback copy"
@@ -438,7 +438,7 @@ if [[ ${#source_files[@]} -gt 0 ]]; then
             img_count=$(find "$img_folder" -type f | wc -l)
             echo "📁 Found image folder: $img_folder ($img_count images)"
             if mv "$img_folder" "${img_output_dir}/img_${base_name}"; then
-              echo "✓ Moved image folder: ${img_output_dir#$OLDPWD/}/img_${base_name}"
+              echo "✓ Moved image folder: ${img_output_dir#$PWD/}/img_${base_name}"
             else
               echo "❌ ERROR: Failed to move image folder"
             fi
@@ -447,10 +447,10 @@ if [[ ${#source_files[@]} -gt 0 ]]; then
           fi
           
           # Add metadata using dedicated Python script
-          if [[ -f "$OLDPWD/.github/workflows/create_metadata.py" ]]; then
+          if [[ -f "$PWD/.github/workflows/create_metadata.py" ]]; then
             if [[ -n "${GITHUB_SERVER_URL:-}" && -n "${GITHUB_REPOSITORY:-}" && -n "${GITHUB_SHA:-}" ]]; then
               echo "🔄 Processing metadata and applying CID-based renaming..."
-              if result_file=$(python3 "$OLDPWD/.github/workflows/create_metadata.py" "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}" 2>&1); then
+              if result_file=$(python3 "$PWD/.github/workflows/create_metadata.py" "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}" 2>&1); then
                 echo "✓ Metadata processing completed"
                 # Update output_file path if file was renamed based on CID
                 if [[ "$result_file" =~ "✓ Metadata added to" ]]; then
