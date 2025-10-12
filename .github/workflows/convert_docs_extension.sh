@@ -452,12 +452,17 @@ if [[ ${#source_files[@]} -gt 0 ]]; then
               echo "🔄 Processing metadata and applying CID-based renaming..."
               if result_file=$(python3 "$PWD/.github/workflows/create_metadata.py" "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}" 2>&1); then
                 echo "✓ Metadata processing completed"
+                echo "   Python script output: $result_file"
                 # Update output_file path if file was renamed based on CID
                 if [[ "$result_file" =~ "✓ Metadata added to" ]]; then
                   renamed_file=$(echo "$result_file" | sed 's/.*✓ Metadata added to //')
-                  if [[ "$renamed_file" != "$(basename "$output_file")" ]]; then
-                    output_file="$(dirname "$output_file")/$renamed_file"
-                    echo "✓ File renamed based on CID: $renamed_file"
+                  original_basename=$(basename "$output_file")
+                  if [[ "$renamed_file" != "$original_basename" ]]; then
+                    new_output_file="$(dirname "$output_file")/$renamed_file"
+                    echo "✓ File renamed based on CID: $original_basename → $renamed_file"
+                    output_file="$new_output_file"
+                  else
+                    echo "ℹ️  No CID found - file kept original name: $original_basename"
                   fi
                 fi
               else
@@ -481,7 +486,7 @@ if [[ ${#source_files[@]} -gt 0 ]]; then
             
             # Check line endings (should be LF only)
             crlf_count=$(grep -c $'\r' "$output_file" 2>/dev/null || echo '0')
-            if [ "$crlf_count" -eq 0 ]; then
+            if [ "$crlf_count" -eq 0 ] 2>/dev/null; then
               echo "✓ LF line endings verified"
             else
               echo "⚠️  WARNING: Found $crlf_count CRLF sequences (should be LF only)"
