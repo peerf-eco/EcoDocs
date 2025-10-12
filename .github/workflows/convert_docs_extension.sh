@@ -14,23 +14,88 @@ temp_odt_dir=$(mktemp -d)
 echo "✓ Temporary ODT directory created: $temp_odt_dir"
 
 # Tracking arrays and lists
-phase1_failed_count=0
+# phase1_failed_count=0  # COMMENTED: No longer needed for direct conversion
 converted_count=0
 failed_count=0
-odt_files=()
+source_files=()
 original_file_map=()
 processed_files_list=""
 failed_files_list=""
 
-# First pass: Convert FODT files to ODT and collect all ODT files
-echo "=== PHASE 1: FODT TO ODT CONVERSION ==="
+# COMMENTED OUT: FODT TO ODT CONVERSION PHASE
+# This phase is no longer needed as LibreOffice macro can handle both .fodt and .odt files directly
+# echo "=== PHASE 1: FODT TO ODT CONVERSION ==="
+# for file in "$@"; do
+#   echo "📄 Processing input file: $file"
+#   
+#   if [[ ! -f "$file" ]]; then
+#     echo "❌ ERROR: File not found: $file"
+#     failed_files_list="$failed_files_list $file"
+#     ((phase1_failed_count++))
+#     continue
+#   fi
+#   
+#   file_size=$(stat -c%s "$file" 2>/dev/null || echo '0')
+#   echo "   File size: $file_size bytes"
+#   
+#   if [[ $file_size -eq 0 ]]; then
+#     echo "❌ ERROR: File is empty (0 bytes): $file"
+#     failed_files_list="$failed_files_list $file"
+#     ((phase1_failed_count++))
+#     continue
+#   fi
+#   
+#   base="${file%.*}"
+#   filename="${base##*/}"
+#   
+#   if [[ "$file" == *.fodt ]]; then
+#     echo "🔄 Converting FODT to ODT: $file"
+#     temp_odt="$temp_odt_dir/${filename}.odt"
+#     
+#     if soffice --headless --convert-to odt:"writer8" "$file" --outdir "$temp_odt_dir" 2>&1; then
+#       if [[ -f "$temp_odt" ]]; then
+#         odt_size=$(stat -c%s "$temp_odt" 2>/dev/null || echo '0')
+#         echo "✓ Successfully converted FODT to ODT: ${filename}.odt ($odt_size bytes)"
+#         odt_files+=("${filename}.odt")
+#         original_file_map+=("$file")
+#       else
+#         echo "❌ ERROR: ODT file not created: $temp_odt"
+#         failed_files_list="$failed_files_list $file"
+#         ((phase1_failed_count++))
+#       fi
+#     else
+#       echo "❌ ERROR: Failed to convert FODT to ODT: $file"
+#       failed_files_list="$failed_files_list $file"
+#       ((phase1_failed_count++))
+#     fi
+#   elif [[ "$file" == *.odt ]]; then
+#     temp_odt="$temp_odt_dir/${filename}.odt"
+#     if cp "$file" "$temp_odt"; then
+#       echo "✓ Copied ODT file to temp directory: ${filename}.odt"
+#       odt_files+=("${filename}.odt")
+#       original_file_map+=("$file")
+#     else
+#       echo "❌ ERROR: Failed to copy ODT file: $file"
+#       failed_files_list="$failed_files_list $file"
+#       ((phase1_failed_count++))
+#     fi
+#   else
+#     echo "⚠️  WARNING: Unsupported file type: $file"
+#     failed_files_list="$failed_files_list $file"
+#     ((phase1_failed_count++))
+#   fi
+# done
+# echo "📊 Phase 1 Summary: ${#odt_files[@]} ODT files ready, $phase1_failed_count files failed"
+
+# NEW: Direct file validation and preparation
+echo "=== PHASE 1: FILE VALIDATION AND PREPARATION ==="
 for file in "$@"; do
   echo "📄 Processing input file: $file"
   
   if [[ ! -f "$file" ]]; then
     echo "❌ ERROR: File not found: $file"
     failed_files_list="$failed_files_list $file"
-    ((phase1_failed_count++))
+    ((failed_count++))
     continue
   fi
   
@@ -40,52 +105,22 @@ for file in "$@"; do
   if [[ $file_size -eq 0 ]]; then
     echo "❌ ERROR: File is empty (0 bytes): $file"
     failed_files_list="$failed_files_list $file"
-    ((phase1_failed_count++))
+    ((failed_count++))
     continue
   fi
   
-  base="${file%.*}"
-  filename="${base##*/}"
-  
-  if [[ "$file" == *.fodt ]]; then
-    echo "🔄 Converting FODT to ODT: $file"
-    temp_odt="$temp_odt_dir/${filename}.odt"
-    
-    if soffice --headless --convert-to odt:"writer8" "$file" --outdir "$temp_odt_dir" 2>&1; then
-      if [[ -f "$temp_odt" ]]; then
-        odt_size=$(stat -c%s "$temp_odt" 2>/dev/null || echo '0')
-        echo "✓ Successfully converted FODT to ODT: ${filename}.odt ($odt_size bytes)"
-        odt_files+=("${filename}.odt")
-        original_file_map+=("$file")
-      else
-        echo "❌ ERROR: ODT file not created: $temp_odt"
-        failed_files_list="$failed_files_list $file"
-        ((phase1_failed_count++))
-      fi
-    else
-      echo "❌ ERROR: Failed to convert FODT to ODT: $file"
-      failed_files_list="$failed_files_list $file"
-      ((phase1_failed_count++))
-    fi
-  elif [[ "$file" == *.odt ]]; then
-    temp_odt="$temp_odt_dir/${filename}.odt"
-    if cp "$file" "$temp_odt"; then
-      echo "✓ Copied ODT file to temp directory: ${filename}.odt"
-      odt_files+=("${filename}.odt")
-      original_file_map+=("$file")
-    else
-      echo "❌ ERROR: Failed to copy ODT file: $file"
-      failed_files_list="$failed_files_list $file"
-      ((phase1_failed_count++))
-    fi
+  if [[ "$file" == *.fodt || "$file" == *.odt ]]; then
+    echo "✓ Valid source file: $file"
+    source_files+=("$file")
+    original_file_map+=("$file")
   else
     echo "⚠️  WARNING: Unsupported file type: $file"
     failed_files_list="$failed_files_list $file"
-    ((phase1_failed_count++))
+    ((failed_count++))
   fi
 done
 
-echo "📊 Phase 1 Summary: ${#odt_files[@]} ODT files ready, $phase1_failed_count files failed"
+echo "📊 Phase 1 Summary: ${#source_files[@]} source files ready for direct conversion"
 
 # Verify extension is installed
 echo "=== VERIFYING DOCEXPORT EXTENSION ==="
@@ -117,10 +152,10 @@ echo "🔍 LibreOffice environment:"
 echo "   Version: $(soffice --version)"
 echo "   User: $(whoami) (UID: $(id -u))"
 
-# Convert ODT files to Markdown individually
-if [[ ${#odt_files[@]} -gt 0 ]]; then
-  echo "=== PHASE 2: ODT TO MARKDOWN CONVERSION ==="
-  echo "Converting ${#odt_files[@]} ODT files one by one..."
+# Convert source files to Markdown directly
+if [[ ${#source_files[@]} -gt 0 ]]; then
+  echo "=== PHASE 2: DIRECT SOURCE TO MARKDOWN CONVERSION ==="
+  echo "Converting ${#source_files[@]} source files (.fodt/.odt) directly to markdown..."
   
   # Set proper locale and encoding for LibreOffice to handle Cyrillic text
   export LC_ALL=C.UTF-8
@@ -128,13 +163,11 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
   export LANGUAGE=C.UTF-8
   echo "✓ Set UTF-8 locale for LibreOffice"
   
-  cd "$temp_odt_dir" || exit 1
-  
   # Fast-fail test: Try converting first file with short timeout
   echo ""
   echo "🧪 FAST-FAIL TEST: Testing macro on first file..."
-  first_odt=$(ls *.odt | head -1)
-  echo "   Test file: $first_odt ($(stat -c%s "$first_odt") bytes)"
+  first_file="${source_files[0]}"
+  echo "   Test file: $first_file ($(stat -c%s "$first_file") bytes)"
   
   # Aggressive process cleanup
   pkill -9 -f soffice 2>/dev/null || true
@@ -144,7 +177,7 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
   
   # Create single-file directory for test (same as main loop)
   test_single_dir=$(mktemp -d)
-  cp "$first_odt" "$test_single_dir/"
+  cp "$first_file" "$test_single_dir/"
   echo "   Test directory: $test_single_dir"
   echo "   Command: soffice --headless --invisible --nologo --norestore 'macro:///DocExport.DocModel.ExportDir(\"$test_single_dir\",1)'"
   
@@ -190,9 +223,9 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
       echo "   - Working directory: $(pwd)"
       
       echo "📄 Test File:"
-      echo "   - Name: $first_odt"
-      echo "   - Size: $(stat -c%s "$first_odt") bytes"
-      echo "   - Readable: $([ -r "$first_odt" ] && echo 'yes' || echo 'no')"
+      echo "   - Name: $first_file"
+      echo "   - Size: $(stat -c%s "$first_file") bytes"
+      echo "   - Readable: $([ -r "$first_file" ] && echo 'yes' || echo 'no')"
       
       echo "🔍 LibreOffice Processes:"
       if pgrep -af soffice >/dev/null 2>&1; then
@@ -224,7 +257,8 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
   fi
   
   sleep 2
-  test_base_name=$(basename "$first_odt" .odt)
+  test_base_name=$(basename "$first_file")
+  test_base_name="${test_base_name%.*}"  # Remove extension (.fodt or .odt)
   test_md="$test_single_dir/${test_base_name}.md"
   if [[ -f "$test_md" ]]; then
     test_size=$(stat -c%s "$test_md" 2>/dev/null || echo '0')
@@ -249,10 +283,9 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
   echo ""
   
   file_index=0
-  for odt_file in *.odt; do
-    if [ -f "$odt_file" ]; then
-      echo ""
-      echo "📄 Processing [$((file_index+1))/${#odt_files[@]}]: $odt_file"
+  for source_file in "${source_files[@]}"; do
+    echo ""
+    echo "📄 Processing [$((file_index+1))/${#source_files[@]}]: $source_file"
       
       # Clean up any lingering LibreOffice processes
       echo "🧹 Cleaning up LibreOffice processes..."
@@ -295,17 +328,18 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
       
       # Create single-file directory for ExportDir
       single_dir=$(mktemp -d)
-      cp "$odt_file" "$single_dir/"
+      cp "$source_file" "$single_dir/"
       
-      echo "   Processing: $odt_file"
+      echo "   Processing: $source_file"
       pkill -9 -f soffice 2>/dev/null || true
       sleep 2
       soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel.ExportDir(\"$single_dir\",1)"
       sleep 5
-      echo "   Completed: $odt_file"
+      echo "   Completed: $source_file"
       
       # Move results back
-      base_name=$(basename "$odt_file" .odt)
+      base_name=$(basename "$source_file")
+      base_name="${base_name%.*}"  # Remove extension (.fodt or .odt)
       if [ -f "$single_dir/${base_name}.md" ]; then
         mv "$single_dir/${base_name}.md" "./"
         echo "✓ Markdown file retrieved"
@@ -331,15 +365,14 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
       
       # Check if conversion produced output immediately
       echo "🔍 Checking for conversion output..."
-      if ls -lh "${odt_file%.odt}.md" 2>/dev/null; then
+      md_file="${base_name}.md"
+      if ls -lh "$md_file" 2>/dev/null; then
         echo "✓ Output file detected"
       else
         echo "⚠️  No .md file found yet"
       fi
       
-      base_name=$(basename "$odt_file" .odt)
-      md_file="${base_name}.md"
-      original_file="${original_file_map[$file_index]}"
+      original_file="$source_file"
       
       # Determine output path based on original source location
       if [[ "$original_file" == components/* ]]; then
@@ -413,10 +446,23 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
             echo "ℹ️  No image folder found (this is normal for text-only documents)"
           fi
           
-          # Add metadata
+          # Add metadata using dedicated Python script
           if [[ -f "$OLDPWD/.github/workflows/create_metadata.py" ]]; then
             if [[ -n "${GITHUB_SERVER_URL:-}" && -n "${GITHUB_REPOSITORY:-}" && -n "${GITHUB_SHA:-}" ]]; then
-              (python3 "$OLDPWD/.github/workflows/create_metadata.py" "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}" 2>&1 && echo "✓ Metadata added") || echo "⚠️  WARNING: Failed to add metadata (non-critical)"
+              echo "🔄 Processing metadata and applying CID-based renaming..."
+              if result_file=$(python3 "$OLDPWD/.github/workflows/create_metadata.py" "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}" 2>&1); then
+                echo "✓ Metadata processing completed"
+                # Update output_file path if file was renamed based on CID
+                if [[ "$result_file" =~ "✓ Metadata added to" ]]; then
+                  renamed_file=$(echo "$result_file" | sed 's/.*✓ Metadata added to //')
+                  if [[ "$renamed_file" != "$(basename "$output_file")" ]]; then
+                    output_file="$(dirname "$output_file")/$renamed_file"
+                    echo "✓ File renamed based on CID: $renamed_file"
+                  fi
+                fi
+              else
+                echo "⚠️  WARNING: Failed to add metadata (non-critical): $result_file"
+              fi
             else
               echo "ℹ️  Skipping metadata (GitHub environment variables not set)"
             fi
@@ -460,17 +506,11 @@ if [[ ${#odt_files[@]} -gt 0 ]]; then
       
       ((file_index++))
       echo "🔄 Continuing to next file..."
-    fi || {
-      echo "⚠️  Error in processing loop, but continuing..."
-      ((file_index++))
-    }
   done
   
-  echo "🏁 Completed processing all ODT files in directory"
-  
-  cd "$OLDPWD" || exit 1
+  echo "🏁 Completed processing all source files"
 else
-  echo "⚠️  No ODT files to convert"
+  echo "⚠️  No source files to convert"
 fi
 
 # Cleanup temporary directory
@@ -507,12 +547,9 @@ fi
 echo ""
 echo "=== CONVERT_DOCS_EXTENSION.SH SUMMARY ==="
 echo "📊 Conversion Statistics:"
-total_failed=$((phase1_failed_count + failed_count))
 echo "   Input files received: $#"
-echo "   Phase 1 failures (FODT→ODT): $phase1_failed_count"
-echo "   Phase 2 failures (ODT→MD): $failed_count"
+echo "   Direct conversion failures: $failed_count"
 echo "   Successfully converted: $converted_count"
-echo "   Total failed: $total_failed"
 echo "   Success rate: $(( converted_count * 100 / $# ))%"
 
 echo ""

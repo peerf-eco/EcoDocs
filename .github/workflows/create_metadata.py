@@ -7,8 +7,9 @@ from datetime import datetime
 def extract_metadata_field(content, field_name):
     """Extract metadata field value from content"""
     patterns = [
-        rf'^{re.escape(field_name)}:\s*(.+)$',
+        rf'^\*\*{re.escape(field_name)}:\*\*\s*(.+)$',
         rf'^\*\*{re.escape(field_name)}\*\*:\s*(.+)$',
+        rf'^{re.escape(field_name)}:\s*(.+)$',
         rf'^{re.escape(field_name)}\s*:\s*(.+)$'
     ]
     

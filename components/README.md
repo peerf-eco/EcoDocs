@@ -20,14 +20,15 @@ ESPD number standard:
 US.ECO.XXXXX-YY 90 (with a space before "90"), where:
 - FR, RU, DE for language of document used
 - ECO - replace it with an your organization code, e.g. upto 5 capital letters or digits (can be 5 symbols of your company EcoOS marketplace id); use ECO if your are a student and your work is affiliated to PeerF / EcoOS.
-- XXXXX - ordering number of document in your organization, 1-99999 (ask maintainers/PeerF for ECO organization)
+- XXXXX - ordering number of this document in your organization, 1-99999 (ask maintainers/PeerF for ECO organization)
 - YY is a current document version (revision), 0-99
 
-if you use the ESPD code in the file:
+if you use the ESPD code in the filename:
 
 US.ECO.XXXXX-YY_90.fodt # Component specification in English
-
 RU.ECO.XXXXX-YY_90.fodt # Component specification in Russian
+FR.ECO.XXXXX-YY_90.fodt # Component specification in French
+DE.ECO.XXXXX-YY_90.fodt # Component specification in Germain
 
 ## DEtailed explanation
 
