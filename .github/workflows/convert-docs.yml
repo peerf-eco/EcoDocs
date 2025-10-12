@@ -663,106 +663,7 @@ jobs:
         popd >/dev/null
         echo "=== DEPLOYMENT COMPLETE ==="
   
-    - name: Generate and update components manifest
-      id: manifest
-      if: steps.changed-files.outputs.any_changed == 'true'
-      env:
-        TARGET_REPO_SSH_KEY: ${{ secrets.VITEPRESS_DEPLOY_TOKEN }}
-      shell: bash
-      run: |
-        set -eo pipefail
-        echo "=== MANIFEST GENERATION START ==="
-        echo "📄 Generating components manifest for updated documentation"
-        
-        pushd docs-vitepress >/dev/null
-        
-        # Check if package.json exists and is valid
-        if [ ! -f "package.json" ]; then
-          echo "⚠️  No package.json found in target repository, skipping manifest generation"
-          echo "This is normal if the target repository doesn't use npm-based manifest generation"
-          popd >/dev/null
-          exit 0
-        fi
-        echo "✅ Found package.json in target repository"
-        
-        # Validate JSON syntax
-        if ! python3 -m json.tool package.json >/dev/null 2>&1; then
-          echo "❌ Invalid package.json syntax, skipping manifest generation"
-          echo "🔍 First few lines of package.json:"
-          head -5 package.json || echo "Cannot read package.json"
-          popd >/dev/null
-          exit 0
-        fi
-        echo "✅ package.json syntax is valid"
-        
-        # Check if the required script exists
-        if ! grep -q '"docs:generate-components"' package.json; then
-          echo "⚠️  docs:generate-components script not found in package.json"
-          echo "Available scripts:"
-          grep -A 10 '"scripts"' package.json | head -15 || echo "No scripts section found"
-          echo "Skipping manifest generation"
-          popd >/dev/null
-          exit 0
-        fi
-        echo "✅ Found docs:generate-components script"
-        
-        echo "📦 Installing dependencies..."
-        if npm ci 2>/dev/null; then
-          echo "✅ Dependencies installed successfully using npm ci"
-        elif npm install 2>/dev/null; then
-          echo "✅ Dependencies installed successfully using npm install"
-        else
-          echo "❌ Failed to install dependencies"
-          echo "🔍 npm version: $(npm --version 2>/dev/null || echo 'not available')"
-          echo "🔍 node version: $(node --version 2>/dev/null || echo 'not available')"
-          echo "Skipping manifest generation"
-          popd >/dev/null
-          exit 0
-        fi
-        
-        echo "🔄 Generating components manifest..."
-        if npm run docs:generate-components; then
-          echo "✅ Manifest generation completed successfully"
-        else
-          echo "❌ Failed to generate manifest"
-          echo "🔍 Checking for existing manifest file:"
-          ls -la .vitepress/components.json 2>/dev/null || echo "No existing manifest found"
-          echo "Continuing without manifest update"
-          popd >/dev/null
-          exit 0
-        fi
-        
-        # Setup SSH and push if manifest was generated
-        if [ -f ".vitepress/components.json" ]; then
-          echo "✅ Manifest file generated: .vitepress/components.json"
-          echo "📊 Manifest file size: $(stat -c%s .vitepress/components.json 2>/dev/null || echo 'unknown') bytes"
-          
-          mkdir -p ~/.ssh
-          ssh-keyscan -t ed25519,rsa github.com >> ~/.ssh/known_hosts
-          eval "$(ssh-agent -s)"
-          echo "$TARGET_REPO_SSH_KEY" | ssh-add -
-          
-          git add .vitepress/components.json
-          if ! git diff --staged --quiet; then
-            echo "📝 Committing manifest changes..."
-            git config user.name "Docs CI Bot"
-            git config user.email "docs-bot@ecoos.dev"
-            git commit -m "Auto-update components manifest from ${GITHUB_SHA:-unknown-sha}"
-            
-            if git push origin HEAD:main; then
-              echo "🚀 Successfully pushed manifest update"
-            else
-              echo "❌ Failed to push manifest update"
-            fi
-          else
-            echo "ℹ️  No manifest changes to commit (manifest unchanged)"
-          fi
-        else
-          echo "⚠️  No manifest file found after generation"
-        fi
-        
-        popd >/dev/null
-        echo "=== MANIFEST GENERATION COMPLETE ==="
+
 
     - name: Workflow Summary
       if: always()
@@ -780,7 +681,7 @@ jobs:
         echo "  - Change detection: ${{ steps.changed-files.outcome || 'not executed' }}"
         echo "  - Conversion: ${{ steps.convert.outcome || 'skipped' }}"
         echo "  - Deployment: ${{ steps.deploy.outcome || 'skipped' }}"
-        echo "  - Manifest generation: ${{ steps.manifest.outcome || 'skipped' }}"
+
         
         # Overall workflow status
         if [ "${{ job.status }}" = "success" ]; then
