@@ -762,7 +762,7 @@ jobs:
         fi
         
         popd >/dev/null
-        echo "=== MANIFEST GENERATION COMPLETE ===
+        echo "=== MANIFEST GENERATION COMPLETE ==="
 
     - name: Workflow Summary
       if: always()
