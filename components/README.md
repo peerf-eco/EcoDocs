@@ -4,9 +4,9 @@ please follow the guidlines below:
 
 1. clone the repository and create branch with your component name, like `add/ComponentName`
 2. add new folder inside `components/` named with your component unique CID (Component ID) in UGUID format. If folder exists contact repository maintainers (PeerF)
-3. Use ISO notation for language of the documents: de - Germain, en - English, fr - France, ru for Russian, etc and create a document unique code in `ESPD` format (see reference below); add that number to all documents being added, as a new line under the header, like:
-`ESPD: Your_ESPD` (see generation guide below)
-4. save document in `.fodt` (Flat ODF Format) under name `Your_ESPD_number.fodt` and place into corresponding language subfolders (use LibraOffice or similar editor to SaveAs `.fodt`)
+3. Use ISO notation for language of the documents: de - Germain, en - English, fr - France, ru for Russian, etc and create a document unique code in `USPD` format (see reference below); add that number to all documents being added, as a new line under the header, like:
+`USPD: Your_USPD` (see generation guide below)
+4. save document in `.fodt` (Flat ODF Format) under name `Your_USPD_number.fodt` and place into corresponding language subfolders (use LibraOffice or similar editor to SaveAs `.fodt`)
 5. create commit with message, like: `new ComponentName spec is added, in EN language`
 6. create GitHub pull request
 
@@ -15,7 +15,7 @@ please follow the guidlines below:
 
 ## TLDR
 
-ESPD number standard:
+USPD (Unified Standard for Project Documentation) number standard in Software:
 
 US.ECO.XXXXX-YY 90 (with a space before "90"), where:
 - FR, RU, DE for language of document used
@@ -23,7 +23,7 @@ US.ECO.XXXXX-YY 90 (with a space before "90"), where:
 - XXXXX - ordering number of this document in your organization, 1-99999 (ask maintainers/PeerF for ECO organization)
 - YY is a current document version (revision), 0-99
 
-if you use the ESPD code in the filename:
+if you use the USPD code in the filename:
 
 US.ECO.XXXXX-YY_90.fodt # Component specification in English
 RU.ECO.XXXXX-YY_90.fodt # Component specification in Russian
@@ -32,7 +32,7 @@ DE.ECO.XXXXX-YY_90.fodt # Component specification in Germain
 
 ## DEtailed explanation
 
-ESPD (unique document number) - how to get it.
+USPD (unique document number) - how to get it.
 
 The number itself in general form looks like US.ECO.XXXXX-YY 90 [ZZ-N] (spaces before and after "90")
 

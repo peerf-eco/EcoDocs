@@ -271,7 +271,7 @@ guides/deep/nested/file.fodt → docs/guides/deep/nested/file.md
 title: "Component Name"
 layout: doc
 documentType: "Specification"
-documentEspd: "USPD Value"
+documentUspd: "USPD Value"
 version: "1.0"
 componentName: "Component Name"
 CID: "0000000000000000000000004D656D31"

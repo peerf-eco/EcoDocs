@@ -74,20 +74,8 @@ def create_meta(file_path, github_server_url, repository_name, commit_sha, origi
     # Determine document type
     document_type = determine_document_type(title)
     
-    # Format dates
-    last_modified = None
-    if modified_date:
-        try:
-            # Try to parse various date formats
-            for fmt in ['%B %d, %Y', '%Y-%m-%d', '%d.%m.%Y', '%m/%d/%Y']:
-                try:
-                    parsed_date = datetime.strptime(modified_date, fmt)
-                    last_modified = parsed_date.strftime('%Y-%m-%d')
-                    break
-                except ValueError:
-                    continue
-        except:
-            pass
+    # Use current date for lastModified
+    last_modified = datetime.now().strftime('%Y-%m-%d')
     
     # Create source URL using original source path if provided
     if original_source_path:
@@ -125,7 +113,7 @@ def create_meta(file_path, github_server_url, repository_name, commit_sha, origi
     frontmatter_lines.append(f'documentType: "{document_type}"')
     
     if uspd:
-        frontmatter_lines.append(f'documentEspd: "{uspd}"')
+        frontmatter_lines.append(f'documentUspd: "{uspd}"')
     
     if tags:
         frontmatter_lines.append(f'tags: "{tags}"')
@@ -133,8 +121,7 @@ def create_meta(file_path, github_server_url, repository_name, commit_sha, origi
     if version:
         frontmatter_lines.append(f'version: "{version}"')
     
-    if last_modified:
-        frontmatter_lines.append(f'lastModified: "{last_modified}"')
+    frontmatter_lines.append(f'lastModified: "{last_modified}"')
     
     # Custom ECoOS Component Specific Fields
     if component_name:
