@@ -19,6 +19,29 @@ def extract_metadata_field(content, field_name):
             return match.group(1).strip()
     return None
 
+def extract_document_title(content):
+    """Extract document title from the first text paragraph after header"""
+    # Look for Title field first
+    title_from_field = extract_metadata_field(content, 'Title')
+    if title_from_field:
+        return title_from_field
+    
+    # If no Title field, look for first heading or paragraph
+    lines = content.split('\n')
+    for line in lines:
+        line = line.strip()
+        # Skip empty lines and metadata fields
+        if not line or line.startswith('**') or ':' in line:
+            continue
+        # Skip markdown headers
+        if line.startswith('#'):
+            continue
+        # Return first meaningful text line
+        if len(line) > 3:
+            return line
+    
+    return None
+
 def determine_document_type(title):
     """Determine document type from title"""
     title_lower = title.lower()
@@ -38,13 +61,17 @@ def create_meta(file_path, github_server_url, repository_name, commit_sha, origi
     with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    # Extract the base name for title
+    # Extract the base name for fallback title
     base_name = os.path.basename(file_path)
     name_without_ext = os.path.splitext(base_name)[0]
     
-    # Create a proper title from filename
-    title = name_without_ext.replace('_', ' ').replace('.', ' ')
-    title = re.sub(r'\s+', ' ', title).strip()
+    # Try to extract actual document title from content
+    title = extract_document_title(content)
+    
+    # Fallback to filename-based title if no document title found
+    if not title:
+        title = name_without_ext.replace('_', ' ').replace('.', ' ')
+        title = re.sub(r'\s+', ' ', title).strip()
     
     # Extract metadata fields from content
     uspd = extract_metadata_field(content, 'USPD') or extract_metadata_field(content, 'ЕСПД')
