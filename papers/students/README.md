@@ -1,6 +1,6 @@
 # How to upload diplomas and papers
 
-please follow the fuidline below:
+please follow the steps below:
 
 1. clone the repository and create branch with your name, like `add/NameSurname`
 2. add folder with your name for the document. if folder exists and contains document, create new folder by adding the unique suffix, like: `NameSurname_2`

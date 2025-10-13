@@ -24,16 +24,15 @@ Automated workflow that converts FODT (Flat XML ODT) documentation files to Mark
 ### Workflow Sequence
 1. **Load State**: Retrieves `.conversion-state.json` from target repository
 2. **Change Detection**: Identifies modified FODT files since last successful run
-3. **Conversion**: Processes files through FODT→ODT→Markdown pipeline
+3. **Conversion**: Processes files through direct FODT/ODT→Markdown pipeline
 4. **State Update**: Creates new state file with success/failure tracking
 5. **Deployment**: Copies markdown files and state to target repository
-6. **Manifest Generation**: Updates VitePress component manifest
 
 ### Conversion Pipeline
-1. **FODT→ODT**: LibreOffice built-in converter
+1. **Direct Processing**: LibreOffice DocExport extension handles both .fodt and .odt files directly
 2. **ODT→Markdown**: DocExport extension using `ExportDir` macro
 3. **UTF-8 Encoding**: Python-based encoding normalization
-4. **Metadata Addition**: VitePress frontmatter injection
+4. **Metadata Addition**: VitePress frontmatter injection with CID-based renaming
 5. **Image Handling**: Automatic extraction to `img_filename/` folders
 
 ### State Tracking
@@ -232,6 +231,96 @@ RUN locale-gen C.UTF-8
 
 ### Multi-Directory Support (Current Session)
 **Enhancement**: Extended workflow to process .fodt files from multiple source directories
+
+**Source Directory Patterns**:
+- `components/**/*.fodt` - Any nesting level, flattened to `docs/components/`
+- `libraries/**/*.fodt` - Any nesting level, preserves structure in `docs/libraries/`
+- `guides/**/*.fodt` - Any nesting level, preserves structure in `docs/guides/`
+
+**Directory Structure Handling**:
+```bash
+# Components: Flat structure (all files in root)
+components/subfolder/file.fodt → docs/components/file.md
+components/deep/nested/file.fodt → docs/components/file.md
+
+# Libraries & Guides: Preserve nested structure
+libraries/subfolder/file.fodt → docs/libraries/subfolder/file.md
+guides/deep/nested/file.fodt → docs/guides/deep/nested/file.md
+```
+
+**Implementation Changes**:
+- **Workflow Triggers**: Added `libraries/**/*.fodt` and `guides/**/*.fodt` patterns
+- **File Detection**: Updated git diff patterns to include new directories
+- **Conversion Script**: Modified output path logic based on source directory
+- **Deployment**: Simplified to copy entire directory trees while maintaining structure
+
+**Pattern Matching Fix**: Changed from `components/*/*.fodt` (exactly one level) to `components/**/*.fodt` (zero or multiple levels) to allow files directly in root directories.
+
+### VitePress Frontmatter Integration (Current Session)
+**Enhancement**: Inlined metadata processing with CID-based file renaming
+
+**Key Changes**:
+- **Separation of Concerns**: Maintained clean separation between conversion (`convert_docs_extension.sh`) and metadata processing (`create_metadata.py`)
+- **CID-Based Renaming**: Files automatically renamed using CID metadata field value
+- **Source URL Accuracy**: Fixed source URL generation to use actual original file paths instead of reconstructed paths
+- **Enhanced Logging**: Added detailed output showing metadata processing results and file renaming
+
+**VitePress Frontmatter Fields**:
+```yaml
+---
+title: "Component Name"
+layout: doc
+documentType: "Specification"
+documentEspd: "USPD Value"
+version: "1.0"
+componentName: "Component Name"
+CID: "0000000000000000000000004D656D31"
+description: "Short description"
+useCategory: "CATEGORY"
+type: "TYPE"
+registryUrl: "https://marketplace.url"
+source: "https://github.com/repo/blob/commit/actual/path/file.fodt"
+lastUpdated: true
+editLink: true
+sidebar: true
+---
+```
+
+**File Renaming Logic**:
+- **With CID**: `US.ECO.00016-01_90.md` → `0000000000000000000000004D656D31.md`
+- **Without CID**: File keeps original name
+- **Source URL**: Uses actual original file path for accurate GitHub links
+
+### Shell Script Fixes (Current Session)
+**Problem**: Multiple shell syntax errors causing workflow failures
+
+**Fixed Issues**:
+1. **OLDPWD Unbound Variable**: Replaced `$OLDPWD` with `$PWD` (GitHub Actions doesn't set OLDPWD)
+2. **Workflow Condition Logic**: Fixed "No Changes Detected" condition from `!= 'true'` to `== 'false'`
+3. **File Copy Syntax**: Removed problematic `2>/dev/null` redirections causing syntax errors
+4. **Glob Pattern Handling**: Added existence checks before loops to prevent errors when no matching files exist
+5. **CRLF Count Check**: Fixed malformed condition causing integer expression errors
+
+**Shell Compatibility Improvements**:
+```bash
+# Before (problematic)
+for file in converted_docs/*.md 2>/dev/null; do
+
+# After (fixed)
+if ls converted_docs/*.md >/dev/null 2>&1; then
+  for file in converted_docs/*.md; do
+```
+
+### Workflow Simplification (Current Session)
+**Removed**: npm-based manifest generation step
+
+**Rationale**: 
+- The VitePress frontmatter in each .md file serves as the metadata/manifest
+- No need for separate `components.json` file generation
+- Eliminates Node.js dependency and related failures
+- Simplifies workflow and reduces potential failure points
+
+**Result**: Cleaner workflow focused on core functionality without confusing "skipping manifest generation" messagesment**: Extended workflow to process .fodt files from multiple source directories
 
 **Source Directory Patterns**:
 - `components/**/*.fodt` - Any nesting level, flattened to `docs/components/`
