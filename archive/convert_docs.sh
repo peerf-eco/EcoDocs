@@ -21,7 +21,45 @@ for file in "$@"; do
   
   base="${file%.*}"
   filename="${base##*/}"
-  output_file="converted_docs/${filename}.md"
+  
+  # Preserve directory structure based on source location
+  if [[ "$file" == components/* ]]; then
+    # Extract relative path within components directory
+    rel_path="${file#components/}"
+    rel_dir="$(dirname "$rel_path")"
+    if [ "$rel_dir" != "." ]; then
+      mkdir -p "converted_docs/components/$rel_dir"
+      output_file="converted_docs/components/$rel_dir/${filename}.md"
+    else
+      mkdir -p "converted_docs/components"
+      output_file="converted_docs/components/${filename}.md"
+    fi
+  elif [[ "$file" == libraries/* ]]; then
+    # Extract relative path within libraries directory
+    rel_path="${file#libraries/}"
+    rel_dir="$(dirname "$rel_path")"
+    if [ "$rel_dir" != "." ]; then
+      mkdir -p "converted_docs/libraries/$rel_dir"
+      output_file="converted_docs/libraries/$rel_dir/${filename}.md"
+    else
+      mkdir -p "converted_docs/libraries"
+      output_file="converted_docs/libraries/${filename}.md"
+    fi
+  elif [[ "$file" == guides/* ]]; then
+    # Extract relative path within guides directory
+    rel_path="${file#guides/}"
+    rel_dir="$(dirname "$rel_path")"
+    if [ "$rel_dir" != "." ]; then
+      mkdir -p "converted_docs/guides/$rel_dir"
+      output_file="converted_docs/guides/$rel_dir/${filename}.md"
+    else
+      mkdir -p "converted_docs/guides"
+      output_file="converted_docs/guides/${filename}.md"
+    fi
+  else
+    # Fallback to flat structure for unknown paths
+    output_file="converted_docs/${filename}.md"
+  fi
   
   echo "Converting: $file -> $output_file"
   
@@ -31,14 +69,17 @@ for file in "$@"; do
     
     # Use HTML as intermediate format since LibreOffice doesn't support direct Markdown export
     echo "Attempting LibreOffice FODT->HTML conversion..."
-    temp_html="converted_docs/${filename}.html"
+    temp_html_dir="$(dirname "$output_file")"
+    temp_html="${temp_html_dir}/${filename}.html"
     
-    if soffice --headless --convert-to html:"HTML (StarWriter)" "$file" --outdir "converted_docs/"; then
+    if soffice --headless --convert-to html:"HTML (StarWriter)" "$file" --outdir "$temp_html_dir"; then
       echo "✓ Successfully converted FODT to HTML: ${filename}.html"
       
       # Now convert HTML to Markdown using pandoc
-      if [[ -f "converted_docs/${filename}.html" ]]; then
-        if pandoc "converted_docs/${filename}.html" -f html -t markdown -o "$output_file"; then
+      if [[ -f "$temp_html" ]]; then
+        if pandoc "$temp_html" -f html -t markdown -o "$output_file"; then
+          # Ensure UTF-8 encoding
+          iconv -f $(file -b --mime-encoding "$output_file") -t UTF-8 "$output_file" -o "${output_file}.utf8" && mv "${output_file}.utf8" "$output_file"
           echo "✓ Successfully converted HTML to Markdown: $filename"
           
           # Check if Python script exists
@@ -55,12 +96,12 @@ for file in "$@"; do
             ((converted_count++))
             
             # Clean up intermediate HTML file
-            rm -f "converted_docs/${filename}.html"
+            rm -f "$temp_html"
           else
             echo "ERROR: Output file not created: $output_file"
           fi
         else
-          echo "ERROR: Failed to convert HTML to Markdown: ${filename}.html"
+          echo "ERROR: Failed to convert HTML to Markdown: $temp_html"
           # Keep HTML file for debugging
         fi
       else
@@ -74,6 +115,8 @@ for file in "$@"; do
       if soffice --headless --convert-to odt:"writer8" "$file" --outdir "$(dirname "$file")"; then
         echo "✓ Converted FODT to ODT: $temp_odt"
         if pandoc "$temp_odt" -f odt -t markdown -o "$output_file"; then
+          # Ensure UTF-8 encoding
+          iconv -f $(file -b --mime-encoding "$output_file") -t UTF-8 "$output_file" -o "${output_file}.utf8" && mv "${output_file}.utf8" "$output_file"
           echo "✓ Successfully converted ODT to MD: $filename"
           
           # Check if Python script exists
@@ -103,6 +146,8 @@ for file in "$@"; do
     # Original ODT conversion for regular .odt files
     echo "Processing ODT file: $file"
     if pandoc "$file" -f odt -t markdown -o "$output_file"; then
+      # Ensure UTF-8 encoding
+      iconv -f $(file -b --mime-encoding "$output_file") -t UTF-8 "$output_file" -o "${output_file}.utf8" && mv "${output_file}.utf8" "$output_file"
       echo "✓ Successfully converted: $filename"
       
       # Check if Python script exists

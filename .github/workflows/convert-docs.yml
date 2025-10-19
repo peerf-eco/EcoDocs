@@ -5,6 +5,8 @@ on:
     branches: [ main ]
     paths:
       - 'components/**/*.fodt'
+      - 'libraries/**/*.fodt'
+      - 'guides/**/*.fodt'
   workflow_dispatch:  # Allow manual triggering
 
 jobs:
@@ -24,7 +26,7 @@ jobs:
     - name: Checkout source
       uses: actions/checkout@v4
       with:
-        fetch-depth: 2  # Needed for git diff
+        fetch-depth: 50  # Needed for state-based git diff comparisons
 
     - name: Verify pre-built environment
       run: |
@@ -33,8 +35,53 @@ jobs:
         soffice --version
         echo "🔍 Python version:"
         python3 --version
-        echo "🔍 DocExport extension:"
-        unopkg list --shared | grep -i docexport || echo "Extension not found in shared"
+        
+        echo "🔍 Checking DocExport extension..."
+        ext_count=$(unopkg list --shared 2>/dev/null | grep "^Identifier:" | grep -i docexport | wc -l)
+        echo "   Found $ext_count DocExport extension package(s)"
+        
+        if [ $ext_count -eq 0 ]; then
+          echo "❌ ERROR: DocExport extension not found"
+          exit 1
+        elif [ $ext_count -gt 1 ]; then
+          echo "⚠️  WARNING: Multiple DocExport extensions detected ($ext_count instances)"
+          echo "🧹 Attempting to clean up duplicate extensions..."
+          
+          # List all extensions for debugging
+          echo "📋 Current extensions:"
+          unopkg list --shared 2>/dev/null | head -20
+          
+          # Try to remove by identifier
+          echo "🗑️  Removing all DocExport instances..."
+          unopkg remove --shared org.openoffice.legacy.DocExport.oxt 2>/dev/null || true
+          sleep 2
+          
+          # Check if removal worked
+          remaining=$(unopkg list --shared 2>/dev/null | grep "^Identifier:" | grep -i docexport | wc -l)
+          echo "   Extension packages remaining after removal: $remaining"
+          
+          if [ $remaining -gt 0 ]; then
+            echo "⚠️  WARNING: Could not remove all duplicate extensions"
+            echo "⚠️  Proceeding anyway - conversion script will provide detailed diagnostics"
+          else
+            # Reinstall single instance
+            echo "📦 Reinstalling DocExport extension..."
+            if [ -f ".github/workflows/DocExport.oxt" ]; then
+              unopkg add --shared .github/workflows/DocExport.oxt
+              new_count=$(unopkg list --shared 2>/dev/null | grep "^Identifier:" | grep -i docexport | wc -l)
+              echo "   Extension packages after reinstall: $new_count"
+              
+              if [ $new_count -eq 1 ]; then
+                echo "✓ Successfully cleaned up and reinstalled extension"
+              else
+                echo "⚠️  WARNING: Unexpected extension count after reinstall: $new_count"
+              fi
+            fi
+          fi
+        else
+          echo "✓ DocExport extension found (single instance)"
+        fi
+        
         echo "✅ Environment verification complete"
 
     - name: Load Conversion State
@@ -43,10 +90,8 @@ jobs:
         echo "=== LOADING CONVERSION STATE ==="
         
         # Clone target repo to check for existing state
-        mkdir -p ~/.ssh
-        ssh-keyscan -t ed25519,rsa github.com >> ~/.ssh/known_hosts
         eval "$(ssh-agent -s)"
-        ssh-add - <<< "${{ secrets.VITEPRESS_DEPLOY_TOKEN }}"
+        echo "${{ secrets.VITEPRESS_DEPLOY_TOKEN }}" | ssh-add -
         
         if git clone git@github.com:peerf-eco/docs-vitepress.git state-check; then
           echo "✅ Target repository cloned for state check"
@@ -99,6 +144,10 @@ jobs:
       id: debug-git
       run: |
         echo "=== GIT STATE DEBUG ==="
+        
+        # Fix git ownership issue
+        git config --global --add safe.directory /__w/EcoDocs/EcoDocs
+        
         echo "Current commit (HEAD): $(git rev-parse HEAD)"
         echo "Previous commit (HEAD~1): $(git rev-parse HEAD~1 2>/dev/null || echo 'N/A - single commit')"
         echo "Last processed commit: ${LAST_PROCESSED_COMMIT:-'none'}"
@@ -107,6 +156,10 @@ jobs:
         git log --oneline -3 || echo "Less than 3 commits available"
         echo "Files in components directory:"
         find components -name "*.fodt" -type f | head -10 || echo "No .fodt files found"
+        echo "Files in libraries directory:"
+        find libraries -name "*.fodt" -type f | head -10 || echo "No .fodt files found"
+        echo "Files in guides directory:"
+        find guides -name "*.fodt" -type f | head -10 || echo "No .fodt files found"
         echo "=== END GIT STATE DEBUG ==="
 
     - name: Find changed files
@@ -117,19 +170,104 @@ jobs:
         if [ -n "${LAST_PROCESSED_COMMIT}" ]; then
           echo "🔍 Using state-based detection from commit: ${LAST_PROCESSED_COMMIT}"
           
-          # Verify the commit exists
+          # Verify the commit exists and try to fetch more history if needed
+          echo "🔍 Debug: Checking if commit ${LAST_PROCESSED_COMMIT} exists..."
+          echo "🔍 Debug: Current HEAD: $(git rev-parse HEAD)"
+          echo "🔍 Debug: Git log showing recent commits:"
+          git log --oneline -10 || echo "Failed to show git log"
+          echo "🔍 Debug: Checking commit existence..."
           if git rev-parse --verify "${LAST_PROCESSED_COMMIT}" >/dev/null 2>&1; then
-            CHANGED_FILES=$(git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD -- 'components/**/*.fodt' 2>/dev/null || echo "")
+            echo "✅ Commit ${LAST_PROCESSED_COMMIT} exists"
+            echo "🔍 Debug: Comparing commits ${LAST_PROCESSED_COMMIT}..$(git rev-parse HEAD)"
+            echo "🔍 Debug: Running: git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD"
+            # Get all changed files, then filter for .fodt files in components, libraries, and guides directories
+            ALL_CHANGED=$(git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD 2>/dev/null || echo "")
+            echo "🔍 Debug: Git diff exit code: $?"
+            echo "🔍 Debug: All changed files: '$ALL_CHANGED'"
+            echo "🔍 Debug: Number of changed files: $(echo "$ALL_CHANGED" | wc -w)"
+            
+            CHANGED_FILES=""
+            for file in $ALL_CHANGED; do
+              echo "🔍 Debug: Checking file: '$file'"
+              case "$file" in
+                components/**/*.fodt|libraries/**/*.fodt|guides/**/*.fodt)
+                  echo "🔍 Debug: File matches pattern: '$file'"
+                  CHANGED_FILES="$CHANGED_FILES $file"
+                  ;;
+                *)
+                  echo "🔍 Debug: File does not match pattern: '$file'"
+                  ;;
+              esac
+            done
+            CHANGED_FILES=$(echo $CHANGED_FILES | sed 's/^ *//' | sed 's/ *$//')
+            echo "🔍 Debug: Filtered .fodt files: '$CHANGED_FILES'"
             echo "✅ Successfully compared against last processed commit"
           else
-            echo "⚠️  Last processed commit ${LAST_PROCESSED_COMMIT} not found, falling back to HEAD~1"
-            CHANGED_FILES=$(git diff --name-only HEAD~1..HEAD -- 'components/**/*.fodt' 2>/dev/null || echo "")
+            echo "❌ Commit ${LAST_PROCESSED_COMMIT} not found in current repository"
+            echo "🔍 Debug: Trying to fetch more history..."
+            
+            # Try progressively deeper fetches until we find the commit
+            for depth in 100 500 1000; do
+              echo "🔍 Debug: Fetching depth $depth from main..."
+              git fetch --depth=$depth origin main || echo "Failed to fetch depth $depth"
+              if git rev-parse --verify "${LAST_PROCESSED_COMMIT}" >/dev/null 2>&1; then
+                echo "✅ Found commit at depth $depth"
+                break
+              fi
+            done
+            
+            # Final attempt with full history if still not found
+            if ! git rev-parse --verify "${LAST_PROCESSED_COMMIT}" >/dev/null 2>&1; then
+              echo "🔍 Debug: Fetching full history from main..."
+              git fetch --unshallow origin main || echo "Failed to fetch full history"
+            fi
+            
+            if git rev-parse --verify "${LAST_PROCESSED_COMMIT}" >/dev/null 2>&1; then
+              echo "✅ Found commit after fetching more history"
+              echo "🔍 Debug: Comparing commits ${LAST_PROCESSED_COMMIT}..$(git rev-parse HEAD)"
+              echo "🔍 Debug: Running: git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD"
+              ALL_CHANGED=$(git diff --name-only ${LAST_PROCESSED_COMMIT}..HEAD 2>/dev/null || echo "")
+              echo "🔍 Debug: Git diff exit code: $?"
+              echo "🔍 Debug: All changed files: '$ALL_CHANGED'"
+              echo "🔍 Debug: Number of changed files: $(echo "$ALL_CHANGED" | wc -w)"
+              
+              CHANGED_FILES=""
+              for file in $ALL_CHANGED; do
+                echo "🔍 Debug: Checking file: '$file'"
+                case "$file" in
+                  components/**/*.fodt|libraries/**/*.fodt|guides/**/*.fodt)
+                    echo "🔍 Debug: File matches pattern: '$file'"
+                    CHANGED_FILES="$CHANGED_FILES $file"
+                    ;;
+                  *)
+                    echo "🔍 Debug: File does not match pattern: '$file'"
+                    ;;
+                esac
+              done
+              CHANGED_FILES=$(echo $CHANGED_FILES | sed 's/^ *//' | sed 's/ *$//')
+              echo "🔍 Debug: Filtered .fodt files: '$CHANGED_FILES'"
+            else
+              echo "⚠️  Last processed commit ${LAST_PROCESSED_COMMIT} still not found, falling back to HEAD~1"
+              echo "🔍 Debug: Running git diff HEAD~1..HEAD to find changed .fodt files"
+              # Get all changed files, then filter for .fodt files in components, libraries, and guides directories
+              ALL_CHANGED=$(git diff --name-only HEAD~1..HEAD 2>/dev/null || echo "")
+              CHANGED_FILES=""
+              for file in $ALL_CHANGED; do
+                case "$file" in
+                  components/**/*.fodt|libraries/**/*.fodt|guides/**/*.fodt)
+                    CHANGED_FILES="$CHANGED_FILES $file"
+                    ;;
+                esac
+              done
+              CHANGED_FILES=$(echo $CHANGED_FILES | sed 's/^ *//' | sed 's/ *$//')
+              echo "🔍 Debug: Filtered .fodt files: '$CHANGED_FILES'"
+            fi
           fi
         else
           echo "🔍 No previous state - initial run detected"
           echo "ℹ️  Processing all .fodt files matching workflow trigger pattern"
-          echo "🔍 Path pattern: components/**/*.fodt"
-          CHANGED_FILES=$(find components -name "*.fodt" -type f 2>/dev/null || echo "")
+          echo "🔍 Path patterns: components/**/*.fodt, libraries/**/*.fodt, guides/**/*.fodt"
+          CHANGED_FILES=$(find components libraries guides -name "*.fodt" -type f 2>/dev/null || echo "")
         fi
         
         echo "📊 Changed files found: $(echo "$CHANGED_FILES" | wc -w)"
@@ -162,22 +300,12 @@ jobs:
       run: |
         echo "=== CHANGE DETECTION RESULTS ==="
         echo "Any files changed: ${{ steps.changed-files.outputs.any_changed }}"
-        echo "Files added: ${{ steps.changed-files.outputs.added_files }}"
-        echo "Files modified: ${{ steps.changed-files.outputs.modified_files }}"
-        echo "Files deleted: ${{ steps.changed-files.outputs.deleted_files }}"
         echo "All changed files: ${{ steps.changed-files.outputs.all_changed_files }}"
         
-        if [ "${{ steps.changed-files.outputs.any_changed }}" == "true" ]; then
+        # Fix boolean comparison syntax
+        if [ "${{ steps.changed-files.outputs.any_changed }}" = "true" ]; then
           file_count=$(echo '${{ steps.changed-files.outputs.all_changed_files }}' | wc -w)
           echo "✅ CHANGES DETECTED: $file_count file(s) to process"
-          
-          # Check for deleted files
-          deleted_files="${{ steps.changed-files.outputs.deleted_files }}"
-          if [ -n "$deleted_files" ]; then
-            echo "⚠️  DELETED FILES DETECTED: $deleted_files"
-            echo "Note: Deleted files cannot be converted but may need cleanup in target repo"
-          fi
-          
           echo "Files to convert:"
           processable_files=0
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
@@ -201,40 +329,40 @@ jobs:
           echo "📊 Summary: $processable_files processable files out of $file_count total changes"
         else
           echo "ℹ️  NO CHANGES DETECTED"
-          echo "Reason: No .fodt files in components/** have been modified since the last commit"
+          echo "Reason: No .fodt files in components/**, libraries/**, or guides/** have been modified since the last commit"
           echo "This is normal behavior - the workflow will skip conversion steps"
           
           # Additional debugging for no-changes scenario
           echo "🔍 Additional debugging information:"
-          echo "  - Current workflow path filter: components/**/*.fodt"
-          echo "  - Actual path filter used: ${{ steps.changed-files.outputs.files }}"
-          echo "  - Comparison: HEAD vs HEAD~1"
-          echo "  - Repository has $(git rev-list --count HEAD) total commits"
+          echo "  - Current workflow path filters: components/**/*.fodt, libraries/**/*.fodt, guides/**/*.fodt"
+          echo "  - Comparison method: State-based or HEAD~1 fallback"
+          echo "  - Repository has $(git rev-list --count HEAD 2>/dev/null || echo 'unknown') total commits"
         fi
         echo "=== END CHANGE DETECTION RESULTS ==="
 
     - name: No Changes Detected
-      if: steps.changed-files.outputs.any_changed != 'true'
+      if: steps.changed-files.outputs.any_changed == 'false'
       run: |
         echo "=== NO CONVERSION NEEDED ==="
         echo "ℹ️  WORKFLOW RESULT: No changes detected"
         echo ""
         echo "This means:"
-        echo "  • No .fodt files in components/** have been modified since the last commit"
+        echo "  • No .fodt files in components/**, libraries/**, or guides/** have been modified since the last commit"
         echo "  • The workflow is working correctly by skipping unnecessary conversions"
         echo "  • No files will be converted or pushed to the target repository"
         echo ""
         echo "If you expected changes to be detected:"
-        echo "  1. Verify your .fodt files are in the components/ directory"
+        echo "  1. Verify your .fodt files are in the components/, libraries/, or guides/ directories"
         echo "  2. Check that files were actually modified in the last commit"
-        echo "  3. Ensure the workflow path filter matches your file locations"
+        echo "  3. Ensure the workflow path filters match your file locations"
         echo ""
-        echo "Current workflow path filter: components/**/*.fodt"
+        echo "Current workflow path filters: components/**/*.fodt, libraries/**/*.fodt, guides/**/*.fodt"
         echo "=== WORKFLOW COMPLETE (NO ACTION REQUIRED) ==="
 
     - name: Convert to Markdown
       id: convert
       if: steps.changed-files.outputs.any_changed == 'true'
+      timeout-minutes: 15
       run: |
         echo "=== CONVERSION START ==="
         file_count=$(echo '${{ steps.changed-files.outputs.all_changed_files }}' | wc -w)
@@ -265,17 +393,8 @@ jobs:
         done
         
         if [ -n "$EXISTING_FILES" ]; then
-          echo "🔄 Processing batch: $EXISTING_FILES"
-          if bash .github/workflows/convert_docs_extension.sh $EXISTING_FILES; then
-            echo "✅ Batch conversion completed successfully"
-            echo "PROCESSED_FILES=$EXISTING_FILES" >> $GITHUB_ENV
-            echo "FAILED_FILES=" >> $GITHUB_ENV
-          else
-            echo "❌ Batch conversion failed"
-            echo "PROCESSED_FILES=" >> $GITHUB_ENV
-            echo "FAILED_FILES=$EXISTING_FILES" >> $GITHUB_ENV
-            exit 1
-          fi
+          echo "🔄 Processing files: $EXISTING_FILES"
+          bash .github/workflows/convert_docs_extension.sh $EXISTING_FILES
         else
           echo "❌ No valid files to process"
           exit 1
@@ -313,6 +432,21 @@ jobs:
         fi
         echo "=== END CONVERSION VERIFICATION ==="
 
+    - name: Update Conversion State
+      id: update-state
+      if: steps.changed-files.outputs.any_changed == 'true'
+      run: |
+        echo "=== UPDATING CONVERSION STATE ==="
+        
+        # Create new state with corrected logic
+        python3 .github/workflows/update_state.py
+        
+        echo "📊 New state file created:"
+        ls -la new-state.json
+        echo "📄 State summary:"
+        python3 -c "import json; s=json.load(open('new-state.json')); print(f'Successful: {len(s.get(\"successfulFiles\",{}))} Failed: {len(s.get(\"failedFiles\",{}))} Commit: {s.get(\"lastProcessedCommit\",\"none\")}')"
+        echo "=== STATE UPDATE COMPLETE ==="
+
     - name: Clone, copy files, and push to docs repo
       id: deploy
       if: steps.changed-files.outputs.any_changed == 'true'
@@ -324,7 +458,7 @@ jobs:
         echo "=== DEPLOYMENT TO TARGET REPOSITORY START ==="
         echo "🎯 Target repository: peerf-eco/docs-vitepress"
         echo "📂 Source directory: converted_docs/"
-        echo "📂 Target directory: docs/components/"
+        echo "📂 Target directories: docs/components/, docs/libraries/, docs/guides/"
         
         # Setup SSH
         echo "🔐 Setting up SSH authentication..."
@@ -352,7 +486,7 @@ jobs:
         fi
         
         echo "🔑 Adding SSH key..."
-        if ssh-add - <<< "$TARGET_REPO_SSH_KEY"; then
+        if echo "$TARGET_REPO_SSH_KEY" | ssh-add -; then
           echo "✅ SSH key added successfully"
         else
           echo "❌ Failed to add SSH key"
@@ -392,46 +526,85 @@ jobs:
           echo "  ℹ️ No image folders found (img_* pattern)"
         fi
         
-        targetDir="docs-vitepress/docs/components"
-        mkdir -p "$targetDir"
-        echo "📁 Created target directory: $targetDir"
+        # Create target directories
+        mkdir -p "docs-vitepress/docs/components"
+        mkdir -p "docs-vitepress/docs/libraries"
+        mkdir -p "docs-vitepress/docs/guides"
+        echo "📁 Created target directories: docs/components/, docs/libraries/, docs/guides/"
         
         filesCopied=0
         filesSkipped=0
         imagesFoldersCopied=0
         echo "🔄 Starting file copy process..."
         
-        # Copy markdown files
-        while IFS= read -r file; do
-          src="converted_docs/${file}"
-          if [ -f "$src" ]; then
-            if cp "$src" "$targetDir/"; then
-              echo "  ✅ Copied: ${file} ($(stat -c%s "$src" 2>/dev/null || echo '?') bytes)"
-              filesCopied=$((filesCopied+1))
+        # Copy all files preserving directory structure
+        if [ -d "converted_docs/components" ]; then
+          echo "📁 Copying components files..."
+          if cp -r converted_docs/components/* docs-vitepress/docs/components/; then
+            components_count=$(find converted_docs/components -name "*.md" -type f | wc -l)
+            echo "  ✅ Copied $components_count components files"
+            filesCopied=$((filesCopied + components_count))
+          fi
+        fi
+        
+        if [ -d "converted_docs/libraries" ]; then
+          echo "📁 Copying libraries files..."
+          if cp -r converted_docs/libraries/* docs-vitepress/docs/libraries/; then
+            libraries_count=$(find converted_docs/libraries -name "*.md" -type f | wc -l)
+            echo "  ✅ Copied $libraries_count libraries files"
+            filesCopied=$((filesCopied + libraries_count))
+          fi
+        fi
+        
+        if [ -d "converted_docs/guides" ]; then
+          echo "📁 Copying guides files..."
+          if cp -r converted_docs/guides/* docs-vitepress/docs/guides/; then
+            guides_count=$(find converted_docs/guides -name "*.md" -type f | wc -l)
+            echo "  ✅ Copied $guides_count guides files"
+            filesCopied=$((filesCopied + guides_count))
+          fi
+        fi
+        
+        # Handle any remaining files in root of converted_docs (legacy/fallback)
+        if ls converted_docs/*.md >/dev/null 2>&1; then
+          for file in converted_docs/*.md; do
+            if [ -f "$file" ]; then
+              filename=$(basename "$file")
+              if cp "$file" "docs-vitepress/docs/components/$filename"; then
+                echo "  ✅ Copied legacy file: $filename to components/"
+                filesCopied=$((filesCopied + 1))
+              fi
+            fi
+          done
+        fi
+        
+        # Copy image folders
+        if ls converted_docs/img_* >/dev/null 2>&1; then
+          for img_dir in converted_docs/img_*; do
+            if [ -d "$img_dir" ]; then
+              img_name=$(basename "$img_dir")
+              base_name="${img_name#img_}"
               
-              # Check for corresponding image folder
-              base_name="${file%.md}"
-              img_folder="converted_docs/img_${base_name}"
-              if [ -d "$img_folder" ]; then
-                echo "  📁 Found image folder: img_${base_name}"
-                if cp -r "$img_folder" "$targetDir/"; then
-                  echo "  ✅ Copied image folder: img_${base_name}"
-                  imagesFoldersCopied=$((imagesFoldersCopied+1))
-                else
-                  echo "  ❌ Failed to copy image folder: img_${base_name}"
+              # Find where the corresponding markdown file was placed
+              md_file=$(find docs-vitepress/docs -name "${base_name}.md" -type f | head -1)
+              if [ -n "$md_file" ]; then
+                target_dir=$(dirname "$md_file")
+                if cp -r "$img_dir" "$target_dir/"; then
+                  echo "  ✅ Copied image folder: $img_name to $(dirname "${md_file#docs-vitepress/}")/"
+                  imagesFoldersCopied=$((imagesFoldersCopied + 1))
+                fi
+              else
+                # Fallback to components if markdown file not found
+                if cp -r "$img_dir" "docs-vitepress/docs/components/"; then
+                  echo "  ✅ Copied image folder: $img_name to components/ (fallback)"
+                  imagesFoldersCopied=$((imagesFoldersCopied + 1))
                 fi
               fi
-            else
-              echo "  ❌ Failed to copy: ${file}"
-              filesSkipped=$((filesSkipped+1))
             fi
-          else
-            echo "  ⚠️  Skipped (not a file): ${file}"
-            filesSkipped=$((filesSkipped+1))
-          fi
-        done < <(ls converted_docs 2>/dev/null || echo "")
+          done
+        fi
         
-        echo "📊 Copy summary: $filesCopied files copied, $imagesFoldersCopied image folders copied, $filesSkipped files skipped"
+        echo "📊 Copy summary: $filesCopied files copied, $imagesFoldersCopied image folders copied"
         
         if [ $filesCopied -eq 0 ]; then
           echo "⚠️  WARNING: No files were copied to target repository"
@@ -445,7 +618,7 @@ jobs:
         pushd docs-vitepress >/dev/null
         git config user.name "Docs CI Bot"
         git config user.email "docs-bot@ecoos.dev"
-        git add docs/components/
+        git add docs/components/ docs/libraries/ docs/guides/
         # Copy state file to target repository with validation
         if [ -f "../new-state.json" ]; then
           echo "📄 Copying conversion state to target repository"
@@ -470,7 +643,7 @@ jobs:
         
         # Check for changes and commit
         echo "🔍 Checking for changes in target repository..."
-        git status --porcelain docs/components/ .conversion-state.json
+        git status --porcelain docs/components/ docs/libraries/ docs/guides/ .conversion-state.json
         
         if ! git diff --staged --quiet; then
           sha="${GITHUB_SHA:-unknown-sha}"
@@ -490,121 +663,7 @@ jobs:
         popd >/dev/null
         echo "=== DEPLOYMENT COMPLETE ==="
   
-    - name: Generate and update components manifest
-      id: manifest
-      if: steps.changed-files.outputs.any_changed == 'true'
-      env:
-        TARGET_REPO_SSH_KEY: ${{ secrets.VITEPRESS_DEPLOY_TOKEN }}
-      shell: bash
-      run: |
-        set -eo pipefail
-        echo "=== MANIFEST GENERATION START ==="
-        echo "📄 Generating components manifest for updated documentation"
-        
-        pushd docs-vitepress >/dev/null
-        
-        # Check if package.json exists and is valid
-        if [ ! -f "package.json" ]; then
-          echo "⚠️  No package.json found in target repository, skipping manifest generation"
-          echo "This is normal if the target repository doesn't use npm-based manifest generation"
-          popd >/dev/null
-          exit 0
-        fi
-        echo "✅ Found package.json in target repository"
-        
-        # Validate JSON syntax
-        if ! python3 -m json.tool package.json >/dev/null 2>&1; then
-          echo "❌ Invalid package.json syntax, skipping manifest generation"
-          echo "🔍 First few lines of package.json:"
-          head -5 package.json || echo "Cannot read package.json"
-          popd >/dev/null
-          exit 0
-        fi
-        echo "✅ package.json syntax is valid"
-        
-        # Check if the required script exists
-        if ! grep -q '"docs:generate-components"' package.json; then
-          echo "⚠️  docs:generate-components script not found in package.json"
-          echo "Available scripts:"
-          grep -A 10 '"scripts"' package.json | head -15 || echo "No scripts section found"
-          echo "Skipping manifest generation"
-          popd >/dev/null
-          exit 0
-        fi
-        echo "✅ Found docs:generate-components script"
-        
-        echo "📦 Installing dependencies..."
-        if npm ci 2>/dev/null; then
-          echo "✅ Dependencies installed successfully using npm ci"
-        elif npm install 2>/dev/null; then
-          echo "✅ Dependencies installed successfully using npm install"
-        else
-          echo "❌ Failed to install dependencies"
-          echo "🔍 npm version: $(npm --version 2>/dev/null || echo 'not available')"
-          echo "🔍 node version: $(node --version 2>/dev/null || echo 'not available')"
-          echo "Skipping manifest generation"
-          popd >/dev/null
-          exit 0
-        fi
-        
-        echo "🔄 Generating components manifest..."
-        if npm run docs:generate-components; then
-          echo "✅ Manifest generation completed successfully"
-        else
-          echo "❌ Failed to generate manifest"
-          echo "🔍 Checking for existing manifest file:"
-          ls -la .vitepress/components.json 2>/dev/null || echo "No existing manifest found"
-          echo "Continuing without manifest update"
-          popd >/dev/null
-          exit 0
-        fi
-        
-        # Setup SSH and push if manifest was generated
-        if [ -f ".vitepress/components.json" ]; then
-          echo "✅ Manifest file generated: .vitepress/components.json"
-          echo "📊 Manifest file size: $(stat -c%s .vitepress/components.json 2>/dev/null || echo 'unknown') bytes"
-          
-          mkdir -p ~/.ssh
-          ssh-keyscan -t ed25519,rsa github.com >> ~/.ssh/known_hosts
-          eval "$(ssh-agent -s)"
-          ssh-add - <<< "$TARGET_REPO_SSH_KEY"
-          
-          git add .vitepress/components.json
-          if ! git diff --staged --quiet; then
-            echo "📝 Committing manifest changes..."
-            git config user.name "Docs CI Bot"
-            git config user.email "docs-bot@ecoos.dev"
-            git commit -m "Auto-update components manifest from ${GITHUB_SHA:-unknown-sha}"
-            
-            if git push origin HEAD:main; then
-              echo "🚀 Successfully pushed manifest update"
-            else
-              echo "❌ Failed to push manifest update"
-            fi
-          else
-            echo "ℹ️  No manifest changes to commit (manifest unchanged)"
-          fi
-        else
-          echo "⚠️  No manifest file found after generation"
-        fi
-        
-        popd >/dev/null
-        echo "=== MANIFEST GENERATION COMPLETE ==="
 
-    - name: Update Conversion State
-      id: update-state
-      if: steps.changed-files.outputs.any_changed == 'true'
-      run: |
-        echo "=== UPDATING CONVERSION STATE ==="
-        
-        # Create new state with corrected logic
-        python3 .github/workflows/update_state.py
-        
-        echo "📊 New state file created:"
-        ls -la new-state.json
-        echo "📄 State summary:"
-        python3 -c "import json; s=json.load(open('new-state.json')); print(f'Successful: {len(s.get(\"successfulFiles\",{}))} Failed: {len(s.get(\"failedFiles\",{}))} Commit: {s.get(\"lastProcessedCommit\",\"none\")}')"
-        echo "=== STATE UPDATE COMPLETE ==="
 
     - name: Workflow Summary
       if: always()
@@ -618,27 +677,26 @@ jobs:
         
         # Check step outcomes
         echo "🔍 Step execution status:"
-        echo "  - LibreOffice installation: ${{ steps.install-libreoffice.outcome || 'not executed' }}"
         echo "  - Git state debug: ${{ steps.debug-git.outcome || 'not executed' }}"
         echo "  - Change detection: ${{ steps.changed-files.outcome || 'not executed' }}"
         echo "  - Conversion: ${{ steps.convert.outcome || 'skipped' }}"
         echo "  - Deployment: ${{ steps.deploy.outcome || 'skipped' }}"
-        echo "  - Manifest generation: ${{ steps.manifest.outcome || 'skipped' }}"
+
         
         # Overall workflow status
-        if [ "${{ job.status }}" == "success" ]; then
+        if [ "${{ job.status }}" = "success" ]; then
           echo "✅ WORKFLOW STATUS: SUCCESS"
-        elif [ "${{ job.status }}" == "failure" ]; then
+        elif [ "${{ job.status }}" = "failure" ]; then
           echo "❌ WORKFLOW STATUS: FAILED"
           echo "🔍 Check the failed steps above for error details"
-        elif [ "${{ job.status }}" == "cancelled" ]; then
+        elif [ "${{ job.status }}" = "cancelled" ]; then
           echo "⚠️  WORKFLOW STATUS: CANCELLED"
         else
           echo "🔄 WORKFLOW STATUS: ${{ job.status }}"
         fi
         
         # File processing summary
-        if [ "${{ steps.changed-files.outputs.any_changed }}" == "true" ]; then
+        if [ "${{ steps.changed-files.outputs.any_changed }}" = "true" ]; then
           echo "🟢 PROCESSING RESULT: CHANGES DETECTED AND PROCESSED"
           echo "📄 Files in scope: $(echo '${{ steps.changed-files.outputs.all_changed_files }}' | wc -w)"
           echo "🎯 Target repository: peerf-eco/docs-vitepress"
@@ -650,23 +708,23 @@ jobs:
           fi
           
           # Check if conversion actually succeeded
-          if [ "${{ steps.convert.outcome }}" == "success" ]; then
+          if [ "${{ steps.convert.outcome }}" = "success" ]; then
             echo "✅ Conversion completed successfully"
-          elif [ "${{ steps.convert.outcome }}" == "failure" ]; then
+          elif [ "${{ steps.convert.outcome }}" = "failure" ]; then
             echo "❌ Conversion failed - check conversion logs"
           fi
           
           # Check if deployment succeeded
-          if [ "${{ steps.deploy.outcome }}" == "success" ]; then
+          if [ "${{ steps.deploy.outcome }}" = "success" ]; then
             echo "✅ Deployment completed successfully"
-          elif [ "${{ steps.deploy.outcome }}" == "failure" ]; then
+          elif [ "${{ steps.deploy.outcome }}" = "failure" ]; then
             echo "❌ Deployment failed - check deployment logs"
           fi
           
           # Check if state update succeeded
-          if [ "${{ steps.update-state.outcome }}" == "success" ]; then
+          if [ "${{ steps.update-state.outcome }}" = "success" ]; then
             echo "✅ State tracking updated successfully"
-          elif [ "${{ steps.update-state.outcome }}" == "failure" ]; then
+          elif [ "${{ steps.update-state.outcome }}" = "failure" ]; then
             echo "❌ State tracking update failed"
           fi
         else

@@ -1,13 +1,13 @@
 # How to upload diplomas and papers
 
-please follow the fuidline below:
+please follow the steps below:
 
 1. clone the repository and create branch with your name, like `add/NameSurname`
 2. add folder with your name for the document. if folder exists and contains document, create new folder by adding the unique suffix, like: `NameSurname_2`
 3. create language subfolders. Use ISO notation for language of the document: de - Germain, en - English, fr - France, ru for Russian, etc
-4. create a document's unique code in `ESPD` format (see reference below); add that number to all documents being added, as a new line under the doc's header, like:
-`ESPD: Your_ESPD`
-5. save document in `.fodt` (Flat ODF Format) under name `Your_ESPD_number.fodt` and place into corresponding language subfolders (use LibraOffice or similar editor to SaveAs `.fodt`)
+4. create a document's unique code in `USPD` format (see reference below); add that number to all documents being added, as a new line under the doc's header, like:
+`USPD: Your_USPD`
+5. save document in `.fodt` (Flat ODF Format) under name `Your_USPD_number.fodt` and place into corresponding language subfolders (use LibraOffice or similar editor to SaveAs `.fodt`)
 6. create brief.md file for each language folder around half a page long with main context (abstract) of your paper. Good to answer questions: describe the problem that was solved, how it was solved (how to use), differences from the alternative solutions, features for ToDo (not yet solved)
 7. add files to git and create commit with message, like: `dimploma of NameSurname is added, in en language`
 8. create GitHub pull request
@@ -16,7 +16,7 @@ please follow the fuidline below:
 
 ## TLDR
 
-ESPD number standard:
+USPD (Unified Standard for Project Documentation) number format:
 
 US.ECO.XXXXX-YY 90 (with a space before "90"), where:
 - FR, RU, DE for language of document used
@@ -24,15 +24,15 @@ US.ECO.XXXXX-YY 90 (with a space before "90"), where:
 - XXXXX - ordering number of document in your organization, 1-99999 (ask maintainers/PeerF for ECO organization)
 - YY is a current document version (revision), 0-99
 
-if you use the ESPD code in the file:
+if you use the USPD code in the file:
 
 US.ECO.XXXXX-YY_90.fodt # Component specification in English
 
 RU.ECO.XXXXX-YY_90.fodt # Component specification in Russian
 
-## DEtailed explanation
+## Detailed explanation
 
-ESPD (unique document number) - how to get it.
+USPD (unique document number) - how to get it.
 
 The number itself in general form looks like US.ECO.XXXXX-YY 90 [ZZ-N] (spaces before and after "90")
 

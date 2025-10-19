@@ -1,1 +1,39 @@
+# encoding issues (character set conversion)
+# for other languages than English, set OS (Windows) encoding to UTF-8 before using macros
+chcp 65001  # Switch to UTF-8
+chcp 1251   # Switch to Windows-1251
+
+# Code pages:
+
+Code page 866 is IBM866 (Cyrillic DOS encoding)
+Windows-1251 is code page 1251
+UTF-8 is code page 65001
+
+# Commands to check locale settings:
+
+chcp - Current code page/encoding
+systeminfo | findstr Locale - System and input locales
+git config --get core.autocrlf - Git line ending setting
+git config --get core.eol - Git end-of-line setting (if set)
+
+# When running in Docker container use:
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8  
+ENV LANGUAGE=C.UTF-8
+RUN locale-gen C.UTF-8
+
+
+# also set Git's autocrlf=true to autoconvert to LF in repository data:
+
+Checkout: Converts LF ? CRLF (server to local)
+Commit: Converts CRLF ? LF (local to server)
+
+
+
+# archive testing script of various file format conversion methods (decision was to use macros instead)
 python convert_test_pandoc.py components/000000000000000000000000000000AA/en/ --output-dir test_converted_pandoc
+
+
+# setting symlink in windows PowerShell for node/npm:
+cmd /c 'mklink "C:\Dist\nvm-noinstall\node.exe" "C:\Dist\nvm-noinstall\v22.20.0\node.exe"'
+cmd /c 'mklink "C:\Dist\nvm-noinstall\npm.cmd" "C:\Dist\nvm-noinstall\v22.20.0\npm.cmd"'

@@ -1,577 +1,395 @@
 # EcoDocs Workflow Documentation
 
-## Current Conversion Workflow
-
-The workflow converts FODT (Flat XML ODT) documentation files in the current repository (which have been changed since previous workflow run) to Markdown using LibreOffice extension DocExport.oxt and syncs them to the target documentation repository.
-
-### Image Folder Handling
-When ODT files contain images, the DocExport extension automatically extracts them during conversion:
-- **Image Folder Pattern**: `img_` + source ODT filename (e.g., `document.odt` → `img_document/`)
-- **Automatic Detection**: Workflow detects image folders and copies them alongside markdown files
-- **Target Location**: Image folders are placed in the same directory as their corresponding markdown files in the target repository
-
-#### Filename Dependencies
-1. **Image Folder Detection**: Uses markdown filename to construct expected image folder name (`img_` + base filename)
-2. **File Processing**: Copies any `.md` files found, regardless of specific names
-3. **Image-Markdown Pairing**: Correct pairing requires matching filenames (wrong filename = missing images)
-4. **Workflow Robustness**: Missing image folders don't cause failures, just skip image copying
-5. **State Tracking**: Tracks source files, not generated markdown filenames
-
-### Conversion Process
-1. **Pre-built Container**: Uses containerized environment with LibreOffice and DocExport.oxt pre-installed
-2. **FODT to ODT**: Source FODT files are converted to ODT format using LibreOffice
-3. **ODT to Markdown**: LibreOffice macro `DocExport.DocModel.ExportDir(directory,1)` converts ODT files to Markdown
-4. **Image Extraction**: Images from ODT files are extracted to folders named `img_` + source filename
-5. **Sync to Target**: Converted markdown files and their corresponding image folders are pushed to the target documentation repository
-
-## Containerized Environment
-
-### Pre-built Container Benefits
-- **Fast Startup**: No LibreOffice installation time (reduces from ~5 minutes to ~30 seconds)
-- **Consistent Environment**: Same container image every workflow run
-- **Cached Layers**: GitHub Container Registry caches Docker layers
-- **Pre-installed Extension**: DocExport.oxt ready to use immediately
-
-### Container Setup Process
-
-#### 1. Build Container Image
-The `build-container.yml` workflow creates a pre-built container with:
-- Ubuntu 22.04 base image
-- LibreOffice pre-installed
-- Python 3 and required packages
-- DocExport.oxt extension installed (both shared and user contexts)
-- Git and SSH client tools
-
-#### 2. Container Registry
-- **Registry**: GitHub Container Registry (`ghcr.io`)
-- **Image Name**: `ghcr.io/{repository}/libreoffice-docexport:latest`
-- **Automatic Rebuild**: Triggers when Dockerfile or DocExport.oxt changes
-- **Caching**: Uses GitHub Actions cache for faster builds
-
-#### 3. Main Workflow Integration
-- **Container Usage**: Main workflow runs inside pre-built container
-- **Authentication**: Uses GitHub token for container registry access
-- **Verification**: Quick environment check instead of full installation
-
-### Setting Up Container Build
-
-#### Step 1: Create Container Build Workflow
-The `build-container.yml` workflow is automatically triggered when:
-- Dockerfile changes in `.github/workflows/`
-- DocExport.oxt extension file changes
-- Manual workflow dispatch
-
-#### Step 2: Initial Container Build
-1. **Trigger Build**: Push changes to Dockerfile or run workflow manually
-2. **Build Process**: 
-   - Installs LibreOffice and dependencies
-   - Installs DocExport extension in both shared and user contexts
-   - Verifies extension accessibility
-   - Pushes to GitHub Container Registry
-3. **Build Time**: ~3-5 minutes (one-time setup)
-
-#### Step 3: Use Pre-built Container
-1. **Main Workflow**: Automatically uses latest container image
-2. **Fast Startup**: Environment ready in ~30 seconds
-3. **Consistent Results**: Same environment every run
-
-### Container Configuration
-
-#### Dockerfile Structure
-```dockerfile
-FROM ubuntu:22.04
-
-# Install dependencies
-RUN apt-get update && apt-get install -y \
-    libreoffice \
-    python3 \
-    python3-pip \
-    git \
-    openssh-client \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install Python packages
-RUN pip3 install frontmatter
-
-# Copy and install DocExport extension
-COPY DocExport.oxt /tmp/DocExport.oxt
-RUN unopkg add --shared /tmp/DocExport.oxt
-RUN unopkg add /tmp/DocExport.oxt
-RUN rm /tmp/DocExport.oxt
-
-# Verify LibreOffice installation and extension
-RUN soffice --version
-RUN unopkg list --shared | grep -i docexport
-RUN unopkg list | grep -i docexport
-
-# Set working directory
-WORKDIR /workspace
-```
-
-#### Extension Installation Strategy
-- **Dual Installation**: Extension installed both as shared (`--shared`) and user-level
-- **Root Build**: Container builds as root, enabling shared installation
-- **User Compatibility**: User-level installation ensures access regardless of runtime user
-- **Verification**: Both installation contexts verified during build
-
-### Container Workflow Integration
-
-#### Main Workflow Changes
-```yaml
-jobs:
-  convert-and-sync:
-    runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/${{ github.repository }}/libreoffice-docexport:latest
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-    permissions:
-      contents: write
-      id-token: write
-      packages: read   # For container registry
-```
-
-#### Environment Verification
-- **Quick Check**: Verifies LibreOffice version and extension availability
-- **No Installation**: Skips lengthy installation steps
-- **Ready to Use**: Environment immediately ready for conversion
-
-### Troubleshooting Container Issues
-
-#### Container Build Failures
-- **Check Dockerfile syntax**: Ensure valid Docker commands
-- **Verify DocExport.oxt**: Ensure extension file exists and is valid
-- **Registry Permissions**: Verify GitHub token has package write permissions
-
-#### Container Runtime Issues
-- **Extension Not Found**: Check both shared and user extension lists
-- **Permission Issues**: Verify container runs with appropriate user permissions
-- **LibreOffice Failures**: Check if LibreOffice can start in headless mode
-
-#### Container Update Process
-1. **Modify Files**: Update Dockerfile or DocExport.oxt
-2. **Automatic Build**: Push triggers container rebuild
-3. **New Image**: Updated image available for next workflow run
-4. **Gradual Rollout**: New workflows use updated container automatically
-
-## Current Change Detection Logic
-
-### How It Works Now
-The workflow uses `tj-actions/changed-files@v41` with `fetch-depth: 2`:
-- Fetches only the last 2 commits from Git history
-- Compares current commit (HEAD) with previous commit (HEAD~1)
-- Only detects files changed between these 2 specific commits
-
-### Problems Identified
-1. **Limited Scope**: Only sees changes from the last single commit
-2. **No Persistence**: No memory of what was previously converted successfully
-3. **Manual Triggers**: Don't work as expected for accumulated changes
-4. **No Failure Recovery**: If conversion fails, those changes are lost on next run
-5. **Multi-commit Scenarios**: If 5 commits contain changes, only the last commit's changes are processed
-
-## Phase 1 Implementation Details
-
-### Enhanced Logging Features Implemented
-
-#### 1. Git State Debugging
-- **Debug Git State** step shows current and previous commit hashes
-- Displays git log for context
-- Lists available .fodt files in components directory
-- Helps diagnose change detection issues
-- **Edge cases covered**: Single commit repositories, missing components directory
-
-#### 2. Comprehensive Change Detection Results
-- **Process Change Detection Results** step provides detailed analysis:
-  - Shows exactly which files were added, modified, or deleted
-  - Displays file count with visual indicators (✅ for changes, ℹ️ for no changes)
-  - Validates file existence and readability
-  - Shows file sizes for context
-  - Clear messaging when no changes are detected
-  - **Edge cases covered**: Deleted files, empty files (0 bytes), very small files, path filter mismatches, repository commit count
-
-#### 3. Enhanced Conversion Logging
-- **Convert to Markdown** step includes:
-  - File count confirmation before processing
-  - Success/failure status for conversion script
-  - Partial results checking on failure
-  - Clear error reporting with exit codes
-  - **Edge cases covered**: Script execution failures, partial conversion results, missing conversion script
-
-#### 4. Conversion Verification
-- **Verify Conversion Results** step provides:
-  - Directory contents listing
-  - Markdown file count verification
-  - File size information for generated files
-  - Warning messages for unexpected results
-  - Error handling for missing directories
-  - **Edge cases covered**: Missing converted_docs directory, no markdown files generated, unexpected file types created
-
-#### 5. Deployment Status Tracking
-- **Clone, copy files, and push** step includes:
-  - Source and target directory confirmation
-  - File-by-file copy status with size information
-  - Copy summary with success/failure counts
-  - Git status checking before commits
-  - Push success/failure confirmation
-  - **Edge cases covered**: SSH setup failures, repository clone failures, file copy failures, git push failures, no files to copy
-
-#### 6. No-Changes Handling
-- **No Changes Detected** step (runs when no changes found):
-  - Clear explanation of why no conversion is needed
-  - Troubleshooting guidance for users
-  - Path filter information for debugging
-
-#### 7. Workflow Summary
-- **Workflow Summary** step (always runs):
-  - Execution timestamp and repository information
-  - Trigger method identification
-  - Processing status summary
-  - File count and target repository status
-  - Reference to detailed logs
-
-#### 8. LibreOffice Installation Verification
-- **Install LibreOffice and extension** step includes:
-  - Package update status verification
-  - LibreOffice installation confirmation
-  - Python dependency installation status
-  - DocExport extension file validation
-  - Extension installation success/failure
-  - LibreOffice version verification
-  - **Edge cases covered**: Package update failures, LibreOffice installation failures, missing extension file, extension installation failures, unopkg command failures
-
-#### 9. SSH and Repository Access Validation
-- **SSH setup and repository cloning** includes:
-  - SSH directory creation verification
-  - GitHub host key addition confirmation
-  - SSH agent startup validation
-  - SSH key addition success/failure
-  - Repository clone status with contents preview
-  - **Edge cases covered**: SSH directory creation failures, host key failures, SSH agent failures, invalid SSH keys, repository access denied, clone failures
-
-#### 10. Comprehensive Workflow Summary
-- **Workflow Summary** step (always runs) provides:
-  - Individual step execution outcomes
-  - Overall workflow status (success/failure/cancelled)
-  - File processing results with conversion and deployment status
-  - Troubleshooting guidance for failures
-  - **Edge cases covered**: Step failures, workflow cancellation, partial successes, dependency failures
-
-#### 11. Visual Status Indicators
-Using emojis for quick status identification:
-- ✅ Success/completion
-- ❌ Error/failure
-- ⚠️ Warning/attention needed
-- ℹ️ Information/normal status
-- 🔄 Processing/in progress
-- 🚀 Deployment/push operations
-- 🔍 Debugging/investigation
-- 📊 Statistics/metrics
-- 📁 Directory/file operations
-- 🎯 Target/destination
-
-### Benefits Achieved
-1. **Immediate Problem Diagnosis**: Users can quickly identify why workflows succeed or fail
-2. **No Silent Failures**: Every step provides clear status and error information
-3. **Debugging Support**: Comprehensive information for troubleshooting issues
-4. **User-Friendly Messages**: Clear explanations for both technical and non-technical users
-5. **Progress Tracking**: Visual indicators show workflow progress and status
-
-## Phase 2 Implementation Details
-
-### State Tracking Features Implemented
-
-#### 1. Persistent State Management
-- **Load Conversion State** step loads `.conversion-state.json` from target repository
-- Tracks `lastProcessedCommit` to enable multi-commit change detection
-- Maintains `successfulFiles` and `failedFiles` collections
-- Creates initial state if none exists
-
-#### 2. Enhanced Change Detection
-- **State-Based Change Detection** compares against `lastProcessedCommit` instead of just HEAD~1
-- Automatically includes previously failed files for retry
-- Combines changed files and failed files for comprehensive processing
-- Handles repositories with no previous state gracefully
-
-#### 3. File-Level Success/Failure Tracking
-- **Individual File Processing** tracks each file's conversion status
-- Successful conversions move from `failedFiles` to `successfulFiles`
-- Failed conversions increment `attemptCount` and update `lastError`
-- Partial failures don't stop the entire workflow
-
-#### 4. State Persistence
-- **Update Conversion State** step creates new state after processing
-- **State Deployment** copies state file to target repository
-- State survives workflow failures and is available for next run
-- Includes timestamps, commit hashes, and error details
-
-#### 5. Retry Logic
-- Previously failed files automatically included in next run (up to 3 attempts)
-- Maximum retry limit prevents infinite retry loops
-- Files exceeding retry limit are permanently excluded
-- Failed files retain error information for debugging
-- Success moves files from failed to successful state
-- **Edge cases covered**: Corrupted state files, missing commits, single commit repositories, state validation failures
-
-### State File Structure (Implemented)
-```json
-{
-  "lastProcessedCommit": "abc123...",
-  "lastSuccessfulRun": "2024-01-15T10:30:00Z",
-  "successfulFiles": {
-    "components/path/file1.fodt": {
-      "convertedAt": "2024-01-15T10:30:00Z",
-      "sourceCommit": "abc123...",
-      "sourceHash": "sha256-placeholder"
-    }
-  },
-  "failedFiles": {
-    "components/path/file2.fodt": {
-      "lastAttempt": "2024-01-15T10:30:00Z",
-      "attemptCount": 2,
-      "lastError": "conversion failed",
-      "sourceCommit": "def456..."
-    }
-  }
-}
-```
-
-**Key State Management Rules:**
-- `successfulFiles`: Contains **ONLY** files from the most recent successful conversion session
-- `failedFiles`: **Cumulative** list of all failed files until they are successfully processed
-- `attemptCount`: Tracks retry attempts with maximum limit of 3 attempts
-- Files exceeding retry limit are excluded from future processing
-- Successful conversion moves files from `failedFiles` to `successfulFiles`
-
-### Benefits Achieved
-1. **Complete Coverage**: Processes all changes since last successful conversion
-2. **Retry Logic**: Failed files automatically retried on next run
-3. **No Lost Work**: Progress saved even if workflow fails partially
-4. **Manual Trigger Support**: Works correctly regardless of trigger method
-5. **Multi-commit Support**: Handles scenarios with multiple commits containing changes
-6. **Failure Recovery**: Individual file failures don't prevent other files from processing
-
-## Implementation Status
-
-### Phase 0: Containerization ✅ IMPLEMENTED
-- ✅ Pre-built container with LibreOffice and DocExport extension
-- ✅ GitHub Container Registry integration
-- ✅ Automatic container rebuilds on changes
-- ✅ Fast workflow startup (~30 seconds vs ~5 minutes)
-- ✅ Consistent environment across all runs
-- ✅ Dual extension installation (shared and user contexts)
-
-### Phase 1: Enhanced Logging ✅ IMPLEMENTED
-- ✅ Add explicit file count and names in workflow logs
-- ✅ Output clear "no changes made" messages when no changed files are detected
-- ✅ Debug output showing which commits are being compared and which files were found as changed
-- ✅ Better error reporting for conversion failures
-- ✅ Visual indicators (emojis) for different log levels and status messages
-- ✅ Comprehensive workflow summary with execution details
-- ✅ File-by-file processing status with size information
-- ✅ Enhanced error handling with detailed diagnostics
-
-### Phase 2: State Tracking Implementation ✅ IMPLEMENTED
-**Create `.conversion-state.json` in target repository:**
-```json
-{
-  "lastProcessedCommit": "abc123...",
-  "lastSuccessfulRun": "2024-01-15T10:30:00Z",
-  "successfulFiles": {
-    "components/path/file1.fodt": {
-      "convertedAt": "2024-01-15T10:30:00Z",
-      "sourceCommit": "abc123...",
-      "sourceHash": "sha256hash..."
-    }
-  },
-  "failedFiles": {
-    "components/path/file2.fodt": {
-      "lastAttempt": "2024-01-15T10:30:00Z",
-      "attemptCount": 2,
-      "lastError": "conversion failed",
-      "sourceCommit": "def456..."
-    }
-  }
-}
-```
-
-**Implemented Workflow Logic:** ✅
-1. ✅ Load state from target repo's `.conversion-state.json`
-2. ✅ Identify files to process:
-   - All files changed since `lastProcessedCommit`
-   - All files in `failedFiles` list (retry failed conversions)
-3. ✅ Process files and track results individually
-4. ✅ Update state:
-   - Move successful conversions from `failedFiles` to `successfulFiles`
-   - Add new failures to `failedFiles`
-   - Update `lastProcessedCommit` to current HEAD
-   - Increment `attemptCount` for retry failures
-5. ✅ Deploy updated state back to target repository
-
-### Phase 3: Failure Recovery (PLANNED)
-- Handle partial conversion failures gracefully
-- Retry failed files on subsequent runs
-- Maintain detailed error logs for debugging
-- Implement maximum retry limits to prevent infinite loops
-
-### Phase 4: Content Verification (PLANNED)
-- Add file hash comparison as backup verification
-- Detect when source files are modified but git doesn't catch changes
-- Handle edge cases like file renames or moves
-- Verify target files match source content
-
-## Troubleshooting with Enhanced Logging
-
-### Common Scenarios and Log Interpretation
-
-#### Scenario 1: "No changes detected" but files were modified
-**Look for these log sections:**
-- **Debug Git State**: Check if your files are in the expected location
-- **Process Change Detection Results**: Verify the path filter matches your files
-- **Additional checks**: Repository commit count, actual vs expected path filters
-- **Solution**: Ensure files are in `components/**/*.fodt` path pattern
-
-#### Scenario 2: LibreOffice installation fails
-**Look for these log sections:**
-- **Install LibreOffice and extension**: Check package update, LibreOffice install, extension setup
-- **Specific indicators**: Package list update failures, LibreOffice install errors, missing DocExport.oxt
-- **Solution**: Check system dependencies and extension file availability
-
-#### Scenario 3: Conversion script fails
-**Look for these log sections:**
-- **Convert to Markdown**: Check the exit code and error message
-- **Verify Conversion Results**: See if partial files were created
-- **Solution**: Check LibreOffice installation and extension loading
-
-#### Scenario 4: SSH/Repository access fails
-**Look for these log sections:**
-- **Clone, copy files, and push**: Check SSH setup steps and repository clone
-- **Specific indicators**: SSH directory creation, host key addition, SSH agent startup, key addition
-- **Solution**: Verify SSH key validity and repository permissions
-
-#### Scenario 5: Files converted but not pushed to target repo
-**Look for these log sections:**
-- **Verify Conversion Results**: Confirm .md files were created
-- **Clone, copy files, and push**: Check copy summary and git status
-- **Solution**: Verify SSH key permissions and target repository access
-
-#### Scenario 6: Empty or corrupted files detected
-**Look for these log sections:**
-- **Process Change Detection Results**: Check file size warnings
-- **Specific indicators**: "File is empty (0 bytes)" or "File is very small" warnings
-- **Solution**: Verify source file integrity and completeness
-
-#### Scenario 7: Manifest generation fails
-**Look for these log sections:**
-- **Generate and update components manifest**: Check npm installation and script execution
-- **Specific indicators**: package.json validation, npm install failures, script execution errors
-- **Solution**: Verify package.json exists and contains required scripts
-
-#### Scenario 8: Workflow partially succeeds
-**Look for these log sections:**
-- **Workflow Summary**: Check individual step outcomes and overall status
-- **Specific indicators**: Step-by-step success/failure status, troubleshooting guidance
-- **Solution**: Address failed steps individually based on their specific error messages
-
-#### Scenario 9: State tracking issues (Phase 2)
-**Look for these log sections:**
-- **Load Conversion State**: Check if state file was found and loaded
-- **Update Conversion State**: Verify state update completed successfully
-- **Specific indicators**: State file size, successful/failed file counts, commit tracking
-- **Solution**: Check target repository permissions and state file integrity
-
-#### Scenario 10: Files not retrying after previous failure (Phase 2)
-**Look for these log sections:**
-- **State-Based Change Detection**: Check if failed files are included
-- **Workflow Summary**: Review state summary showing failed file counts
-- **Specific indicators**: "Files to process" should include previously failed files
-- **Solution**: Verify state file contains failed files and is accessible
-
-#### Scenario 11: State file corruption or validation failures (Phase 2)
-**Look for these log sections:**
-- **Load Conversion State**: Check for "State file is corrupted" or "State file is empty" warnings
-- **Clone, copy files, and push**: Look for "State file validation failed" messages
-- **Specific indicators**: State file size of 0 bytes, JSON parsing errors
-- **Solution**: Corrupted state files are automatically recreated, but previous failure history is lost
-
-#### Scenario 12: Maximum retry limit exceeded (Phase 2)
-**Look for these log sections:**
-- **State-Based Change Detection**: Check for "Skipping [file] - exceeded max retries" messages
-- **Specific indicators**: Files with attemptCount >= 3 are excluded from processing
-- **Solution**: Files exceeding retry limit require manual intervention or workflow modification
-
-#### Scenario 13: Git commit not found or single commit repository (Phase 2)
-**Look for these log sections:**
-- **State-Based Change Detection**: Check for "Last processed commit not found" or "Single commit repository" messages
-- **Specific indicators**: Fallback to HEAD~1 comparison or all .fodt files processing
-- **Solution**: Normal behavior for new repositories or when commit history is modified
-
-### Log Level Meanings
-- ✅ **Success**: Operation completed without issues
-- ❌ **Error**: Critical failure that stops the workflow
-- ⚠️ **Warning**: Non-critical issue that doesn't stop execution
-- ℹ️ **Info**: Normal status information
-- 🔍 **Debug**: Detailed information for troubleshooting
-
-## Benefits of Improved Approach
-- **Complete Coverage**: Processes all changes since last successful conversion
-- **Retry Logic**: Failed files automatically retried on next run
-- **No Lost Work**: Progress saved even if workflow fails partially
-- **Manual Trigger Support**: Works correctly regardless of trigger method
-- **Multi-commit Support**: Handles scenarios with multiple commits containing changes
-- **Enhanced Debugging**: Comprehensive logging for quick issue resolution (Phase 1 ✅)
-- **User-Friendly Feedback**: Clear status messages and troubleshooting guidance (Phase 1 ✅)
-- **Visual Status Indicators**: Quick identification of workflow status (Phase 1 ✅)
-
-## Workflow Triggers
-
-### 1. Using Workflow Dispatch
-Manual triggering via GitHub UI:
-
-```yaml
-name: Convert Documentation
-on:
-  push:
-    branches: [ main ]
-    paths:
-      - 'components/**/*.fodt'
-  workflow_dispatch:  # Allow manual triggering
-```
-
-### 2. Using Push Events
-Automatic triggering on file changes:
-
-```yaml
-on:
-  push:
-    branches: [ main ]
-    paths:
-      - 'components/**/*.fodt'
-```
-
-### 3. Using Repository Dispatch
-Triggering from external systems:
-
-```yaml
-on:
-  repository_dispatch:
-    types: [run-workflow]
-```
-
-Trigger with curl:
+## Overview
+
+Automated workflow that converts FODT (Flat XML ODT) documentation files to Markdown using LibreOffice DocExport extension and syncs them to a VitePress documentation site.
+
+**Key Features:**
+- Containerized LibreOffice environment with pre-installed DocExport extension
+- State-based change detection (processes only modified files)
+- Individual file processing with proper LibreOffice process management
+- UTF-8 encoding normalization and VitePress-compatible metadata
+- Automatic image extraction and folder handling
+- Retry logic for failed conversions
+
+## Workflow Architecture
+
+### File Responsibilities
+- **`.github/workflows/convert-docs.yml`**: Main workflow orchestration
+- **`.github/workflows/convert_docs_extension.sh`**: Core conversion script (FODT→ODT→Markdown)
+- **`.github/workflows/create_metadata.py`**: Adds VitePress-compatible frontmatter
+- **`.github/workflows/update_state.py`**: Manages conversion state tracking
+- **`.github/workflows/DocExport.oxt`**: LibreOffice extension for ODT→Markdown conversion
+
+### Workflow Sequence
+1. **Load State**: Retrieves `.conversion-state.json` from target repository
+2. **Change Detection**: Identifies modified FODT files since last successful run
+3. **Conversion**: Processes files through direct FODT/ODT→Markdown pipeline
+4. **State Update**: Creates new state file with success/failure tracking
+5. **Deployment**: Copies markdown files and state to target repository
+
+### Conversion Pipeline
+1. **Direct Processing**: LibreOffice DocExport extension handles both .fodt and .odt files directly
+2. **ODT→Markdown**: DocExport extension using `ExportDir` macro
+3. **UTF-8 Encoding**: Python-based encoding normalization
+4. **Metadata Addition**: VitePress frontmatter injection with CID-based renaming
+5. **Image Handling**: Automatic extraction to `img_filename/` folders
+
+### State Tracking
+- **State File**: `.conversion-state.json` in target repository root
+- **Tracks**: Last processed commit, successful files, failed files with retry counts
+- **Retry Logic**: Failed files automatically retried (max 3 attempts)
+- **Change Detection**: Compares against `lastProcessedCommit` instead of HEAD~1
+
+## Container Environment
+
+**Pre-built Container**: `ghcr.io/{repository}/ecodocs-libreoffice:latest`
+- Ubuntu 22.04 with LibreOffice pre-installed
+- DocExport.oxt extension (shared and user contexts)
+- Python 3 with required packages
+- Fast startup (~30 seconds vs ~5 minutes installation)
+
+**Container Build**: Manual trigger via `build-container.yml` workflow
+- Rebuilds when Dockerfile or DocExport.oxt changes
+- Uses GitHub Container Registry with layer caching
+
+## Key Technical Insights
+
+### LibreOffice Macro Compatibility
+**Critical Finding**: Not all DocExport macros work in headless mode
+- **MakeDocHfmView**: Requires GUI interaction, hangs in `--headless` mode
+- **ExportDir**: Works correctly in headless mode for batch processing
+- **Solution**: Use `ExportDir` macro with individual file processing in temp directories
+
+### Process Management Requirements
+**LibreOffice Process Isolation**: Essential for reliable conversions
 ```bash
-curl -X POST \
-     -H "Accept: application/vnd.github.v3+json" \
-     -H "Authorization: token YOUR_GITHUB_TOKEN" \
-     https://api.github.com/repos/YOUR_USERNAME/YOUR_REPO/dispatches \
-     -d '{"event_type": "run-workflow"}'
+# Critical pattern for each file:
+pkill -9 -f soffice 2>/dev/null || true
+sleep 2
+soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel.ExportDir(\"$single_dir\",1)"
+sleep 5
 ```
 
-### 4. Using Scheduled Events
-Periodic execution:
+### Shell Compatibility Requirements
+**GitHub Actions Environment**: Uses POSIX shell (`/bin/sh`), not bash
+- **Pattern Matching**: Use `case` statements instead of `[[ ]]` bash extensions
+- **Comparisons**: Use `[ "$var" = "value" ]` instead of `[ "$var" == "value" ]`
+- **Variable Quoting**: Always quote variables in shell comparisons
+- **Arithmetic**: Use `[ "$count" -eq 0 ]` instead of `[[ $count -eq 0 ]]`
 
+```bash
+# ❌ Bash-specific (fails in GitHub Actions)
+if [[ "$file" == components/*/*.fodt ]]; then
+
+# ✅ POSIX-compatible
+case "$file" in
+  components/*/*.fodt) echo "Match" ;;
+esac
+```
+
+### State File Management
+- **Temporary**: `new-state.json` (created during workflow)
+- **Persistent**: `.conversion-state.json` (committed to target repository)
+- **Location**: Target repository root (peerf-eco/docs-vitepress)
+
+### Encoding and Locale Handling
+**UTF-8 Normalization**: Essential for multi-platform compatibility
+- **Locale Settings**: LibreOffice requires UTF-8 locale for proper Cyrillic text handling
+- **Python Encoding**: Dedicated script handles multiple source encodings (Windows-1251, CP1251, ISO-8859-1)
+- **Line Endings**: Automatic CRLF→LF conversion for Unix compatibility
+
+```bash
+# Set UTF-8 locale for LibreOffice (prevents Cyrillic → question marks)
+export LC_ALL=C.UTF-8
+export LANG=C.UTF-8
+export LANGUAGE=C.UTF-8
+```
+
+```python
+# Python encoding conversion script
+python3 convert_encoding.py input.md output.md
+# Handles: utf-8, windows-1251, cp1251, iso-8859-1, latin1 → UTF-8 + LF
+```
+
+## Local Container Testing
+
+### Prerequisites
+- Docker installed and running
+- DocExport.oxt extension file available
+
+### Test Scripts Available
+- **`test_production_workflow.sh`**: **Production Logic Testing** - Simulates exact GitHub Actions workflow steps including fast-fail test, process cleanup, loop continuation, and error handling. Tests 8 files with production-identical logging and state tracking.
+- **`test_complete_workflow.sh`**: **Metadata Integration Testing** - Focuses on ODT→Markdown conversion pipeline with VitePress metadata generation. Tests 3 files with emphasis on frontmatter validation and encoding normalization.
+
+users should:
+
+* Use test_production_workflow.sh when debugging workflow logic or process management issues
+* Use test_complete_workflow.sh when validating conversion output quality or metadata generation
+
+### Running Local Tests
+
+#### 1. Build Test Container
+```bash
+# Build container from Dockerfile
+docker build -t libreoffice_test .github/workflows/
+
+# Or run existing container
+docker run -it --name libreoffice_test libreoffice_test bash
+```
+
+#### 2. Copy Test Files
+```bash
+# Copy test script to container
+docker cp test_production_workflow.sh libreoffice_test:/tmp/
+
+# Copy updated extension if needed
+docker cp .github/workflows/DocExport.oxt libreoffice_test:/tmp/
+```
+
+#### 3. Execute Tests
+```bash
+# Run production workflow test
+docker exec libreoffice_test bash /tmp/test_production_workflow.sh
+
+# Update extension in container
+docker exec libreoffice_test bash -c "unopkg remove --shared org.openoffice.legacy.DocExport.oxt 2>/dev/null || true && unopkg add --shared /tmp/DocExport.oxt"
+```
+
+#### 4. Key Test Commands
+```bash
+# Check extension status
+docker exec libreoffice_test unopkg list --shared | grep -i docexport
+
+# Monitor LibreOffice processes
+docker exec libreoffice_test pgrep -af soffice
+
+# Test macro directly
+docker exec libreoffice_test soffice --headless --invisible --nologo --norestore "macro:///DocExport.DocModel.ExportDir(\"/tmp\",1)"
+```
+
+### Test Results Validation
+- **Success Indicators**: All ODT files converted to markdown with proper file sizes
+- **Process Management**: No hanging LibreOffice processes after completion
+- **Image Handling**: Proper `img_filename/` folder creation and content
+- **Metadata**: VitePress-compatible frontmatter in generated markdown files
+
+## Current Session Findings
+
+### State File Deployment Issue (Fixed)
+**Problem**: `.conversion-state.json` not being committed to target repository
+**Root Cause**: Workflow step order - state update ran after deployment
+**Solution**: Moved `Update Conversion State` step before deployment step
+**Result**: State file now properly maintained in target repository
+
+### Macro Parameter Quoting (Fixed)
+**Problem**: Directory paths with spaces caused macro failures
+**Solution**: Proper shell escaping in macro calls
+```bash
+# Before: "macro:///DocExport.DocModel.ExportDir($single_dir,1)"
+# After:  "macro:///DocExport.DocModel.ExportDir(\"$single_dir\",1)"
+```
+
+### Change Detection Logic (Fixed)
+**Problem**: Git diff not detecting .fodt file changes between commits
+**Root Causes**: 
+1. Quoted glob patterns preventing shell expansion (`'components/**/*.fodt'`)
+2. Bash-specific `[[ ]]` pattern matching failing in POSIX shell
+3. Insufficient git history depth for state-based comparisons
+
+**Solutions**:
+- Removed quotes from git diff path patterns
+- Replaced `[[ ]]` with POSIX `case` statements
+- Progressive fetch depth increase (50→100→500→1000→unshallow)
+- Added detailed debug output for commit range verification
+
+### UTF-8 Encoding Implementation (Fixed)
+**Problem**: Cyrillic text converted to question marks in markdown output
+**Root Cause**: LibreOffice locale not set to UTF-8 during conversion
+**Solution**: 
+- Set `LC_ALL=C.UTF-8` environment variables before LibreOffice execution
+- Created dedicated Python script for encoding detection and conversion
+- Replaced complex bash encoding logic with reliable Python implementation
+
+**Result**: Proper Cyrillic text preservation in UTF-8 markdown with LF line endings
+
+### Process Management Enhancement
+**Finding**: Aggressive process cleanup essential for workflow reliability
+**Implementation**: `pkill -9 -f soffice` with proper timing intervals
+**Result**: Eliminated hanging LibreOffice processes and conversion failures
+
+### Container Locale Configuration
+**Recommendation**: Set UTF-8 locale at container build time for additional robustness
+```dockerfile
+# Add to Dockerfile for permanent UTF-8 locale
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
+ENV LANGUAGE=C.UTF-8
+RUN locale-gen C.UTF-8
+```
+**Note**: Most modern Linux containers default to UTF-8, but explicit setting ensures consistency across different base images and environments.
+
+### Multi-Directory Support (Current Session)
+**Enhancement**: Extended workflow to process .fodt files from multiple source directories
+
+**Source Directory Patterns**:
+- `components/**/*.fodt` - Any nesting level, flattened to `docs/components/`
+- `libraries/**/*.fodt` - Any nesting level, preserves structure in `docs/libraries/`
+- `guides/**/*.fodt` - Any nesting level, preserves structure in `docs/guides/`
+
+**Directory Structure Handling**:
+```bash
+# Components: Flat structure (all files in root)
+components/subfolder/file.fodt → docs/components/file.md
+components/deep/nested/file.fodt → docs/components/file.md
+
+# Libraries & Guides: Preserve nested structure
+libraries/subfolder/file.fodt → docs/libraries/subfolder/file.md
+guides/deep/nested/file.fodt → docs/guides/deep/nested/file.md
+```
+
+**Implementation Changes**:
+- **Workflow Triggers**: Added `libraries/**/*.fodt` and `guides/**/*.fodt` patterns
+- **File Detection**: Updated git diff patterns to include new directories
+- **Conversion Script**: Modified output path logic based on source directory
+- **Deployment**: Simplified to copy entire directory trees while maintaining structure
+
+**Pattern Matching Fix**: Changed from `components/*/*.fodt` (exactly one level) to `components/**/*.fodt` (zero or multiple levels) to allow files directly in root directories.
+
+### VitePress Frontmatter Integration (Current Session)
+**Enhancement**: Inlined metadata processing with CID-based file renaming
+
+**Key Changes**:
+- **Separation of Concerns**: Maintained clean separation between conversion (`convert_docs_extension.sh`) and metadata processing (`create_metadata.py`)
+- **CID-Based Renaming**: Files automatically renamed using CID metadata field value
+- **Source URL Accuracy**: Fixed source URL generation to use actual original file paths instead of reconstructed paths
+- **Enhanced Logging**: Added detailed output showing metadata processing results and file renaming
+
+**VitePress Frontmatter Fields**:
 ```yaml
-on:
-  schedule:
-    - cron: '0 * * * *'  # Runs every hour
+---
+title: "Component Name"
+layout: doc
+documentType: "Specification"
+documentUspd: "USPD Value"
+version: "1.0"
+componentName: "Component Name"
+CID: "0000000000000000000000004D656D31"
+description: "Short description"
+useCategory: "CATEGORY"
+type: "TYPE"
+registryUrl: "https://marketplace.url"
+source: "https://github.com/repo/blob/commit/actual/path/file.fodt"
+lastUpdated: true
+editLink: true
+sidebar: true
+---
 ```
+
+**File Renaming Logic**:
+- **With CID**: `US.ECO.00016-01_90.md` → `0000000000000000000000004D656D31.md`
+- **Without CID**: File keeps original name
+- **Source URL**: Uses actual original file path for accurate GitHub links
+
+### Shell Script Fixes (Current Session)
+**Problem**: Multiple shell syntax errors causing workflow failures
+
+**Fixed Issues**:
+1. **OLDPWD Unbound Variable**: Replaced `$OLDPWD` with `$PWD` (GitHub Actions doesn't set OLDPWD)
+2. **Workflow Condition Logic**: Fixed "No Changes Detected" condition from `!= 'true'` to `== 'false'`
+3. **File Copy Syntax**: Removed problematic `2>/dev/null` redirections causing syntax errors
+4. **Glob Pattern Handling**: Added existence checks before loops to prevent errors when no matching files exist
+5. **CRLF Count Check**: Fixed malformed condition causing integer expression errors
+
+**Shell Compatibility Improvements**:
+```bash
+# Before (problematic)
+for file in converted_docs/*.md 2>/dev/null; do
+
+# After (fixed)
+if ls converted_docs/*.md >/dev/null 2>&1; then
+  for file in converted_docs/*.md; do
+```
+
+### Workflow Simplification (Current Session)
+**Removed**: npm-based manifest generation step
+
+**Rationale**: 
+- The VitePress frontmatter in each .md file serves as the metadata/manifest
+- No need for separate `components.json` file generation
+- Eliminates Node.js dependency and related failures
+- Simplifies workflow and reduces potential failure points
+
+**Result**: Cleaner workflow focused on core functionality without confusing "skipping manifest generation" messagesment**: Extended workflow to process .fodt files from multiple source directories
+
+**Source Directory Patterns**:
+- `components/**/*.fodt` - Any nesting level, flattened to `docs/components/`
+- `libraries/**/*.fodt` - Any nesting level, preserves structure in `docs/libraries/`
+- `guides/**/*.fodt` - Any nesting level, preserves structure in `docs/guides/`
+
+**Directory Structure Handling**:
+```bash
+# Components: Flat structure (all files in root)
+components/subfolder/file.fodt → docs/components/file.md
+components/deep/nested/file.fodt → docs/components/file.md
+
+# Libraries & Guides: Preserve nested structure
+libraries/subfolder/file.fodt → docs/libraries/subfolder/file.md
+guides/deep/nested/file.fodt → docs/guides/deep/nested/file.md
+```
+
+**Implementation Changes**:
+- **Workflow Triggers**: Added `libraries/**/*.fodt` and `guides/**/*.fodt` patterns
+- **File Detection**: Updated git diff patterns to include new directories
+- **Conversion Script**: Modified output path logic based on source directory
+- **Deployment**: Simplified to copy entire directory trees while maintaining structure
+
+**Pattern Matching Fix**: Changed from `components/*/*.fodt` (exactly one level) to `components/**/*.fodt` (zero or multiple levels) to allow files directly in root directories.
+
+## Troubleshooting
+
+### Common Issues
+- **Hanging Conversions**: Check LibreOffice process cleanup and macro compatibility
+- **Missing State File**: Verify workflow step order and file permissions
+- **Encoding Problems**: Verify UTF-8 locale settings and Python encoding script
+- **Image Folder Issues**: Check DocExport macro output and folder naming
+- **Shell Syntax Errors**: Use POSIX-compatible syntax, avoid bash-specific features
+- **Git Change Detection**: Ensure sufficient fetch depth and proper glob pattern handling
+- **Directory Structure Issues**: Verify source directory patterns match expected nesting levels
+- **File Path Conflicts**: Check for filename collisions when flattening components structure
+
+### Debug Commands
+```bash
+# Check workflow logs for specific patterns
+grep -E "(✅|❌|⚠️)" workflow.log
+
+# Verify container extension
+docker exec container unopkg list --shared | grep -i docexport
+
+# Test macro in isolation
+docker exec container timeout 10 soffice --headless "macro:///DocExport.DocModel.ExportDir(\"/test\",1)"
+
+```
+
+## PS
+
+The execution of Libreoffice Writer macros from command line is not an obvious task. There are several sources on Internet discussing this:
+
+### References
+
+https://forum.openoffice.org/en/forum/viewtopic.php?f=20&t=8232#p38910
+
+https://superuser.com/questions/1135850/how-do-i-run-a-libreoffice-macro-from-the-command-line-without-the-gui
+
+https://ask.libreoffice.org/t/execute-macro-in-calc-from-terminal/32101/6
+
+https://stackoverflow.com/questions/52623426/how-to-run-a-single-macro-for-all-xls-xlsx-files-for-libreoffice
+
+https://stackoverflow.com/questions/71244677/how-do-i-run-a-libreoffice-macro-from-the-command-line-without-gui
+
+youtube: https://www.youtube.com/watch?v=my1QIFNgNhY
+
+
+and even using Python: https://christopher5106.github.io/office/2015/12/06/openoffice-libreoffice-automate-your-office-tasks-with-python-macros.html
+
+At the moment the problem of bulk libreoffice documents processing under linux cli is not fully understood / investigated and working. It looks there is an inherent libreoffice macro limitation as application proccess is tied to the context of one file only (may be its is for Basic language only?). That's why the current approach is to organize a loop with filenames given as a parameter to the macro.
