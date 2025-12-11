@@ -278,6 +278,7 @@ CID: "0000000000000000000000004D656D31"
 description: "Short description"
 useCategory: "CATEGORY"
 type: "TYPE"
+marketplaceId: "e71f846d-89dc-425f-b3f8-e1884a84b77a"
 registryUrl: "https://marketplace.url"
 source: "https://github.com/repo/blob/commit/actual/path/file.fodt"
 lastUpdated: true

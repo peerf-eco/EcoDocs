@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:rpt="http://openoffice.org/2005/report" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:calcext="urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0" xmlns:drawooo="http://openoffice.org/2010/draw" xmlns:loext="urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:formx="urn:openoffice:names:experimental:ooxml-odf-interop:xmlns:form:1.0" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:css3t="http://www.w3.org/TR/css3-text/" xmlns:officeooo="http://openoffice.org/2009/office" office:version="1.4" office:mimetype="application/vnd.oasis.opendocument.text">
- <office:meta><meta:initial-creator>Vladimir Bashev</meta:initial-creator><meta:editing-cycles>80</meta:editing-cycles><meta:print-date>2023-08-25T16:17:00</meta:print-date><meta:creation-date>2020-10-14T17:45:00</meta:creation-date><dc:date>2025-10-20T00:32:09.290362700</dc:date><meta:editing-duration>P1DT20H45M48S</meta:editing-duration><meta:generator>LibreOffice/25.2.6.2$Windows_X86_64 LibreOffice_project/729c5bfe710f5eb71ed3bbde9e06a6065e9c6c5d</meta:generator><meta:document-statistic meta:table-count="2" meta:image-count="1" meta:object-count="0" meta:page-count="14" meta:paragraph-count="259" meta:word-count="743" meta:character-count="6274" meta:non-whitespace-character-count="5699"/><meta:user-defined meta:name="AppVersion">14.0000</meta:user-defined><meta:template xlink:type="simple" xlink:actuate="onRequest" xlink:title="Normal.dotm" xlink:href=""/></office:meta>
+ <office:meta><meta:initial-creator>Vladimir Bashev</meta:initial-creator><meta:editing-cycles>81</meta:editing-cycles><meta:print-date>2023-08-25T16:17:00</meta:print-date><meta:creation-date>2020-10-14T17:45:00</meta:creation-date><dc:date>2025-12-12T01:17:03.247356700</dc:date><meta:editing-duration>P1DT20H48M26S</meta:editing-duration><meta:generator>LibreOffice/25.2.7.2$Windows_X86_64 LibreOffice_project/5cbfd1ab6520636bb5f7b99185aa69bd7456825d</meta:generator><meta:document-statistic meta:table-count="2" meta:image-count="1" meta:object-count="0" meta:page-count="14" meta:paragraph-count="260" meta:word-count="743" meta:character-count="6299" meta:non-whitespace-character-count="5725"/><meta:user-defined meta:name="AppVersion">14.0000</meta:user-defined><meta:template xlink:type="simple" xlink:actuate="onRequest" xlink:title="Normal.dotm" xlink:href=""/></office:meta>
  <office:settings>
   <config:config-item-set config:name="ooo:view-settings">
    <config:config-item config:name="ViewAreaTop" config:type="long">0</config:config-item>
@@ -13,8 +13,8 @@
    <config:config-item-map-indexed config:name="Views">
     <config:config-item-map-entry>
      <config:config-item config:name="ViewId" config:type="string">view2</config:config-item>
-     <config:config-item config:name="ViewLeft" config:type="long">4812</config:config-item>
-     <config:config-item config:name="ViewTop" config:type="long">5860</config:config-item>
+     <config:config-item config:name="ViewLeft" config:type="long">11730</config:config-item>
+     <config:config-item config:name="ViewTop" config:type="long">6380</config:config-item>
      <config:config-item config:name="VisibleLeft" config:type="long">0</config:config-item>
      <config:config-item config:name="VisibleTop" config:type="long">0</config:config-item>
      <config:config-item config:name="VisibleRight" config:type="long">23760</config:config-item>
@@ -84,7 +84,7 @@
    <config:config-item config:name="IgnoreTabsAndBlanksForLineCalculation" config:type="boolean">true</config:config-item>
    <config:config-item config:name="IgnoreHiddenCharsForLineCalculation" config:type="boolean">true</config:config-item>
    <config:config-item config:name="TabAtLeftIndentForParagraphsInList" config:type="boolean">true</config:config-item>
-   <config:config-item config:name="Rsid" config:type="int">920750</config:config-item>
+   <config:config-item config:name="Rsid" config:type="int">961463</config:config-item>
    <config:config-item config:name="RsidRoot" config:type="int">701574</config:config-item>
    <config:config-item config:name="LoadReadonly" config:type="boolean">false</config:config-item>
    <config:config-item config:name="ClipAsCharacterAnchoredWriterFlyFrames" config:type="boolean">false</config:config-item>
@@ -183,7 +183,7 @@
  <office:styles>
   <style:default-style style:family="graphic">
    <style:graphic-properties svg:stroke-color="#3465a4" draw:fill-color="#729fcf" fo:wrap-option="no-wrap" draw:shadow-offset-x="0.1181in" draw:shadow-offset-y="0.1181in" draw:start-line-spacing-horizontal="0.1114in" draw:start-line-spacing-vertical="0.1114in" draw:end-line-spacing-horizontal="0.1114in" draw:end-line-spacing-vertical="0.1114in" style:writing-mode="lr-tb" style:flow-with-text="false"/>
-   <style:paragraph-properties style:text-autospace="ideograph-alpha" style:line-break="strict" loext:tab-stop-distance="0in" style:writing-mode="lr-tb" style:font-independent-line-spacing="false">
+   <style:paragraph-properties style:text-autospace="ideograph-alpha" style:line-break="strict" loext:tab-stop-distance="0in" style:font-independent-line-spacing="false">
     <style:tab-stops/>
    </style:paragraph-properties>
    <style:text-properties style:use-window-font-color="true" loext:opacity="0%" style:font-name="Liberation Serif" fo:font-size="12pt" fo:language="en" fo:country="US" style:letter-kerning="true" style:font-name-asian="NSimSun" style:font-size-asian="10.5pt" style:language-asian="zh" style:country-asian="CN" style:font-name-complex="Arial2" style:font-size-complex="12pt" style:language-complex="hi" style:country-complex="IN"/>
@@ -1989,91 +1989,94 @@
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" fo:font-weight="normal" officeooo:rsid="0025eda4" officeooo:paragraph-rsid="000c0377" style:font-size-asian="12pt" style:font-weight-asian="normal" style:font-name-complex="Arial2" style:font-size-complex="12pt" style:font-weight-complex="normal"/>
   </style:style>
   <style:style style:name="P8" style:family="paragraph" style:parent-style-name="Standard">
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" officeooo:paragraph-rsid="000c0377" style:font-size-asian="12pt" style:font-name-complex="Arial2" style:font-size-complex="12pt"/>
+   <style:text-properties style:font-name="Liberation Sans"/>
   </style:style>
   <style:style style:name="P9" style:family="paragraph" style:parent-style-name="Standard">
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" officeooo:paragraph-rsid="000c0377" style:font-size-asian="12pt" style:font-name-complex="Arial2" style:font-size-complex="12pt"/>
+  </style:style>
+  <style:style style:name="P10" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:padding-left="0in" fo:padding-right="0in" fo:padding-top="0in" fo:padding-bottom="0.0138in" fo:border-left="none" fo:border-right="none" fo:border-top="none" fo:border-bottom="0.74pt solid #000000"/>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:font-size-asian="12pt" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P10" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P11" style:family="paragraph" style:parent-style-name="Standard">
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:font-size-asian="12pt" style:font-name-complex="Arial2" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P11" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P12" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:line-height="115%" fo:text-align="start" style:justify-single-word="false" fo:orphans="2" fo:widows="2"/>
    <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" fo:font-weight="bold" style:letter-kerning="false" style:font-name-asian="Calibri1" style:font-size-asian="12pt" style:language-asian="en" style:country-asian="US" style:font-weight-asian="bold" style:font-name-complex="Arial2" style:font-size-complex="12pt" style:language-complex="ar" style:country-complex="SA">
     <loext:char-complex-color loext:theme-type="light1" loext:color-type="theme"/>
    </style:text-properties>
   </style:style>
-  <style:style style:name="P12" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P13" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:line-height="115%" fo:text-align="start" style:justify-single-word="false" fo:orphans="2" fo:widows="2"/>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:letter-kerning="false" style:font-name-asian="Calibri1" style:font-size-asian="12pt" style:language-asian="en" style:country-asian="US" style:font-name-complex="Arial2" style:font-size-complex="12pt" style:language-complex="ar" style:country-complex="SA"/>
   </style:style>
-  <style:style style:name="P13" style:family="paragraph" style:parent-style-name="Contents_20_Heading">
+  <style:style style:name="P14" style:family="paragraph" style:parent-style-name="Contents_20_Heading">
    <style:paragraph-properties fo:break-before="page"/>
   </style:style>
-  <style:style style:name="P14" style:family="paragraph" style:parent-style-name="Contents_20_1">
+  <style:style style:name="P15" style:family="paragraph" style:parent-style-name="Contents_20_1">
    <style:paragraph-properties>
     <style:tab-stops>
      <style:tab-stop style:position="6.6925in" style:type="right" style:leader-style="dotted" style:leader-text="."/>
     </style:tab-stops>
    </style:paragraph-properties>
   </style:style>
-  <style:style style:name="P15" style:family="paragraph" style:parent-style-name="Contents_20_2">
+  <style:style style:name="P16" style:family="paragraph" style:parent-style-name="Contents_20_2">
    <style:paragraph-properties>
     <style:tab-stops>
      <style:tab-stop style:position="6.6925in" style:type="right" style:leader-style="dotted" style:leader-text="."/>
     </style:tab-stops>
    </style:paragraph-properties>
   </style:style>
-  <style:style style:name="P16" style:family="paragraph" style:parent-style-name="Contents_20_3">
+  <style:style style:name="P17" style:family="paragraph" style:parent-style-name="Contents_20_3">
    <style:paragraph-properties>
     <style:tab-stops>
      <style:tab-stop style:position="6.6925in" style:type="right" style:leader-style="dotted" style:leader-text="."/>
     </style:tab-stops>
    </style:paragraph-properties>
   </style:style>
-  <style:style style:name="P17" style:family="paragraph" style:parent-style-name="Heading_20_1">
+  <style:style style:name="P18" style:family="paragraph" style:parent-style-name="Heading_20_1">
    <style:text-properties fo:language="en" fo:country="US"/>
   </style:style>
-  <style:style style:name="P18" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P19" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:text-align="justify" style:justify-single-word="false"/>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P19" style:family="paragraph" style:parent-style-name="Heading_20_2">
+  <style:style style:name="P20" style:family="paragraph" style:parent-style-name="Heading_20_2">
    <style:text-properties fo:language="en" fo:country="US" fo:font-weight="bold" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
   </style:style>
-  <style:style style:name="P20" style:family="paragraph" style:parent-style-name="Heading_20_2">
+  <style:style style:name="P21" style:family="paragraph" style:parent-style-name="Heading_20_2">
    <style:text-properties fo:language="en" fo:country="US" fo:font-weight="bold" officeooo:rsid="000c0377" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
   </style:style>
-  <style:style style:name="P21" style:family="paragraph" style:parent-style-name="Standard" style:list-style-name="WWNum2">
+  <style:style style:name="P22" style:family="paragraph" style:parent-style-name="Standard" style:list-style-name="WWNum2">
    <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0.111in" style:contextual-spacing="true"/>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P22" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P23" style:family="paragraph" style:parent-style-name="Standard">
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:font-size-asian="12pt" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P23" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P24" style:family="paragraph" style:parent-style-name="Standard">
    <style:text-properties fo:color="#810081" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:font-size-asian="12pt" style:font-name-complex="Arial2" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P24" style:family="paragraph" style:parent-style-name="Heading_20_2">
+  <style:style style:name="P25" style:family="paragraph" style:parent-style-name="Heading_20_2">
    <style:paragraph-properties fo:break-before="page"/>
    <style:text-properties fo:font-weight="bold" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
   </style:style>
-  <style:style style:name="P25" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P26" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:text-align="justify" style:justify-single-word="false"/>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:font-size-asian="12pt" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P26" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P27" style:family="paragraph" style:parent-style-name="Standard">
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P27" style:family="paragraph" style:parent-style-name="Heading_20_1">
+  <style:style style:name="P28" style:family="paragraph" style:parent-style-name="Heading_20_1">
    <style:paragraph-properties fo:break-before="page"/>
    <style:text-properties fo:font-weight="bold" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
   </style:style>
-  <style:style style:name="P28" style:family="paragraph" style:parent-style-name="Heading_20_2">
+  <style:style style:name="P29" style:family="paragraph" style:parent-style-name="Heading_20_2">
    <style:text-properties fo:font-weight="bold" officeooo:rsid="000c0377" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
   </style:style>
-  <style:style style:name="P29" style:family="paragraph" style:parent-style-name="Standard" style:list-style-name="WWNum1">
+  <style:style style:name="P30" style:family="paragraph" style:parent-style-name="Standard" style:list-style-name="WWNum1">
    <style:paragraph-properties fo:margin-left="0in" fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:keep-together="always" fo:text-indent="0in" style:auto-text-indent="false" fo:keep-with-next="always">
     <style:tab-stops>
      <style:tab-stop style:position="0.25in"/>
@@ -2081,19 +2084,11 @@
    </style:paragraph-properties>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" fo:font-weight="bold" style:font-size-asian="12pt" style:font-weight-asian="bold" style:font-name-complex="Arial2" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P30" style:family="paragraph" style:parent-style-name="Heading_20_3">
+  <style:style style:name="P31" style:family="paragraph" style:parent-style-name="Heading_20_3">
    <style:text-properties fo:font-weight="bold" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
   </style:style>
-  <style:style style:name="P31" style:family="paragraph" style:parent-style-name="Standard">
-   <style:paragraph-properties fo:margin-left="0.3752in" fo:text-align="justify" style:justify-single-word="false" fo:text-indent="-0.1252in" style:auto-text-indent="false">
-    <style:tab-stops>
-     <style:tab-stop style:position="0.25in"/>
-    </style:tab-stops>
-   </style:paragraph-properties>
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
-  </style:style>
   <style:style style:name="P32" style:family="paragraph" style:parent-style-name="Standard">
-   <style:paragraph-properties>
+   <style:paragraph-properties fo:margin-left="0.3752in" fo:text-align="justify" style:justify-single-word="false" fo:text-indent="-0.1252in" style:auto-text-indent="false">
     <style:tab-stops>
      <style:tab-stop style:position="0.25in"/>
     </style:tab-stops>
@@ -2101,22 +2096,30 @@
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
   <style:style style:name="P33" style:family="paragraph" style:parent-style-name="Standard">
+   <style:paragraph-properties>
+    <style:tab-stops>
+     <style:tab-stop style:position="0.25in"/>
+    </style:tab-stops>
+   </style:paragraph-properties>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
+  </style:style>
+  <style:style style:name="P34" style:family="paragraph" style:parent-style-name="Standard">
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" fo:font-weight="bold" style:font-size-asian="12pt" style:font-weight-asian="bold" style:font-name-complex="Arial2" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P34" style:family="paragraph" style:parent-style-name="Heading_20_3">
+  <style:style style:name="P35" style:family="paragraph" style:parent-style-name="Heading_20_3">
    <style:text-properties fo:font-weight="bold" officeooo:rsid="000c0377" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
   </style:style>
-  <style:style style:name="P35" style:family="paragraph" style:parent-style-name="Heading_20_1">
+  <style:style style:name="P36" style:family="paragraph" style:parent-style-name="Heading_20_1">
    <style:paragraph-properties fo:break-before="page"/>
    <style:text-properties fo:language="en" fo:country="US" fo:font-weight="bold" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
   </style:style>
-  <style:style style:name="P36" style:family="paragraph" style:parent-style-name="code_5f_cpp">
+  <style:style style:name="P37" style:family="paragraph" style:parent-style-name="code_5f_cpp">
    <style:text-properties fo:language="en" fo:country="US"/>
   </style:style>
-  <style:style style:name="P37" style:family="paragraph" style:parent-style-name="Heading_20_3">
+  <style:style style:name="P38" style:family="paragraph" style:parent-style-name="Heading_20_3">
    <style:text-properties fo:language="en" fo:country="US" fo:font-weight="bold" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
   </style:style>
-  <style:style style:name="P38" style:family="paragraph" style:parent-style-name="Standard" style:list-style-name="WWNum1">
+  <style:style style:name="P39" style:family="paragraph" style:parent-style-name="Standard" style:list-style-name="WWNum1">
    <style:paragraph-properties fo:margin-left="0in" fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:text-indent="0in" style:auto-text-indent="false">
     <style:tab-stops>
      <style:tab-stop style:position="0.25in"/>
@@ -2124,13 +2127,13 @@
    </style:paragraph-properties>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" fo:font-weight="bold" style:font-size-asian="12pt" style:font-weight-asian="bold" style:font-name-complex="Arial2" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P39" style:family="paragraph" style:parent-style-name="Heading_20_2">
+  <style:style style:name="P40" style:family="paragraph" style:parent-style-name="Heading_20_2">
    <style:text-properties fo:language="en" fo:country="US" fo:font-weight="bold" officeooo:rsid="000df78d" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
   </style:style>
-  <style:style style:name="P40" style:family="paragraph" style:parent-style-name="Heading_20_3">
+  <style:style style:name="P41" style:family="paragraph" style:parent-style-name="Heading_20_3">
    <style:text-properties fo:language="en" fo:country="US"/>
   </style:style>
-  <style:style style:name="P41" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P42" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:margin-left="0.3752in" fo:text-align="justify" style:justify-single-word="false" fo:text-indent="-0.1252in" style:auto-text-indent="false">
     <style:tab-stops>
      <style:tab-stop style:position="0.25in"/>
@@ -2138,11 +2141,11 @@
    </style:paragraph-properties>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" officeooo:paragraph-rsid="000c0377" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P42" style:family="paragraph" style:parent-style-name="Standard" style:list-style-name="WWNum1">
+  <style:style style:name="P43" style:family="paragraph" style:parent-style-name="Standard" style:list-style-name="WWNum1">
    <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:keep-together="always" fo:keep-with-next="always"/>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" fo:font-weight="bold" style:font-size-asian="12pt" style:font-weight-asian="bold" style:font-name-complex="Arial2" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P43" style:family="paragraph" style:parent-style-name="List_20_Paragraph">
+  <style:style style:name="P44" style:family="paragraph" style:parent-style-name="List_20_Paragraph">
    <style:paragraph-properties fo:margin-left="0.25in" fo:text-align="justify" style:justify-single-word="false">
     <style:tab-stops>
      <style:tab-stop style:position="0.25in"/>
@@ -2150,31 +2153,31 @@
    </style:paragraph-properties>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P44" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P45" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:line-height="100%" fo:text-align="start" style:justify-single-word="false" fo:orphans="2" fo:widows="2"/>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" fo:font-weight="bold" style:letter-kerning="false" style:font-name-asian="Calibri1" style:font-size-asian="12pt" style:language-asian="en" style:country-asian="US" style:font-weight-asian="bold" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt" style:language-complex="ar" style:country-complex="SA"/>
   </style:style>
-  <style:style style:name="P45" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P46" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:line-height="100%" fo:text-align="start" style:justify-single-word="false" fo:orphans="2" fo:widows="2"/>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="9pt" fo:language="en" fo:country="US" style:letter-kerning="false" style:font-name-asian="Calibri1" style:font-size-asian="9pt" style:language-asian="en" style:country-asian="US" style:font-name-complex="Consolas1" style:font-size-complex="9pt" style:language-complex="ar" style:country-complex="SA"/>
   </style:style>
-  <style:style style:name="P46" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P47" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:line-height="100%" fo:text-align="start" style:justify-single-word="false" fo:orphans="2" fo:widows="2"/>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="9pt" fo:language="en" fo:country="US" style:letter-kerning="false" style:font-name-asian="Calibri1" style:font-size-asian="9pt" style:language-asian="en" style:country-asian="US" style:font-size-complex="9pt" style:language-complex="ar" style:country-complex="SA"/>
   </style:style>
-  <style:style style:name="P47" style:family="paragraph" style:parent-style-name="Heading_20_1">
+  <style:style style:name="P48" style:family="paragraph" style:parent-style-name="Heading_20_1">
    <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:text-align="center" style:justify-single-word="false"/>
    <style:text-properties style:use-window-font-color="true" loext:opacity="0%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" fo:font-weight="bold" style:font-size-asian="12pt" style:font-weight-asian="bold" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P48" style:family="paragraph" style:parent-style-name="Heading_20_1" style:list-style-name="">
+  <style:style style:name="P49" style:family="paragraph" style:parent-style-name="Heading_20_1" style:list-style-name="">
    <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:text-align="center" style:justify-single-word="false"/>
    <style:text-properties style:use-window-font-color="true" loext:opacity="0%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" fo:font-weight="bold" style:font-size-asian="12pt" style:font-weight-asian="bold" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P49" style:family="paragraph" style:parent-style-name="Text_20_body">
+  <style:style style:name="P50" style:family="paragraph" style:parent-style-name="Text_20_body">
    <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:text-align="center" style:justify-single-word="false" fo:break-before="page"/>
    <style:text-properties style:use-window-font-color="true" loext:opacity="0%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" fo:font-weight="bold" style:font-size-asian="12pt" style:font-weight-asian="bold" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P50" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P51" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:margin-left="-0.8752in" fo:margin-right="-0.8752in" fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:line-height="100%"/>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:font-size-asian="12pt" style:font-name-complex="Consolas1" style:font-size-complex="12pt"/>
   </style:style>
@@ -2200,33 +2203,39 @@
    <style:text-properties fo:font-weight="bold" style:font-weight-asian="bold" style:font-weight-complex="bold"/>
   </style:style>
   <style:style style:name="T8" style:family="text">
-   <style:text-properties fo:font-weight="bold" officeooo:rsid="000c0377" style:font-weight-asian="bold" style:font-weight-complex="bold"/>
+   <style:text-properties officeooo:rsid="000eabb7"/>
   </style:style>
   <style:style style:name="T9" style:family="text">
-   <style:text-properties fo:font-weight="normal" officeooo:rsid="000c0377" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
+   <style:text-properties fo:color="#000000" loext:opacity="100%"/>
   </style:style>
   <style:style style:name="T10" style:family="text">
-   <style:text-properties style:font-name-complex="Arial2"/>
+   <style:text-properties fo:font-weight="bold" officeooo:rsid="000c0377" style:font-weight-asian="bold" style:font-weight-complex="bold"/>
   </style:style>
   <style:style style:name="T11" style:family="text">
-   <style:text-properties fo:font-weight="bold" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
+   <style:text-properties fo:font-weight="normal" officeooo:rsid="000c0377" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
   </style:style>
   <style:style style:name="T12" style:family="text">
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
+   <style:text-properties style:font-name-complex="Arial2"/>
   </style:style>
   <style:style style:name="T13" style:family="text">
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" officeooo:rsid="000c0377" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
+   <style:text-properties fo:font-weight="bold" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
   </style:style>
   <style:style style:name="T14" style:family="text">
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="-0.0028in" fo:language="en" fo:country="US" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
   <style:style style:name="T15" style:family="text">
-   <style:text-properties fo:color="#000000" loext:opacity="100%" style:font-name-complex="Times New Roman1"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" officeooo:rsid="000c0377" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
   <style:style style:name="T16" style:family="text">
-   <style:text-properties style:font-name-complex="Times New Roman1"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="-0.0028in" fo:language="en" fo:country="US" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
   <style:style style:name="T17" style:family="text">
+   <style:text-properties fo:color="#000000" loext:opacity="100%" style:font-name-complex="Times New Roman1"/>
+  </style:style>
+  <style:style style:name="T18" style:family="text">
+   <style:text-properties style:font-name-complex="Times New Roman1"/>
+  </style:style>
+  <style:style style:name="T19" style:family="text">
    <style:text-properties officeooo:rsid="000c0377" style:font-name-complex="Times New Roman1"/>
   </style:style>
   <style:style style:name="fr1" style:family="graphic" style:parent-style-name="Graphics">
@@ -2511,46 +2520,47 @@
    <text:p text:style-name="P5"><text:bookmark text:name="_GoBack Copy 1"/><text:span text:style-name="T1">USPD:</text:span><text:span text:style-name="T2"> US.ECO.00014-01 90</text:span></text:p>
    <text:p text:style-name="P6"><text:span text:style-name="T3">Component Name:</text:span><text:span text:style-name="T4"> Eco.FileSystemManagement1</text:span></text:p>
    <text:p text:style-name="P6"><text:span text:style-name="T5">Short Description (max 300 char.):</text:span><text:span text:style-name="T6"> implements file operations in an operating system</text:span></text:p>
-   <text:p text:style-name="P7"><text:span text:style-name="T7">Component Use Category:</text:span> MULTIPURPOSE </text:p>
-   <text:p text:style-name="P7"><text:span text:style-name="T7">Component Type:</text:span> <text:s/>SYSTEM</text:p>
+   <text:p text:style-name="P7"><text:span text:style-name="T7">Category:</text:span> <text:span text:style-name="T8">SYSTEM</text:span> </text:p>
+   <text:p text:style-name="P7"><text:span text:style-name="T7">Type:</text:span> <text:s/><text:span text:style-name="T8">COMPONENT</text:span></text:p>
    <text:p text:style-name="P7"><text:span text:style-name="T7">CID:</text:span> 00000000000000000000000046534D31</text:p>
+   <text:p text:style-name="P8"><text:span text:style-name="T7">Marketplace ID:</text:span> <text:span text:style-name="T9">e71f846d-89dc-425f-b3f8-e1884a84b77a</text:span></text:p>
    <text:p text:style-name="P7"><text:span text:style-name="T7">Marketplace URL:</text:span> https://ecoos.dev/product/e71f846d-89dc-425f-b3f8-e1884a84b77a</text:p>
    <text:p text:style-name="P7"><text:span text:style-name="T7">Status:</text:span> Draft</text:p>
    <text:p text:style-name="P7"><text:span text:style-name="T7">Modified Date:</text:span> October 19th, 2025</text:p>
    <text:p text:style-name="P7"><text:span text:style-name="T7">Version:</text:span> 1.0</text:p>
    <text:p text:style-name="P7"/>
-   <text:p text:style-name="P8"><text:span text:style-name="T8">Tags:</text:span><text:span text:style-name="T9"> File, Folder, Directory, File system, File Explorer</text:span></text:p>
-   <text:p text:style-name="P9"><text:span text:style-name="T10"/></text:p>
-   <text:p text:style-name="P10"/>
+   <text:p text:style-name="P9"><text:span text:style-name="T10">Tags:</text:span><text:span text:style-name="T11"> File, Folder, Directory, File system, File Explorer</text:span></text:p>
+   <text:p text:style-name="P10"><text:span text:style-name="T12"/></text:p>
+   <text:p text:style-name="P11"/>
    <table:table table:name="Таблица1" table:style-name="Таблица1">
     <table:table-column table:style-name="Таблица1.A" table:number-columns-repeated="2"/>
     <table:table-row table:style-name="Таблица1.1">
      <table:table-cell table:style-name="Таблица1.A1" office:value-type="string">
-      <text:p text:style-name="P11">Authors</text:p>
+      <text:p text:style-name="P12">Authors</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица1.A1" office:value-type="string">
-      <text:p text:style-name="P11">Company</text:p>
+      <text:p text:style-name="P12">Company</text:p>
      </table:table-cell>
     </table:table-row>
     <table:table-row table:style-name="Таблица1.1">
      <table:table-cell table:style-name="Таблица1.A2" office:value-type="string">
-      <text:p text:style-name="P12">Vladimir Bashev</text:p>
+      <text:p text:style-name="P13">Vladimir Bashev</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица1.B2" office:value-type="string">
-      <text:p text:style-name="P12">PEERF</text:p>
+      <text:p text:style-name="P13">PEERF</text:p>
      </table:table-cell>
     </table:table-row>
     <table:table-row table:style-name="Таблица1.1">
      <table:table-cell table:style-name="Таблица1.A3" office:value-type="string">
-      <text:p text:style-name="P12"/>
+      <text:p text:style-name="P13"/>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица1.B3" office:value-type="string">
-      <text:p text:style-name="P12"/>
+      <text:p text:style-name="P13"/>
      </table:table-cell>
     </table:table-row>
    </table:table>
-   <text:p text:style-name="P10"/>
-   <text:p text:style-name="P10"/>
+   <text:p text:style-name="P11"/>
+   <text:p text:style-name="P11"/>
    <text:table-of-content text:style-name="Sect1" text:protected="true" text:name="Table of Contents1">
     <text:table-of-content-source text:outline-level="10">
      <text:index-title-template text:style-name="Contents_20_Heading">Table of Contents</text:index-title-template>
@@ -2637,81 +2647,81 @@
     </text:table-of-content-source>
     <text:index-body>
      <text:index-title text:style-name="Sect1" text:name="Table of Contents1_Head" text:protected="true">
-      <text:p text:style-name="P13">Table of Contents</text:p>
+      <text:p text:style-name="P14">Table of Contents</text:p>
      </text:index-title>
-     <text:p text:style-name="P14"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3938_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">1. Overview<text:tab/>3</text:a></text:p>
-     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3940_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">1.1. Introduction<text:tab/>3</text:a></text:p>
-     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3942_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">1.2. Notes<text:tab/>3</text:a></text:p>
-     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3944_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">1.3. Links<text:tab/>3</text:a></text:p>
-     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3946_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2. Eco.FileSystemManagement1 Component<text:tab/>4</text:a></text:p>
-     <text:p text:style-name="P14"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3948_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3. IEcoFileSystemManagement1 Interface<text:tab/>5</text:a></text:p>
-     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3950_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1. IEcoFileSystemManagement1 interface IDL descriptor<text:tab/>5</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3952_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.1. get_FileManager function<text:tab/>5</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3954_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.2. get_DirectoryManager function<text:tab/>5</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3956_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.3. get_DriveManager function<text:tab/>5</text:a></text:p>
-     <text:p text:style-name="P14"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3958_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">4. IEcoFileInfo1 Interface<text:tab/>6</text:a></text:p>
-     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3960_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">4.1. IEcoFileInfo1 interface IDL descriptor<text:tab/>6</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3962_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">4.1.1. get_Id function<text:tab/>6</text:a></text:p>
-     <text:p text:style-name="P14"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3964_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">5. IEcoFileManager1 Interface<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3966_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">5.1. IEcoFileManager1 interface IDL descriptor<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3968_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">5.1.1. Create function<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3970_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">5.1.2. Open function<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3972_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">5.1.3. Close function<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P14"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3974_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">6. IEcoDirectoryInfo1 Interface<text:tab/>8</text:a></text:p>
-     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3976_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">6.1. IEcoDirectoryInfo1 interface IDL descriptor<text:tab/>8</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3978_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">6.1.1. get_Id function<text:tab/>8</text:a></text:p>
-     <text:p text:style-name="P14"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3980_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">7. IEcoDirectoryManager1 Interface<text:tab/>9</text:a></text:p>
-     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3982_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">7.1. IEcoDirectoryManager1 interface IDL descriptor<text:tab/>9</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3984_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">7.1.1. Create function<text:tab/>9</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3986_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">7.1.2. Delete function<text:tab/>9</text:a></text:p>
-     <text:p text:style-name="P14"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3988_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">8. IEcoDriveInfo1 Interface<text:tab/>10</text:a></text:p>
-     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3990_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">8.1. IEcoDriveInfo1 interface IDL descriptor<text:tab/>10</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3992_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">8.1.1. get_Id function<text:tab/>10</text:a></text:p>
-     <text:p text:style-name="P14"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3994_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">9. IEcoDriveManager1 Interface<text:tab/>11</text:a></text:p>
-     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3996_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">9.1. IEcoDriveManager1 IDL<text:tab/>11</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3998_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">9.1.1. get_Drive function<text:tab/>11</text:a></text:p>
-     <text:p text:style-name="P14"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4000_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10. IEcoFile1 Interface<text:tab/>12</text:a></text:p>
-     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4002_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10.1. IEcoFile1 interface IDL descriptor<text:tab/>12</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4004_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10.1.1. get_Size function<text:tab/>12</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4006_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10.1.2. get_Name function<text:tab/>12</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4008_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10.1.3. get_Info function<text:tab/>12</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4010_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10.1.4. get_Pointer function<text:tab/>13</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4012_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10.1.5. set_Pointer function<text:tab/>13</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4014_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10.1.6. Read function<text:tab/>13</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4016_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10.1.7. Write function<text:tab/>13</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4018_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10.1.8. Close function<text:tab/>13</text:a></text:p>
-     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4020_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10.1.9. get_Descriptor function<text:tab/>13</text:a></text:p>
-     <text:p text:style-name="P14"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4022_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">11. Error codes<text:tab/>13</text:a></text:p>
-     <text:p text:style-name="P14"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4024_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">Appendix A: Sample code and Training programs<text:tab/>14</text:a></text:p>
+     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3938_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">1. Overview<text:tab/>3</text:a></text:p>
+     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3940_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">1.1. Introduction<text:tab/>3</text:a></text:p>
+     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3942_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">1.2. Notes<text:tab/>3</text:a></text:p>
+     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3944_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">1.3. Links<text:tab/>3</text:a></text:p>
+     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3946_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2. Eco.FileSystemManagement1 Component<text:tab/>4</text:a></text:p>
+     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3948_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3. IEcoFileSystemManagement1 Interface<text:tab/>5</text:a></text:p>
+     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3950_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1. IEcoFileSystemManagement1 interface IDL descriptor<text:tab/>5</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3952_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.1. get_FileManager function<text:tab/>5</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3954_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.2. get_DirectoryManager function<text:tab/>5</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3956_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.3. get_DriveManager function<text:tab/>5</text:a></text:p>
+     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3958_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">4. IEcoFileInfo1 Interface<text:tab/>6</text:a></text:p>
+     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3960_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">4.1. IEcoFileInfo1 interface IDL descriptor<text:tab/>6</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3962_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">4.1.1. get_Id function<text:tab/>6</text:a></text:p>
+     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3964_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">5. IEcoFileManager1 Interface<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3966_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">5.1. IEcoFileManager1 interface IDL descriptor<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3968_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">5.1.1. Create function<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3970_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">5.1.2. Open function<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3972_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">5.1.3. Close function<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3974_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">6. IEcoDirectoryInfo1 Interface<text:tab/>8</text:a></text:p>
+     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3976_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">6.1. IEcoDirectoryInfo1 interface IDL descriptor<text:tab/>8</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3978_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">6.1.1. get_Id function<text:tab/>8</text:a></text:p>
+     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3980_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">7. IEcoDirectoryManager1 Interface<text:tab/>9</text:a></text:p>
+     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3982_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">7.1. IEcoDirectoryManager1 interface IDL descriptor<text:tab/>9</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3984_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">7.1.1. Create function<text:tab/>9</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3986_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">7.1.2. Delete function<text:tab/>9</text:a></text:p>
+     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3988_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">8. IEcoDriveInfo1 Interface<text:tab/>10</text:a></text:p>
+     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3990_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">8.1. IEcoDriveInfo1 interface IDL descriptor<text:tab/>10</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3992_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">8.1.1. get_Id function<text:tab/>10</text:a></text:p>
+     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3994_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">9. IEcoDriveManager1 Interface<text:tab/>11</text:a></text:p>
+     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3996_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">9.1. IEcoDriveManager1 IDL<text:tab/>11</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc3998_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">9.1.1. get_Drive function<text:tab/>11</text:a></text:p>
+     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4000_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10. IEcoFile1 Interface<text:tab/>12</text:a></text:p>
+     <text:p text:style-name="P16"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4002_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10.1. IEcoFile1 interface IDL descriptor<text:tab/>12</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4004_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10.1.1. get_Size function<text:tab/>12</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4006_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10.1.2. get_Name function<text:tab/>12</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4008_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10.1.3. get_Info function<text:tab/>12</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4010_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10.1.4. get_Pointer function<text:tab/>13</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4012_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10.1.5. set_Pointer function<text:tab/>13</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4014_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10.1.6. Read function<text:tab/>13</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4016_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10.1.7. Write function<text:tab/>13</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4018_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10.1.8. Close function<text:tab/>13</text:a></text:p>
+     <text:p text:style-name="P17"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4020_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">10.1.9. get_Descriptor function<text:tab/>13</text:a></text:p>
+     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4022_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">11. Error codes<text:tab/>13</text:a></text:p>
+     <text:p text:style-name="P15"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4024_1501483490" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">Appendix A: Sample code and Training programs<text:tab/>14</text:a></text:p>
     </text:index-body>
    </text:table-of-content>
-   <text:p text:style-name="P10"/>
-   <text:h text:style-name="P17" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3938_1501483490"/><text:soft-page-break/><text:span text:style-name="T11">1. Overview</text:span><text:bookmark-end text:name="__RefHeading___Toc3938_1501483490"/></text:h>
-   <text:p text:style-name="P18">This document describes the requirements for the implementation of Eco.FileSystemManagement1 component. (Component)</text:p>
-   <text:h text:style-name="P19" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3940_1501483490"/>1.1. Introduction<text:bookmark-end text:name="__RefHeading___Toc3940_1501483490"/></text:h>
-   <text:p text:style-name="P18">Description.</text:p>
-   <text:p text:style-name="P10"/>
-   <text:h text:style-name="P20" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3942_1501483490"/>1.2. Notes<text:bookmark-end text:name="__RefHeading___Toc3942_1501483490"/></text:h>
+   <text:p text:style-name="P11"/>
+   <text:h text:style-name="P18" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3938_1501483490"/><text:soft-page-break/><text:span text:style-name="T13">1. Overview</text:span><text:bookmark-end text:name="__RefHeading___Toc3938_1501483490"/></text:h>
+   <text:p text:style-name="P19">This document describes the requirements for the implementation of Eco.FileSystemManagement1 component. (Component)</text:p>
+   <text:h text:style-name="P20" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3940_1501483490"/>1.1. Introduction<text:bookmark-end text:name="__RefHeading___Toc3940_1501483490"/></text:h>
+   <text:p text:style-name="P19">Description.</text:p>
+   <text:p text:style-name="P11"/>
+   <text:h text:style-name="P21" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3942_1501483490"/>1.2. Notes<text:bookmark-end text:name="__RefHeading___Toc3942_1501483490"/></text:h>
    <text:list text:style-name="WWNum2">
     <text:list-item>
-     <text:p text:style-name="P21">Keywords</text:p>
+     <text:p text:style-name="P22">Keywords</text:p>
     </text:list-item>
    </text:list>
-   <text:p text:style-name="P22"/>
-   <text:p text:style-name="P22"/>
-   <text:h text:style-name="P19" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3944_1501483490"/>1.3. Links<text:bookmark-end text:name="__RefHeading___Toc3944_1501483490"/></text:h>
-   <text:p text:style-name="P18">This paragraph contains links to information to help you understand this document: </text:p>
-   <text:p text:style-name="Standard"><text:span text:style-name="T12">Available </text:span><text:span text:style-name="T13">in Marketplace at url</text:span><text:span text:style-name="T12">: </text:span><text:span text:style-name="Internet_20_link"><text:span text:style-name="T14">https://ecoos.dev/product/e71f846d-89dc-425f-b3f8-e1884a84b77a</text:span></text:span></text:p>
    <text:p text:style-name="P23"/>
-   <text:h text:style-name="P24" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3946_1501483490"/>2. Eco.FileSystemManagement1 Component<text:bookmark-end text:name="__RefHeading___Toc3946_1501483490"/></text:h>
-   <text:p text:style-name="P18"/>
-   <text:p text:style-name="P25"><text:span text:style-name="T15">The Eco.FileSystemManagement1 component is</text:span><text:span text:style-name="T16"> </text:span><text:span text:style-name="T17">designated for OS file system operations</text:span></text:p>
-   <text:p text:style-name="P25"><text:span text:style-name="T16">The component has the following </text:span><text:span text:style-name="T17">features</text:span><text:span text:style-name="T16">: </text:span><text:span text:style-name="T17">TBA</text:span></text:p>
-   <text:p text:style-name="P26"/>
-   <text:h text:style-name="P27" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3948_1501483490"/>3. IEcoFileSystemManagement1 Interface<text:bookmark-end text:name="__RefHeading___Toc3948_1501483490"/></text:h>
-   <text:h text:style-name="P28" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3950_1501483490"/>3.1. IEcoFileSystemManagement1 interface IDL descriptor<text:bookmark-end text:name="__RefHeading___Toc3950_1501483490"/></text:h>
-   <text:p text:style-name="P26"/>
-   <text:p text:style-name="P26"/>
+   <text:p text:style-name="P23"/>
+   <text:h text:style-name="P20" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3944_1501483490"/>1.3. Links<text:bookmark-end text:name="__RefHeading___Toc3944_1501483490"/></text:h>
+   <text:p text:style-name="P19">This paragraph contains links to information to help you understand this document: </text:p>
+   <text:p text:style-name="Standard"><text:span text:style-name="T14">Available </text:span><text:span text:style-name="T15">in Marketplace at url</text:span><text:span text:style-name="T14">: </text:span><text:span text:style-name="Internet_20_link"><text:span text:style-name="T16">https://ecoos.dev/product/e71f846d-89dc-425f-b3f8-e1884a84b77a</text:span></text:span></text:p>
+   <text:p text:style-name="P24"/>
+   <text:h text:style-name="P25" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3946_1501483490"/>2. Eco.FileSystemManagement1 Component<text:bookmark-end text:name="__RefHeading___Toc3946_1501483490"/></text:h>
+   <text:p text:style-name="P19"/>
+   <text:p text:style-name="P26"><text:span text:style-name="T17">The Eco.FileSystemManagement1 component is</text:span><text:span text:style-name="T18"> </text:span><text:span text:style-name="T19">designated for OS file system operations</text:span></text:p>
+   <text:p text:style-name="P26"><text:span text:style-name="T18">The component has the following </text:span><text:span text:style-name="T19">features</text:span><text:span text:style-name="T18">: </text:span><text:span text:style-name="T19">TBA</text:span></text:p>
+   <text:p text:style-name="P27"/>
+   <text:h text:style-name="P28" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3948_1501483490"/>3. IEcoFileSystemManagement1 Interface<text:bookmark-end text:name="__RefHeading___Toc3948_1501483490"/></text:h>
+   <text:h text:style-name="P29" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3950_1501483490"/>3.1. IEcoFileSystemManagement1 interface IDL descriptor<text:bookmark-end text:name="__RefHeading___Toc3950_1501483490"/></text:h>
+   <text:p text:style-name="P27"/>
+   <text:p text:style-name="P27"/>
    <text:p text:style-name="code_5f_cpp">import &quot;IEcoBase1.idl&quot;</text:p>
    <text:p text:style-name="code_5f_cpp">import &quot;IEcoFileManager1.idl&quot;</text:p>
    <text:p text:style-name="code_5f_cpp">import &quot;IEcoDirectoryManager1.idl&quot;</text:p>
@@ -2730,32 +2740,32 @@
    <text:p text:style-name="code_5f_cpp">IEcoDriveManager1*<text:tab/>get_DriveManager<text:tab/>([in] void);</text:p>
    <text:p text:style-name="code_5f_cpp"><text:tab/><text:tab/></text:p>
    <text:p text:style-name="code_5f_cpp">}<text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P26"/>
-   <text:list xml:id="list1201316437" text:style-name="WWNum1">
+   <text:p text:style-name="P27"/>
+   <text:list xml:id="list727570293" text:style-name="WWNum1">
     <text:list-item>
      <text:list>
       <text:list-item>
        <text:list>
         <text:list-header>
-         <text:h text:style-name="P29" text:outline-level="1"/>
+         <text:h text:style-name="P30" text:outline-level="1"/>
         </text:list-header>
        </text:list>
       </text:list-item>
      </text:list>
     </text:list-item>
    </text:list>
-   <text:h text:style-name="P30" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3952_1501483490"/>3.1.1. get_FileManager function<text:bookmark-end text:name="__RefHeading___Toc3952_1501483490"/></text:h>
-   <text:p text:style-name="P31">The function </text:p>
-   <text:h text:style-name="P30" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3954_1501483490"/>3.1.2. get_DirectoryManager function<text:bookmark-end text:name="__RefHeading___Toc3954_1501483490"/></text:h>
-   <text:p text:style-name="P31">The function</text:p>
-   <text:h text:style-name="P30" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3956_1501483490"/>3.1.3. get_DriveManager function<text:bookmark-end text:name="__RefHeading___Toc3956_1501483490"/></text:h>
-   <text:p text:style-name="P31">The function</text:p>
-   <text:p text:style-name="P31"/>
-   <text:p text:style-name="P26"/>
-   <text:h text:style-name="P27" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3958_1501483490"/>4. IEcoFileInfo1 Interface<text:bookmark-end text:name="__RefHeading___Toc3958_1501483490"/></text:h>
-   <text:h text:style-name="P28" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3960_1501483490"/>4.1. IEcoFileInfo1 interface IDL descriptor<text:bookmark-end text:name="__RefHeading___Toc3960_1501483490"/></text:h>
+   <text:h text:style-name="P31" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3952_1501483490"/>3.1.1. get_FileManager function<text:bookmark-end text:name="__RefHeading___Toc3952_1501483490"/></text:h>
+   <text:p text:style-name="P32">The function </text:p>
+   <text:h text:style-name="P31" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3954_1501483490"/>3.1.2. get_DirectoryManager function<text:bookmark-end text:name="__RefHeading___Toc3954_1501483490"/></text:h>
+   <text:p text:style-name="P32">The function</text:p>
+   <text:h text:style-name="P31" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3956_1501483490"/>3.1.3. get_DriveManager function<text:bookmark-end text:name="__RefHeading___Toc3956_1501483490"/></text:h>
+   <text:p text:style-name="P32">The function</text:p>
    <text:p text:style-name="P32"/>
-   <text:p text:style-name="P26"/>
+   <text:p text:style-name="P27"/>
+   <text:h text:style-name="P28" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3958_1501483490"/>4. IEcoFileInfo1 Interface<text:bookmark-end text:name="__RefHeading___Toc3958_1501483490"/></text:h>
+   <text:h text:style-name="P29" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3960_1501483490"/>4.1. IEcoFileInfo1 interface IDL descriptor<text:bookmark-end text:name="__RefHeading___Toc3960_1501483490"/></text:h>
+   <text:p text:style-name="P33"/>
+   <text:p text:style-name="P27"/>
    <text:p text:style-name="code_5f_cpp">import &quot;IEcoBase1.idl&quot;</text:p>
    <text:p text:style-name="code_5f_cpp"/>
    <text:p text:style-name="code_5f_cpp">[</text:p>
@@ -2768,26 +2778,26 @@
    <text:p text:style-name="code_5f_cpp"/>
    <text:p text:style-name="code_5f_cpp">}<text:tab/><text:tab/></text:p>
    <text:p text:style-name="code_5f_cpp"/>
-   <text:list xml:id="list3856647691969" text:continue-numbering="true" text:style-name="WWNum1">
+   <text:list xml:id="list11703953012215" text:continue-numbering="true" text:style-name="WWNum1">
     <text:list-item>
      <text:list>
       <text:list-item>
        <text:list>
         <text:list-header>
-         <text:h text:style-name="P29" text:outline-level="1"/>
+         <text:h text:style-name="P30" text:outline-level="1"/>
         </text:list-header>
        </text:list>
       </text:list-item>
      </text:list>
     </text:list-item>
    </text:list>
-   <text:h text:style-name="P30" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3962_1501483490"/>4.1.1. get_Id function<text:bookmark-end text:name="__RefHeading___Toc3962_1501483490"/></text:h>
-   <text:p text:style-name="P31">The function </text:p>
-   <text:p text:style-name="P26"/>
-   <text:h text:style-name="P27" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3964_1501483490"/>5. IEcoFileManager1 Interface<text:bookmark-end text:name="__RefHeading___Toc3964_1501483490"/></text:h>
-   <text:h text:style-name="P28" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3966_1501483490"/>5.1. IEcoFileManager1 interface IDL descriptor<text:bookmark-end text:name="__RefHeading___Toc3966_1501483490"/></text:h>
-   <text:p text:style-name="P26"/>
-   <text:p text:style-name="P26"/>
+   <text:h text:style-name="P31" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3962_1501483490"/>4.1.1. get_Id function<text:bookmark-end text:name="__RefHeading___Toc3962_1501483490"/></text:h>
+   <text:p text:style-name="P32">The function </text:p>
+   <text:p text:style-name="P27"/>
+   <text:h text:style-name="P28" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3964_1501483490"/>5. IEcoFileManager1 Interface<text:bookmark-end text:name="__RefHeading___Toc3964_1501483490"/></text:h>
+   <text:h text:style-name="P29" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3966_1501483490"/>5.1. IEcoFileManager1 interface IDL descriptor<text:bookmark-end text:name="__RefHeading___Toc3966_1501483490"/></text:h>
+   <text:p text:style-name="P27"/>
+   <text:p text:style-name="P27"/>
    <text:p text:style-name="code_5f_cpp">import &quot;IEcoBase1.idl&quot;</text:p>
    <text:p text:style-name="code_5f_cpp">import &quot;IEcoFile1.idl&quot;</text:p>
    <text:p text:style-name="code_5f_cpp"/>
@@ -2804,20 +2814,20 @@
    <text:p text:style-name="code_5f_cpp">int32_t<text:tab/>Close<text:tab/>([in] IEcoFile1* pIFile);</text:p>
    <text:p text:style-name="code_5f_cpp"><text:tab/><text:tab/></text:p>
    <text:p text:style-name="code_5f_cpp">}<text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P26"/>
-   <text:p text:style-name="P33"/>
-   <text:h text:style-name="P34" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3968_1501483490"/>5.1.1. Create function<text:bookmark-end text:name="__RefHeading___Toc3968_1501483490"/></text:h>
-   <text:p text:style-name="P31">The function </text:p>
-   <text:h text:style-name="P30" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3970_1501483490"/>5.1.2. Open function<text:bookmark-end text:name="__RefHeading___Toc3970_1501483490"/></text:h>
-   <text:p text:style-name="P31">The function</text:p>
-   <text:h text:style-name="P30" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3972_1501483490"/>5.1.3. Close function<text:bookmark-end text:name="__RefHeading___Toc3972_1501483490"/></text:h>
-   <text:p text:style-name="P31">The function</text:p>
-   <text:p text:style-name="P31"/>
-   <text:p text:style-name="P26"/>
-   <text:h text:style-name="P27" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3974_1501483490"/>6. IEcoDirectoryInfo1 Interface<text:bookmark-end text:name="__RefHeading___Toc3974_1501483490"/></text:h>
-   <text:h text:style-name="P28" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3976_1501483490"/>6.1. IEcoDirectoryInfo1 interface IDL descriptor<text:bookmark-end text:name="__RefHeading___Toc3976_1501483490"/></text:h>
-   <text:p text:style-name="P26"/>
-   <text:p text:style-name="P26"/>
+   <text:p text:style-name="P27"/>
+   <text:p text:style-name="P34"/>
+   <text:h text:style-name="P35" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3968_1501483490"/>5.1.1. Create function<text:bookmark-end text:name="__RefHeading___Toc3968_1501483490"/></text:h>
+   <text:p text:style-name="P32">The function </text:p>
+   <text:h text:style-name="P31" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3970_1501483490"/>5.1.2. Open function<text:bookmark-end text:name="__RefHeading___Toc3970_1501483490"/></text:h>
+   <text:p text:style-name="P32">The function</text:p>
+   <text:h text:style-name="P31" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3972_1501483490"/>5.1.3. Close function<text:bookmark-end text:name="__RefHeading___Toc3972_1501483490"/></text:h>
+   <text:p text:style-name="P32">The function</text:p>
+   <text:p text:style-name="P32"/>
+   <text:p text:style-name="P27"/>
+   <text:h text:style-name="P28" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3974_1501483490"/>6. IEcoDirectoryInfo1 Interface<text:bookmark-end text:name="__RefHeading___Toc3974_1501483490"/></text:h>
+   <text:h text:style-name="P29" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3976_1501483490"/>6.1. IEcoDirectoryInfo1 interface IDL descriptor<text:bookmark-end text:name="__RefHeading___Toc3976_1501483490"/></text:h>
+   <text:p text:style-name="P27"/>
+   <text:p text:style-name="P27"/>
    <text:p text:style-name="code_5f_cpp">import &quot;IEcoBase1.idl&quot;</text:p>
    <text:p text:style-name="code_5f_cpp"/>
    <text:p text:style-name="code_5f_cpp">[</text:p>
@@ -2829,298 +2839,298 @@
    <text:p text:style-name="code_5f_cpp">UGUID*<text:tab/>get_Id<text:tab/>([in] void);</text:p>
    <text:p text:style-name="code_5f_cpp"><text:tab/><text:tab/></text:p>
    <text:p text:style-name="code_5f_cpp">}<text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P26"/>
-   <text:list xml:id="list3857499463570" text:continue-numbering="true" text:style-name="WWNum1">
+   <text:p text:style-name="P27"/>
+   <text:list xml:id="list11705316044497" text:continue-numbering="true" text:style-name="WWNum1">
     <text:list-item>
      <text:list>
       <text:list-item>
        <text:list>
         <text:list-header>
-         <text:h text:style-name="P29" text:outline-level="1"/>
+         <text:h text:style-name="P30" text:outline-level="1"/>
         </text:list-header>
        </text:list>
       </text:list-item>
      </text:list>
     </text:list-item>
    </text:list>
-   <text:h text:style-name="P30" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3978_1501483490"/>6.1.1. get_Id function<text:bookmark-end text:name="__RefHeading___Toc3978_1501483490"/></text:h>
-   <text:p text:style-name="P31">The function </text:p>
-   <text:p text:style-name="P31"/>
-   <text:p text:style-name="P26"/>
-   <text:h text:style-name="P35" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3980_1501483490"/>7. IEcoDirectoryManager1 Interface<text:bookmark-end text:name="__RefHeading___Toc3980_1501483490"/></text:h>
-   <text:h text:style-name="P20" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3982_1501483490"/>7.1. IEcoDirectoryManager1 interface IDL descriptor<text:bookmark-end text:name="__RefHeading___Toc3982_1501483490"/></text:h>
-   <text:p text:style-name="P26"/>
-   <text:p text:style-name="P26"/>
-   <text:p text:style-name="P36">import &quot;IEcoBase1.idl&quot;</text:p>
-   <text:p text:style-name="P36">import &quot;IEcoDirectoryInfo1.idl&quot;</text:p>
-   <text:p text:style-name="P36"/>
-   <text:p text:style-name="P36">[</text:p>
-   <text:p text:style-name="P36">object,</text:p>
-   <text:p text:style-name="P36">uguid(00000000-0000-0000-0000-C00000000107),</text:p>
-   <text:p text:style-name="P36">]</text:p>
-   <text:p text:style-name="P36">interface IEcoDirectoryManager1 : IEcoUnknown {</text:p>
-   <text:p text:style-name="P36"/>
-   <text:p text:style-name="P36">IEcoDirectoryInfo1*<text:tab/>Create<text:tab/>([in] chart_t* pszName);</text:p>
-   <text:p text:style-name="P36"><text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P36">int32_t<text:tab/>Delete<text:tab/>([in] chart_t* pszName);</text:p>
-   <text:p text:style-name="P36"><text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P36">}<text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P26"/>
-   <text:p text:style-name="P26"/>
-   <text:p text:style-name="P26"/>
-   <text:h text:style-name="P37" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3984_1501483490"/>7.1.1. Create function<text:bookmark-end text:name="__RefHeading___Toc3984_1501483490"/></text:h>
-   <text:p text:style-name="P31">The function </text:p>
-   <text:h text:style-name="P37" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3986_1501483490"/>7.1.2. Delete function<text:bookmark-end text:name="__RefHeading___Toc3986_1501483490"/></text:h>
-   <text:p text:style-name="P31">The function</text:p>
-   <text:p text:style-name="P31"/>
-   <text:p text:style-name="P26"/>
-   <text:h text:style-name="P35" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3988_1501483490"/>8. IEcoDriveInfo1 Interface<text:bookmark-end text:name="__RefHeading___Toc3988_1501483490"/></text:h>
-   <text:h text:style-name="P20" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3990_1501483490"/>8.1. IEcoDriveInfo1 interface IDL descriptor<text:bookmark-end text:name="__RefHeading___Toc3990_1501483490"/></text:h>
-   <text:p text:style-name="P26"/>
-   <text:p text:style-name="P26"/>
-   <text:p text:style-name="P36">import &quot;IEcoBase1.idl&quot;</text:p>
-   <text:p text:style-name="P36"/>
-   <text:p text:style-name="P36">[</text:p>
-   <text:p text:style-name="P36">object,</text:p>
-   <text:p text:style-name="P36">uguid(00000000-0000-0000-0000-C00000000106),</text:p>
-   <text:p text:style-name="P36">]</text:p>
-   <text:p text:style-name="P36">interface IEcoDriveInfo1 : IEcoUnknown {</text:p>
-   <text:p text:style-name="P36"/>
-   <text:p text:style-name="P36">UGUID*<text:tab/>get_Id<text:tab/>([in] void);</text:p>
-   <text:p text:style-name="P36"><text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P36">}<text:tab/><text:tab/></text:p>
-   <text:list xml:id="list3856995034392" text:continue-numbering="true" text:style-name="WWNum1">
+   <text:h text:style-name="P31" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3978_1501483490"/>6.1.1. get_Id function<text:bookmark-end text:name="__RefHeading___Toc3978_1501483490"/></text:h>
+   <text:p text:style-name="P32">The function </text:p>
+   <text:p text:style-name="P32"/>
+   <text:p text:style-name="P27"/>
+   <text:h text:style-name="P36" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3980_1501483490"/>7. IEcoDirectoryManager1 Interface<text:bookmark-end text:name="__RefHeading___Toc3980_1501483490"/></text:h>
+   <text:h text:style-name="P21" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3982_1501483490"/>7.1. IEcoDirectoryManager1 interface IDL descriptor<text:bookmark-end text:name="__RefHeading___Toc3982_1501483490"/></text:h>
+   <text:p text:style-name="P27"/>
+   <text:p text:style-name="P27"/>
+   <text:p text:style-name="P37">import &quot;IEcoBase1.idl&quot;</text:p>
+   <text:p text:style-name="P37">import &quot;IEcoDirectoryInfo1.idl&quot;</text:p>
+   <text:p text:style-name="P37"/>
+   <text:p text:style-name="P37">[</text:p>
+   <text:p text:style-name="P37">object,</text:p>
+   <text:p text:style-name="P37">uguid(00000000-0000-0000-0000-C00000000107),</text:p>
+   <text:p text:style-name="P37">]</text:p>
+   <text:p text:style-name="P37">interface IEcoDirectoryManager1 : IEcoUnknown {</text:p>
+   <text:p text:style-name="P37"/>
+   <text:p text:style-name="P37">IEcoDirectoryInfo1*<text:tab/>Create<text:tab/>([in] chart_t* pszName);</text:p>
+   <text:p text:style-name="P37"><text:tab/><text:tab/></text:p>
+   <text:p text:style-name="P37">int32_t<text:tab/>Delete<text:tab/>([in] chart_t* pszName);</text:p>
+   <text:p text:style-name="P37"><text:tab/><text:tab/></text:p>
+   <text:p text:style-name="P37">}<text:tab/><text:tab/></text:p>
+   <text:p text:style-name="P27"/>
+   <text:p text:style-name="P27"/>
+   <text:p text:style-name="P27"/>
+   <text:h text:style-name="P38" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3984_1501483490"/>7.1.1. Create function<text:bookmark-end text:name="__RefHeading___Toc3984_1501483490"/></text:h>
+   <text:p text:style-name="P32">The function </text:p>
+   <text:h text:style-name="P38" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3986_1501483490"/>7.1.2. Delete function<text:bookmark-end text:name="__RefHeading___Toc3986_1501483490"/></text:h>
+   <text:p text:style-name="P32">The function</text:p>
+   <text:p text:style-name="P32"/>
+   <text:p text:style-name="P27"/>
+   <text:h text:style-name="P36" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3988_1501483490"/>8. IEcoDriveInfo1 Interface<text:bookmark-end text:name="__RefHeading___Toc3988_1501483490"/></text:h>
+   <text:h text:style-name="P21" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3990_1501483490"/>8.1. IEcoDriveInfo1 interface IDL descriptor<text:bookmark-end text:name="__RefHeading___Toc3990_1501483490"/></text:h>
+   <text:p text:style-name="P27"/>
+   <text:p text:style-name="P27"/>
+   <text:p text:style-name="P37">import &quot;IEcoBase1.idl&quot;</text:p>
+   <text:p text:style-name="P37"/>
+   <text:p text:style-name="P37">[</text:p>
+   <text:p text:style-name="P37">object,</text:p>
+   <text:p text:style-name="P37">uguid(00000000-0000-0000-0000-C00000000106),</text:p>
+   <text:p text:style-name="P37">]</text:p>
+   <text:p text:style-name="P37">interface IEcoDriveInfo1 : IEcoUnknown {</text:p>
+   <text:p text:style-name="P37"/>
+   <text:p text:style-name="P37">UGUID*<text:tab/>get_Id<text:tab/>([in] void);</text:p>
+   <text:p text:style-name="P37"><text:tab/><text:tab/></text:p>
+   <text:p text:style-name="P37">}<text:tab/><text:tab/></text:p>
+   <text:list xml:id="list11704318609619" text:continue-numbering="true" text:style-name="WWNum1">
     <text:list-item>
      <text:list>
       <text:list-item>
        <text:list>
         <text:list-header>
-         <text:h text:style-name="P29" text:outline-level="1"/>
-         <text:h text:style-name="P38" text:outline-level="1"/>
+         <text:h text:style-name="P30" text:outline-level="1"/>
+         <text:h text:style-name="P39" text:outline-level="1"/>
         </text:list-header>
        </text:list>
       </text:list-item>
      </text:list>
     </text:list-item>
    </text:list>
-   <text:h text:style-name="P37" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3992_1501483490"/>8.1.1. get_Id function<text:bookmark-end text:name="__RefHeading___Toc3992_1501483490"/></text:h>
-   <text:p text:style-name="P31">The function </text:p>
-   <text:p text:style-name="P31"/>
-   <text:p text:style-name="P26"/>
-   <text:h text:style-name="P35" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3994_1501483490"/>9. IEcoDriveManager1 Interface<text:bookmark-end text:name="__RefHeading___Toc3994_1501483490"/></text:h>
-   <text:h text:style-name="P19" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3996_1501483490"/>9.1. IEcoDriveManager1 IDL<text:bookmark-end text:name="__RefHeading___Toc3996_1501483490"/></text:h>
-   <text:p text:style-name="P26"/>
-   <text:p text:style-name="P26"/>
-   <text:p text:style-name="P36">import &quot;IEcoBase1.idl&quot;</text:p>
-   <text:p text:style-name="P36">import &quot;IEcoDriveInfo1.idl&quot;</text:p>
-   <text:p text:style-name="P36"/>
-   <text:p text:style-name="P36">[</text:p>
-   <text:p text:style-name="P36">object,</text:p>
-   <text:p text:style-name="P36">uguid(00000000-0000-0000-0000-C00000000105),</text:p>
-   <text:p text:style-name="P36">]</text:p>
-   <text:p text:style-name="P36">interface IEcoDriveManager1 : IEcoUnknown {</text:p>
-   <text:p text:style-name="P36"/>
-   <text:p text:style-name="P36">IEcoDriveInfo1*<text:tab/>get_Drive<text:tab/>([in] char_t* pszName);</text:p>
-   <text:p text:style-name="P36"><text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P36">}<text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P26"/>
-   <text:p text:style-name="P26"/>
-   <text:list xml:id="list3856128378347" text:continue-numbering="true" text:style-name="WWNum1">
+   <text:h text:style-name="P38" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3992_1501483490"/>8.1.1. get_Id function<text:bookmark-end text:name="__RefHeading___Toc3992_1501483490"/></text:h>
+   <text:p text:style-name="P32">The function </text:p>
+   <text:p text:style-name="P32"/>
+   <text:p text:style-name="P27"/>
+   <text:h text:style-name="P36" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3994_1501483490"/>9. IEcoDriveManager1 Interface<text:bookmark-end text:name="__RefHeading___Toc3994_1501483490"/></text:h>
+   <text:h text:style-name="P20" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3996_1501483490"/>9.1. IEcoDriveManager1 IDL<text:bookmark-end text:name="__RefHeading___Toc3996_1501483490"/></text:h>
+   <text:p text:style-name="P27"/>
+   <text:p text:style-name="P27"/>
+   <text:p text:style-name="P37">import &quot;IEcoBase1.idl&quot;</text:p>
+   <text:p text:style-name="P37">import &quot;IEcoDriveInfo1.idl&quot;</text:p>
+   <text:p text:style-name="P37"/>
+   <text:p text:style-name="P37">[</text:p>
+   <text:p text:style-name="P37">object,</text:p>
+   <text:p text:style-name="P37">uguid(00000000-0000-0000-0000-C00000000105),</text:p>
+   <text:p text:style-name="P37">]</text:p>
+   <text:p text:style-name="P37">interface IEcoDriveManager1 : IEcoUnknown {</text:p>
+   <text:p text:style-name="P37"/>
+   <text:p text:style-name="P37">IEcoDriveInfo1*<text:tab/>get_Drive<text:tab/>([in] char_t* pszName);</text:p>
+   <text:p text:style-name="P37"><text:tab/><text:tab/></text:p>
+   <text:p text:style-name="P37">}<text:tab/><text:tab/></text:p>
+   <text:p text:style-name="P27"/>
+   <text:p text:style-name="P27"/>
+   <text:list xml:id="list11704212936658" text:continue-numbering="true" text:style-name="WWNum1">
     <text:list-item>
      <text:list>
       <text:list-item>
        <text:list>
         <text:list-header>
-         <text:h text:style-name="P29" text:outline-level="1"/>
+         <text:h text:style-name="P30" text:outline-level="1"/>
         </text:list-header>
        </text:list>
       </text:list-item>
      </text:list>
     </text:list-item>
    </text:list>
-   <text:h text:style-name="P37" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3998_1501483490"/>9.1.1. get_Drive function<text:bookmark-end text:name="__RefHeading___Toc3998_1501483490"/></text:h>
-   <text:p text:style-name="P31">The function </text:p>
-   <text:p text:style-name="P31"/>
-   <text:p text:style-name="P26"/>
-   <text:h text:style-name="P35" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4000_1501483490"/>10. IEcoFile1 Interface<text:bookmark-end text:name="__RefHeading___Toc4000_1501483490"/></text:h>
-   <text:h text:style-name="P39" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4002_1501483490"/>10.1. IEcoFile1 interface IDL descriptor<text:bookmark-end text:name="__RefHeading___Toc4002_1501483490"/></text:h>
-   <text:p text:style-name="P26"/>
-   <text:p text:style-name="P26"/>
-   <text:p text:style-name="P36">import &quot;IEcoBase1.idl&quot;</text:p>
-   <text:p text:style-name="P36">import &quot;IEcoFileInfo1.idl&quot;</text:p>
-   <text:p text:style-name="P36"/>
-   <text:p text:style-name="P36">[</text:p>
-   <text:p text:style-name="P36">object,</text:p>
-   <text:p text:style-name="P36">uguid(00000000-0000-0000-0000-C00000000104),</text:p>
-   <text:p text:style-name="P36">]</text:p>
-   <text:p text:style-name="P36">interface IEcoFile1 : IEcoUnknown {</text:p>
-   <text:p text:style-name="P36"/>
-   <text:p text:style-name="P36">uint32_t<text:tab/>get_Size<text:tab/>([in] void);</text:p>
-   <text:p text:style-name="P36"><text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P36">char_t*<text:tab/>get_Name<text:tab/>([in] void);</text:p>
-   <text:p text:style-name="P36"><text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P36">IEcoFileInfo1*<text:tab/>get_Info<text:tab/>([in] void);</text:p>
-   <text:p text:style-name="P36"><text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P36">uint32_t<text:tab/>get_Pointer<text:tab/>([in] void);</text:p>
-   <text:p text:style-name="P36"><text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P36">void<text:tab/>set_Pointer<text:tab/>([in] uint32_t value);</text:p>
-   <text:p text:style-name="P36"><text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P36">int16_t<text:tab/>Read<text:tab/>([in] voidptr_t pv,</text:p>
-   <text:p text:style-name="P36"><text:s/>[in | out] uint32_t* pSize);</text:p>
-   <text:p text:style-name="P36"><text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P36">int16_t<text:tab/>Write<text:tab/>([in] voidptr_t pv,</text:p>
-   <text:p text:style-name="P36"><text:s/>[in | out] uint32_t* pSize);</text:p>
-   <text:p text:style-name="P36"><text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P36">int16_t<text:tab/>Close<text:tab/>([in] void);</text:p>
-   <text:p text:style-name="P36"><text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P36">descriptor_t<text:tab/>get_Descriptor<text:tab/>([in] void);</text:p>
-   <text:p text:style-name="P36"><text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P36">}<text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P26"/>
-   <text:p text:style-name="P26"/>
-   <text:list xml:id="list3855547991628" text:continue-numbering="true" text:style-name="WWNum1">
+   <text:h text:style-name="P38" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc3998_1501483490"/>9.1.1. get_Drive function<text:bookmark-end text:name="__RefHeading___Toc3998_1501483490"/></text:h>
+   <text:p text:style-name="P32">The function </text:p>
+   <text:p text:style-name="P32"/>
+   <text:p text:style-name="P27"/>
+   <text:h text:style-name="P36" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4000_1501483490"/>10. IEcoFile1 Interface<text:bookmark-end text:name="__RefHeading___Toc4000_1501483490"/></text:h>
+   <text:h text:style-name="P40" text:outline-level="2" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4002_1501483490"/>10.1. IEcoFile1 interface IDL descriptor<text:bookmark-end text:name="__RefHeading___Toc4002_1501483490"/></text:h>
+   <text:p text:style-name="P27"/>
+   <text:p text:style-name="P27"/>
+   <text:p text:style-name="P37">import &quot;IEcoBase1.idl&quot;</text:p>
+   <text:p text:style-name="P37">import &quot;IEcoFileInfo1.idl&quot;</text:p>
+   <text:p text:style-name="P37"/>
+   <text:p text:style-name="P37">[</text:p>
+   <text:p text:style-name="P37">object,</text:p>
+   <text:p text:style-name="P37">uguid(00000000-0000-0000-0000-C00000000104),</text:p>
+   <text:p text:style-name="P37">]</text:p>
+   <text:p text:style-name="P37">interface IEcoFile1 : IEcoUnknown {</text:p>
+   <text:p text:style-name="P37"/>
+   <text:p text:style-name="P37">uint32_t<text:tab/>get_Size<text:tab/>([in] void);</text:p>
+   <text:p text:style-name="P37"><text:tab/><text:tab/></text:p>
+   <text:p text:style-name="P37">char_t*<text:tab/>get_Name<text:tab/>([in] void);</text:p>
+   <text:p text:style-name="P37"><text:tab/><text:tab/></text:p>
+   <text:p text:style-name="P37">IEcoFileInfo1*<text:tab/>get_Info<text:tab/>([in] void);</text:p>
+   <text:p text:style-name="P37"><text:tab/><text:tab/></text:p>
+   <text:p text:style-name="P37">uint32_t<text:tab/>get_Pointer<text:tab/>([in] void);</text:p>
+   <text:p text:style-name="P37"><text:tab/><text:tab/></text:p>
+   <text:p text:style-name="P37">void<text:tab/>set_Pointer<text:tab/>([in] uint32_t value);</text:p>
+   <text:p text:style-name="P37"><text:tab/><text:tab/></text:p>
+   <text:p text:style-name="P37">int16_t<text:tab/>Read<text:tab/>([in] voidptr_t pv,</text:p>
+   <text:p text:style-name="P37"><text:s/>[in | out] uint32_t* pSize);</text:p>
+   <text:p text:style-name="P37"><text:tab/><text:tab/></text:p>
+   <text:p text:style-name="P37">int16_t<text:tab/>Write<text:tab/>([in] voidptr_t pv,</text:p>
+   <text:p text:style-name="P37"><text:s/>[in | out] uint32_t* pSize);</text:p>
+   <text:p text:style-name="P37"><text:tab/><text:tab/></text:p>
+   <text:p text:style-name="P37">int16_t<text:tab/>Close<text:tab/>([in] void);</text:p>
+   <text:p text:style-name="P37"><text:tab/><text:tab/></text:p>
+   <text:p text:style-name="P37">descriptor_t<text:tab/>get_Descriptor<text:tab/>([in] void);</text:p>
+   <text:p text:style-name="P37"><text:tab/><text:tab/></text:p>
+   <text:p text:style-name="P37">}<text:tab/><text:tab/></text:p>
+   <text:p text:style-name="P27"/>
+   <text:p text:style-name="P27"/>
+   <text:list xml:id="list11705122848003" text:continue-numbering="true" text:style-name="WWNum1">
     <text:list-item>
      <text:list>
       <text:list-item>
        <text:list>
         <text:list-header>
-         <text:h text:style-name="P29" text:outline-level="1"/>
+         <text:h text:style-name="P30" text:outline-level="1"/>
         </text:list-header>
        </text:list>
       </text:list-item>
      </text:list>
     </text:list-item>
    </text:list>
-   <text:h text:style-name="P37" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4004_1501483490"/>10.1.1. get_Size function<text:bookmark-end text:name="__RefHeading___Toc4004_1501483490"/></text:h>
-   <text:p text:style-name="P31">The function </text:p>
-   <text:h text:style-name="P37" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4006_1501483490"/>10.1.2. get_Name function<text:bookmark-end text:name="__RefHeading___Toc4006_1501483490"/></text:h>
-   <text:p text:style-name="P31">The function</text:p>
-   <text:h text:style-name="P37" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4008_1501483490"/>10.1.3. get_Info function<text:bookmark-end text:name="__RefHeading___Toc4008_1501483490"/></text:h>
-   <text:p text:style-name="P31">The function</text:p>
-   <text:h text:style-name="P40" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4010_1501483490"/><text:soft-page-break/><text:span text:style-name="T11">10.1.4. get_Pointer function</text:span><text:bookmark-end text:name="__RefHeading___Toc4010_1501483490"/></text:h>
-   <text:p text:style-name="P31">The function</text:p>
-   <text:h text:style-name="P37" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4012_1501483490"/>10.1.5. set_Pointer function<text:bookmark-end text:name="__RefHeading___Toc4012_1501483490"/></text:h>
-   <text:p text:style-name="P41">The function</text:p>
-   <text:h text:style-name="P37" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4014_1501483490"/>10.1.6. Read function<text:bookmark-end text:name="__RefHeading___Toc4014_1501483490"/></text:h>
-   <text:p text:style-name="P31">The function</text:p>
-   <text:h text:style-name="P37" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4016_1501483490"/>10.1.7. Write function<text:bookmark-end text:name="__RefHeading___Toc4016_1501483490"/></text:h>
-   <text:p text:style-name="P31">The function</text:p>
-   <text:h text:style-name="P37" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4018_1501483490"/>10.1.8. Close function<text:bookmark-end text:name="__RefHeading___Toc4018_1501483490"/></text:h>
-   <text:p text:style-name="P31">The function</text:p>
-   <text:h text:style-name="P37" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4020_1501483490"/>10.1.9. get_Descriptor function<text:bookmark-end text:name="__RefHeading___Toc4020_1501483490"/></text:h>
-   <text:p text:style-name="P31">The function</text:p>
-   <text:p text:style-name="P31"/>
+   <text:h text:style-name="P38" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4004_1501483490"/>10.1.1. get_Size function<text:bookmark-end text:name="__RefHeading___Toc4004_1501483490"/></text:h>
+   <text:p text:style-name="P32">The function </text:p>
+   <text:h text:style-name="P38" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4006_1501483490"/>10.1.2. get_Name function<text:bookmark-end text:name="__RefHeading___Toc4006_1501483490"/></text:h>
+   <text:p text:style-name="P32">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4008_1501483490"/>10.1.3. get_Info function<text:bookmark-end text:name="__RefHeading___Toc4008_1501483490"/></text:h>
+   <text:p text:style-name="P32">The function</text:p>
+   <text:h text:style-name="P41" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4010_1501483490"/><text:soft-page-break/><text:span text:style-name="T13">10.1.4. get_Pointer function</text:span><text:bookmark-end text:name="__RefHeading___Toc4010_1501483490"/></text:h>
+   <text:p text:style-name="P32">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4012_1501483490"/>10.1.5. set_Pointer function<text:bookmark-end text:name="__RefHeading___Toc4012_1501483490"/></text:h>
+   <text:p text:style-name="P42">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4014_1501483490"/>10.1.6. Read function<text:bookmark-end text:name="__RefHeading___Toc4014_1501483490"/></text:h>
+   <text:p text:style-name="P32">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4016_1501483490"/>10.1.7. Write function<text:bookmark-end text:name="__RefHeading___Toc4016_1501483490"/></text:h>
+   <text:p text:style-name="P32">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4018_1501483490"/>10.1.8. Close function<text:bookmark-end text:name="__RefHeading___Toc4018_1501483490"/></text:h>
+   <text:p text:style-name="P32">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4020_1501483490"/>10.1.9. get_Descriptor function<text:bookmark-end text:name="__RefHeading___Toc4020_1501483490"/></text:h>
+   <text:p text:style-name="P32">The function</text:p>
+   <text:p text:style-name="P32"/>
    <text:list text:continue-numbering="true" text:style-name="WWNum1">
     <text:list-header>
-     <text:h text:style-name="P42" text:outline-level="1"/>
+     <text:h text:style-name="P43" text:outline-level="1"/>
     </text:list-header>
    </text:list>
-   <text:h text:style-name="P17" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4022_1501483490"/>11. Error codes<text:bookmark-end text:name="__RefHeading___Toc4022_1501483490"/></text:h>
-   <text:p text:style-name="P43"/>
-   <text:p text:style-name="P43">The following table contains the error codes.</text:p>
-   <text:p text:style-name="P43"/>
+   <text:h text:style-name="P18" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4022_1501483490"/>11. Error codes<text:bookmark-end text:name="__RefHeading___Toc4022_1501483490"/></text:h>
+   <text:p text:style-name="P44"/>
+   <text:p text:style-name="P44">The following table contains the error codes.</text:p>
+   <text:p text:style-name="P44"/>
    <table:table table:name="Таблица10" table:style-name="Таблица10">
     <table:table-column table:style-name="Таблица10.A"/>
     <table:table-column table:style-name="Таблица10.B"/>
     <table:table-column table:style-name="Таблица10.C"/>
     <table:table-row table:style-name="Таблица10.1">
      <table:table-cell table:style-name="Таблица10.A1" office:value-type="string">
-      <text:p text:style-name="P44">Error code</text:p>
+      <text:p text:style-name="P45">Error code</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица10.A1" office:value-type="string">
-      <text:p text:style-name="P44">Value</text:p>
+      <text:p text:style-name="P45">Value</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица10.A1" office:value-type="string">
-      <text:p text:style-name="P44">Description</text:p>
+      <text:p text:style-name="P45">Description</text:p>
      </table:table-cell>
     </table:table-row>
     <table:table-row table:style-name="Таблица10.1">
      <table:table-cell table:style-name="Таблица10.A2" office:value-type="string">
-      <text:p text:style-name="P45">ERR_ECO_SUCCESES</text:p>
+      <text:p text:style-name="P46">ERR_ECO_SUCCESES</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица10.B2" office:value-type="string">
-      <text:p text:style-name="P45">0x0000</text:p>
+      <text:p text:style-name="P46">0x0000</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица10.C2" office:value-type="string">
-      <text:p text:style-name="P46">Operation successful.</text:p>
+      <text:p text:style-name="P47">Operation successful.</text:p>
      </table:table-cell>
     </table:table-row>
     <table:table-row table:style-name="Таблица10.1">
      <table:table-cell table:style-name="Таблица10.A3" office:value-type="string">
-      <text:p text:style-name="P45">ERR_ECO_UNEXPECTED</text:p>
+      <text:p text:style-name="P46">ERR_ECO_UNEXPECTED</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица10.B3" office:value-type="string">
-      <text:p text:style-name="P45">0xFFFF</text:p>
+      <text:p text:style-name="P46">0xFFFF</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица10.C3" office:value-type="string">
-      <text:p text:style-name="P46">Unexpected condition.</text:p>
+      <text:p text:style-name="P47">Unexpected condition.</text:p>
      </table:table-cell>
     </table:table-row>
     <table:table-row table:style-name="Таблица10.1">
      <table:table-cell table:style-name="Таблица10.A4" office:value-type="string">
-      <text:p text:style-name="P45">ERR_ECO_POINTER</text:p>
+      <text:p text:style-name="P46">ERR_ECO_POINTER</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица10.B4" office:value-type="string">
-      <text:p text:style-name="P45">0xFFEE</text:p>
+      <text:p text:style-name="P46">0xFFEE</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица10.C4" office:value-type="string">
-      <text:p text:style-name="P46">NULL was passed incorrectly for a pointer value.</text:p>
+      <text:p text:style-name="P47">NULL was passed incorrectly for a pointer value.</text:p>
      </table:table-cell>
     </table:table-row>
     <table:table-row table:style-name="Таблица10.1">
      <table:table-cell table:style-name="Таблица10.A5" office:value-type="string">
-      <text:p text:style-name="P45">ERR_ECO_NOINTERFACE</text:p>
+      <text:p text:style-name="P46">ERR_ECO_NOINTERFACE</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица10.B5" office:value-type="string">
-      <text:p text:style-name="P45">0xFFED</text:p>
+      <text:p text:style-name="P46">0xFFED</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица10.C5" office:value-type="string">
-      <text:p text:style-name="P46">No such interface supported.</text:p>
+      <text:p text:style-name="P47">No such interface supported.</text:p>
      </table:table-cell>
     </table:table-row>
     <table:table-row table:style-name="Таблица10.1">
      <table:table-cell table:style-name="Таблица10.A6" office:value-type="string">
-      <text:p text:style-name="P45">ERR_ECO_COMPONENT_NOTFOUND</text:p>
+      <text:p text:style-name="P46">ERR_ECO_COMPONENT_NOTFOUND</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица10.B6" office:value-type="string">
-      <text:p text:style-name="P45">0xFFE9</text:p>
+      <text:p text:style-name="P46">0xFFE9</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица10.C6" office:value-type="string">
-      <text:p text:style-name="P46">The component was not found.</text:p>
+      <text:p text:style-name="P47">The component was not found.</text:p>
      </table:table-cell>
     </table:table-row>
     <table:table-row table:style-name="Таблица10.1">
      <table:table-cell table:style-name="Таблица10.A7" office:value-type="string">
-      <text:p text:style-name="P46"/>
+      <text:p text:style-name="P47"/>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица10.B7" office:value-type="string">
-      <text:p text:style-name="P46"/>
+      <text:p text:style-name="P47"/>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица10.C7" office:value-type="string">
-      <text:p text:style-name="P46"/>
+      <text:p text:style-name="P47"/>
      </table:table-cell>
     </table:table-row>
     <table:table-row table:style-name="Таблица10.1">
      <table:table-cell table:style-name="Таблица10.A8" office:value-type="string">
-      <text:p text:style-name="P46"/>
+      <text:p text:style-name="P47"/>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица10.B8" office:value-type="string">
-      <text:p text:style-name="P46"/>
+      <text:p text:style-name="P47"/>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица10.C8" office:value-type="string">
-      <text:p text:style-name="P46"/>
+      <text:p text:style-name="P47"/>
      </table:table-cell>
     </table:table-row>
    </table:table>
-   <text:p text:style-name="P22"/>
-   <text:h text:style-name="P47" text:outline-level="1" text:is-list-header="true"/>
-   <text:h text:style-name="P48" text:outline-level="1"/>
-   <text:p text:style-name="P49"/>
-   <text:h text:style-name="P17" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4024_1501483490"/>Appendix A: Sample code and Training programs<text:bookmark-end text:name="__RefHeading___Toc4024_1501483490"/></text:h>
-   <text:p text:style-name="P22"/>
+   <text:p text:style-name="P23"/>
+   <text:h text:style-name="P48" text:outline-level="1" text:is-list-header="true"/>
+   <text:h text:style-name="P49" text:outline-level="1"/>
    <text:p text:style-name="P50"/>
-   <text:p text:style-name="P22"/>
-   <text:p text:style-name="P22"/>
+   <text:h text:style-name="P18" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4024_1501483490"/>Appendix A: Sample code and Training programs<text:bookmark-end text:name="__RefHeading___Toc4024_1501483490"/></text:h>
+   <text:p text:style-name="P23"/>
+   <text:p text:style-name="P51"/>
+   <text:p text:style-name="P23"/>
+   <text:p text:style-name="P23"/>
   </office:text>
  </office:body>
 </office:document>

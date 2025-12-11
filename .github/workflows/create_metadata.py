@@ -63,9 +63,10 @@ def create_meta(file_path, github_server_url, repository_name, commit_sha, origi
     uspd = extract_metadata_field(content, 'USPD') or extract_metadata_field(content, 'ЕСПД')
     component_name = extract_metadata_field(content, 'Component Name')
     short_description = extract_metadata_field(content, 'Short Description (max 300 char.)')
-    use_category = extract_metadata_field(content, 'Component Use Category')
-    component_type = extract_metadata_field(content, 'Component Type')
+    use_category = extract_metadata_field(content, 'Category')
+    component_type = extract_metadata_field(content, 'Type')
     cid = extract_metadata_field(content, 'CID')
+    marketplace_id = extract_metadata_field(content, 'Marketplace ID')
     marketplace_url = extract_metadata_field(content, 'Marketplace URL')
     version = extract_metadata_field(content, 'Version')
     modified_date = extract_metadata_field(content, 'Modified Date') or extract_metadata_field(content, '**Modified **Date')
@@ -138,6 +139,9 @@ def create_meta(file_path, github_server_url, repository_name, commit_sha, origi
     
     if component_type:
         frontmatter_lines.append(f'type: "{component_type.upper()}"')
+    
+    if marketplace_id:
+        frontmatter_lines.append(f'type: "{marketplace_id.upper()}"')
     
     if marketplace_url:
         frontmatter_lines.append(f'registryUrl: "{marketplace_url}"')
