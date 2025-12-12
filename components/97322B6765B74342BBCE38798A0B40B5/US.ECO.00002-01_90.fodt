@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:rpt="http://openoffice.org/2005/report" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:calcext="urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0" xmlns:drawooo="http://openoffice.org/2010/draw" xmlns:loext="urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:formx="urn:openoffice:names:experimental:ooxml-odf-interop:xmlns:form:1.0" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:css3t="http://www.w3.org/TR/css3-text/" xmlns:officeooo="http://openoffice.org/2009/office" office:version="1.4" office:mimetype="application/vnd.oasis.opendocument.text">
- <office:meta><meta:initial-creator>Vladimir Bashev</meta:initial-creator><meta:editing-cycles>79</meta:editing-cycles><meta:print-date>2024-06-09T17:34:00</meta:print-date><meta:creation-date>2020-10-14T17:45:00</meta:creation-date><dc:date>2025-10-19T21:59:31.332618300</dc:date><meta:editing-duration>P1DT10H54M20S</meta:editing-duration><meta:generator>LibreOffice/25.2.6.2$Windows_X86_64 LibreOffice_project/729c5bfe710f5eb71ed3bbde9e06a6065e9c6c5d</meta:generator><meta:document-statistic meta:table-count="2" meta:image-count="1" meta:object-count="0" meta:page-count="13" meta:paragraph-count="245" meta:word-count="778" meta:character-count="6237" meta:non-whitespace-character-count="5662"/><meta:user-defined meta:name="AppVersion">14.0000</meta:user-defined><meta:template xlink:type="simple" xlink:actuate="onRequest" xlink:title="Normal.dotm" xlink:href=""/></office:meta>
+ <office:meta><meta:initial-creator>Vladimir Bashev</meta:initial-creator><meta:editing-cycles>80</meta:editing-cycles><meta:print-date>2024-06-09T17:34:00</meta:print-date><meta:creation-date>2020-10-14T17:45:00</meta:creation-date><dc:date>2025-12-12T21:45:51.117141200</dc:date><meta:editing-duration>P1DT10H54M40S</meta:editing-duration><meta:generator>LibreOffice/25.2.7.2$Windows_X86_64 LibreOffice_project/5cbfd1ab6520636bb5f7b99185aa69bd7456825d</meta:generator><meta:document-statistic meta:table-count="2" meta:image-count="1" meta:object-count="0" meta:page-count="13" meta:paragraph-count="245" meta:word-count="777" meta:character-count="6227" meta:non-whitespace-character-count="5653"/><meta:user-defined meta:name="AppVersion">14.0000</meta:user-defined><meta:template xlink:type="simple" xlink:actuate="onRequest" xlink:title="Normal.dotm" xlink:href=""/></office:meta>
  <office:settings>
   <config:config-item-set config:name="ooo:view-settings">
-   <config:config-item config:name="ViewAreaTop" config:type="long">362541</config:config-item>
+   <config:config-item config:name="ViewAreaTop" config:type="long">0</config:config-item>
    <config:config-item config:name="ViewAreaLeft" config:type="long">0</config:config-item>
    <config:config-item config:name="ViewAreaWidth" config:type="long">26402</config:config-item>
    <config:config-item config:name="ViewAreaHeight" config:type="long">15866</config:config-item>
@@ -13,12 +13,12 @@
    <config:config-item-map-indexed config:name="Views">
     <config:config-item-map-entry>
      <config:config-item config:name="ViewId" config:type="string">view2</config:config-item>
-     <config:config-item config:name="ViewLeft" config:type="long">15522</config:config-item>
-     <config:config-item config:name="ViewTop" config:type="long">366326</config:config-item>
+     <config:config-item config:name="ViewLeft" config:type="long">5994</config:config-item>
+     <config:config-item config:name="ViewTop" config:type="long">6172</config:config-item>
      <config:config-item config:name="VisibleLeft" config:type="long">0</config:config-item>
-     <config:config-item config:name="VisibleTop" config:type="long">362541</config:config-item>
+     <config:config-item config:name="VisibleTop" config:type="long">0</config:config-item>
      <config:config-item config:name="VisibleRight" config:type="long">26400</config:config-item>
-     <config:config-item config:name="VisibleBottom" config:type="long">378405</config:config-item>
+     <config:config-item config:name="VisibleBottom" config:type="long">15864</config:config-item>
      <config:config-item config:name="ZoomType" config:type="short">0</config:config-item>
      <config:config-item config:name="ViewLayoutColumns" config:type="short">1</config:config-item>
      <config:config-item config:name="ViewLayoutBookMode" config:type="boolean">false</config:config-item>
@@ -84,7 +84,7 @@
    <config:config-item config:name="IgnoreTabsAndBlanksForLineCalculation" config:type="boolean">true</config:config-item>
    <config:config-item config:name="IgnoreHiddenCharsForLineCalculation" config:type="boolean">true</config:config-item>
    <config:config-item config:name="TabAtLeftIndentForParagraphsInList" config:type="boolean">true</config:config-item>
-   <config:config-item config:name="Rsid" config:type="int">1220112</config:config-item>
+   <config:config-item config:name="Rsid" config:type="int">1331689</config:config-item>
    <config:config-item config:name="RsidRoot" config:type="int">1045548</config:config-item>
    <config:config-item config:name="LoadReadonly" config:type="boolean">false</config:config-item>
    <config:config-item config:name="ClipAsCharacterAnchoredWriterFlyFrames" config:type="boolean">false</config:config-item>
@@ -181,13 +181,13 @@
  <office:styles>
   <style:default-style style:family="graphic">
    <style:graphic-properties svg:stroke-color="#3465a4" draw:fill-color="#729fcf" fo:wrap-option="no-wrap" draw:shadow-offset-x="0.1181in" draw:shadow-offset-y="0.1181in" draw:start-line-spacing-horizontal="0.1114in" draw:start-line-spacing-vertical="0.1114in" draw:end-line-spacing-horizontal="0.1114in" draw:end-line-spacing-vertical="0.1114in" style:writing-mode="lr-tb" style:flow-with-text="false"/>
-   <style:paragraph-properties style:text-autospace="ideograph-alpha" style:line-break="strict" loext:tab-stop-distance="0in" style:font-independent-line-spacing="false">
+   <style:paragraph-properties style:text-autospace="ideograph-alpha" style:line-break="strict" loext:tab-stop-distance="0in" style:writing-mode="lr-tb" style:font-independent-line-spacing="false">
     <style:tab-stops/>
    </style:paragraph-properties>
    <style:text-properties style:use-window-font-color="true" loext:opacity="0%" style:font-name="Liberation Serif" fo:font-size="12pt" fo:language="ru" fo:country="RU" style:letter-kerning="true" style:font-name-asian="NSimSun" style:font-size-asian="10.5pt" style:language-asian="zh" style:country-asian="CN" style:font-name-complex="Arial2" style:font-size-complex="12pt" style:language-complex="hi" style:country-complex="IN"/>
   </style:default-style>
   <style:default-style style:family="paragraph">
-   <style:paragraph-properties fo:orphans="2" fo:widows="2" fo:hyphenation-ladder-count="no-limit" fo:hyphenation-keep="auto" loext:hyphenation-keep-type="column" style:text-autospace="ideograph-alpha" style:punctuation-wrap="hanging" style:line-break="strict" style:tab-stop-distance="0.4925in" style:writing-mode="page"/>
+   <style:paragraph-properties fo:orphans="2" fo:widows="2" fo:hyphenation-ladder-count="no-limit" fo:hyphenation-keep="auto" loext:hyphenation-keep-type="column" style:text-autospace="ideograph-alpha" style:punctuation-wrap="hanging" style:line-break="strict" style:tab-stop-distance="0.4925in" style:writing-mode="lr-tb"/>
    <style:text-properties style:use-window-font-color="true" loext:opacity="0%" style:font-name="Liberation Serif" fo:font-size="12pt" fo:language="ru" fo:country="RU" style:letter-kerning="true" style:font-name-asian="NSimSun" style:font-size-asian="10.5pt" style:language-asian="zh" style:country-asian="CN" style:font-name-complex="Arial2" style:font-size-complex="12pt" style:language-complex="hi" style:country-complex="IN" fo:hyphenate="false" fo:hyphenation-remain-char-count="2" fo:hyphenation-push-char-count="2" loext:hyphenation-no-caps="false" loext:hyphenation-no-last-word="false" loext:hyphenation-word-char-count="no-limit" loext:hyphenation-zone="no-limit"/>
   </style:default-style>
   <style:default-style style:family="table">
@@ -2001,100 +2001,128 @@
   </style:style>
   <style:style style:name="P14" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:line-height="115%" fo:text-align="start" style:justify-single-word="false" fo:orphans="2" fo:widows="2"/>
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:letter-kerning="false" style:font-name-asian="Calibri1" style:font-size-asian="12pt" style:language-asian="en" style:country-asian="US" style:font-size-complex="12pt" style:language-complex="ar" style:country-complex="SA"/>
+   <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" fo:font-weight="bold" style:letter-kerning="false" style:font-name-asian="Calibri1" style:font-size-asian="12pt" style:language-asian="en" style:country-asian="US" style:font-weight-asian="bold" style:font-name-complex="Arial2" style:font-size-complex="12pt" style:language-complex="ar" style:country-complex="SA">
+    <loext:char-complex-color loext:theme-type="light1" loext:color-type="theme"/>
+   </style:text-properties>
   </style:style>
   <style:style style:name="P15" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:line-height="115%" fo:text-align="start" style:justify-single-word="false" fo:orphans="2" fo:widows="2"/>
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="ru" fo:country="RU" style:letter-kerning="false" style:font-name-asian="Calibri1" style:font-size-asian="12pt" style:language-asian="en" style:country-asian="US" style:font-name-complex="Arial2" style:font-size-complex="12pt" style:language-complex="ar" style:country-complex="SA"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:letter-kerning="false" style:font-name-asian="Calibri1" style:font-size-asian="12pt" style:language-asian="en" style:country-asian="US" style:font-name-complex="Arial2" style:font-size-complex="12pt" style:language-complex="ar" style:country-complex="SA"/>
   </style:style>
   <style:style style:name="P16" style:family="paragraph" style:parent-style-name="Standard">
+   <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:line-height="115%" fo:text-align="start" style:justify-single-word="false" fo:orphans="2" fo:widows="2"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="ru" fo:country="RU" style:letter-kerning="false" style:font-name-asian="Calibri1" style:font-size-asian="12pt" style:language-asian="en" style:country-asian="US" style:font-name-complex="Arial2" style:font-size-complex="12pt" style:language-complex="ar" style:country-complex="SA"/>
+  </style:style>
+  <style:style style:name="P17" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:break-before="page"/>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="ru" fo:country="RU" style:font-size-asian="12pt" style:font-name-complex="Arial2" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P17" style:family="paragraph" style:parent-style-name="Heading_20_1">
+  <style:style style:name="P18" style:family="paragraph" style:parent-style-name="Heading_20_1">
    <style:paragraph-properties fo:break-before="page"/>
+   <style:text-properties fo:font-weight="bold" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
   </style:style>
-  <style:style style:name="P18" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P19" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:text-align="justify" style:justify-single-word="false"/>
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" style:font-size-asian="12pt" style:font-size-complex="12pt"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P19" style:family="paragraph" style:parent-style-name="Standard" style:list-style-name="WWNum2">
-   <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0.111in" style:contextual-spacing="true"/>
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" style:font-size-asian="12pt" style:font-size-complex="12pt"/>
-  </style:style>
-  <style:style style:name="P20" style:family="paragraph" style:parent-style-name="Standard">
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="ru" fo:country="RU" style:font-size-asian="12pt" style:font-size-complex="12pt"/>
+  <style:style style:name="P20" style:family="paragraph" style:parent-style-name="Heading_20_2">
+   <style:text-properties fo:font-weight="bold" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
   </style:style>
   <style:style style:name="P21" style:family="paragraph" style:parent-style-name="Standard">
-   <style:text-properties fo:color="#810081" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" style:font-size-asian="12pt" style:font-name-complex="Arial2" style:font-size-complex="12pt"/>
+   <style:paragraph-properties fo:text-align="justify" style:justify-single-word="false"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="ru" fo:country="RU" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P22" style:family="paragraph" style:parent-style-name="Contents_20_Heading">
-   <style:paragraph-properties fo:break-before="page"/>
+  <style:style style:name="P22" style:family="paragraph" style:parent-style-name="Heading_20_2">
+   <style:text-properties fo:language="en" fo:country="US" fo:font-weight="bold" officeooo:rsid="00117be2" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
   </style:style>
-  <style:style style:name="P23" style:family="paragraph" style:parent-style-name="Contents_20_1">
-   <style:paragraph-properties>
-    <style:tab-stops>
-     <style:tab-stop style:position="6.6925in" style:type="right" style:leader-style="dotted" style:leader-text="."/>
-    </style:tab-stops>
-   </style:paragraph-properties>
+  <style:style style:name="P23" style:family="paragraph" style:parent-style-name="Standard" style:list-style-name="WWNum2">
+   <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0.111in" style:contextual-spacing="true"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="ru" fo:country="RU" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P24" style:family="paragraph" style:parent-style-name="Contents_20_2">
-   <style:paragraph-properties>
-    <style:tab-stops>
-     <style:tab-stop style:position="6.6925in" style:type="right" style:leader-style="dotted" style:leader-text="."/>
-    </style:tab-stops>
-   </style:paragraph-properties>
+  <style:style style:name="P24" style:family="paragraph" style:parent-style-name="Standard">
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="ru" fo:country="RU" style:font-size-asian="12pt" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P25" style:family="paragraph" style:parent-style-name="Contents_20_3">
-   <style:paragraph-properties>
-    <style:tab-stops>
-     <style:tab-stop style:position="6.6925in" style:type="right" style:leader-style="dotted" style:leader-text="."/>
-    </style:tab-stops>
-   </style:paragraph-properties>
+  <style:style style:name="P25" style:family="paragraph" style:parent-style-name="Heading_20_2">
+   <style:text-properties style:font-name-complex="Arial2"/>
   </style:style>
   <style:style style:name="P26" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:text-align="justify" style:justify-single-word="false"/>
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="ru" fo:country="RU" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" style:font-size-asian="12pt" style:font-size-complex="12pt"/>
   </style:style>
   <style:style style:name="P27" style:family="paragraph" style:parent-style-name="Standard">
+   <style:text-properties fo:color="#810081" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" style:font-size-asian="12pt" style:font-name-complex="Arial2" style:font-size-complex="12pt"/>
+  </style:style>
+  <style:style style:name="P28" style:family="paragraph" style:parent-style-name="Contents_20_Heading">
+   <style:paragraph-properties fo:break-before="page"/>
+  </style:style>
+  <style:style style:name="P29" style:family="paragraph" style:parent-style-name="Contents_20_1">
+   <style:paragraph-properties>
+    <style:tab-stops>
+     <style:tab-stop style:position="6.6925in" style:type="right" style:leader-style="dotted" style:leader-text="."/>
+    </style:tab-stops>
+   </style:paragraph-properties>
+  </style:style>
+  <style:style style:name="P30" style:family="paragraph" style:parent-style-name="Contents_20_2">
+   <style:paragraph-properties>
+    <style:tab-stops>
+     <style:tab-stop style:position="6.6925in" style:type="right" style:leader-style="dotted" style:leader-text="."/>
+    </style:tab-stops>
+   </style:paragraph-properties>
+  </style:style>
+  <style:style style:name="P31" style:family="paragraph" style:parent-style-name="Contents_20_3">
+   <style:paragraph-properties>
+    <style:tab-stops>
+     <style:tab-stop style:position="6.6925in" style:type="right" style:leader-style="dotted" style:leader-text="."/>
+    </style:tab-stops>
+   </style:paragraph-properties>
+  </style:style>
+  <style:style style:name="P32" style:family="paragraph" style:parent-style-name="Standard">
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P28" style:family="paragraph" style:parent-style-name="Standard" style:list-style-name="">
+  <style:style style:name="P33" style:family="paragraph" style:parent-style-name="Standard" style:list-style-name="">
    <style:paragraph-properties fo:margin-top="0.1665in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:keep-together="always" fo:keep-with-next="always"/>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="ru" fo:country="RU" fo:font-weight="bold" style:font-size-asian="12pt" style:font-weight-asian="bold" style:font-name-complex="Arial2" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P29" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P34" style:family="paragraph" style:parent-style-name="Standard">
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="ru" fo:country="RU" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P30" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P35" style:family="paragraph" style:parent-style-name="Standard">
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="ru" fo:country="RU" officeooo:paragraph-rsid="00117be2" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P31" style:family="paragraph" style:parent-style-name="Heading_20_3">
+  <style:style style:name="P36" style:family="paragraph" style:parent-style-name="Heading_20_3">
    <style:paragraph-properties fo:break-before="page"/>
+   <style:text-properties fo:font-weight="bold" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
   </style:style>
-  <style:style style:name="P32" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P37" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:margin-left="0.3752in" fo:text-align="justify" style:justify-single-word="false" fo:text-indent="-0.1252in" style:auto-text-indent="false">
     <style:tab-stops>
      <style:tab-stop style:position="0.25in"/>
     </style:tab-stops>
    </style:paragraph-properties>
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" style:font-size-asian="12pt" style:font-size-complex="12pt"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P33" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P38" style:family="paragraph" style:parent-style-name="Heading_20_3">
+   <style:text-properties fo:font-weight="bold" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
+  </style:style>
+  <style:style style:name="P39" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:margin-left="0.3752in" fo:text-indent="-0.1252in" style:auto-text-indent="false">
     <style:tab-stops>
      <style:tab-stop style:position="0.25in"/>
     </style:tab-stops>
    </style:paragraph-properties>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
+  </style:style>
+  <style:style style:name="P40" style:family="paragraph" style:parent-style-name="Стиль1">
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" style:font-size-asian="12pt" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P34" style:family="paragraph" style:parent-style-name="Стиль1">
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" style:font-size-asian="12pt" style:font-size-complex="12pt"/>
+  <style:style style:name="P41" style:family="paragraph" style:parent-style-name="Heading_20_3">
+   <style:text-properties style:font-name-complex="Times New Roman1"/>
   </style:style>
-  <style:style style:name="P35" style:family="paragraph" style:parent-style-name="Heading_20_2">
+  <style:style style:name="P42" style:family="paragraph" style:parent-style-name="Heading_20_2">
    <style:paragraph-properties fo:break-before="page"/>
+   <style:text-properties fo:font-weight="bold" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
   </style:style>
-  <style:style style:name="P36" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P43" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties>
     <style:tab-stops>
      <style:tab-stop style:position="0.25in"/>
@@ -2102,7 +2130,7 @@
    </style:paragraph-properties>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="ru" fo:country="RU" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P37" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P44" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties>
     <style:tab-stops>
      <style:tab-stop style:position="0.25in"/>
@@ -2110,21 +2138,30 @@
    </style:paragraph-properties>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P38" style:family="paragraph" style:parent-style-name="code_5f_cpp">
+  <style:style style:name="P45" style:family="paragraph" style:parent-style-name="Heading_20_3">
+   <style:text-properties fo:language="en" fo:country="US" fo:font-weight="bold" officeooo:rsid="00117be2" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
+  </style:style>
+  <style:style style:name="P46" style:family="paragraph" style:parent-style-name="Heading_20_2">
+   <style:text-properties fo:language="en" fo:country="US" fo:font-weight="bold" officeooo:rsid="00129e10" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
+  </style:style>
+  <style:style style:name="P47" style:family="paragraph" style:parent-style-name="code_5f_cpp">
    <style:text-properties officeooo:paragraph-rsid="00129e10"/>
   </style:style>
-  <style:style style:name="P39" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P48" style:family="paragraph" style:parent-style-name="Heading_20_3">
+   <style:text-properties style:font-name="Liberation Sans" fo:font-weight="bold" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
+  </style:style>
+  <style:style style:name="P49" style:family="paragraph" style:parent-style-name="Standard">
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="ru" fo:country="RU" officeooo:paragraph-rsid="00129e10" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P40" style:family="paragraph" style:parent-style-name="Standard" style:list-style-name="WWNum1">
+  <style:style style:name="P50" style:family="paragraph" style:parent-style-name="Standard" style:list-style-name="WWNum1">
    <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:keep-together="always" fo:keep-with-next="always"/>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:font-weight="bold" style:font-size-asian="12pt" style:font-weight-asian="bold" style:font-name-complex="Arial2" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P41" style:family="paragraph" style:parent-style-name="Standard" style:list-style-name="WWNum1">
+  <style:style style:name="P51" style:family="paragraph" style:parent-style-name="Standard" style:list-style-name="WWNum1">
    <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false"/>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:font-weight="bold" style:font-size-asian="12pt" style:font-weight-asian="bold" style:font-name-complex="Arial2" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P42" style:family="paragraph" style:parent-style-name="List_20_Paragraph">
+  <style:style style:name="P52" style:family="paragraph" style:parent-style-name="List_20_Paragraph">
    <style:paragraph-properties fo:margin-left="0.25in" fo:text-align="justify" style:justify-single-word="false">
     <style:tab-stops>
      <style:tab-stop style:position="0.25in"/>
@@ -2132,15 +2169,7 @@
    </style:paragraph-properties>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="ru" fo:country="RU" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P43" style:family="paragraph" style:parent-style-name="List_20_Paragraph">
-   <style:paragraph-properties fo:margin-left="0.25in" fo:text-align="justify" style:justify-single-word="false">
-    <style:tab-stops>
-     <style:tab-stop style:position="0.25in"/>
-    </style:tab-stops>
-   </style:paragraph-properties>
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" style:font-size-asian="12pt" style:font-size-complex="12pt"/>
-  </style:style>
-  <style:style style:name="P44" style:family="paragraph" style:parent-style-name="List_20_Paragraph">
+  <style:style style:name="P53" style:family="paragraph" style:parent-style-name="List_20_Paragraph">
    <style:paragraph-properties fo:margin-left="0.25in" fo:text-align="justify" style:justify-single-word="false">
     <style:tab-stops>
      <style:tab-stop style:position="0.25in"/>
@@ -2148,15 +2177,26 @@
    </style:paragraph-properties>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="P45" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P54" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:line-height="100%" fo:text-align="start" style:justify-single-word="false" fo:orphans="2" fo:widows="2"/>
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:letter-kerning="false" style:font-name-asian="Calibri1" style:font-size-asian="12pt" style:language-asian="en" style:country-asian="US" style:font-size-complex="12pt" style:language-complex="ar" style:country-complex="SA"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" fo:font-weight="bold" style:letter-kerning="false" style:font-name-asian="Calibri1" style:font-size-asian="12pt" style:language-asian="en" style:country-asian="US" style:font-weight-asian="bold" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt" style:language-complex="ar" style:country-complex="SA"/>
   </style:style>
-  <style:style style:name="P46" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P55" style:family="paragraph" style:parent-style-name="Standard">
+   <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:line-height="100%" fo:text-align="start" style:justify-single-word="false" fo:orphans="2" fo:widows="2"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="9pt" fo:language="en" fo:country="US" style:letter-kerning="false" style:font-name-asian="Calibri1" style:font-size-asian="9pt" style:language-asian="en" style:country-asian="US" style:font-name-complex="Consolas" style:font-size-complex="9pt" style:language-complex="ar" style:country-complex="SA"/>
+  </style:style>
+  <style:style style:name="P56" style:family="paragraph" style:parent-style-name="Standard">
+   <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:line-height="100%" fo:text-align="start" style:justify-single-word="false" fo:orphans="2" fo:widows="2"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="9pt" fo:language="ru" fo:country="RU" style:letter-kerning="false" style:font-name-asian="Calibri1" style:font-size-asian="9pt" style:language-asian="en" style:country-asian="US" style:font-size-complex="9pt" style:language-complex="ar" style:country-complex="SA"/>
+  </style:style>
+  <style:style style:name="P57" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:line-height="100%" fo:text-align="start" style:justify-single-word="false" fo:orphans="2" fo:widows="2"/>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="9pt" fo:language="en" fo:country="US" style:letter-kerning="false" style:font-name-asian="Calibri1" style:font-size-asian="9pt" style:language-asian="en" style:country-asian="US" style:font-size-complex="9pt" style:language-complex="ar" style:country-complex="SA"/>
   </style:style>
-  <style:style style:name="P47" style:family="paragraph" style:parent-style-name="Standard">
+  <style:style style:name="P58" style:family="paragraph" style:parent-style-name="Heading_20_1">
+   <style:paragraph-properties fo:break-before="page"/>
+  </style:style>
+  <style:style style:name="P59" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:margin-left="-0.8752in" fo:margin-right="-0.8752in" fo:margin-top="0in" fo:margin-bottom="0in" style:contextual-spacing="false" fo:line-height="100%"/>
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" style:font-size-asian="12pt" style:font-name-complex="Consolas" style:font-size-complex="12pt"/>
   </style:style>
@@ -2182,60 +2222,28 @@
    <style:text-properties fo:language="ru" fo:country="RU" style:font-name-complex="Arial2"/>
   </style:style>
   <style:style style:name="T8" style:family="text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" fo:font-weight="bold" style:font-weight-asian="bold" style:font-name-complex="Arial2">
-    <loext:char-complex-color loext:theme-type="light1" loext:color-type="theme"/>
-   </style:text-properties>
-  </style:style>
-  <style:style style:name="T9" style:family="text">
-   <style:text-properties style:font-name-complex="Arial2"/>
-  </style:style>
-  <style:style style:name="T10" style:family="text">
-   <style:text-properties fo:font-weight="bold" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
-  </style:style>
-  <style:style style:name="T11" style:family="text">
    <style:text-properties style:font-name-complex="Times New Roman1"/>
   </style:style>
-  <style:style style:name="T12" style:family="text">
-   <style:text-properties fo:language="ru" fo:country="RU" style:font-name-complex="Times New Roman1"/>
-  </style:style>
-  <style:style style:name="T13" style:family="text">
-   <style:text-properties fo:language="en" fo:country="US" fo:font-weight="bold" officeooo:rsid="00117be2" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
-  </style:style>
-  <style:style style:name="T14" style:family="text">
+  <style:style style:name="T9" style:family="text">
    <style:text-properties fo:language="en" fo:country="US" officeooo:rsid="00117be2" style:font-name-complex="Times New Roman1"/>
   </style:style>
-  <style:style style:name="T15" style:family="text">
+  <style:style style:name="T10" style:family="text">
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="T16" style:family="text">
+  <style:style style:name="T11" style:family="text">
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" officeooo:rsid="00117be2" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="T17" style:family="text">
+  <style:style style:name="T12" style:family="text">
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="-0.0028in" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="T18" style:family="text">
+  <style:style style:name="T13" style:family="text">
    <style:text-properties fo:font-style="italic" style:font-style-asian="italic"/>
   </style:style>
-  <style:style style:name="T19" style:family="text">
+  <style:style style:name="T14" style:family="text">
    <style:text-properties fo:color="#000000" loext:opacity="100%" style:font-name-complex="Times New Roman1"/>
   </style:style>
-  <style:style style:name="T20" style:family="text">
+  <style:style style:name="T15" style:family="text">
    <style:text-properties fo:color="#000000" loext:opacity="100%" fo:language="en" fo:country="US" officeooo:rsid="00117be2" style:font-name-complex="Times New Roman1"/>
-  </style:style>
-  <style:style style:name="T21" style:family="text">
-   <style:text-properties fo:language="en" fo:country="US" fo:font-weight="bold" officeooo:rsid="00129e10" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
-  </style:style>
-  <style:style style:name="T22" style:family="text">
-   <style:text-properties style:font-name="Liberation Sans" fo:font-weight="bold" style:font-weight-asian="bold" style:font-name-complex="Arial2"/>
-  </style:style>
-  <style:style style:name="T23" style:family="text">
-   <style:text-properties fo:font-weight="bold" style:font-weight-asian="bold" style:font-name-complex="Times New Roman1"/>
-  </style:style>
-  <style:style style:name="T24" style:family="text">
-   <style:text-properties style:font-name-complex="Consolas"/>
-  </style:style>
-  <style:style style:name="T25" style:family="text">
-   <style:text-properties fo:language="ru" fo:country="RU"/>
   </style:style>
   <style:style style:name="fr1" style:family="graphic" style:parent-style-name="Graphics">
    <style:graphic-properties fo:margin-left="0in" fo:margin-right="0in" fo:margin-top="0in" fo:margin-bottom="0in" style:run-through="background" style:wrap="run-through" style:number-wrapped-paragraphs="no-limit" style:vertical-pos="from-top" style:vertical-rel="paragraph" style:horizontal-pos="from-left" style:horizontal-rel="paragraph" fo:background-color="transparent" draw:fill="none" draw:fill-color="#ffffff" draw:secondary-fill-color="#729fcf" draw:gradient-step-count="0" draw:fill-hatch-solid="false" draw:opacity="100%" draw:fill-image-width="0in" draw:fill-image-height="0in" style:repeat="repeat" draw:fill-image-ref-point-x="0%" draw:fill-image-ref-point-y="0%" draw:fill-image-ref-point="center" draw:tile-repeat-offset="0% horizontal" fo:padding="0in" fo:border="none" style:mirror="none" fo:clip="rect(0in, 0in, 0in, 0in)" draw:luminance="0%" draw:contrast="0%" draw:red="0%" draw:green="0%" draw:blue="0%" draw:gamma="100%" draw:color-inversion="false" draw:image-opacity="100%" draw:color-mode="standard" draw:wrap-influence-on-position="once-concurrent" loext:allow-overlap="true" loext:decorative="false"/>
@@ -2268,7 +2276,7 @@
  <office:master-styles>
   <style:master-page style:name="Standard" style:page-layout-name="pm1" draw:style-name="dp1">
    <style:header>
-    <text:p text:style-name="P1"><draw:frame draw:style-name="fr1" draw:name="Image1" text:anchor-type="char" svg:x="4.4827in" svg:y="-0.1165in" svg:width="2.0055in" svg:height="0.3736in" draw:z-index="0"><draw:image draw:mime-type="image/png">
+    <text:p text:style-name="P1"><draw:frame draw:style-name="fr1" draw:name="Image1" text:anchor-type="char" svg:x="4.4827in" svg:y="-0.1165in" svg:width="2.0055in" svg:height="0.3736in" draw:z-index="12"><draw:image draw:mime-type="image/png">
        <office:binary-data>iVBORw0KGgoAAAANSUhEUgAAATgAAAA4CAYAAAEeD9RIAAAAAXNSR0IArs4c6QAAAARnQU1B
         AACxjwv8YQUAAAAJcEhZcwAAFxEAABcRAcom8z8AAC+GSURBVHhe7X0JvB1FlX4I4/xnRh3R
         GJO8d7uquu99LyFiUBmRRQcUZVBxxaAOyCAq4AKOCsgmIsKoiCyyqaCo4AKIoqiI7CCyCLJJ
@@ -2536,53 +2544,53 @@
     <table:table-column table:style-name="Таблица1.A" table:number-columns-repeated="2"/>
     <table:table-row table:style-name="Таблица1.1">
      <table:table-cell table:style-name="Таблица1.A1" office:value-type="string">
-      <text:p text:style-name="P14"><text:span text:style-name="T8">Authors</text:span></text:p>
+      <text:p text:style-name="P14">Authors</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица1.A1" office:value-type="string">
-      <text:p text:style-name="P14"><text:span text:style-name="T8">Company</text:span></text:p>
+      <text:p text:style-name="P14">Company</text:p>
      </table:table-cell>
     </table:table-row>
     <table:table-row table:style-name="Таблица1.1">
      <table:table-cell table:style-name="Таблица1.A2" office:value-type="string">
-      <text:p text:style-name="P14"><text:span text:style-name="T9">Vladimir Bashev</text:span></text:p>
+      <text:p text:style-name="P15">Vladimir Bashev</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица1.B2" office:value-type="string">
-      <text:p text:style-name="P14"><text:span text:style-name="T9">PEERF</text:span></text:p>
+      <text:p text:style-name="P15">PEERF</text:p>
      </table:table-cell>
     </table:table-row>
     <table:table-row table:style-name="Таблица1.1">
      <table:table-cell table:style-name="Таблица1.A3" office:value-type="string">
-      <text:p text:style-name="P15"/>
+      <text:p text:style-name="P16"/>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица1.B3" office:value-type="string">
-      <text:p text:style-name="P15"/>
+      <text:p text:style-name="P16"/>
      </table:table-cell>
     </table:table-row>
    </table:table>
    <text:p text:style-name="P13"/>
    <text:p text:style-name="P13"/>
    <text:p text:style-name="P13"/>
-   <text:p text:style-name="P16"/>
-   <text:h text:style-name="P17" text:outline-level="1"><text:bookmark-start text:name="__RefHeading___Toc4113_2288192666"/><text:span text:style-name="T10">1. Overview</text:span><text:bookmark-end text:name="__RefHeading___Toc4113_2288192666"/></text:h>
-   <text:p text:style-name="P18"><text:span text:style-name="T11">This document describes the requirements for the implementation of the Eco.Log1 component.</text:span></text:p>
-   <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc4115_2288192666"/><text:span text:style-name="T10">1.1. Introduction</text:span><text:bookmark-end text:name="__RefHeading___Toc4115_2288192666"/></text:h>
-   <text:p text:style-name="P18"><text:span text:style-name="T12">Description.</text:span></text:p>
+   <text:p text:style-name="P17"/>
+   <text:h text:style-name="P18" text:outline-level="1"><text:bookmark-start text:name="__RefHeading___Toc4113_2288192666"/>1. Overview<text:bookmark-end text:name="__RefHeading___Toc4113_2288192666"/></text:h>
+   <text:p text:style-name="P19">This document describes the requirements for the implementation of the Eco.Log1 component.</text:p>
+   <text:h text:style-name="P20" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc4115_2288192666"/>1.1. Introduction<text:bookmark-end text:name="__RefHeading___Toc4115_2288192666"/></text:h>
+   <text:p text:style-name="P21">Description.</text:p>
    <text:p text:style-name="P13"/>
-   <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc4117_2288192666"/><text:span text:style-name="T13">1.2. Notes</text:span><text:bookmark-end text:name="__RefHeading___Toc4117_2288192666"/></text:h>
+   <text:h text:style-name="P22" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc4117_2288192666"/>1.2. Notes<text:bookmark-end text:name="__RefHeading___Toc4117_2288192666"/></text:h>
    <text:list text:style-name="WWNum2">
     <text:list-item>
-     <text:p text:style-name="P19"><text:span text:style-name="T12">Keywords</text:span></text:p>
+     <text:p text:style-name="P23">Keywords</text:p>
     </text:list-item>
    </text:list>
-   <text:p text:style-name="P20"/>
-   <text:p text:style-name="P20"/>
-   <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc4119_2288192666"/><text:span text:style-name="T9">1.3. Links</text:span><text:bookmark-end text:name="__RefHeading___Toc4119_2288192666"/></text:h>
-   <text:p text:style-name="P18"><text:span text:style-name="T11">This paragraph contains </text:span><text:span text:style-name="T14">the component’s marketplace url and </text:span><text:span text:style-name="T11">links to </text:span><text:span text:style-name="T14">other helpful </text:span><text:span text:style-name="T11">information </text:span><text:span text:style-name="T14">to better</text:span><text:span text:style-name="T11"> understand this document:</text:span></text:p>
-   <text:p text:style-name="P12"><text:span text:style-name="T11"/></text:p>
-   <text:p text:style-name="Standard"><text:span text:style-name="T15">Available </text:span><text:span text:style-name="T16">in marketplace (registry) at</text:span><text:span text:style-name="T15">: </text:span><text:span text:style-name="Internet_20_link"><text:span text:style-name="T17">https://ecoos.dev/product/743b7efa-7d04-4811-8ebb-d9308d6bfe58</text:span></text:span></text:p>
-   <text:p text:style-name="P21"/>
-   <text:p text:style-name="P21"/>
-   <text:p text:style-name="P21"/>
+   <text:p text:style-name="P24"/>
+   <text:p text:style-name="P24"/>
+   <text:h text:style-name="P25" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc4119_2288192666"/>1.3. Links<text:bookmark-end text:name="__RefHeading___Toc4119_2288192666"/></text:h>
+   <text:p text:style-name="P26"><text:span text:style-name="T8">This paragraph contains </text:span><text:span text:style-name="T9">the component’s marketplace url and </text:span><text:span text:style-name="T8">links to </text:span><text:span text:style-name="T9">other helpful </text:span><text:span text:style-name="T8">information </text:span><text:span text:style-name="T9">to better</text:span><text:span text:style-name="T8"> understand this document:</text:span></text:p>
+   <text:p text:style-name="P12"><text:span text:style-name="T8"/></text:p>
+   <text:p text:style-name="Standard"><text:span text:style-name="T10">Available </text:span><text:span text:style-name="T11">in marketplace (registry) at</text:span><text:span text:style-name="T10">: </text:span><text:span text:style-name="Internet_20_link"><text:span text:style-name="T12">https://ecoos.dev/product/743b7efa-7d04-4811-8ebb-d9308d6bfe58</text:span></text:span></text:p>
+   <text:p text:style-name="P27"/>
+   <text:p text:style-name="P27"/>
+   <text:p text:style-name="P27"/>
    <text:table-of-content text:style-name="Sect1" text:protected="true" text:name="Table of Contents1">
     <text:table-of-content-source text:outline-level="10">
      <text:index-title-template text:style-name="Contents_20_Heading">Table of Contents</text:index-title-template>
@@ -2669,68 +2677,68 @@
     </text:table-of-content-source>
     <text:index-body>
      <text:index-title text:style-name="Sect1" text:name="Table of Contents1_Head" text:protected="true">
-      <text:p text:style-name="P22">Table of Contents</text:p>
+      <text:p text:style-name="P28">Table of Contents</text:p>
      </text:index-title>
-     <text:p text:style-name="P23"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4113_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">1. Overview<text:tab/>3</text:a></text:p>
-     <text:p text:style-name="P24"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4115_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">1.1. Introduction<text:tab/>3</text:a></text:p>
-     <text:p text:style-name="P24"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4117_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">1.2. Notes<text:tab/>3</text:a></text:p>
-     <text:p text:style-name="P24"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4119_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">1.3. Links<text:tab/>3</text:a></text:p>
-     <text:p text:style-name="P23"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4121_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2. Eco.Log1 Component<text:tab/>5</text:a></text:p>
-     <text:p text:style-name="P23"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4123_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3. IEcoLog1 Interface<text:tab/>6</text:a></text:p>
-     <text:p text:style-name="P24"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4125_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1. IEcoLog1 component’ IDL descriptor<text:tab/>6</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4127_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.1. AddAffiliate function<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4129_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.2. set_LevelMask function<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4131_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.3. get_LevelMask function<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4133_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.4. Debug function<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4135_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.5. Info function<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4137_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.6. Warn function<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4139_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.7. Error function<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4141_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.8. Fatal function<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4143_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.9. DebugFormat function<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4145_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.10. InfoFormat function<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4147_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.11. recvmmsg function<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4149_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.12. WarnFormat function<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4151_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.13. ErrorFormat function<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4153_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.14. FatalFormat function<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4155_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.15. HexDump function<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4157_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.16. BinDump function<text:tab/>7</text:a></text:p>
-     <text:p text:style-name="P24"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4159_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">4. IEcoLog1Affiliate Interface<text:tab/>8</text:a></text:p>
-     <text:p text:style-name="P24"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4161_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">4.1. IEcoLog1Affiliate IDL descriptor<text:tab/>8</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4163_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link"><text:s/>4.1.1. get_Name function<text:tab/>8</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4165_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">4.1.2. get_Layout function<text:tab/>8</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4167_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">4.1.3. set_Layout function<text:tab/>8</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4169_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">4.1.4. Write function<text:tab/>8</text:a></text:p>
-     <text:p text:style-name="P23"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4171_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">5. IEcoLog1Layout Interface<text:tab/>9</text:a></text:p>
-     <text:p text:style-name="P24"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4173_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">5.1. IEcoLog1Layout IDL descriptor<text:tab/>9</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4175_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">5.1.1. get_Name function<text:tab/>9</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4177_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">5.1.2. Format function<text:tab/>9</text:a></text:p>
-     <text:p text:style-name="P23"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4179_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">6. IEcoLog1ConsoleAffiliate Interface<text:tab/>10</text:a></text:p>
-     <text:p text:style-name="P24"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4181_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">6.1. IEcoLog1ConsoleAffiliate IDL descriptor<text:tab/>10</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4183_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">6.1.1. get<text:span text:style-name="T18">_</text:span>TargetOutput<text:span text:style-name="T18"> </text:span>function<text:tab/>10</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4185_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">6.1.2. set_TargetOutput<text:span text:style-name="T18"> </text:span>function<text:tab/>10</text:a></text:p>
-     <text:p text:style-name="P23"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4187_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">7. IEcoLog1FileAffiliate Interface<text:tab/>11</text:a></text:p>
-     <text:p text:style-name="P24"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4189_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">7.1. IEcoLog1FileAffiliate IDL descriptor<text:tab/>11</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4191_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">7.1.1. get_FileName function<text:tab/>11</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4193_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">7.1.2. set_FileName function<text:tab/>11</text:a></text:p>
-     <text:p text:style-name="P23"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4195_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">8. IEcoLog1SimpleLayout Interface<text:tab/>12</text:a></text:p>
-     <text:p text:style-name="P24"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4197_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">8.1. IEcoLog1SimpleLayout IDL descriptor<text:tab/>12</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4199_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">8.1.1. get_Pattern function<text:tab/>12</text:a></text:p>
-     <text:p text:style-name="P25"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4201_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">8.1.2. set_Pattern function<text:tab/>12</text:a></text:p>
-     <text:p text:style-name="P23"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4203_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">9. Error codes<text:tab/>12</text:a></text:p>
-     <text:p text:style-name="P23"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4205_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">Appendix A: Training programs<text:tab/>13</text:a></text:p>
+     <text:p text:style-name="P29"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4113_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">1. Overview<text:tab/>3</text:a></text:p>
+     <text:p text:style-name="P30"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4115_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">1.1. Introduction<text:tab/>3</text:a></text:p>
+     <text:p text:style-name="P30"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4117_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">1.2. Notes<text:tab/>3</text:a></text:p>
+     <text:p text:style-name="P30"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4119_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">1.3. Links<text:tab/>3</text:a></text:p>
+     <text:p text:style-name="P29"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4121_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2. Eco.Log1 Component<text:tab/>5</text:a></text:p>
+     <text:p text:style-name="P29"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4123_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3. IEcoLog1 Interface<text:tab/>6</text:a></text:p>
+     <text:p text:style-name="P30"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4125_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1. IEcoLog1 component’ IDL descriptor<text:tab/>6</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4127_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.1. AddAffiliate function<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4129_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.2. set_LevelMask function<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4131_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.3. get_LevelMask function<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4133_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.4. Debug function<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4135_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.5. Info function<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4137_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.6. Warn function<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4139_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.7. Error function<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4141_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.8. Fatal function<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4143_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.9. DebugFormat function<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4145_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.10. InfoFormat function<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4147_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.11. recvmmsg function<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4149_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.12. WarnFormat function<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4151_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.13. ErrorFormat function<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4153_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.14. FatalFormat function<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4155_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.15. HexDump function<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4157_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1.16. BinDump function<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P30"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4159_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">4. IEcoLog1Affiliate Interface<text:tab/>8</text:a></text:p>
+     <text:p text:style-name="P30"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4161_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">4.1. IEcoLog1Affiliate IDL descriptor<text:tab/>8</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4163_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link"><text:s/>4.1.1. get_Name function<text:tab/>8</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4165_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">4.1.2. get_Layout function<text:tab/>8</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4167_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">4.1.3. set_Layout function<text:tab/>8</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4169_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">4.1.4. Write function<text:tab/>8</text:a></text:p>
+     <text:p text:style-name="P29"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4171_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">5. IEcoLog1Layout Interface<text:tab/>9</text:a></text:p>
+     <text:p text:style-name="P30"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4173_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">5.1. IEcoLog1Layout IDL descriptor<text:tab/>9</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4175_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">5.1.1. get_Name function<text:tab/>9</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4177_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">5.1.2. Format function<text:tab/>9</text:a></text:p>
+     <text:p text:style-name="P29"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4179_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">6. IEcoLog1ConsoleAffiliate Interface<text:tab/>10</text:a></text:p>
+     <text:p text:style-name="P30"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4181_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">6.1. IEcoLog1ConsoleAffiliate IDL descriptor<text:tab/>10</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4183_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">6.1.1. get<text:span text:style-name="T13">_</text:span>TargetOutput<text:span text:style-name="T13"> </text:span>function<text:tab/>10</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4185_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">6.1.2. set_TargetOutput<text:span text:style-name="T13"> </text:span>function<text:tab/>10</text:a></text:p>
+     <text:p text:style-name="P29"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4187_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">7. IEcoLog1FileAffiliate Interface<text:tab/>11</text:a></text:p>
+     <text:p text:style-name="P30"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4189_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">7.1. IEcoLog1FileAffiliate IDL descriptor<text:tab/>11</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4191_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">7.1.1. get_FileName function<text:tab/>11</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4193_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">7.1.2. set_FileName function<text:tab/>11</text:a></text:p>
+     <text:p text:style-name="P29"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4195_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">8. IEcoLog1SimpleLayout Interface<text:tab/>12</text:a></text:p>
+     <text:p text:style-name="P30"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4197_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">8.1. IEcoLog1SimpleLayout IDL descriptor<text:tab/>12</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4199_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">8.1.1. get_Pattern function<text:tab/>12</text:a></text:p>
+     <text:p text:style-name="P31"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4201_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">8.1.2. set_Pattern function<text:tab/>12</text:a></text:p>
+     <text:p text:style-name="P29"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4203_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">9. Error codes<text:tab/>12</text:a></text:p>
+     <text:p text:style-name="P29"><text:a xlink:type="simple" xlink:href="#__RefHeading___Toc4205_2288192666" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">Appendix A: Training programs<text:tab/>13</text:a></text:p>
     </text:index-body>
    </text:table-of-content>
-   <text:p text:style-name="P21"/>
-   <text:h text:style-name="P17" text:outline-level="1"><text:bookmark-start text:name="__RefHeading___Toc4121_2288192666"/><text:span text:style-name="T10">2. Eco.Log1 Component</text:span><text:bookmark-end text:name="__RefHeading___Toc4121_2288192666"/></text:h>
-   <text:p text:style-name="P26"/>
-   <text:p text:style-name="P18"><text:span text:style-name="T19">The Eco.L</text:span><text:span text:style-name="T20">og</text:span><text:span text:style-name="T19">1 component </text:span><text:span text:style-name="T20">implemets logging functionality</text:span></text:p>
-   <text:p text:style-name="P18"><text:span text:style-name="T11">The component has the following description:</text:span></text:p>
    <text:p text:style-name="P27"/>
-   <text:h text:style-name="P17" text:outline-level="1"><text:bookmark-start text:name="__RefHeading___Toc4123_2288192666"/><text:span text:style-name="T10">3. IEcoLog1 Interface</text:span><text:bookmark-end text:name="__RefHeading___Toc4123_2288192666"/></text:h>
-   <text:h text:style-name="P28" text:outline-level="1"/>
-   <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc4125_2288192666"/><text:span text:style-name="T13">3.1. IEcoLog1 interface IDL descriptor</text:span><text:bookmark-end text:name="__RefHeading___Toc4125_2288192666"/></text:h>
-   <text:p text:style-name="P29"/>
-   <text:p text:style-name="P29"/>
+   <text:h text:style-name="P18" text:outline-level="1"><text:bookmark-start text:name="__RefHeading___Toc4121_2288192666"/>2. Eco.Log1 Component<text:bookmark-end text:name="__RefHeading___Toc4121_2288192666"/></text:h>
+   <text:p text:style-name="P21"/>
+   <text:p text:style-name="P26"><text:span text:style-name="T14">The Eco.L</text:span><text:span text:style-name="T15">og</text:span><text:span text:style-name="T14">1 component </text:span><text:span text:style-name="T15">implemets logging functionality</text:span></text:p>
+   <text:p text:style-name="P19">The component has the following description:</text:p>
+   <text:p text:style-name="P32"/>
+   <text:h text:style-name="P18" text:outline-level="1"><text:bookmark-start text:name="__RefHeading___Toc4123_2288192666"/>3. IEcoLog1 Interface<text:bookmark-end text:name="__RefHeading___Toc4123_2288192666"/></text:h>
+   <text:h text:style-name="P33" text:outline-level="1"/>
+   <text:h text:style-name="P22" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc4125_2288192666"/>3.1. IEcoLog1 interface IDL descriptor<text:bookmark-end text:name="__RefHeading___Toc4125_2288192666"/></text:h>
+   <text:p text:style-name="P34"/>
+   <text:p text:style-name="P34"/>
    <text:p text:style-name="code_5f_cpp">import &quot;IEcoBase1.h&quot;</text:p>
    <text:p text:style-name="code_5f_cpp">[</text:p>
    <text:p text:style-name="code_5f_cpp">object,</text:p>
@@ -2768,45 +2776,45 @@
    <text:p text:style-name="code_5f_cpp"><text:tab/><text:tab/></text:p>
    <text:p text:style-name="code_5f_cpp">void<text:tab/>BinDump<text:tab/>([in] uint32_t* data,<text:tab/>[in] byte_t* bits);</text:p>
    <text:p text:style-name="code_5f_cpp">}<text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P30"/>
-   <text:h text:style-name="P31" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4127_2288192666"/><text:span text:style-name="T10">3.1.1. AddAffiliate function</text:span><text:bookmark-end text:name="__RefHeading___Toc4127_2288192666"/></text:h>
-   <text:p text:style-name="P32"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4129_2288192666"/><text:span text:style-name="T10">3.1.2. set_LevelMask function</text:span><text:bookmark-end text:name="__RefHeading___Toc4129_2288192666"/></text:h>
-   <text:p text:style-name="P33"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4131_2288192666"/><text:span text:style-name="T10">3.1.3. get_LevelMask function</text:span><text:bookmark-end text:name="__RefHeading___Toc4131_2288192666"/></text:h>
-   <text:p text:style-name="P34">The function</text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4133_2288192666"/><text:span text:style-name="T10">3.1.4. Debug function</text:span><text:bookmark-end text:name="__RefHeading___Toc4133_2288192666"/></text:h>
-   <text:p text:style-name="P34">The function</text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4135_2288192666"/><text:span text:style-name="T10">3.1.5. Info function</text:span><text:bookmark-end text:name="__RefHeading___Toc4135_2288192666"/></text:h>
-   <text:p text:style-name="P32"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4137_2288192666"/><text:span text:style-name="T10">3.1.6. Warn function</text:span><text:bookmark-end text:name="__RefHeading___Toc4137_2288192666"/></text:h>
-   <text:p text:style-name="P32"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4139_2288192666"/><text:span text:style-name="T10">3.1.7. Error function</text:span><text:bookmark-end text:name="__RefHeading___Toc4139_2288192666"/></text:h>
-   <text:p text:style-name="P32"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4141_2288192666"/><text:span text:style-name="T10">3.1.8. Fatal function</text:span><text:bookmark-end text:name="__RefHeading___Toc4141_2288192666"/></text:h>
-   <text:p text:style-name="P34">The function</text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4143_2288192666"/><text:span text:style-name="T10">3.1.9. DebugFormat function</text:span><text:bookmark-end text:name="__RefHeading___Toc4143_2288192666"/></text:h>
-   <text:p text:style-name="P32"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4145_2288192666"/><text:span text:style-name="T10">3.1.10. InfoFormat function</text:span><text:bookmark-end text:name="__RefHeading___Toc4145_2288192666"/></text:h>
-   <text:p text:style-name="P32"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4147_2288192666"/><text:span text:style-name="T11">3.1.11. recvmmsg function<text:tab/></text:span><text:bookmark-end text:name="__RefHeading___Toc4147_2288192666"/></text:h>
-   <text:p text:style-name="P32"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4149_2288192666"/><text:span text:style-name="T10">3.1.12. WarnFormat function</text:span><text:bookmark-end text:name="__RefHeading___Toc4149_2288192666"/></text:h>
-   <text:p text:style-name="P32"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4151_2288192666"/><text:span text:style-name="T10">3.1.13. ErrorFormat function</text:span><text:bookmark-end text:name="__RefHeading___Toc4151_2288192666"/></text:h>
-   <text:p text:style-name="P32"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4153_2288192666"/><text:span text:style-name="T10">3.1.14. FatalFormat function</text:span><text:bookmark-end text:name="__RefHeading___Toc4153_2288192666"/></text:h>
-   <text:p text:style-name="P32"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4155_2288192666"/><text:span text:style-name="T10">3.1.15. HexDump function</text:span><text:bookmark-end text:name="__RefHeading___Toc4155_2288192666"/></text:h>
-   <text:p text:style-name="P32"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4157_2288192666"/><text:span text:style-name="T10">3.1.16. BinDump function</text:span><text:bookmark-end text:name="__RefHeading___Toc4157_2288192666"/></text:h>
-   <text:p text:style-name="P32"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:h text:style-name="P35" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc4159_2288192666"/><text:span text:style-name="T10">4. IEcoLog1Affiliate Interface</text:span><text:bookmark-end text:name="__RefHeading___Toc4159_2288192666"/></text:h>
-   <text:p text:style-name="P36"/>
-   <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc4161_2288192666"/><text:span text:style-name="T13">4.1. IEcoLog1Affiliate interface IDL descriptor</text:span><text:bookmark-end text:name="__RefHeading___Toc4161_2288192666"/></text:h>
-   <text:p text:style-name="P37"/>
-   <text:p text:style-name="P37"/>
-   <text:p text:style-name="P27"/>
+   <text:p text:style-name="P35"/>
+   <text:h text:style-name="P36" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4127_2288192666"/>3.1.1. AddAffiliate function<text:bookmark-end text:name="__RefHeading___Toc4127_2288192666"/></text:h>
+   <text:p text:style-name="P37">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4129_2288192666"/>3.1.2. set_LevelMask function<text:bookmark-end text:name="__RefHeading___Toc4129_2288192666"/></text:h>
+   <text:p text:style-name="P39">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4131_2288192666"/>3.1.3. get_LevelMask function<text:bookmark-end text:name="__RefHeading___Toc4131_2288192666"/></text:h>
+   <text:p text:style-name="P40">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4133_2288192666"/>3.1.4. Debug function<text:bookmark-end text:name="__RefHeading___Toc4133_2288192666"/></text:h>
+   <text:p text:style-name="P40">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4135_2288192666"/>3.1.5. Info function<text:bookmark-end text:name="__RefHeading___Toc4135_2288192666"/></text:h>
+   <text:p text:style-name="P37">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4137_2288192666"/>3.1.6. Warn function<text:bookmark-end text:name="__RefHeading___Toc4137_2288192666"/></text:h>
+   <text:p text:style-name="P37">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4139_2288192666"/>3.1.7. Error function<text:bookmark-end text:name="__RefHeading___Toc4139_2288192666"/></text:h>
+   <text:p text:style-name="P37">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4141_2288192666"/>3.1.8. Fatal function<text:bookmark-end text:name="__RefHeading___Toc4141_2288192666"/></text:h>
+   <text:p text:style-name="P40">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4143_2288192666"/>3.1.9. DebugFormat function<text:bookmark-end text:name="__RefHeading___Toc4143_2288192666"/></text:h>
+   <text:p text:style-name="P37">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4145_2288192666"/>3.1.10. InfoFormat function<text:bookmark-end text:name="__RefHeading___Toc4145_2288192666"/></text:h>
+   <text:p text:style-name="P37">The function</text:p>
+   <text:h text:style-name="P41" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4147_2288192666"/>3.1.11. recvmmsg function<text:tab/><text:bookmark-end text:name="__RefHeading___Toc4147_2288192666"/></text:h>
+   <text:p text:style-name="P37">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4149_2288192666"/>3.1.12. WarnFormat function<text:bookmark-end text:name="__RefHeading___Toc4149_2288192666"/></text:h>
+   <text:p text:style-name="P37">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4151_2288192666"/>3.1.13. ErrorFormat function<text:bookmark-end text:name="__RefHeading___Toc4151_2288192666"/></text:h>
+   <text:p text:style-name="P37">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4153_2288192666"/>3.1.14. FatalFormat function<text:bookmark-end text:name="__RefHeading___Toc4153_2288192666"/></text:h>
+   <text:p text:style-name="P37">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4155_2288192666"/>3.1.15. HexDump function<text:bookmark-end text:name="__RefHeading___Toc4155_2288192666"/></text:h>
+   <text:p text:style-name="P37">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4157_2288192666"/>3.1.16. BinDump function<text:bookmark-end text:name="__RefHeading___Toc4157_2288192666"/></text:h>
+   <text:p text:style-name="P37">The function</text:p>
+   <text:h text:style-name="P42" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc4159_2288192666"/>4. IEcoLog1Affiliate Interface<text:bookmark-end text:name="__RefHeading___Toc4159_2288192666"/></text:h>
+   <text:p text:style-name="P43"/>
+   <text:h text:style-name="P22" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc4161_2288192666"/>4.1. IEcoLog1Affiliate interface IDL descriptor<text:bookmark-end text:name="__RefHeading___Toc4161_2288192666"/></text:h>
+   <text:p text:style-name="P44"/>
+   <text:p text:style-name="P44"/>
+   <text:p text:style-name="P32"/>
    <text:p text:style-name="code_5f_cpp">import &quot;IEcoBase1.h&quot;</text:p>
    <text:p text:style-name="code_5f_cpp">[</text:p>
    <text:p text:style-name="code_5f_cpp">object,</text:p>
@@ -2827,20 +2835,20 @@
    <text:p text:style-name="code_5f_cpp"/>
    <text:p text:style-name="Standard"/>
    <text:p text:style-name="Standard"/>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4163_2288192666"/><text:span text:style-name="T13"><text:tab/>4.1.1. get_Name function</text:span><text:bookmark-end text:name="__RefHeading___Toc4163_2288192666"/></text:h>
-   <text:p text:style-name="P32"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4165_2288192666"/><text:span text:style-name="T10">4.1.2. get_Layout function</text:span><text:bookmark-end text:name="__RefHeading___Toc4165_2288192666"/></text:h>
-   <text:p text:style-name="P32"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4167_2288192666"/><text:span text:style-name="T10">4.1.3. set_Layout function</text:span><text:bookmark-end text:name="__RefHeading___Toc4167_2288192666"/></text:h>
-   <text:p text:style-name="P34">The function</text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4169_2288192666"/><text:span text:style-name="T10">4.1.4. Write function</text:span><text:bookmark-end text:name="__RefHeading___Toc4169_2288192666"/></text:h>
-   <text:p text:style-name="P34">The function</text:p>
-   <text:p text:style-name="P29"/>
-   <text:h text:style-name="P17" text:outline-level="1"><text:bookmark-start text:name="__RefHeading___Toc4171_2288192666"/><text:span text:style-name="T10">5. IEcoLog1Layout Interface</text:span><text:bookmark-end text:name="__RefHeading___Toc4171_2288192666"/></text:h>
-   <text:p text:style-name="P36"/>
-   <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc4173_2288192666"/><text:span text:style-name="T21">5.1. IEcoLog1Layout interface IDL descriptor</text:span><text:bookmark-end text:name="__RefHeading___Toc4173_2288192666"/></text:h>
-   <text:p text:style-name="P29"/>
-   <text:p text:style-name="P29"/>
+   <text:h text:style-name="P45" text:outline-level="3" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc4163_2288192666"/><text:tab/>4.1.1. get_Name function<text:bookmark-end text:name="__RefHeading___Toc4163_2288192666"/></text:h>
+   <text:p text:style-name="P37">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4165_2288192666"/>4.1.2. get_Layout function<text:bookmark-end text:name="__RefHeading___Toc4165_2288192666"/></text:h>
+   <text:p text:style-name="P37">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4167_2288192666"/>4.1.3. set_Layout function<text:bookmark-end text:name="__RefHeading___Toc4167_2288192666"/></text:h>
+   <text:p text:style-name="P40">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4169_2288192666"/>4.1.4. Write function<text:bookmark-end text:name="__RefHeading___Toc4169_2288192666"/></text:h>
+   <text:p text:style-name="P40">The function</text:p>
+   <text:p text:style-name="P34"/>
+   <text:h text:style-name="P18" text:outline-level="1"><text:bookmark-start text:name="__RefHeading___Toc4171_2288192666"/>5. IEcoLog1Layout Interface<text:bookmark-end text:name="__RefHeading___Toc4171_2288192666"/></text:h>
+   <text:p text:style-name="P43"/>
+   <text:h text:style-name="P46" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc4173_2288192666"/>5.1. IEcoLog1Layout interface IDL descriptor<text:bookmark-end text:name="__RefHeading___Toc4173_2288192666"/></text:h>
+   <text:p text:style-name="P34"/>
+   <text:p text:style-name="P34"/>
    <text:p text:style-name="code_5f_cpp">import &quot;IEcoBase1.h&quot;</text:p>
    <text:p text:style-name="code_5f_cpp">[</text:p>
    <text:p text:style-name="code_5f_cpp">object,</text:p>
@@ -2851,19 +2859,19 @@
    <text:p text:style-name="code_5f_cpp">char_t*<text:tab/>get_Name<text:tab/>([in] void);</text:p>
    <text:p text:style-name="code_5f_cpp"/>
    <text:p text:style-name="code_5f_cpp">char_t*<text:tab/>Format<text:tab/>([in] uint16_t level,<text:tab/>[in] char_t* data,<text:tab/>[in] uint32_t size);</text:p>
-   <text:p text:style-name="P38">}<text:tab/></text:p>
+   <text:p text:style-name="P47">}<text:tab/></text:p>
    <text:p text:style-name="Standard"/>
    <text:p text:style-name="Standard"/>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4175_2288192666"/><text:span text:style-name="T22">5.1.1. get_Name function</text:span><text:bookmark-end text:name="__RefHeading___Toc4175_2288192666"/></text:h>
-   <text:p text:style-name="P32"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4177_2288192666"/><text:span text:style-name="T10">5.1.2. Format function</text:span><text:bookmark-end text:name="__RefHeading___Toc4177_2288192666"/></text:h>
-   <text:p text:style-name="P33"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:p text:style-name="P29"/>
-   <text:h text:style-name="P17" text:outline-level="1"><text:bookmark-start text:name="__RefHeading___Toc4179_2288192666"/><text:span text:style-name="T10">6. IEcoLog1ConsoleAffiliate Interface</text:span><text:bookmark-end text:name="__RefHeading___Toc4179_2288192666"/></text:h>
-   <text:p text:style-name="P36"/>
-   <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc4181_2288192666"/><text:span text:style-name="T21">6.1. IEcoLog1ConsoleAffiliate interface’ IDL descriptor</text:span><text:bookmark-end text:name="__RefHeading___Toc4181_2288192666"/></text:h>
-   <text:p text:style-name="P29"/>
-   <text:p text:style-name="P29"/>
+   <text:h text:style-name="P48" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4175_2288192666"/>5.1.1. get_Name function<text:bookmark-end text:name="__RefHeading___Toc4175_2288192666"/></text:h>
+   <text:p text:style-name="P37">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4177_2288192666"/>5.1.2. Format function<text:bookmark-end text:name="__RefHeading___Toc4177_2288192666"/></text:h>
+   <text:p text:style-name="P39">The function</text:p>
+   <text:p text:style-name="P34"/>
+   <text:h text:style-name="P18" text:outline-level="1"><text:bookmark-start text:name="__RefHeading___Toc4179_2288192666"/>6. IEcoLog1ConsoleAffiliate Interface<text:bookmark-end text:name="__RefHeading___Toc4179_2288192666"/></text:h>
+   <text:p text:style-name="P43"/>
+   <text:h text:style-name="P46" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc4181_2288192666"/>6.1. IEcoLog1ConsoleAffiliate interface’ IDL descriptor<text:bookmark-end text:name="__RefHeading___Toc4181_2288192666"/></text:h>
+   <text:p text:style-name="P34"/>
+   <text:p text:style-name="P34"/>
    <text:p text:style-name="code_5f_cpp">import &quot;IEcoBase1.h&quot;</text:p>
    <text:p text:style-name="code_5f_cpp">import &quot;IEcoLog1.hpp&quot;</text:p>
    <text:p text:style-name="code_5f_cpp">[</text:p>
@@ -2876,19 +2884,19 @@
    <text:p text:style-name="code_5f_cpp"/>
    <text:p text:style-name="code_5f_cpp">void<text:tab/>set_TargetOutput<text:tab/>([in] char_t* name);</text:p>
    <text:p text:style-name="code_5f_cpp">}<text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P29"/>
-   <text:p text:style-name="P29"/>
-   <text:p text:style-name="P29"/>
-   <text:p text:style-name="P29"/>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4183_2288192666"/><text:span text:style-name="T10">6.1.1. get_TargetOutput function</text:span><text:bookmark-end text:name="__RefHeading___Toc4183_2288192666"/></text:h>
-   <text:p text:style-name="P32"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4185_2288192666"/><text:span text:style-name="T10">6.1.2. set_TargetOutput function</text:span><text:bookmark-end text:name="__RefHeading___Toc4185_2288192666"/></text:h>
-   <text:p text:style-name="P33"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:p text:style-name="P29"/>
-   <text:h text:style-name="P17" text:outline-level="1"><text:bookmark-start text:name="__RefHeading___Toc4187_2288192666"/><text:span text:style-name="T10">7. IEcoLog1FileAffiliate Interface</text:span><text:bookmark-end text:name="__RefHeading___Toc4187_2288192666"/></text:h>
-   <text:p text:style-name="P36"/>
-   <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc4189_2288192666"/><text:span text:style-name="T21">7.1. IEcoLog1FileAffiliate interface’ IDL descriptor</text:span><text:bookmark-end text:name="__RefHeading___Toc4189_2288192666"/></text:h>
-   <text:p text:style-name="P29"/>
+   <text:p text:style-name="P34"/>
+   <text:p text:style-name="P34"/>
+   <text:p text:style-name="P34"/>
+   <text:p text:style-name="P34"/>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4183_2288192666"/>6.1.1. get_TargetOutput function<text:bookmark-end text:name="__RefHeading___Toc4183_2288192666"/></text:h>
+   <text:p text:style-name="P37">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4185_2288192666"/>6.1.2. set_TargetOutput function<text:bookmark-end text:name="__RefHeading___Toc4185_2288192666"/></text:h>
+   <text:p text:style-name="P39">The function</text:p>
+   <text:p text:style-name="P34"/>
+   <text:h text:style-name="P18" text:outline-level="1"><text:bookmark-start text:name="__RefHeading___Toc4187_2288192666"/>7. IEcoLog1FileAffiliate Interface<text:bookmark-end text:name="__RefHeading___Toc4187_2288192666"/></text:h>
+   <text:p text:style-name="P43"/>
+   <text:h text:style-name="P46" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc4189_2288192666"/>7.1. IEcoLog1FileAffiliate interface’ IDL descriptor<text:bookmark-end text:name="__RefHeading___Toc4189_2288192666"/></text:h>
+   <text:p text:style-name="P34"/>
    <text:p text:style-name="code_5f_cpp">import &quot;IEcoBase1.h&quot;</text:p>
    <text:p text:style-name="code_5f_cpp">import &quot;IEcoLog1.hpp&quot;</text:p>
    <text:p text:style-name="code_5f_cpp">[</text:p>
@@ -2901,18 +2909,18 @@
    <text:p text:style-name="code_5f_cpp"/>
    <text:p text:style-name="code_5f_cpp">void<text:tab/>set_FileName<text:tab/>([in] char_t* name);</text:p>
    <text:p text:style-name="code_5f_cpp">}<text:tab/><text:tab/></text:p>
-   <text:p text:style-name="P29"/>
-   <text:p text:style-name="P29"/>
-   <text:p text:style-name="P29"/>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4191_2288192666"/><text:span text:style-name="T10">7.1.1. get_FileName function</text:span><text:bookmark-end text:name="__RefHeading___Toc4191_2288192666"/></text:h>
-   <text:p text:style-name="P32"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4193_2288192666"/><text:span text:style-name="T10">7.1.2. set_FileName function</text:span><text:bookmark-end text:name="__RefHeading___Toc4193_2288192666"/></text:h>
-   <text:p text:style-name="P33"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:p text:style-name="P29"/>
-   <text:h text:style-name="P17" text:outline-level="1"><text:bookmark-start text:name="__RefHeading___Toc4195_2288192666"/><text:span text:style-name="T10">8. IEcoLog1SimpleLayout Interface</text:span><text:bookmark-end text:name="__RefHeading___Toc4195_2288192666"/></text:h>
-   <text:p text:style-name="P36"/>
-   <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc4197_2288192666"/><text:span text:style-name="T21">8.1. IEcoLog1SimpleLayout interface’ IDL descriptor</text:span><text:bookmark-end text:name="__RefHeading___Toc4197_2288192666"/></text:h>
-   <text:p text:style-name="P29"/>
+   <text:p text:style-name="P34"/>
+   <text:p text:style-name="P34"/>
+   <text:p text:style-name="P34"/>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4191_2288192666"/>7.1.1. get_FileName function<text:bookmark-end text:name="__RefHeading___Toc4191_2288192666"/></text:h>
+   <text:p text:style-name="P37">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4193_2288192666"/>7.1.2. set_FileName function<text:bookmark-end text:name="__RefHeading___Toc4193_2288192666"/></text:h>
+   <text:p text:style-name="P39">The function</text:p>
+   <text:p text:style-name="P34"/>
+   <text:h text:style-name="P18" text:outline-level="1"><text:bookmark-start text:name="__RefHeading___Toc4195_2288192666"/>8. IEcoLog1SimpleLayout Interface<text:bookmark-end text:name="__RefHeading___Toc4195_2288192666"/></text:h>
+   <text:p text:style-name="P43"/>
+   <text:h text:style-name="P46" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc4197_2288192666"/>8.1. IEcoLog1SimpleLayout interface’ IDL descriptor<text:bookmark-end text:name="__RefHeading___Toc4197_2288192666"/></text:h>
+   <text:p text:style-name="P34"/>
    <text:p text:style-name="code_5f_cpp">import &quot;IEcoBase1.h&quot;</text:p>
    <text:p text:style-name="code_5f_cpp">import &quot;IEcoLog1.hpp&quot;</text:p>
    <text:p text:style-name="code_5f_cpp">[</text:p>
@@ -2925,121 +2933,121 @@
    <text:p text:style-name="code_5f_cpp"/>
    <text:p text:style-name="code_5f_cpp">char_t*<text:tab/>set_Pattern<text:tab/>([in] char_t* name);</text:p>
    <text:p text:style-name="code_5f_cpp">}</text:p>
-   <text:p text:style-name="P39"/>
-   <text:p text:style-name="P39"/>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4199_2288192666"/><text:span text:style-name="T10">8.1.1. get_Pattern function</text:span><text:bookmark-end text:name="__RefHeading___Toc4199_2288192666"/></text:h>
-   <text:p text:style-name="P32"><text:span text:style-name="T11">The function</text:span></text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4201_2288192666"/><text:span text:style-name="T10">8.1.2. set_Pattern function</text:span><text:bookmark-end text:name="__RefHeading___Toc4201_2288192666"/></text:h>
-   <text:p text:style-name="P33"><text:span text:style-name="T11">The function</text:span></text:p>
+   <text:p text:style-name="P49"/>
+   <text:p text:style-name="P49"/>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4199_2288192666"/>8.1.1. get_Pattern function<text:bookmark-end text:name="__RefHeading___Toc4199_2288192666"/></text:h>
+   <text:p text:style-name="P37">The function</text:p>
+   <text:h text:style-name="P38" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc4201_2288192666"/>8.1.2. set_Pattern function<text:bookmark-end text:name="__RefHeading___Toc4201_2288192666"/></text:h>
+   <text:p text:style-name="P39">The function</text:p>
    <text:list text:style-name="WWNum1">
     <text:list-header>
-     <text:h text:style-name="P40" text:outline-level="1"/>
-     <text:h text:style-name="P41" text:outline-level="1"/>
+     <text:h text:style-name="P50" text:outline-level="1"/>
+     <text:h text:style-name="P51" text:outline-level="1"/>
     </text:list-header>
    </text:list>
    <text:h text:style-name="Heading_20_1" text:outline-level="1"><text:bookmark-start text:name="__RefHeading___Toc4203_2288192666"/>9. Error codes<text:bookmark-end text:name="__RefHeading___Toc4203_2288192666"/></text:h>
-   <text:p text:style-name="P42"/>
-   <text:p text:style-name="P43"><text:span text:style-name="T11">The following table contains the error codes.</text:span></text:p>
-   <text:p text:style-name="P44"/>
+   <text:p text:style-name="P52"/>
+   <text:p text:style-name="P53">The following table contains the error codes.</text:p>
+   <text:p text:style-name="P53"/>
    <table:table table:name="Таблица8" table:style-name="Таблица8">
     <table:table-column table:style-name="Таблица8.A"/>
     <table:table-column table:style-name="Таблица8.B"/>
     <table:table-column table:style-name="Таблица8.C"/>
     <table:table-row table:style-name="Таблица8.1">
      <table:table-cell table:style-name="Таблица8.A1" office:value-type="string">
-      <text:p text:style-name="P45"><text:span text:style-name="T23">Error code</text:span></text:p>
+      <text:p text:style-name="P54">Error code</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица8.A1" office:value-type="string">
-      <text:p text:style-name="P45"><text:span text:style-name="T23">Value</text:span></text:p>
+      <text:p text:style-name="P54">Value</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица8.A1" office:value-type="string">
-      <text:p text:style-name="P45"><text:span text:style-name="T23">Description</text:span></text:p>
+      <text:p text:style-name="P54">Description</text:p>
      </table:table-cell>
     </table:table-row>
     <table:table-row table:style-name="Таблица8.1">
      <table:table-cell table:style-name="Таблица8.A2" office:value-type="string">
-      <text:p text:style-name="P46"><text:span text:style-name="T24">ERR_ECO_SUCCESES</text:span></text:p>
+      <text:p text:style-name="P55">ERR_ECO_SUCCESES</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица8.B2" office:value-type="string">
-      <text:p text:style-name="P46"><text:span text:style-name="T24">0x0000</text:span></text:p>
+      <text:p text:style-name="P55">0x0000</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица8.C2" office:value-type="string">
-      <text:p text:style-name="P46"><text:span text:style-name="T25">Operation successful.</text:span></text:p>
+      <text:p text:style-name="P56">Operation successful.</text:p>
      </table:table-cell>
     </table:table-row>
     <table:table-row table:style-name="Таблица8.1">
      <table:table-cell table:style-name="Таблица8.A3" office:value-type="string">
-      <text:p text:style-name="P46"><text:span text:style-name="T24">ERR_ECO_UNEXPECTED</text:span></text:p>
+      <text:p text:style-name="P55">ERR_ECO_UNEXPECTED</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица8.B3" office:value-type="string">
-      <text:p text:style-name="P46"><text:span text:style-name="T24">0xFFFF</text:span></text:p>
+      <text:p text:style-name="P55">0xFFFF</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица8.C3" office:value-type="string">
-      <text:p text:style-name="P46"><text:span text:style-name="T25">Unexpected condition.</text:span></text:p>
+      <text:p text:style-name="P56">Unexpected condition.</text:p>
      </table:table-cell>
     </table:table-row>
     <table:table-row table:style-name="Таблица8.1">
      <table:table-cell table:style-name="Таблица8.A4" office:value-type="string">
-      <text:p text:style-name="P46"><text:span text:style-name="T24">ERR_ECO_POINTER</text:span></text:p>
+      <text:p text:style-name="P55">ERR_ECO_POINTER</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица8.B4" office:value-type="string">
-      <text:p text:style-name="P46"><text:span text:style-name="T24">0xFFEE</text:span></text:p>
+      <text:p text:style-name="P55">0xFFEE</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица8.C4" office:value-type="string">
-      <text:p text:style-name="P46">NULL was passed incorrectly for a pointer value.</text:p>
+      <text:p text:style-name="P57">NULL was passed incorrectly for a pointer value.</text:p>
      </table:table-cell>
     </table:table-row>
     <table:table-row table:style-name="Таблица8.1">
      <table:table-cell table:style-name="Таблица8.A5" office:value-type="string">
-      <text:p text:style-name="P46"><text:span text:style-name="T24">ERR_ECO_NOINTERFACE</text:span></text:p>
+      <text:p text:style-name="P55">ERR_ECO_NOINTERFACE</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица8.B5" office:value-type="string">
-      <text:p text:style-name="P46"><text:span text:style-name="T24">0xFFED</text:span></text:p>
+      <text:p text:style-name="P55">0xFFED</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица8.C5" office:value-type="string">
-      <text:p text:style-name="P46"><text:span text:style-name="T25">No such interface supported.</text:span></text:p>
+      <text:p text:style-name="P56">No such interface supported.</text:p>
      </table:table-cell>
     </table:table-row>
     <table:table-row table:style-name="Таблица8.1">
      <table:table-cell table:style-name="Таблица8.A6" office:value-type="string">
-      <text:p text:style-name="P46"><text:span text:style-name="T24">ERR_ECO_COMPONENT_NOTFOUND</text:span></text:p>
+      <text:p text:style-name="P55">ERR_ECO_COMPONENT_NOTFOUND</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица8.B6" office:value-type="string">
-      <text:p text:style-name="P46"><text:span text:style-name="T24">0xFFE9</text:span></text:p>
+      <text:p text:style-name="P55">0xFFE9</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица8.C6" office:value-type="string">
-      <text:p text:style-name="P46">The component was not found.</text:p>
+      <text:p text:style-name="P57">The component was not found.</text:p>
      </table:table-cell>
     </table:table-row>
     <table:table-row table:style-name="Таблица8.1">
      <table:table-cell table:style-name="Таблица8.A7" office:value-type="string">
-      <text:p text:style-name="P46"/>
+      <text:p text:style-name="P57"/>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица8.B7" office:value-type="string">
-      <text:p text:style-name="P46"/>
+      <text:p text:style-name="P57"/>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица8.C7" office:value-type="string">
-      <text:p text:style-name="P46"/>
+      <text:p text:style-name="P57"/>
      </table:table-cell>
     </table:table-row>
     <table:table-row table:style-name="Таблица8.1">
      <table:table-cell table:style-name="Таблица8.A8" office:value-type="string">
-      <text:p text:style-name="P46"/>
+      <text:p text:style-name="P57"/>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица8.B8" office:value-type="string">
-      <text:p text:style-name="P46"/>
+      <text:p text:style-name="P57"/>
      </table:table-cell>
      <table:table-cell table:style-name="Таблица8.C8" office:value-type="string">
-      <text:p text:style-name="P46"/>
+      <text:p text:style-name="P57"/>
      </table:table-cell>
     </table:table-row>
    </table:table>
    <text:p text:style-name="P12"/>
    <text:p text:style-name="P12"/>
-   <text:h text:style-name="P17" text:outline-level="1"><text:bookmark-start text:name="__RefHeading___Toc4205_2288192666"/>Appendix A: Training programs<text:bookmark-end text:name="__RefHeading___Toc4205_2288192666"/></text:h>
-   <text:p text:style-name="P20"/>
-   <text:p text:style-name="P47"/>
-   <text:p text:style-name="P20"/>
+   <text:h text:style-name="P58" text:outline-level="1"><text:bookmark-start text:name="__RefHeading___Toc4205_2288192666"/>Appendix A: Training programs<text:bookmark-end text:name="__RefHeading___Toc4205_2288192666"/></text:h>
+   <text:p text:style-name="P24"/>
+   <text:p text:style-name="P59"/>
+   <text:p text:style-name="P24"/>
   </office:text>
  </office:body>
 </office:document>
