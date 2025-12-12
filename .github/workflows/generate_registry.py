@@ -12,30 +12,30 @@ def extract_metadata_from_fodt(filepath):
     """Extract USPD, Name, CID, and Description from .fodt file"""
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
-            content = f.read(5000)  # Read first 5KB for metadata
+            content = f.read(10000)  # Read first 10KB for metadata
         
         uspd = None
         name = None
         cid = None
         description = None
         
-        # Extract USPD
-        uspd_match = re.search(r'<text:span[^>]*>USPD:</text:span><text:span[^>]*>\s*([A-Z]{2}\.ECO\.\d{5}-\d{2})', content)
+        # Extract USPD - pattern: <text:span>USPD:</text:span><text:span> US.ECO.00023-01 90 01 1</text:span>
+        uspd_match = re.search(r'USPD:</text:span><text:span[^>]*>\s*([A-Z]{2}\.ECO\.\d{5}-\d{2})', content)
         if uspd_match:
             uspd = uspd_match.group(1)
         
-        # Extract Name
-        name_match = re.search(r'<text:span[^>]*>Name</text:span><text:span[^>]*>:</text:span><text:span[^>]*>\s*([^<]+)</text:span>', content)
+        # Extract Name - pattern: <text:span>Name</text:span><text:span>:</text:span><text:span> Eco.COFF1</text:span>
+        name_match = re.search(r'>Name</text:span><text:span[^>]*>:</text:span><text:span[^>]*>\s*([^<]+)</text:span>', content)
         if name_match:
             name = name_match.group(1).strip()
         
-        # Extract CID
-        cid_match = re.search(r'<text:span[^>]*>CID</text:span><text:span[^>]*>:</text:span><text:span[^>]*>\s*([A-F0-9]{32})</text:span>', content)
+        # Extract CID - pattern: <text:span>CID</text:span><text:span>:</text:span><text:span> 1CDF093D22EF4917BC291E4889866214</text:span>
+        cid_match = re.search(r'>CID</text:span><text:span[^>]*>:</text:span><text:span[^>]*>\s*([A-F0-9]{32})', content, re.IGNORECASE)
         if cid_match:
-            cid = cid_match.group(1)
+            cid = cid_match.group(1).upper()
         
-        # Extract Short Description
-        desc_match = re.search(r'Short Description[^:]*:</text:span>\s*<text:span[^>]*>\s*([^<]+)</text:span>', content)
+        # Extract Short Description - pattern: <text:span>Short Description (max 300 char.):</text:span> <text:span>Implements executable file format of COFF standard</text:span>
+        desc_match = re.search(r'Short Description[^<]*</text:span>\s*<text:span[^>]*>\s*([^<]+)</text:span>', content)
         if desc_match:
             description = desc_match.group(1).strip()
         
