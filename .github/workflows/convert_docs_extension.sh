@@ -374,42 +374,55 @@ if [[ ${#source_files[@]} -gt 0 ]]; then
       
       original_file="$source_file"
       
-      # Determine output path based on original source location
+      # Detect language from filename prefix
+      lang_code="en"  # Default to English
+      if [[ "$base_name" =~ ^RU[._-] ]]; then
+        lang_code="ru"
+      elif [[ "$base_name" =~ ^(US|EN)[._-] ]]; then
+        lang_code="en"
+      elif [[ "$base_name" =~ ^FR[._-] ]]; then
+        lang_code="fr"
+      elif [[ "$base_name" =~ ^DE[._-] ]]; then
+        lang_code="de"
+      fi
+      echo "🌐 Detected language: $lang_code (from filename: $base_name)"
+      
+      # Determine output path based on original source location and language
       if [[ "$original_file" == components/* ]]; then
-        # Flatten components structure - all files go to docs/components
-        mkdir -p "$PWD/converted_docs/components"
-        output_file="$PWD/converted_docs/components/${base_name}.md"
-        img_output_dir="$PWD/converted_docs/components"
+        # Flatten components structure - all files go to docs/{lang}/components
+        mkdir -p "$PWD/converted_docs/$lang_code/components"
+        output_file="$PWD/converted_docs/$lang_code/components/${base_name}.md"
+        img_output_dir="$PWD/converted_docs/$lang_code/components"
       elif [[ "$original_file" == libraries/* ]]; then
         # Extract relative path within libraries directory
         rel_path="${original_file#libraries/}"
         rel_dir="$(dirname "$rel_path")"
         if [ "$rel_dir" != "." ]; then
-          mkdir -p "$PWD/converted_docs/libraries/$rel_dir"
-          output_file="$PWD/converted_docs/libraries/$rel_dir/${base_name}.md"
-          img_output_dir="$PWD/converted_docs/libraries/$rel_dir"
+          mkdir -p "$PWD/converted_docs/$lang_code/libraries/$rel_dir"
+          output_file="$PWD/converted_docs/$lang_code/libraries/$rel_dir/${base_name}.md"
+          img_output_dir="$PWD/converted_docs/$lang_code/libraries/$rel_dir"
         else
-          mkdir -p "$PWD/converted_docs/libraries"
-          output_file="$PWD/converted_docs/libraries/${base_name}.md"
-          img_output_dir="$PWD/converted_docs/libraries"
+          mkdir -p "$PWD/converted_docs/$lang_code/libraries"
+          output_file="$PWD/converted_docs/$lang_code/libraries/${base_name}.md"
+          img_output_dir="$PWD/converted_docs/$lang_code/libraries"
         fi
       elif [[ "$original_file" == guides/* ]]; then
         # Extract relative path within guides directory
         rel_path="${original_file#guides/}"
         rel_dir="$(dirname "$rel_path")"
         if [ "$rel_dir" != "." ]; then
-          mkdir -p "$PWD/converted_docs/guides/$rel_dir"
-          output_file="$PWD/converted_docs/guides/$rel_dir/${base_name}.md"
-          img_output_dir="$PWD/converted_docs/guides/$rel_dir"
+          mkdir -p "$PWD/converted_docs/$lang_code/guides/$rel_dir"
+          output_file="$PWD/converted_docs/$lang_code/guides/$rel_dir/${base_name}.md"
+          img_output_dir="$PWD/converted_docs/$lang_code/guides/$rel_dir"
         else
-          mkdir -p "$PWD/converted_docs/guides"
-          output_file="$PWD/converted_docs/guides/${base_name}.md"
-          img_output_dir="$PWD/converted_docs/guides"
+          mkdir -p "$PWD/converted_docs/$lang_code/guides"
+          output_file="$PWD/converted_docs/$lang_code/guides/${base_name}.md"
+          img_output_dir="$PWD/converted_docs/$lang_code/guides"
         fi
       else
         # Fallback to flat structure for unknown paths
-        output_file="$PWD/converted_docs/${base_name}.md"
-        img_output_dir="$PWD/converted_docs"
+        output_file="$PWD/converted_docs/$lang_code/${base_name}.md"
+        img_output_dir="$PWD/converted_docs/$lang_code"
       fi
       
       # Check if markdown file was created

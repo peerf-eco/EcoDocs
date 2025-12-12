@@ -11,6 +11,7 @@ Automated workflow that converts FODT (Flat XML ODT) documentation files to Mark
 - UTF-8 encoding normalization and VitePress-compatible metadata
 - Automatic image extraction and folder handling
 - Retry logic for failed conversions
+- Multi-language support with automatic routing based on filename prefixes (RU, US/EN, FR, DE)
 
 ## Workflow Architecture
 
@@ -24,16 +25,60 @@ Automated workflow that converts FODT (Flat XML ODT) documentation files to Mark
 ### Workflow Sequence
 1. **Load State**: Retrieves `.conversion-state.json` from target repository
 2. **Change Detection**: Identifies modified FODT files since last successful run
-3. **Conversion**: Processes files through direct FODT/ODT→Markdown pipeline
-4. **State Update**: Creates new state file with success/failure tracking
-5. **Deployment**: Copies markdown files and state to target repository
+3. **Language Detection**: Analyzes filename prefixes to determine target language directory
+4. **Conversion**: Processes files through direct FODT/ODT→Markdown pipeline
+5. **State Update**: Creates new state file with success/failure tracking
+6. **Deployment**: Copies markdown files to language-specific directories and updates state
 
 ### Conversion Pipeline
 1. **Direct Processing**: LibreOffice DocExport extension handles both .fodt and .odt files directly
-2. **ODT→Markdown**: DocExport extension using `ExportDir` macro
-3. **UTF-8 Encoding**: Python-based encoding normalization
-4. **Metadata Addition**: VitePress frontmatter injection with CID-based renaming
-5. **Image Handling**: Automatic extraction to `img_filename/` folders
+2. **Language Detection**: Filename prefix analysis to determine target language directory
+3. **ODT→Markdown**: DocExport extension using `ExportDir` macro
+4. **UTF-8 Encoding**: Python-based encoding normalization
+5. **Metadata Addition**: VitePress frontmatter injection with CID-based renaming
+6. **Image Handling**: Automatic extraction to `img_filename/` folders
+
+### Language Detection Mechanism
+
+**Automatic Language Routing**: The workflow automatically detects the document language from filename prefixes and routes files to appropriate language subdirectories in the target repository.
+
+**Supported Language Prefixes**:
+- `RU` - Russian (Cyrillic) → `docs/ru/`
+- `US` or `EN` - English → `docs/en/`
+- `FR` - French → `docs/fr/`
+- `DE` - German → `docs/de/`
+
+**Detection Pattern**: The script uses regex matching on the base filename:
+```bash
+# Examples of detected patterns:
+RU.ECO.Component.fodt  # Matches ^RU[._-] → ru
+RU_ECO_Component.fodt  # Matches ^RU[._-] → ru
+US.ECO.Component.fodt  # Matches ^(US|EN)[._-] → en
+EN-ECO-Component.fodt  # Matches ^(US|EN)[._-] → en
+FR.ECO.Component.fodt  # Matches ^FR[._-] → fr
+DE.ECO.Component.fodt  # Matches ^DE[._-] → de
+ECO.Component.fodt     # No prefix match → en (default)
+```
+
+**Directory Routing Rules**:
+1. **Components** (flat structure):
+   - Source: `components/**/*.fodt`
+   - Target: `docs/{language}/components/filename.md`
+   - Example: `components/subfolder/RU.Component.fodt` → `docs/ru/components/RU.Component.md`
+
+2. **Libraries** (preserves structure):
+   - Source: `libraries/**/*.fodt`
+   - Target: `docs/{language}/libraries/{subfolder}/filename.md`
+   - Example: `libraries/auth/US.Library.fodt` → `docs/en/libraries/auth/US.Library.md`
+
+3. **Guides** (preserves structure):
+   - Source: `guides/**/*.fodt`
+   - Target: `docs/{language}/guides/{subfolder}/filename.md`
+   - Example: `guides/tutorials/FR.Guide.fodt` → `docs/fr/guides/tutorials/FR.Guide.md`
+
+**Image Folder Routing**: Image folders (`img_filename/`) are placed in the same directory as their corresponding markdown file, following the same language routing.
+
+**Default Behavior**: Files without a recognized language prefix default to English (`en`) directory.
 
 ### State Tracking
 - **State File**: `.conversion-state.json` in target repository root
@@ -233,19 +278,19 @@ RUN locale-gen C.UTF-8
 **Enhancement**: Extended workflow to process .fodt files from multiple source directories
 
 **Source Directory Patterns**:
-- `components/**/*.fodt` - Any nesting level, flattened to `docs/components/`
-- `libraries/**/*.fodt` - Any nesting level, preserves structure in `docs/libraries/`
-- `guides/**/*.fodt` - Any nesting level, preserves structure in `docs/guides/`
+- `components/**/*.fodt` - Any nesting level, flattened to `docs/{language}/components/`
+- `libraries/**/*.fodt` - Any nesting level, preserves structure in `docs/{language}/libraries/`
+- `guides/**/*.fodt` - Any nesting level, preserves structure in `docs/{language}/guides/`
 
 **Directory Structure Handling**:
 ```bash
 # Components: Flat structure (all files in root)
-components/subfolder/file.fodt → docs/components/file.md
-components/deep/nested/file.fodt → docs/components/file.md
+components/subfolder/file.fodt → docs/{language}/components/file.md
+components/deep/nested/file.fodt → docs/{language}/components/file.md
 
 # Libraries & Guides: Preserve nested structure
-libraries/subfolder/file.fodt → docs/libraries/subfolder/file.md
-guides/deep/nested/file.fodt → docs/guides/deep/nested/file.md
+libraries/subfolder/file.fodt → docs/{language}/libraries/subfolder/file.md
+guides/deep/nested/file.fodt → docs/{language}/guides/deep/nested/file.md
 ```
 
 **Implementation Changes**:
@@ -255,6 +300,39 @@ guides/deep/nested/file.fodt → docs/guides/deep/nested/file.md
 - **Deployment**: Simplified to copy entire directory trees while maintaining structure
 
 **Pattern Matching Fix**: Changed from `components/*/*.fodt` (exactly one level) to `components/**/*.fodt` (zero or multiple levels) to allow files directly in root directories.
+
+### Multi-Language Support (Current Session)
+**Enhancement**: Added automatic language detection and routing based on filename prefixes
+
+**Language Detection Logic**:
+Files are automatically routed to language-specific subdirectories based on their filename prefix:
+- **RU prefix** (e.g., `RU.ECO.Component.fodt`) → `docs/ru/{section}/`
+- **US or EN prefix** (e.g., `US.ECO.Component.fodt`, `EN.ECO.Component.fodt`) → `docs/en/{section}/`
+- **FR prefix** (e.g., `FR.ECO.Component.fodt`) → `docs/fr/{section}/`
+- **DE prefix** (e.g., `DE.ECO.Component.fodt`) → `docs/de/{section}/`
+- **No prefix or unknown prefix** → defaults to `docs/en/{section}/`
+
+**Target Directory Structure**:
+```bash
+# Components (flattened)
+RU.ECO.Component.fodt → docs/ru/components/RU.ECO.Component.md
+US.ECO.Component.fodt → docs/en/components/US.ECO.Component.md
+FR.ECO.Component.fodt → docs/fr/components/FR.ECO.Component.md
+
+# Libraries (preserves structure)
+RU.Library.fodt in libraries/subfolder/ → docs/ru/libraries/subfolder/RU.Library.md
+US.Library.fodt in libraries/subfolder/ → docs/en/libraries/subfolder/US.Library.md
+
+# Guides (preserves structure)
+RU.Guide.fodt in guides/subfolder/ → docs/ru/guides/subfolder/RU.Guide.md
+EN.Guide.fodt in guides/subfolder/ → docs/en/guides/subfolder/EN.Guide.md
+```
+
+**Implementation Details**:
+- **Prefix Detection**: Uses regex pattern matching on filename (e.g., `^RU[._-]`, `^(US|EN)[._-]`)
+- **Automatic Directory Creation**: Creates language-specific directories (`docs/{lang}/components/`, etc.)
+- **Image Folder Handling**: Image folders follow the same language routing as their parent markdown files
+- **Deployment**: Copies all language directories while preserving structure (`docs/*/components/`, `docs/*/libraries/`, `docs/*/guides/`)
 
 ### VitePress Frontmatter Integration (Current Session)
 **Enhancement**: Inlined metadata processing with CID-based file renaming
@@ -323,29 +401,7 @@ if ls converted_docs/*.md >/dev/null 2>&1; then
 
 **Result**: Cleaner workflow focused on core functionality without confusing "skipping manifest generation" messagesment**: Extended workflow to process .fodt files from multiple source directories
 
-**Source Directory Patterns**:
-- `components/**/*.fodt` - Any nesting level, flattened to `docs/components/`
-- `libraries/**/*.fodt` - Any nesting level, preserves structure in `docs/libraries/`
-- `guides/**/*.fodt` - Any nesting level, preserves structure in `docs/guides/`
 
-**Directory Structure Handling**:
-```bash
-# Components: Flat structure (all files in root)
-components/subfolder/file.fodt → docs/components/file.md
-components/deep/nested/file.fodt → docs/components/file.md
-
-# Libraries & Guides: Preserve nested structure
-libraries/subfolder/file.fodt → docs/libraries/subfolder/file.md
-guides/deep/nested/file.fodt → docs/guides/deep/nested/file.md
-```
-
-**Implementation Changes**:
-- **Workflow Triggers**: Added `libraries/**/*.fodt` and `guides/**/*.fodt` patterns
-- **File Detection**: Updated git diff patterns to include new directories
-- **Conversion Script**: Modified output path logic based on source directory
-- **Deployment**: Simplified to copy entire directory trees while maintaining structure
-
-**Pattern Matching Fix**: Changed from `components/*/*.fodt` (exactly one level) to `components/**/*.fodt` (zero or multiple levels) to allow files directly in root directories.
 
 ## Troubleshooting
 
@@ -358,6 +414,8 @@ guides/deep/nested/file.fodt → docs/guides/deep/nested/file.md
 - **Git Change Detection**: Ensure sufficient fetch depth and proper glob pattern handling
 - **Directory Structure Issues**: Verify source directory patterns match expected nesting levels
 - **File Path Conflicts**: Check for filename collisions when flattening components structure
+- **Language Detection Issues**: Verify filename follows prefix pattern (e.g., `RU.`, `US.`, `EN.`, `FR.`, `DE.`)
+- **Wrong Language Directory**: Check that filename prefix uses supported language codes and proper separators (`.`, `_`, or `-`)
 
 ### Debug Commands
 ```bash
@@ -370,6 +428,13 @@ docker exec container unopkg list --shared | grep -i docexport
 # Test macro in isolation
 docker exec container timeout 10 soffice --headless "macro:///DocExport.DocModel.ExportDir(\"/test\",1)"
 
+# Check language detection in logs
+grep "🌐 Detected language" workflow.log
+
+# Verify target directory structure
+ls -la docs-vitepress/docs/*/components/
+ls -la docs-vitepress/docs/*/libraries/
+ls -la docs-vitepress/docs/*/guides/
 ```
 
 ## PS

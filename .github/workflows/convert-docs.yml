@@ -518,91 +518,60 @@ jobs:
         
         # Check for image folders
         echo "🖼️ Checking for image folders..."
-        img_folders_found=$(find converted_docs -maxdepth 1 -type d -name "img_*" | wc -l)
+        img_folders_found=$(find converted_docs -type d -name "img_*" | wc -l)
         if [ $img_folders_found -gt 0 ]; then
-          echo "  ✅ Found $img_folders_found image folder(s):"
-          find converted_docs -maxdepth 1 -type d -name "img_*" -exec basename {} \;
+          echo "  ✅ Found $img_folders_found image folder(s)"
         else
           echo "  ℹ️ No image folders found (img_* pattern)"
         fi
         
-        # Create target directories
-        mkdir -p "docs-vitepress/docs/components"
-        mkdir -p "docs-vitepress/docs/libraries"
-        mkdir -p "docs-vitepress/docs/guides"
-        echo "📁 Created target directories: docs/components/, docs/libraries/, docs/guides/"
+        # Create target directories for all supported languages
+        for lang in en ru fr de; do
+          mkdir -p "docs-vitepress/docs/$lang/components"
+          mkdir -p "docs-vitepress/docs/$lang/libraries"
+          mkdir -p "docs-vitepress/docs/$lang/guides"
+        done
+        echo "📁 Created target directories for languages: en, ru, fr, de"
         
         filesCopied=0
         filesSkipped=0
         imagesFoldersCopied=0
         echo "🔄 Starting file copy process..."
         
-        # Copy all files preserving directory structure
-        if [ -d "converted_docs/components" ]; then
-          echo "📁 Copying components files..."
-          if cp -r converted_docs/components/* docs-vitepress/docs/components/; then
-            components_count=$(find converted_docs/components -name "*.md" -type f | wc -l)
-            echo "  ✅ Copied $components_count components files"
-            filesCopied=$((filesCopied + components_count))
-          fi
-        fi
-        
-        if [ -d "converted_docs/libraries" ]; then
-          echo "📁 Copying libraries files..."
-          if cp -r converted_docs/libraries/* docs-vitepress/docs/libraries/; then
-            libraries_count=$(find converted_docs/libraries -name "*.md" -type f | wc -l)
-            echo "  ✅ Copied $libraries_count libraries files"
-            filesCopied=$((filesCopied + libraries_count))
-          fi
-        fi
-        
-        if [ -d "converted_docs/guides" ]; then
-          echo "📁 Copying guides files..."
-          if cp -r converted_docs/guides/* docs-vitepress/docs/guides/; then
-            guides_count=$(find converted_docs/guides -name "*.md" -type f | wc -l)
-            echo "  ✅ Copied $guides_count guides files"
-            filesCopied=$((filesCopied + guides_count))
-          fi
-        fi
-        
-        # Handle any remaining files in root of converted_docs (legacy/fallback)
-        if ls converted_docs/*.md >/dev/null 2>&1; then
-          for file in converted_docs/*.md; do
-            if [ -f "$file" ]; then
-              filename=$(basename "$file")
-              if cp "$file" "docs-vitepress/docs/components/$filename"; then
-                echo "  ✅ Copied legacy file: $filename to components/"
-                filesCopied=$((filesCopied + 1))
+        # Copy all files preserving language and directory structure
+        for lang_dir in converted_docs/*; do
+          if [ -d "$lang_dir" ]; then
+            lang=$(basename "$lang_dir")
+            echo "🌐 Processing language: $lang"
+            
+            if [ -d "$lang_dir/components" ]; then
+              echo "  📁 Copying $lang components files..."
+              if cp -r "$lang_dir/components"/* "docs-vitepress/docs/$lang/components/" 2>/dev/null; then
+                components_count=$(find "$lang_dir/components" -name "*.md" -type f | wc -l)
+                echo "    ✅ Copied $components_count components files"
+                filesCopied=$((filesCopied + components_count))
               fi
             fi
-          done
-        fi
-        
-        # Copy image folders
-        if ls converted_docs/img_* >/dev/null 2>&1; then
-          for img_dir in converted_docs/img_*; do
-            if [ -d "$img_dir" ]; then
-              img_name=$(basename "$img_dir")
-              base_name="${img_name#img_}"
-              
-              # Find where the corresponding markdown file was placed
-              md_file=$(find docs-vitepress/docs -name "${base_name}.md" -type f | head -1)
-              if [ -n "$md_file" ]; then
-                target_dir=$(dirname "$md_file")
-                if cp -r "$img_dir" "$target_dir/"; then
-                  echo "  ✅ Copied image folder: $img_name to $(dirname "${md_file#docs-vitepress/}")/"
-                  imagesFoldersCopied=$((imagesFoldersCopied + 1))
-                fi
-              else
-                # Fallback to components if markdown file not found
-                if cp -r "$img_dir" "docs-vitepress/docs/components/"; then
-                  echo "  ✅ Copied image folder: $img_name to components/ (fallback)"
-                  imagesFoldersCopied=$((imagesFoldersCopied + 1))
-                fi
+            
+            if [ -d "$lang_dir/libraries" ]; then
+              echo "  📁 Copying $lang libraries files..."
+              if cp -r "$lang_dir/libraries"/* "docs-vitepress/docs/$lang/libraries/" 2>/dev/null; then
+                libraries_count=$(find "$lang_dir/libraries" -name "*.md" -type f | wc -l)
+                echo "    ✅ Copied $libraries_count libraries files"
+                filesCopied=$((filesCopied + libraries_count))
               fi
             fi
-          done
-        fi
+            
+            if [ -d "$lang_dir/guides" ]; then
+              echo "  📁 Copying $lang guides files..."
+              if cp -r "$lang_dir/guides"/* "docs-vitepress/docs/$lang/guides/" 2>/dev/null; then
+                guides_count=$(find "$lang_dir/guides" -name "*.md" -type f | wc -l)
+                echo "    ✅ Copied $guides_count guides files"
+                filesCopied=$((filesCopied + guides_count))
+              fi
+            fi
+          fi
+        done
         
         echo "📊 Copy summary: $filesCopied files copied, $imagesFoldersCopied image folders copied"
         
@@ -618,7 +587,7 @@ jobs:
         pushd docs-vitepress >/dev/null
         git config user.name "Docs CI Bot"
         git config user.email "docs-bot@ecoos.dev"
-        git add docs/components/ docs/libraries/ docs/guides/
+        git add docs/*/components/ docs/*/libraries/ docs/*/guides/
         # Copy state file to target repository with validation
         if [ -f "../new-state.json" ]; then
           echo "📄 Copying conversion state to target repository"
@@ -643,7 +612,7 @@ jobs:
         
         # Check for changes and commit
         echo "🔍 Checking for changes in target repository..."
-        git status --porcelain docs/components/ docs/libraries/ docs/guides/ .conversion-state.json
+        git status --porcelain docs/*/components/ docs/*/libraries/ docs/*/guides/ .conversion-state.json
         
         if ! git diff --staged --quiet; then
           sha="${GITHUB_SHA:-unknown-sha}"
