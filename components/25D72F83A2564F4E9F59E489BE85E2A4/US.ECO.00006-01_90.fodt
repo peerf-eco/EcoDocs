@@ -1359,7 +1359,7 @@
    <text:p text:style-name="P3">Title: Eco.Queue1 Software Component Specification</text:p>
    <text:p text:style-name="P4"><text:span text:style-name="T1"/></text:p>
    <text:p text:style-name="P5"><text:span text:style-name="T2">USPD:</text:span><text:span text:style-name="T1"> </text:span><text:span text:style-name="T1">US.ECO.00006-01 90</text:span></text:p>
-   <text:p text:style-name="P6"><text:span text:style-name="T3">Component Name:</text:span><text:span text:style-name="T4"> Eco.Queue1</text:span></text:p>
+   <text:p text:style-name="P6"><text:span text:style-name="T3">Name:</text:span><text:span text:style-name="T4"> Eco.Queue1</text:span></text:p>
    <text:p text:style-name="P7"><text:span text:style-name="T5">Short Description (max 300 char.):</text:span> implements <text:span text:style-name="T6">queue data structure</text:span></text:p>
    <text:p text:style-name="P6"><text:span text:style-name="T7">Category:</text:span><text:span text:style-name="T8"> </text:span><text:span text:style-name="T9">UTILITY</text:span></text:p>
    <text:p text:style-name="P8"><text:span text:style-name="T5">Type:</text:span> <text:s/><text:span text:style-name="T10">COMPONENT</text:span></text:p>

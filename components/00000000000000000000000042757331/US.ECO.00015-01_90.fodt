@@ -2453,7 +2453,7 @@
    <text:p text:style-name="P4">Title: Eco.InterfaceBus1 Software Component Specification</text:p>
    <text:p text:style-name="P5"><text:s text:c="2"/></text:p>
    <text:p text:style-name="P5"><text:span text:style-name="T1">USPD:</text:span> US.ECO.00015-01 90</text:p>
-   <text:p text:style-name="P5"><text:span text:style-name="T1">Component Name:</text:span> Eco.InterfaceBus1</text:p>
+   <text:p text:style-name="P5"><text:span text:style-name="T1">Name:</text:span> Eco.InterfaceBus1</text:p>
    <text:p text:style-name="P5"><text:span text:style-name="T1">Short Description (max 300 char.):</text:span> implements components registration in kernel, components discovery and calls marshaling</text:p>
    <text:p text:style-name="P5"><text:span text:style-name="T1">Category:</text:span> <text:span text:style-name="T2">SYSTEM</text:span></text:p>
    <text:p text:style-name="P5"><text:span text:style-name="T1">Type:</text:span> <text:s/><text:span text:style-name="T2">COMPONENT</text:span></text:p>

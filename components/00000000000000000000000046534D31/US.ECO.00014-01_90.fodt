@@ -2518,7 +2518,7 @@
    <text:p text:style-name="P3">Title: Eco.FileSystemManagement1 Software Component Specification</text:p>
    <text:p text:style-name="P4"><text:s text:c="2"/></text:p>
    <text:p text:style-name="P5"><text:bookmark text:name="_GoBack Copy 1"/><text:span text:style-name="T1">USPD:</text:span><text:span text:style-name="T2"> US.ECO.00014-01 90</text:span></text:p>
-   <text:p text:style-name="P6"><text:span text:style-name="T3">Component Name:</text:span><text:span text:style-name="T4"> Eco.FileSystemManagement1</text:span></text:p>
+   <text:p text:style-name="P6"><text:span text:style-name="T3">Name:</text:span><text:span text:style-name="T4"> Eco.FileSystemManagement1</text:span></text:p>
    <text:p text:style-name="P6"><text:span text:style-name="T5">Short Description (max 300 char.):</text:span><text:span text:style-name="T6"> implements file operations in an operating system</text:span></text:p>
    <text:p text:style-name="P7"><text:span text:style-name="T7">Category:</text:span> <text:span text:style-name="T8">SYSTEM</text:span> </text:p>
    <text:p text:style-name="P7"><text:span text:style-name="T7">Type:</text:span> <text:s/><text:span text:style-name="T8">COMPONENT</text:span></text:p>

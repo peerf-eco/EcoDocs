@@ -2166,7 +2166,7 @@
    <text:p text:style-name="P2">Title: Eco.List1 Software Component Specification</text:p>
    <text:p text:style-name="P3"><text:s text:c="2"/></text:p>
    <text:p text:style-name="P4"><text:span text:style-name="T2">USPD:</text:span><text:span text:style-name="T3"> US.</text:span><text:span text:style-name="T4">ECO</text:span><text:span text:style-name="T3">.00</text:span><text:span text:style-name="T5">029</text:span><text:span text:style-name="T3">-01 90</text:span></text:p>
-   <text:p text:style-name="P5"><text:span text:style-name="T6">Component Name:</text:span> Eco.<text:span text:style-name="T7">List</text:span>1</text:p>
+   <text:p text:style-name="P5"><text:span text:style-name="T6">Name:</text:span> Eco.<text:span text:style-name="T7">List</text:span>1</text:p>
    <text:p text:style-name="P6"><text:span text:style-name="T6">Short Description (max 300 char.):</text:span> <text:span text:style-name="T8">реализует структуру данных «</text:span><text:span text:style-name="T7">List” </text:span><text:span text:style-name="T8">(Список)</text:span></text:p>
    <text:p text:style-name="P7"><text:span text:style-name="T9">Category:</text:span><text:span text:style-name="T10"> </text:span><text:span text:style-name="T11">UTILITY</text:span></text:p>
    <text:p text:style-name="P8"><text:span text:style-name="T12">Type:</text:span><text:span text:style-name="T13"> </text:span><text:s/><text:span text:style-name="T14">COMPONENT</text:span></text:p>

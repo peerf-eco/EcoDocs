@@ -2721,7 +2721,7 @@
    <text:p text:style-name="P3">Title: Eco.MCP1 Software Component Specification</text:p>
    <text:p text:style-name="P4"><text:s text:c="2"/></text:p>
    <text:p text:style-name="P5"><text:span text:style-name="T1">USPD:</text:span><text:span text:style-name="T2"> US.ECO.00101-01 90</text:span></text:p>
-   <text:p text:style-name="P6"><text:span text:style-name="T3">Component Name:</text:span> Eco.MCP1</text:p>
+   <text:p text:style-name="P6"><text:span text:style-name="T3">Name:</text:span> Eco.MCP1</text:p>
    <text:p text:style-name="P6"><text:span text:style-name="T4">Short Description (max 300 char.):</text:span><text:span text:style-name="T5"> implements MCP protocol specifications including RFC 8707 for token misuse security</text:span></text:p>
    <text:p text:style-name="P7"><text:span text:style-name="T3">Category:</text:span> AI </text:p>
    <text:p text:style-name="P7"><text:span text:style-name="T3">Type:</text:span> <text:s/><text:span text:style-name="T6">COMPONENT</text:span></text:p>

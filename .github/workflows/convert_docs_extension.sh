@@ -459,15 +459,23 @@ if [[ ${#source_files[@]} -gt 0 ]]; then
             echo "ℹ️  No image folder found (this is normal for text-only documents)"
           fi
           
+          # Determine source directory type
+          source_dir_type="components"
+          if [[ "$original_file" == libraries/* ]]; then
+            source_dir_type="libraries"
+          elif [[ "$original_file" == guides/* ]]; then
+            source_dir_type="guides"
+          fi
+          
           # Add metadata using dedicated Python script
           if [[ -f "$PWD/.github/workflows/create_metadata.py" ]]; then
             if [[ -n "${GITHUB_SERVER_URL:-}" && -n "${GITHUB_REPOSITORY:-}" && -n "${GITHUB_SHA:-}" ]]; then
-              echo "🔄 Processing metadata and applying CID-based renaming..."
-              if result_file=$(python3 "$PWD/.github/workflows/create_metadata.py" "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}" "$original_file" 2>&1); then
+              echo "🔄 Processing metadata (source type: $source_dir_type)..."
+              if result_file=$(python3 "$PWD/.github/workflows/create_metadata.py" "$output_file" "${GITHUB_SERVER_URL}" "${GITHUB_REPOSITORY}" "${GITHUB_SHA}" "$original_file" "$source_dir_type" 2>&1); then
                 echo "✓ Metadata processing completed"
                 echo "   Python script output: $result_file"
-                # Update output_file path if file was renamed based on CID
-                if [[ "$result_file" =~ "✓ Metadata added to" ]]; then
+                # Update output_file path if file was renamed based on CID (components only)
+                if [[ "$source_dir_type" == "components" && "$result_file" =~ "✓ Metadata added to" ]]; then
                   renamed_file=$(echo "$result_file" | sed 's/.*✓ Metadata added to //')
                   original_basename=$(basename "$output_file")
                   if [[ "$renamed_file" != "$original_basename" ]]; then

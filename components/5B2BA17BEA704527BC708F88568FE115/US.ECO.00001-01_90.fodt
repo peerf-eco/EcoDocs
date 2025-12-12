@@ -2479,7 +2479,7 @@
    <text:p text:style-name="P3">Title: Eco.DateTime1 Software Component Specification</text:p>
    <text:p text:style-name="P4"><text:s text:c="2"/></text:p>
    <text:p text:style-name="P4"><text:span text:style-name="T1">USPD:</text:span> US.ECO.00001-01 90</text:p>
-   <text:p text:style-name="P4"><text:span text:style-name="T1">Component Name:</text:span> Eco.DateTime1</text:p>
+   <text:p text:style-name="P4"><text:span text:style-name="T1">Name:</text:span> Eco.DateTime1</text:p>
    <text:p text:style-name="P4"><text:span text:style-name="T1">Short Description (max 300 char.):</text:span> implements date-time operations</text:p>
    <text:p text:style-name="P4"><text:span text:style-name="T1">Component Use Category:</text:span> MULTIPURPOSE</text:p>
    <text:p text:style-name="P4"><text:span text:style-name="T1">Component Type:</text:span> <text:s/>UTILITY</text:p>

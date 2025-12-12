@@ -62,9 +62,10 @@ ECO.Component.fodt     # No prefix match → en (default)
 
 **Directory Routing Rules**:
 1. **Components** (flat structure):
-   - Source: `components/**/*.fodt`
-   - Target: `docs/{language}/components/filename.md`
-   - Example: `components/subfolder/RU.Component.fodt` → `docs/ru/components/RU.Component.md`
+   - Source: `components/{CID}/*.fodt`
+   - Target: `docs/{language}/components/{CID}.md`
+   - Example: `components/1CE95396008F46EAB4374010C8B58383\RU.ECO.00005-01_90.fodt` → `docs/ru/components/1CE95396008F46EAB4374010C8B58383.md`
+   and images are extracted into: `docs/ru/components/IMG_RU.ECO.00005-01_90/*` folder
 
 2. **Libraries** (preserves structure):
    - Source: `libraries/**/*.fodt`
@@ -346,12 +347,12 @@ EN.Guide.fodt in guides/subfolder/ → docs/en/guides/subfolder/EN.Guide.md
 **VitePress Frontmatter Fields**:
 ```yaml
 ---
-title: "Component Name"
+title: "Name"
 layout: doc
 documentType: "Specification"
 documentUspd: "USPD Value"
 version: "1.0"
-componentName: "Component Name"
+componentName: "Software Component Name"
 CID: "0000000000000000000000004D656D31"
 description: "Short description"
 useCategory: "CATEGORY"

@@ -40,7 +40,7 @@ def determine_document_type(title):
     else:
         return 'Specification'
 
-def create_meta(file_path, github_server_url, repository_name, commit_sha, original_source_path=None):
+def create_meta(file_path, github_server_url, repository_name, commit_sha, original_source_path=None, source_dir_type='components'):
     """Add VitePress-compatible frontmatter to markdown file"""
     
     # Read the existing content
@@ -61,7 +61,7 @@ def create_meta(file_path, github_server_url, repository_name, commit_sha, origi
     
     # Extract metadata fields from content
     uspd = extract_metadata_field(content, 'USPD') or extract_metadata_field(content, 'ЕСПД')
-    component_name = extract_metadata_field(content, 'Component Name')
+    component_name = extract_metadata_field(content, 'Name')
     short_description = extract_metadata_field(content, 'Short Description (max 300 char.)')
     use_category = extract_metadata_field(content, 'Category')
     component_type = extract_metadata_field(content, 'Type')
@@ -159,8 +159,8 @@ def create_meta(file_path, github_server_url, repository_name, commit_sha, origi
     # Combine frontmatter with content
     final_content = frontmatter + existing_content
     
-    # Determine output file path based on CID
-    if cid:
+    # Determine output file path based on CID (only for components)
+    if cid and source_dir_type == 'components':
         file_dir = os.path.dirname(file_path)
         clean_cid = cid.strip('"').strip("'")
         new_file_path = os.path.join(file_dir, f"{clean_cid}.md")
@@ -178,18 +178,19 @@ def create_meta(file_path, github_server_url, repository_name, commit_sha, origi
     return new_file_path
 
 if __name__ == "__main__":
-    if len(sys.argv) < 5 or len(sys.argv) > 6:
-        print("Usage: create_metadata.py <file> <github_server_url> <repository_name> <commit_sha> [original_source_path]")
+    if len(sys.argv) < 5 or len(sys.argv) > 7:
+        print("Usage: create_metadata.py <file> <github_server_url> <repository_name> <commit_sha> [original_source_path] [source_dir_type]")
         sys.exit(1)
     
     file_path = sys.argv[1]
     github_server_url = sys.argv[2] 
     repository_name = sys.argv[3]
     commit_sha = sys.argv[4]
-    original_source_path = sys.argv[5] if len(sys.argv) == 6 else None
+    original_source_path = sys.argv[5] if len(sys.argv) >= 6 else None
+    source_dir_type = sys.argv[6] if len(sys.argv) == 7 else 'components'
     
     try:
-        result_path = create_meta(file_path, github_server_url, repository_name, commit_sha, original_source_path)
+        result_path = create_meta(file_path, github_server_url, repository_name, commit_sha, original_source_path, source_dir_type)
         print(f"✓ Metadata added to {os.path.basename(result_path)}")
     except Exception as e:
         print(f"❌ Error adding metadata to {file_path}: {e}")

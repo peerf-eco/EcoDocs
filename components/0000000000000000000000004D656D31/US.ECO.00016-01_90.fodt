@@ -2490,7 +2490,7 @@
    <text:p text:style-name="P4">Title: Eco.MemoryManager1 Software Component Specification</text:p>
    <text:p text:style-name="P5"><text:s text:c="2"/></text:p>
    <text:p text:style-name="P6"><text:span text:style-name="T1">USPD:</text:span><text:span text:style-name="T2"> US.</text:span><text:span text:style-name="T3">ECO</text:span><text:span text:style-name="T2">.00</text:span><text:span text:style-name="T4">0</text:span><text:span text:style-name="T5">1</text:span><text:span text:style-name="T4">6</text:span><text:span text:style-name="T2">-01 90</text:span></text:p>
-   <text:p text:style-name="P7"><text:span text:style-name="T6">Component Name:</text:span> Eco.MemoryManager1</text:p>
+   <text:p text:style-name="P7"><text:span text:style-name="T6">Name:</text:span> Eco.MemoryManager1</text:p>
    <text:p text:style-name="P8"><text:span text:style-name="T6">Short Description (max 300 char.):</text:span> implements <text:span text:style-name="T7">computer memory access and management functions</text:span></text:p>
    <text:p text:style-name="P7"><text:span text:style-name="T6">Category:</text:span> <text:span text:style-name="T8">SYSTEM</text:span></text:p>
    <text:p text:style-name="P9"><text:span text:style-name="T6">Type:</text:span> <text:s/><text:span text:style-name="T8">COMPONENT</text:span></text:p>
