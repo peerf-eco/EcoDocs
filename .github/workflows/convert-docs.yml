@@ -634,6 +634,33 @@ jobs:
   
 
 
+    - name: Generate USPD Registry
+      if: steps.changed-files.outputs.any_changed == 'true'
+      run: |
+        echo "=== GENERATING USPD REGISTRY ==="
+        python3 .github/workflows/generate_registry.py
+        
+        if [ -f "USPD_REGISTRY.md" ]; then
+          echo "✅ Registry generated successfully"
+          echo "📊 Registry file size: $(stat -c%s USPD_REGISTRY.md) bytes"
+          
+          # Commit and push registry to source repository
+          git config user.name "Docs CI Bot"
+          git config user.email "docs-bot@ecoos.dev"
+          git add USPD_REGISTRY.md
+          
+          if ! git diff --staged --quiet; then
+            git commit -m "Auto-update USPD registry [skip ci]"
+            git push origin HEAD:main
+            echo "✅ Registry pushed to source repository"
+          else
+            echo "ℹ️  Registry unchanged, no commit needed"
+          fi
+        else
+          echo "⚠️  Registry file not generated"
+        fi
+        echo "=== REGISTRY GENERATION COMPLETE ==="
+
     - name: Workflow Summary
       if: always()
       run: |
