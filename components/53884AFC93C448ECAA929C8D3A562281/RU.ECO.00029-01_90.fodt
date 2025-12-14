@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:rpt="http://openoffice.org/2005/report" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:calcext="urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0" xmlns:drawooo="http://openoffice.org/2010/draw" xmlns:loext="urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:formx="urn:openoffice:names:experimental:ooxml-odf-interop:xmlns:form:1.0" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:css3t="http://www.w3.org/TR/css3-text/" xmlns:officeooo="http://openoffice.org/2009/office" office:version="1.4" office:mimetype="application/vnd.oasis.opendocument.text">
- <office:meta><meta:initial-creator>Vladimir Bashev</meta:initial-creator><meta:editing-cycles>59</meta:editing-cycles><meta:print-date>2024-06-09T17:34:00</meta:print-date><meta:creation-date>2020-10-14T17:45:00</meta:creation-date><dc:date>2025-12-12T01:29:32.599467600</dc:date><meta:editing-duration>P1DT8H8M5S</meta:editing-duration><meta:generator>LibreOffice/25.2.7.2$Windows_X86_64 LibreOffice_project/5cbfd1ab6520636bb5f7b99185aa69bd7456825d</meta:generator><meta:document-statistic meta:table-count="2" meta:image-count="1" meta:object-count="0" meta:page-count="12" meta:paragraph-count="248" meta:word-count="918" meta:character-count="7432" meta:non-whitespace-character-count="6184"/><meta:user-defined meta:name="AppVersion">15.0000</meta:user-defined><meta:template xlink:type="simple" xlink:actuate="onRequest" xlink:title="Normal.dotm" xlink:href=""/></office:meta>
+ <office:meta><meta:initial-creator>Vladimir Bashev</meta:initial-creator><meta:editing-cycles>60</meta:editing-cycles><meta:print-date>2024-06-09T17:34:00</meta:print-date><meta:creation-date>2020-10-14T17:45:00</meta:creation-date><dc:date>2025-12-15T00:23:24.966087500</dc:date><meta:editing-duration>P1DT8H9M56S</meta:editing-duration><meta:generator>LibreOffice/25.2.7.2$Windows_X86_64 LibreOffice_project/5cbfd1ab6520636bb5f7b99185aa69bd7456825d</meta:generator><meta:document-statistic meta:table-count="2" meta:image-count="2" meta:object-count="0" meta:page-count="12" meta:paragraph-count="248" meta:word-count="917" meta:character-count="7422" meta:non-whitespace-character-count="6175"/><meta:user-defined meta:name="AppVersion">15.0000</meta:user-defined><meta:template xlink:type="simple" xlink:actuate="onRequest" xlink:title="Normal.dotm" xlink:href=""/></office:meta>
  <office:settings>
   <config:config-item-set config:name="ooo:view-settings">
-   <config:config-item config:name="ViewAreaTop" config:type="long">5292</config:config-item>
-   <config:config-item config:name="ViewAreaLeft" config:type="long">0</config:config-item>
-   <config:config-item config:name="ViewAreaWidth" config:type="long">23761</config:config-item>
-   <config:config-item config:name="ViewAreaHeight" config:type="long">14280</config:config-item>
+   <config:config-item config:name="ViewAreaTop" config:type="long">4022</config:config-item>
+   <config:config-item config:name="ViewAreaLeft" config:type="long">1905</config:config-item>
+   <config:config-item config:name="ViewAreaWidth" config:type="long">19607</config:config-item>
+   <config:config-item config:name="ViewAreaHeight" config:type="long">13831</config:config-item>
    <config:config-item config:name="ShowRedlineChanges" config:type="boolean">true</config:config-item>
    <config:config-item config:name="InBrowseMode" config:type="boolean">false</config:config-item>
    <config:config-item-map-indexed config:name="Views">
     <config:config-item-map-entry>
      <config:config-item config:name="ViewId" config:type="string">view2</config:config-item>
-     <config:config-item config:name="ViewLeft" config:type="long">7740</config:config-item>
-     <config:config-item config:name="ViewTop" config:type="long">9354</config:config-item>
-     <config:config-item config:name="VisibleLeft" config:type="long">0</config:config-item>
-     <config:config-item config:name="VisibleTop" config:type="long">5292</config:config-item>
-     <config:config-item config:name="VisibleRight" config:type="long">23760</config:config-item>
-     <config:config-item config:name="VisibleBottom" config:type="long">19570</config:config-item>
+     <config:config-item config:name="ViewLeft" config:type="long">8109</config:config-item>
+     <config:config-item config:name="ViewTop" config:type="long">10638</config:config-item>
+     <config:config-item config:name="VisibleLeft" config:type="long">1905</config:config-item>
+     <config:config-item config:name="VisibleTop" config:type="long">4022</config:config-item>
+     <config:config-item config:name="VisibleRight" config:type="long">21511</config:config-item>
+     <config:config-item config:name="VisibleBottom" config:type="long">17851</config:config-item>
      <config:config-item config:name="ZoomType" config:type="short">0</config:config-item>
      <config:config-item config:name="ViewLayoutColumns" config:type="short">1</config:config-item>
      <config:config-item config:name="ViewLayoutBookMode" config:type="boolean">false</config:config-item>
@@ -84,7 +84,7 @@
    <config:config-item config:name="IgnoreTabsAndBlanksForLineCalculation" config:type="boolean">true</config:config-item>
    <config:config-item config:name="IgnoreHiddenCharsForLineCalculation" config:type="boolean">true</config:config-item>
    <config:config-item config:name="TabAtLeftIndentForParagraphsInList" config:type="boolean">true</config:config-item>
-   <config:config-item config:name="Rsid" config:type="int">871946</config:config-item>
+   <config:config-item config:name="Rsid" config:type="int">935670</config:config-item>
    <config:config-item config:name="RsidRoot" config:type="int">819076</config:config-item>
    <config:config-item config:name="LoadReadonly" config:type="boolean">false</config:config-item>
    <config:config-item config:name="ClipAsCharacterAnchoredWriterFlyFrames" config:type="boolean">false</config:config-item>
@@ -185,13 +185,13 @@
   <draw:hatch draw:name="Red_20_90_20_Degrees_20_Crossed_20_1" draw:display-name="Red 90 Degrees Crossed 1" draw:style="single" draw:color="#3465a4" draw:distance="0.0079in" draw:rotation="0"/>
   <style:default-style style:family="graphic">
    <style:graphic-properties svg:stroke-color="#3465a4" draw:fill-color="#729fcf" fo:wrap-option="no-wrap" draw:shadow-offset-x="0.1181in" draw:shadow-offset-y="0.1181in" draw:start-line-spacing-horizontal="0.1114in" draw:start-line-spacing-vertical="0.1114in" draw:end-line-spacing-horizontal="0.1114in" draw:end-line-spacing-vertical="0.1114in" style:writing-mode="lr-tb" style:flow-with-text="false"/>
-   <style:paragraph-properties style:text-autospace="ideograph-alpha" style:line-break="strict" loext:tab-stop-distance="0in" style:font-independent-line-spacing="false">
+   <style:paragraph-properties style:text-autospace="ideograph-alpha" style:line-break="strict" loext:tab-stop-distance="0in" style:writing-mode="lr-tb" style:font-independent-line-spacing="false">
     <style:tab-stops/>
    </style:paragraph-properties>
    <style:text-properties style:use-window-font-color="true" loext:opacity="0%" style:font-name="Calibri" fo:font-size="11pt" fo:language="en" fo:country="US" style:letter-kerning="false" style:font-name-asian="Calibri1" style:font-size-asian="11pt" style:language-asian="en" style:country-asian="US" style:font-name-complex="Arial2" style:font-size-complex="11pt" style:language-complex="ar" style:country-complex="SA"/>
   </style:default-style>
   <style:default-style style:family="paragraph">
-   <style:paragraph-properties fo:hyphenation-ladder-count="no-limit" fo:hyphenation-keep="auto" loext:hyphenation-keep-type="column" style:text-autospace="ideograph-alpha" style:punctuation-wrap="hanging" style:line-break="strict" style:tab-stop-distance="0.5in" style:writing-mode="page"/>
+   <style:paragraph-properties fo:hyphenation-ladder-count="no-limit" fo:hyphenation-keep="auto" loext:hyphenation-keep-type="column" style:text-autospace="ideograph-alpha" style:punctuation-wrap="hanging" style:line-break="strict" style:tab-stop-distance="0.5in" style:writing-mode="lr-tb"/>
    <style:text-properties style:use-window-font-color="true" loext:opacity="0%" style:font-name="Calibri" fo:font-size="11pt" fo:language="en" fo:country="US" style:letter-kerning="false" style:font-name-asian="Calibri1" style:font-size-asian="11pt" style:language-asian="en" style:country-asian="US" style:font-name-complex="Arial2" style:font-size-complex="11pt" style:language-complex="ar" style:country-complex="SA" fo:hyphenate="false" fo:hyphenation-remain-char-count="2" fo:hyphenation-push-char-count="2" loext:hyphenation-no-caps="false" loext:hyphenation-no-last-word="false" loext:hyphenation-word-char-count="5" loext:hyphenation-zone="no-limit"/>
   </style:default-style>
   <style:default-style style:family="table">
@@ -313,6 +313,14 @@
   <style:style style:name="code_5f_java" style:display-name="code_java" style:family="paragraph" style:parent-style-name="code_5f_cpp"/>
   <style:style style:name="code_5f_vbscript" style:display-name="code_vbscript" style:family="paragraph" style:parent-style-name="code_5f_cpp"/>
   <style:style style:name="code_5f_idl" style:display-name="code_idl" style:family="paragraph" style:parent-style-name="code_5f_cpp"/>
+  <style:style style:name="Header_20_left" style:display-name="Header left" style:family="paragraph" style:parent-style-name="Header" style:class="extra">
+   <style:paragraph-properties text:number-lines="false" text:line-number="0">
+    <style:tab-stops>
+     <style:tab-stop style:position="3.25in" style:type="center"/>
+     <style:tab-stop style:position="6.5in" style:type="right"/>
+    </style:tab-stops>
+   </style:paragraph-properties>
+  </style:style>
   <style:style style:name="Default_20_Paragraph_20_Font" style:display-name="Default Paragraph Font" style:family="text"/>
   <style:style style:name="Heading_20_1_20_Char" style:display-name="Heading 1 Char" style:family="text" style:parent-style-name="Default_20_Paragraph_20_Font" loext:linked-style-name="Heading_20_1">
    <style:text-properties fo:color="#2e74b5" loext:opacity="100%" style:font-name="Calibri Light" fo:font-family="&apos;Calibri Light&apos;" style:font-family-generic="roman" style:font-pitch="variable" fo:font-size="16pt" style:font-name-asian="Calibri1" style:font-family-asian="Calibri" style:font-family-generic-asian="system" style:font-pitch-asian="variable" style:font-size-asian="16pt" style:font-name-complex="Arial2" style:font-family-complex="Arial" style:font-family-generic-complex="system" style:font-pitch-complex="variable" style:font-size-complex="16pt">
@@ -562,7 +570,7 @@
   </style:style>
   <style:style style:name="Numbering_20_Symbols" style:display-name="Numbering Symbols" style:family="text"/>
   <style:style style:name="Graphics" style:family="graphic">
-   <style:graphic-properties text:anchor-type="paragraph" svg:x="0in" svg:y="0in" style:wrap="dynamic" style:number-wrapped-paragraphs="no-limit" style:wrap-contour="false" style:vertical-pos="top" style:vertical-rel="paragraph" style:horizontal-pos="center" style:horizontal-rel="paragraph" fo:background-color="transparent" draw:fill="none"/>
+   <style:graphic-properties text:anchor-type="paragraph" svg:x="0in" svg:y="0in" style:wrap="dynamic" style:number-wrapped-paragraphs="no-limit" style:wrap-contour="false" style:vertical-pos="top" style:vertical-rel="paragraph" style:horizontal-pos="center" style:horizontal-rel="paragraph" fo:background-color="transparent" draw:fill="none" draw:fill-color="#729fcf"/>
   </style:style>
   <text:outline-style style:name="Outline">
    <text:outline-level-style text:level="1" loext:num-list-format="%1%" style:num-format="">
@@ -1807,8 +1815,8 @@
   <style:style style:name="Table3.C8" style:family="table-cell">
    <style:table-cell-properties fo:padding-left="0.075in" fo:padding-right="0.075in" fo:padding-top="0in" fo:padding-bottom="0in" fo:border="0.5pt solid #000000" style:writing-mode="lr-tb"/>
   </style:style>
-  <style:style style:name="P1" style:family="paragraph" style:parent-style-name="Standard">
-   <style:paragraph-properties fo:padding-left="0in" fo:padding-right="0in" fo:padding-top="0in" fo:padding-bottom="0.0138in" fo:border-left="none" fo:border-right="none" fo:border-top="none" fo:border-bottom="0.74pt solid #000000"/>
+  <style:style style:name="P1" style:family="paragraph" style:parent-style-name="Standard" style:master-page-name="First_20_Page">
+   <style:paragraph-properties style:page-number="auto" fo:padding-left="0in" fo:padding-right="0in" fo:padding-top="0in" fo:padding-bottom="0.0138in" fo:border-left="none" fo:border-right="none" fo:border-top="none" fo:border-bottom="0.74pt solid #000000"/>
    <style:text-properties style:font-name="Arial1" fo:font-size="26pt" fo:language="ru" fo:country="RU" style:font-size-asian="26pt" style:font-name-complex="Arial2" style:font-size-complex="26pt"/>
   </style:style>
   <style:style style:name="P2" style:family="paragraph" style:parent-style-name="Standard">
@@ -1970,102 +1978,102 @@
    <style:text-properties fo:language="ru" fo:country="RU"/>
   </style:style>
   <style:style style:name="T1" style:family="text">
-   <style:text-properties style:font-name="Arial1" fo:font-size="26pt" fo:language="ru" fo:country="RU" style:font-size-asian="26pt" style:font-name-complex="Arial2" style:font-size-complex="26pt"/>
-  </style:style>
-  <style:style style:name="T2" style:family="text">
    <style:text-properties fo:font-weight="bold" style:font-name-asian="Calibri1" style:font-weight-asian="bold" style:font-name-complex="Arial2" style:font-weight-complex="bold"/>
   </style:style>
-  <style:style style:name="T3" style:family="text">
+  <style:style style:name="T2" style:family="text">
    <style:text-properties style:font-name-asian="Calibri1" style:font-name-complex="Arial2"/>
   </style:style>
-  <style:style style:name="T4" style:family="text">
+  <style:style style:name="T3" style:family="text">
    <style:text-properties officeooo:rsid="001bdca1" style:font-name-asian="Calibri1" style:font-name-complex="Arial2"/>
   </style:style>
-  <style:style style:name="T5" style:family="text">
+  <style:style style:name="T4" style:family="text">
    <style:text-properties officeooo:rsid="000c7f84" style:font-name-asian="Calibri1" style:font-name-complex="Arial2"/>
   </style:style>
-  <style:style style:name="T6" style:family="text">
+  <style:style style:name="T5" style:family="text">
    <style:text-properties fo:font-weight="bold" style:font-weight-asian="bold" style:font-weight-complex="bold"/>
   </style:style>
-  <style:style style:name="T7" style:family="text">
+  <style:style style:name="T6" style:family="text">
    <style:text-properties officeooo:rsid="000c7f84"/>
   </style:style>
-  <style:style style:name="T8" style:family="text">
+  <style:style style:name="T7" style:family="text">
    <style:text-properties fo:language="ru" fo:country="RU" officeooo:rsid="000c7f84"/>
   </style:style>
-  <style:style style:name="T9" style:family="text">
+  <style:style style:name="T8" style:family="text">
    <style:text-properties style:font-name="Liberation Sans" fo:font-weight="bold" style:font-weight-asian="bold" style:font-weight-complex="bold"/>
   </style:style>
-  <style:style style:name="T10" style:family="text">
+  <style:style style:name="T9" style:family="text">
    <style:text-properties style:font-name="Liberation Sans"/>
   </style:style>
-  <style:style style:name="T11" style:family="text">
+  <style:style style:name="T10" style:family="text">
    <style:text-properties style:font-name="Liberation Sans" officeooo:rsid="000d4e0a"/>
   </style:style>
-  <style:style style:name="T12" style:family="text">
+  <style:style style:name="T11" style:family="text">
    <style:text-properties fo:font-weight="bold" officeooo:rsid="0029936f" style:font-weight-asian="bold" style:font-weight-complex="bold"/>
   </style:style>
-  <style:style style:name="T13" style:family="text">
+  <style:style style:name="T12" style:family="text">
    <style:text-properties officeooo:rsid="0029936f"/>
   </style:style>
-  <style:style style:name="T14" style:family="text">
+  <style:style style:name="T13" style:family="text">
    <style:text-properties officeooo:rsid="000d4e0a"/>
   </style:style>
-  <style:style style:name="T15" style:family="text">
+  <style:style style:name="T14" style:family="text">
    <style:text-properties officeooo:rsid="002fc230"/>
   </style:style>
-  <style:style style:name="T16" style:family="text">
+  <style:style style:name="T15" style:family="text">
    <style:text-properties style:font-name="Arial1" fo:font-weight="bold" officeooo:rsid="000c8455" style:font-weight-asian="bold" style:font-weight-complex="bold"/>
   </style:style>
-  <style:style style:name="T17" style:family="text">
+  <style:style style:name="T16" style:family="text">
    <style:text-properties style:font-name="Arial1" officeooo:rsid="000c8455"/>
   </style:style>
-  <style:style style:name="T18" style:family="text">
+  <style:style style:name="T17" style:family="text">
    <style:text-properties fo:language="ru" fo:country="RU" style:font-name-complex="Times New Roman1"/>
   </style:style>
-  <style:style style:name="T19" style:family="text">
+  <style:style style:name="T18" style:family="text">
    <style:text-properties style:font-name-complex="Times New Roman1"/>
   </style:style>
-  <style:style style:name="T20" style:family="text">
+  <style:style style:name="T19" style:family="text">
    <style:text-properties fo:language="ru" fo:country="RU" officeooo:rsid="000c7f84" style:font-name-complex="Times New Roman1"/>
   </style:style>
-  <style:style style:name="T21" style:family="text">
+  <style:style style:name="T20" style:family="text">
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="ru" fo:country="RU" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
-  <style:style style:name="T22" style:family="text">
+  <style:style style:name="T21" style:family="text">
    <style:text-properties fo:color="#810081" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="ru" fo:country="RU" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt">
     <loext:char-complex-color loext:theme-type="hyperlink" loext:color-type="theme"/>
    </style:text-properties>
   </style:style>
-  <style:style style:name="T23" style:family="text">
+  <style:style style:name="T22" style:family="text">
    <style:text-properties style:font-name="Consolas" fo:font-size="9.5pt" fo:language="ru" fo:country="RU" style:font-size-asian="9.5pt" style:font-name-complex="Consolas1" style:font-size-complex="9.5pt"/>
   </style:style>
-  <style:style style:name="T24" style:family="text">
+  <style:style style:name="T23" style:family="text">
    <style:text-properties style:font-name="Consolas" fo:font-size="9.5pt" style:font-size-asian="9.5pt" style:font-name-complex="Consolas1" style:font-size-complex="9.5pt"/>
   </style:style>
-  <style:style style:name="T25" style:family="text">
+  <style:style style:name="T24" style:family="text">
    <style:text-properties fo:color="#008000" loext:opacity="100%" style:font-name="Consolas" fo:font-size="9.5pt" style:font-size-asian="9.5pt" style:font-name-complex="Consolas1" style:font-size-complex="9.5pt"/>
   </style:style>
-  <style:style style:name="T26" style:family="text">
+  <style:style style:name="T25" style:family="text">
    <style:text-properties fo:color="#008000" loext:opacity="100%" style:font-name="Consolas" fo:font-size="9.5pt" fo:language="ru" fo:country="RU" style:font-size-asian="9.5pt" style:font-name-complex="Consolas1" style:font-size-complex="9.5pt"/>
   </style:style>
-  <style:style style:name="T27" style:family="text">
+  <style:style style:name="T26" style:family="text">
    <style:text-properties fo:color="#0000ff" loext:opacity="100%" style:font-name="Consolas" fo:font-size="9.5pt" style:font-size-asian="9.5pt" style:font-name-complex="Consolas1" style:font-size-complex="9.5pt"/>
   </style:style>
-  <style:style style:name="T28" style:family="text">
+  <style:style style:name="T27" style:family="text">
    <style:text-properties fo:color="#a31515" loext:opacity="100%" style:font-name="Consolas" fo:font-size="9.5pt" style:font-size-asian="9.5pt" style:font-name-complex="Consolas1" style:font-size-complex="9.5pt"/>
   </style:style>
-  <style:style style:name="T29" style:family="text">
+  <style:style style:name="T28" style:family="text">
    <style:text-properties fo:color="#0000ff" loext:opacity="100%" style:font-name="Consolas" fo:font-size="9.5pt" fo:language="ru" fo:country="RU" style:font-size-asian="9.5pt" style:font-name-complex="Consolas1" style:font-size-complex="9.5pt"/>
   </style:style>
-  <style:style style:name="T30" style:family="text">
+  <style:style style:name="T29" style:family="text">
    <style:text-properties fo:color="#a31515" loext:opacity="100%" style:font-name="Consolas" fo:font-size="9.5pt" fo:language="ru" fo:country="RU" style:font-size-asian="9.5pt" style:font-name-complex="Consolas1" style:font-size-complex="9.5pt"/>
   </style:style>
-  <style:style style:name="T31" style:family="text">
+  <style:style style:name="T30" style:family="text">
    <style:text-properties fo:language="ru" fo:country="RU"/>
   </style:style>
   <style:style style:name="fr1" style:family="graphic" style:parent-style-name="Graphics">
-   <style:graphic-properties fo:margin-left="0in" fo:margin-right="0in" fo:margin-top="0in" fo:margin-bottom="0in" style:run-through="background" style:wrap="run-through" style:number-wrapped-paragraphs="no-limit" style:vertical-pos="from-top" style:vertical-rel="paragraph" style:horizontal-pos="from-left" style:horizontal-rel="paragraph" fo:background-color="transparent" draw:fill="none" draw:fill-color="#729fcf" draw:secondary-fill-color="#729fcf" draw:gradient-step-count="0" draw:fill-hatch-solid="false" draw:opacity="100%" draw:fill-image-width="0in" draw:fill-image-height="0in" style:repeat="repeat" draw:fill-image-ref-point-x="0%" draw:fill-image-ref-point-y="0%" draw:fill-image-ref-point="center" draw:tile-repeat-offset="0% horizontal" fo:padding="0in" fo:border="none" style:mirror="none" fo:clip="rect(0in, 0in, 0in, 0in)" draw:luminance="0%" draw:contrast="0%" draw:red="0%" draw:green="0%" draw:blue="0%" draw:gamma="100%" draw:color-inversion="false" draw:image-opacity="100%" draw:color-mode="standard" draw:wrap-influence-on-position="once-concurrent" loext:allow-overlap="true" loext:decorative="false"/>
+   <style:graphic-properties style:vertical-pos="top" style:vertical-rel="paragraph" style:horizontal-pos="right" style:horizontal-rel="paragraph" style:mirror="none" fo:clip="rect(0in, 0in, 0in, 0in)" draw:luminance="0%" draw:contrast="0%" draw:red="0%" draw:green="0%" draw:blue="0%" draw:gamma="100%" draw:color-inversion="false" draw:image-opacity="100%" draw:color-mode="standard"/>
+  </style:style>
+  <style:style style:name="fr2" style:family="graphic" style:parent-style-name="Graphics">
+   <style:graphic-properties style:horizontal-pos="right" style:horizontal-rel="paragraph" style:mirror="none" fo:clip="rect(0in, 0in, 0in, 0in)" draw:luminance="0%" draw:contrast="0%" draw:red="0%" draw:green="0%" draw:blue="0%" draw:gamma="100%" draw:color-inversion="false" draw:image-opacity="100%" draw:color-mode="standard"/>
   </style:style>
   <style:style style:name="Sect1" style:family="section">
    <style:section-properties style:editable="false">
@@ -2081,6 +2089,15 @@
    </style:header-style>
    <style:footer-style/>
   </style:page-layout>
+  <style:page-layout style:name="pm2">
+   <style:page-layout-properties fo:page-width="8.5in" fo:page-height="11in" style:num-format="1" style:print-orientation="portrait" fo:margin-top="0.7874in" fo:margin-bottom="0.7874in" fo:margin-left="0.7874in" fo:margin-right="0.7874in" style:writing-mode="lr-tb" style:footnote-max-height="0in" loext:margin-gutter="0in">
+    <style:footnote-sep style:width="0.0071in" style:distance-before-sep="0.0398in" style:distance-after-sep="0.0398in" style:line-style="solid" style:adjustment="left" style:rel-width="25%" style:color="#000000"/>
+   </style:page-layout-properties>
+   <style:header-style>
+    <style:header-footer-properties fo:min-height="0.4in" fo:margin-left="0in" fo:margin-right="0in" fo:margin-bottom="0.2in" fo:background-color="transparent" style:dynamic-spacing="false" draw:fill="none"/>
+   </style:header-style>
+   <style:footer-style/>
+  </style:page-layout>
   <style:style style:name="dp1" style:family="drawing-page">
    <style:drawing-page-properties draw:background-size="full"/>
   </style:style>
@@ -2088,69 +2105,21 @@
  <office:master-styles>
   <style:master-page style:name="Standard" style:page-layout-name="pm1" draw:style-name="dp1">
    <style:header>
-    <text:p text:style-name="Header"><draw:frame draw:style-name="fr1" draw:name="Рисунок 1" text:anchor-type="char" svg:x="5in" svg:y="-0.2102in" svg:width="2.0799in" svg:height="0.3701in" draw:z-index="11"><draw:image draw:mime-type="image/png">
-       <office:binary-data>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
-       </office:binary-data>
-      </draw:image>
+    <text:p text:style-name="Header"><draw:frame draw:style-name="fr1" draw:name="Image1" text:anchor-type="char" svg:width="1.9783in" svg:height="0.3516in" draw:z-index="10"><draw:image xlink:href="https://images.ecoos.dev/header-logo.png" xlink:type="simple" xlink:show="embed" xlink:actuate="onLoad" draw:filter-name="&lt;All images&gt;" draw:mime-type="image/png"/>
      </draw:frame></text:p>
    </style:header>
+  </style:master-page>
+  <style:master-page style:name="First_20_Page" style:display-name="First Page" style:page-layout-name="pm2" style:next-style-name="Standard">
+   <style:header>
+    <text:p text:style-name="Header"/>
+   </style:header>
+   <style:header-left>
+    <text:p text:style-name="Header_20_left"/>
+   </style:header-left>
+   <style:header-first>
+    <text:p text:style-name="Header_20_left"><draw:frame draw:style-name="fr2" draw:name="Image2" text:anchor-type="char" svg:width="2.1866in" svg:height="0.3882in" draw:z-index="11"><draw:image xlink:href="https://images.ecoos.dev/header-logo.png" xlink:type="simple" xlink:show="embed" xlink:actuate="onLoad" draw:filter-name="&lt;All images&gt;" draw:mime-type="image/png"/>
+     </draw:frame></text:p>
+   </style:header-first>
   </style:master-page>
  </office:master-styles>
  <office:body>
@@ -2162,21 +2131,21 @@
     <text:sequence-decl text:display-outline-level="0" text:name="Drawing"/>
     <text:sequence-decl text:display-outline-level="0" text:name="Figure"/>
    </text:sequence-decls>
-   <text:p text:style-name="P1" loext:marker-style-name="T1"/>
+   <text:p text:style-name="P1"/>
    <text:p text:style-name="P2">Title: Eco.List1 Software Component Specification</text:p>
    <text:p text:style-name="P3"><text:s text:c="2"/></text:p>
-   <text:p text:style-name="P4"><text:span text:style-name="T2">USPD:</text:span><text:span text:style-name="T3"> US.</text:span><text:span text:style-name="T4">ECO</text:span><text:span text:style-name="T3">.00</text:span><text:span text:style-name="T5">029</text:span><text:span text:style-name="T3">-01 90</text:span></text:p>
-   <text:p text:style-name="P5"><text:span text:style-name="T6">Name:</text:span> Eco.<text:span text:style-name="T7">List</text:span>1</text:p>
-   <text:p text:style-name="P6"><text:span text:style-name="T6">Short Description (max 300 char.):</text:span> <text:span text:style-name="T8">реализует структуру данных «</text:span><text:span text:style-name="T7">List” </text:span><text:span text:style-name="T8">(Список)</text:span></text:p>
-   <text:p text:style-name="P7"><text:span text:style-name="T9">Category:</text:span><text:span text:style-name="T10"> </text:span><text:span text:style-name="T11">UTILITY</text:span></text:p>
-   <text:p text:style-name="P8"><text:span text:style-name="T12">Type:</text:span><text:span text:style-name="T13"> </text:span><text:s/><text:span text:style-name="T14">COMPONENT</text:span></text:p>
-   <text:p text:style-name="P5"><text:span text:style-name="T6">CID:</text:span> 53884AFC93C448ECAA929C8D3A562281</text:p>
-   <text:p text:style-name="P9"><text:span text:style-name="T6">Marketplace ID:</text:span> 1ff4db73-ffd3-4d27-a520-af72ca68f3a2</text:p>
-   <text:p text:style-name="P5"><text:span text:style-name="T6">Marketplace URL:</text:span> https://ecoos.dev/product/1ff4db73-ffd3-4d27-a520-af72ca68f3a2</text:p>
-   <text:p text:style-name="P5"><text:span text:style-name="T6">Status:</text:span> <text:span text:style-name="T8">Релиз</text:span></text:p>
-   <text:p text:style-name="P5"><text:span text:style-name="T6">Modified Date:</text:span> October 1<text:span text:style-name="T15">2</text:span>, 2025</text:p>
-   <text:p text:style-name="P10"><text:span text:style-name="T6">Version:</text:span> 1.0</text:p>
-   <text:p text:style-name="P11"><text:span text:style-name="T16">Tags:</text:span><text:span text:style-name="T17"> Data structure, List, Collection, Set</text:span></text:p>
+   <text:p text:style-name="P4"><text:span text:style-name="T1">USPD:</text:span><text:span text:style-name="T2"> US.</text:span><text:span text:style-name="T3">ECO</text:span><text:span text:style-name="T2">.00</text:span><text:span text:style-name="T4">029</text:span><text:span text:style-name="T2">-01 90</text:span></text:p>
+   <text:p text:style-name="P5"><text:span text:style-name="T5">Name:</text:span> Eco.<text:span text:style-name="T6">List</text:span>1</text:p>
+   <text:p text:style-name="P6"><text:span text:style-name="T5">Short Description (max 300 char.):</text:span> <text:span text:style-name="T7">реализует структуру данных «</text:span><text:span text:style-name="T6">List” </text:span><text:span text:style-name="T7">(Список)</text:span></text:p>
+   <text:p text:style-name="P7"><text:span text:style-name="T8">Category:</text:span><text:span text:style-name="T9"> </text:span><text:span text:style-name="T10">UTILITY</text:span></text:p>
+   <text:p text:style-name="P8"><text:span text:style-name="T11">Type:</text:span><text:span text:style-name="T12"> </text:span><text:s/><text:span text:style-name="T13">COMPONENT</text:span></text:p>
+   <text:p text:style-name="P5"><text:span text:style-name="T5">CID:</text:span> 53884AFC93C448ECAA929C8D3A562281</text:p>
+   <text:p text:style-name="P9"><text:span text:style-name="T5">Marketplace ID:</text:span> 1ff4db73-ffd3-4d27-a520-af72ca68f3a2</text:p>
+   <text:p text:style-name="P5"><text:span text:style-name="T5">Marketplace URL:</text:span> https://ecoos.dev/product/1ff4db73-ffd3-4d27-a520-af72ca68f3a2</text:p>
+   <text:p text:style-name="P5"><text:span text:style-name="T5">Status:</text:span> <text:span text:style-name="T7">Релиз</text:span></text:p>
+   <text:p text:style-name="P5"><text:span text:style-name="T5">Modified Date:</text:span> October 1<text:span text:style-name="T14">2</text:span>, 2025</text:p>
+   <text:p text:style-name="P10"><text:span text:style-name="T5">Version:</text:span> 1.0</text:p>
+   <text:p text:style-name="P11"><text:span text:style-name="T15">Tags:</text:span><text:span text:style-name="T16"> Data structure, List, Collection, Set</text:span></text:p>
    <text:p text:style-name="P12"/>
    <text:p text:style-name="P13"/>
    <table:table table:name="Table1" table:style-name="Table1">
@@ -2318,7 +2287,7 @@
    </text:table-of-content>
    <text:p text:style-name="P13"/>
    <text:h text:style-name="P21" text:outline-level="1"><text:bookmark-start text:name="__RefHeading___Toc151537_3662163324"/>1.<text:tab/>Обзор<text:bookmark-end text:name="__RefHeading___Toc151537_3662163324"/></text:h>
-   <text:p text:style-name="P22"><text:span text:style-name="T18">Данный документ описывает требования к реализации компонента </text:span><text:span text:style-name="T19">Eco</text:span><text:span text:style-name="T18">.</text:span><text:span text:style-name="T19">List</text:span><text:span text:style-name="T18">1 (Компонент список).</text:span></text:p>
+   <text:p text:style-name="P22"><text:span text:style-name="T17">Данный документ описывает требования к реализации компонента </text:span><text:span text:style-name="T18">Eco</text:span><text:span text:style-name="T17">.</text:span><text:span text:style-name="T18">List</text:span><text:span text:style-name="T17">1 (Компонент список).</text:span></text:p>
    <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc151539_3662163324"/>1.1. Введение<text:bookmark-end text:name="__RefHeading___Toc151539_3662163324"/></text:h>
    <text:p text:style-name="P23">Описание.</text:p>
    <text:p text:style-name="P13"/>
@@ -2330,8 +2299,8 @@
    </text:list>
    <text:p text:style-name="P25"/>
    <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc151543_3662163324"/>1.3. Ссылки<text:bookmark-end text:name="__RefHeading___Toc151543_3662163324"/></text:h>
-   <text:p text:style-name="P22"><text:span text:style-name="T18">Данный параграф содержит ссылки </text:span><text:span text:style-name="T20">компонент в маркетплейсе и </text:span><text:span text:style-name="T18">на </text:span><text:span text:style-name="T20">другую </text:span><text:span text:style-name="T18">информацию, помогающую понять данный документ: </text:span></text:p>
-   <text:p text:style-name="Standard"><text:span text:style-name="T21">Доступен по: </text:span><text:span text:style-name="Internet_20_link"><text:span text:style-name="T22">https://ecoos.dev/product/1ff4db73-ffd3-4d27-a520-af72ca68f3a2</text:span></text:span></text:p>
+   <text:p text:style-name="P22"><text:span text:style-name="T17">Данный параграф содержит ссылки </text:span><text:span text:style-name="T19">компонент в маркетплейсе и </text:span><text:span text:style-name="T17">на </text:span><text:span text:style-name="T19">другую </text:span><text:span text:style-name="T17">информацию, помогающую понять данный документ: </text:span></text:p>
+   <text:p text:style-name="Standard"><text:span text:style-name="T20">Доступен по: </text:span><text:span text:style-name="Internet_20_link"><text:span text:style-name="T21">https://ecoos.dev/product/1ff4db73-ffd3-4d27-a520-af72ca68f3a2</text:span></text:span></text:p>
    <text:p text:style-name="P26"/>
    <text:h text:style-name="P21" text:outline-level="1"><text:bookmark-start text:name="__RefHeading___Toc151545_3662163324"/><text:s/>2. Компонент Eco.List1<text:bookmark-end text:name="__RefHeading___Toc151545_3662163324"/></text:h>
    <text:p text:style-name="P23"/>
@@ -2492,167 +2461,167 @@
    <text:h text:style-name="P21" text:outline-level="1"><text:bookmark-start text:name="__RefHeading___Toc151569_3662163324"/>Приложение А: Образцы кода и обучающие программы<text:bookmark-end text:name="__RefHeading___Toc151569_3662163324"/></text:h>
    <text:p text:style-name="P25"/>
    <text:p text:style-name="P37"/>
-   <text:p text:style-name="P38" loext:marker-style-name="T23"/>
+   <text:p text:style-name="P38" loext:marker-style-name="T22"/>
+   <text:p text:style-name="code_5f_cpp">/*<text:span text:style-name="T22"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s/>* &lt;кодировка символов&gt;<text:span text:style-name="T22"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s/>* <text:s text:c="2"/>Cyrillic (UTF-8 with signature) - Codepage 65001<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s/></text:span><text:span text:style-name="T25">* &lt;/кодировка символов&gt;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s/>*<text:span text:style-name="T22"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s/>* &lt;сводка&gt;<text:span text:style-name="T22"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T25"><text:s/>* <text:s text:c="2"/></text:span><text:span text:style-name="T24">EcoList</text:span><text:span text:style-name="T25">1</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s/>* &lt;/сводка&gt;<text:span text:style-name="T22"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s/>*<text:span text:style-name="T22"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s/>* &lt;описание&gt;<text:span text:style-name="T22"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s/>* <text:s text:c="2"/>Данный исходный файл является точкой входа<text:span text:style-name="T22"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s/>* &lt;/описание&gt;<text:span text:style-name="T22"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s/>*<text:span text:style-name="T22"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s/>* &lt;автор&gt;<text:span text:style-name="T22"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T25"><text:s/>* <text:s text:c="2"/></text:span><text:span text:style-name="T24">Copyright</text:span><text:span text:style-name="T25"> (</text:span><text:span text:style-name="T24">c</text:span><text:span text:style-name="T25">) 2018 </text:span><text:span text:style-name="T24">Vladimir</text:span><text:span text:style-name="T25"> </text:span><text:span text:style-name="T24">Bashev</text:span><text:span text:style-name="T25">. </text:span><text:span text:style-name="T24">All rights reserved.</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s/>* &lt;/автор&gt;<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s/>*<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s/>*/<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"/>
+   <text:p text:style-name="code_5f_cpp"/>
+   <text:p text:style-name="code_5f_cpp">/* Eco OS */<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T26">#include</text:span><text:span text:style-name="T23"> </text:span><text:span text:style-name="T27">&quot;IEcoSystem1.h&quot;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T26">#include</text:span><text:span text:style-name="T23"> </text:span><text:span text:style-name="T27">&quot;IdEcoMemoryManager1.h&quot;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T26">#include</text:span><text:span text:style-name="T23"> </text:span><text:span text:style-name="T27">&quot;IEcoInterfaceBus1.h&quot;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T26">#include</text:span><text:span text:style-name="T23"> </text:span><text:span text:style-name="T27">&quot;IdEcoList1.h&quot;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T28">#</text:span><text:span text:style-name="T26">include</text:span><text:span text:style-name="T22"> </text:span><text:span text:style-name="T29">&quot;</text:span><text:span text:style-name="T27">IEcoError</text:span><text:span text:style-name="T29">1.</text:span><text:span text:style-name="T27">h</text:span><text:span text:style-name="T29">&quot;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"/>
+   <text:p text:style-name="code_5f_cpp"><text:soft-page-break/>/* Глобальный указатель на системный интерфейс */<text:span text:style-name="T22"/></text:p>
+   <text:p text:style-name="code_5f_cpp">IEcoSystem1* g_pISys = 0;<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"/>
    <text:p text:style-name="code_5f_cpp">/*<text:span text:style-name="T23"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s/>* &lt;кодировка символов&gt;<text:span text:style-name="T23"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s/>* <text:s text:c="2"/>Cyrillic (UTF-8 with signature) - Codepage 65001<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T25"><text:s/></text:span><text:span text:style-name="T26">* &lt;/кодировка символов&gt;</text:span></text:p>
    <text:p text:style-name="code_5f_cpp"><text:s/>*<text:span text:style-name="T23"/></text:p>
    <text:p text:style-name="code_5f_cpp"><text:s/>* &lt;сводка&gt;<text:span text:style-name="T23"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T26"><text:s/>* <text:s text:c="2"/></text:span><text:span text:style-name="T25">EcoList</text:span><text:span text:style-name="T26">1</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s/>* &lt;/сводка&gt;<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s/>* <text:s text:c="2"/>Функция EcoMain<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s/></text:span><text:span text:style-name="T25">* &lt;/сводка&gt;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s/>*<text:span text:style-name="T22"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s/>* &lt;описание&gt;<text:span text:style-name="T22"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T25"><text:s/>* <text:s text:c="2"/>Функция </text:span><text:span text:style-name="T24">EcoMain</text:span><text:span text:style-name="T25"> - точка входа</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T25"><text:s/></text:span><text:span text:style-name="T24">* &lt;/описание&gt;</text:span></text:p>
    <text:p text:style-name="code_5f_cpp"><text:s/>*<text:span text:style-name="T23"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s/>* &lt;описание&gt;<text:span text:style-name="T23"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s/>* <text:s text:c="2"/>Данный исходный файл является точкой входа<text:span text:style-name="T23"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s/>* &lt;/описание&gt;<text:span text:style-name="T23"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s/>*<text:span text:style-name="T23"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s/>* &lt;автор&gt;<text:span text:style-name="T23"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T26"><text:s/>* <text:s text:c="2"/></text:span><text:span text:style-name="T25">Copyright</text:span><text:span text:style-name="T26"> (</text:span><text:span text:style-name="T25">c</text:span><text:span text:style-name="T26">) 2018 </text:span><text:span text:style-name="T25">Vladimir</text:span><text:span text:style-name="T26"> </text:span><text:span text:style-name="T25">Bashev</text:span><text:span text:style-name="T26">. </text:span><text:span text:style-name="T25">All rights reserved.</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s/>* &lt;/автор&gt;<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s/>*<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s/>*/<text:span text:style-name="T24"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s/>*/<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp">int16_t EcoMain(IEcoUnknown* pIUnk) {<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/>int</text:span><text:span text:style-name="T22">16_</text:span><text:span text:style-name="T23">t</text:span><text:span text:style-name="T22"> </text:span><text:span text:style-name="T23">result</text:span><text:span text:style-name="T22"> = -1;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T25">/* Указатель на интерфейс работы с системной интерфейсной шиной */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T23">IEcoInterfaceBus</text:span><text:span text:style-name="T22">1* </text:span><text:span text:style-name="T23">pIBus</text:span><text:span text:style-name="T22"> = 0;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T23">IEcoError</text:span><text:span text:style-name="T22">1* </text:span><text:span text:style-name="T23">pIErr</text:span><text:span text:style-name="T22"> = 0;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T25">/* Указатель на интерфейс работы с памятью </text:span><text:span text:style-name="T24">*/</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>IEcoMemoryAllocator1* pIMem = 0;<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>char_t ptrErrMessage[100] = {0};<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>uint16_t iErrSize = 100;<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>char_t* ptrStr = 0;<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/>char_t* pszStr1 = </text:span><text:span text:style-name="T27">&quot;Test String 1&quot;</text:span><text:span text:style-name="T23">;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/>char_t* pszStr2 = </text:span><text:span text:style-name="T27">&quot;Test String 2&quot;</text:span><text:span text:style-name="T23">;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T25">/* Указатель на тестируемый интерфейс */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T23">IEcoList</text:span><text:span text:style-name="T22">1* </text:span><text:span text:style-name="T23">pIList</text:span><text:span text:style-name="T22"> = 0;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T23">uint32_t iCount = 0;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>uint32_t iIndex = 0;<text:span text:style-name="T23"/></text:p>
    <text:p text:style-name="code_5f_cpp"/>
+   <text:p text:style-name="code_5f_cpp"><text:soft-page-break/><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T25">/* Проверка и создание системного интрефейса */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T26">if</text:span><text:span text:style-name="T23"> (g_pISys == 0) {</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="8"/>result = pIUnk-&gt;pVTbl-&gt;QueryInterface(pIUnk, &amp;GID_IEcoSystem1, (</text:span><text:span text:style-name="T26">void</text:span><text:span text:style-name="T23"> **)&amp;g_pISys);</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="8"/></text:span><text:span text:style-name="T26">if</text:span><text:span text:style-name="T22"> (</text:span><text:span text:style-name="T23">result</text:span><text:span text:style-name="T22"> != 0 &amp;&amp; </text:span><text:span text:style-name="T23">g</text:span><text:span text:style-name="T22">_</text:span><text:span text:style-name="T23">pISys</text:span><text:span text:style-name="T22"> == 0) {</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="8"/></text:span><text:span text:style-name="T25">/* Освобождение системного интерфейса в случае ошибки */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="12"/></text:span><text:span text:style-name="T26">goto</text:span><text:span text:style-name="T22"> </text:span><text:span text:style-name="T23">Release</text:span><text:span text:style-name="T22">;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="8"/>}<text:span text:style-name="T22"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>}<text:span text:style-name="T22"/></text:p>
    <text:p text:style-name="code_5f_cpp"/>
-   <text:p text:style-name="code_5f_cpp">/* Eco OS */<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T27">#include</text:span><text:span text:style-name="T24"> </text:span><text:span text:style-name="T28">&quot;IEcoSystem1.h&quot;</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T27">#include</text:span><text:span text:style-name="T24"> </text:span><text:span text:style-name="T28">&quot;IdEcoMemoryManager1.h&quot;</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T27">#include</text:span><text:span text:style-name="T24"> </text:span><text:span text:style-name="T28">&quot;IEcoInterfaceBus1.h&quot;</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T27">#include</text:span><text:span text:style-name="T24"> </text:span><text:span text:style-name="T28">&quot;IdEcoList1.h&quot;</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T29">#</text:span><text:span text:style-name="T27">include</text:span><text:span text:style-name="T23"> </text:span><text:span text:style-name="T30">&quot;</text:span><text:span text:style-name="T28">IEcoError</text:span><text:span text:style-name="T30">1.</text:span><text:span text:style-name="T28">h</text:span><text:span text:style-name="T30">&quot;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T25">/* Получение интерфейса для работы с интерфейсной шиной */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T23">result = g_pISys-&gt;pVTbl-&gt;QueryInterface(g_pISys, &amp;IID_IEcoInterfaceBus1, (</text:span><text:span text:style-name="T26">void</text:span><text:span text:style-name="T23"> **)&amp;pIBus);</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T26">if</text:span><text:span text:style-name="T22"> (</text:span><text:span text:style-name="T23">result</text:span><text:span text:style-name="T22"> != 0 || </text:span><text:span text:style-name="T23">pIBus</text:span><text:span text:style-name="T22"> == 0) {</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="8"/></text:span><text:span text:style-name="T25">/* Освобождение в случае ошибки */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="8"/></text:span><text:span text:style-name="T26">goto</text:span><text:span text:style-name="T22"> </text:span><text:span text:style-name="T23">Release</text:span><text:span text:style-name="T22">;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>}<text:span text:style-name="T22"/></text:p>
    <text:p text:style-name="code_5f_cpp"/>
-   <text:p text:style-name="code_5f_cpp"><text:soft-page-break/>/* Глобальный указатель на системный интерфейс */<text:span text:style-name="T23"/></text:p>
-   <text:p text:style-name="code_5f_cpp">IEcoSystem1* g_pISys = 0;<text:span text:style-name="T24"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T25">/* Получение интерфейса обработки ошибок */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T23">result = pIBus-&gt;pVTbl-&gt;QueryInterface(pIBus, &amp;IID_IEcoError1, (</text:span><text:span text:style-name="T26">void</text:span><text:span text:style-name="T23"> **)&amp;pIErr);</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T26">if</text:span><text:span text:style-name="T22"> (</text:span><text:span text:style-name="T23">result</text:span><text:span text:style-name="T22"> != 0 || </text:span><text:span text:style-name="T23">pIErr</text:span><text:span text:style-name="T22"> == 0) {</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="8"/></text:span><text:span text:style-name="T25">/* Освобождение в случае ошибки */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="8"/></text:span><text:span text:style-name="T26">goto</text:span><text:span text:style-name="T23"> Release;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>}<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/>pIErr-&gt;pVTbl-&gt;get_Description(pIErr, (</text:span><text:span text:style-name="T26">void</text:span><text:span text:style-name="T23">*)ptrErrMessage, &amp;iErrSize);</text:span></text:p>
    <text:p text:style-name="code_5f_cpp"/>
-   <text:p text:style-name="code_5f_cpp">/*<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s/>*<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s/>* &lt;сводка&gt;<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s/>* <text:s text:c="2"/>Функция EcoMain<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T25"><text:s/></text:span><text:span text:style-name="T26">* &lt;/сводка&gt;</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s/>*<text:span text:style-name="T23"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s/>* &lt;описание&gt;<text:span text:style-name="T23"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T26"><text:s/>* <text:s text:c="2"/>Функция </text:span><text:span text:style-name="T25">EcoMain</text:span><text:span text:style-name="T26"> - точка входа</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T26"><text:s/></text:span><text:span text:style-name="T25">* &lt;/описание&gt;</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s/>*<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s/>*/<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp">int16_t EcoMain(IEcoUnknown* pIUnk) {<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="4"/>int</text:span><text:span text:style-name="T23">16_</text:span><text:span text:style-name="T24">t</text:span><text:span text:style-name="T23"> </text:span><text:span text:style-name="T24">result</text:span><text:span text:style-name="T23"> = -1;</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T26">/* Указатель на интерфейс работы с системной интерфейсной шиной */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T24">IEcoInterfaceBus</text:span><text:span text:style-name="T23">1* </text:span><text:span text:style-name="T24">pIBus</text:span><text:span text:style-name="T23"> = 0;</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T24">IEcoError</text:span><text:span text:style-name="T23">1* </text:span><text:span text:style-name="T24">pIErr</text:span><text:span text:style-name="T23"> = 0;</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T26">/* Указатель на интерфейс работы с памятью </text:span><text:span text:style-name="T25">*/</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>IEcoMemoryAllocator1* pIMem = 0;<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>char_t ptrErrMessage[100] = {0};<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>uint16_t iErrSize = 100;<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>char_t* ptrStr = 0;<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="4"/>char_t* pszStr1 = </text:span><text:span text:style-name="T28">&quot;Test String 1&quot;</text:span><text:span text:style-name="T24">;</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="4"/>char_t* pszStr2 = </text:span><text:span text:style-name="T28">&quot;Test String 2&quot;</text:span><text:span text:style-name="T24">;</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="4"/></text:span><text:span text:style-name="T26">/* Указатель на тестируемый интерфейс */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T24">IEcoList</text:span><text:span text:style-name="T23">1* </text:span><text:span text:style-name="T24">pIList</text:span><text:span text:style-name="T23"> = 0;</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T24">uint32_t iCount = 0;</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>uint32_t iIndex = 0;<text:span text:style-name="T24"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T28">#</text:span><text:span text:style-name="T26">ifdef</text:span><text:span text:style-name="T22"> </text:span><text:span text:style-name="T23">ECO</text:span><text:span text:style-name="T22">_</text:span><text:span text:style-name="T23">LIB</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T25">/* Регистрация статического компонента для работы со списком */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T23">result = pIBus-&gt;pVTbl-&gt;RegisterComponent(pIBus, &amp;CID_EcoList1, (IEcoUnknown*)GetIEcoComponentFactoryPtr_53884AFC93C448ECAA929C8D3A562281);</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T26">if</text:span><text:span text:style-name="T22"> (</text:span><text:span text:style-name="T23">result</text:span><text:span text:style-name="T22"> != 0 ) {</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="8"/></text:span><text:span text:style-name="T25">/* Освобождение в случае ошибки */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="8"/></text:span><text:span text:style-name="T26">goto</text:span><text:span text:style-name="T22"> </text:span><text:span text:style-name="T23">Release</text:span><text:span text:style-name="T22">;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:soft-page-break/><text:s text:c="4"/>}<text:span text:style-name="T22"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T28">#</text:span><text:span text:style-name="T26">endif</text:span></text:p>
    <text:p text:style-name="code_5f_cpp"/>
-   <text:p text:style-name="code_5f_cpp"><text:soft-page-break/><text:span text:style-name="T24"><text:s text:c="4"/></text:span><text:span text:style-name="T26">/* Проверка и создание системного интрефейса */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T27">if</text:span><text:span text:style-name="T24"> (g_pISys == 0) {</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="8"/>result = pIUnk-&gt;pVTbl-&gt;QueryInterface(pIUnk, &amp;GID_IEcoSystem1, (</text:span><text:span text:style-name="T27">void</text:span><text:span text:style-name="T24"> **)&amp;g_pISys);</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="8"/></text:span><text:span text:style-name="T27">if</text:span><text:span text:style-name="T23"> (</text:span><text:span text:style-name="T24">result</text:span><text:span text:style-name="T23"> != 0 &amp;&amp; </text:span><text:span text:style-name="T24">g</text:span><text:span text:style-name="T23">_</text:span><text:span text:style-name="T24">pISys</text:span><text:span text:style-name="T23"> == 0) {</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="8"/></text:span><text:span text:style-name="T26">/* Освобождение системного интерфейса в случае ошибки */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="12"/></text:span><text:span text:style-name="T27">goto</text:span><text:span text:style-name="T23"> </text:span><text:span text:style-name="T24">Release</text:span><text:span text:style-name="T23">;</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="8"/>}<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T25">/* Получение интерфейса управления памятью </text:span><text:span text:style-name="T24">*/</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/>result = pIBus-&gt;pVTbl-&gt;QueryComponent(pIBus, &amp;CID_EcoMemoryManager1, 0, &amp;IID_IEcoMemoryAllocator1, (</text:span><text:span text:style-name="T26">void</text:span><text:span text:style-name="T23">**) &amp;pIMem);</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"/>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T25">/* Проверка */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T26">if</text:span><text:span text:style-name="T22"> (</text:span><text:span text:style-name="T23">result</text:span><text:span text:style-name="T22"> != 0 || </text:span><text:span text:style-name="T23">pIMem</text:span><text:span text:style-name="T22"> == 0) {</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="8"/></text:span><text:span text:style-name="T25">/* Освобождение системного интерфейса в случае ошибки */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="8"/></text:span><text:span text:style-name="T26">goto</text:span><text:span text:style-name="T22"> </text:span><text:span text:style-name="T23">Release</text:span><text:span text:style-name="T22">;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>}<text:span text:style-name="T22"/></text:p>
+   <text:p text:style-name="code_5f_cpp"/>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T25">/* Получение тестируемого интерфейса */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T23">result = pIBus-&gt;pVTbl-&gt;QueryComponent(pIBus, &amp;CID_EcoList1, 0, &amp;IID_IEcoList1, (</text:span><text:span text:style-name="T26">void</text:span><text:span text:style-name="T23">**) &amp;pIList);</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T26">if</text:span><text:span text:style-name="T23"> (result != 0 || pIList == 0) {</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="8"/>iErrSize = 100;<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="8"/>pIErr-&gt;pVTbl-&gt;get_Description(pIErr, (</text:span><text:span text:style-name="T26">void</text:span><text:span text:style-name="T23">*)ptrErrMessage, &amp;iErrSize);</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="8"/></text:span><text:span text:style-name="T25">/* Освобождение интерфейсов в случае ошибки */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="8"/></text:span><text:span text:style-name="T26">goto</text:span><text:span text:style-name="T22"> </text:span><text:span text:style-name="T23">Release</text:span><text:span text:style-name="T22">;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>}<text:span text:style-name="T22"/></text:p>
+   <text:p text:style-name="code_5f_cpp"/>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T25">/* Формирование саиска */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T23">iIndex = pIList-&gt;pVTbl-&gt;Add(pIList, pszStr1);</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>iIndex = pIList-&gt;pVTbl-&gt;Add(pIList, pszStr2);<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>iCount = pIList-&gt;pVTbl-&gt;Count(pIList);<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T25">/* Проверка количества элементов списка */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T26">if</text:span><text:span text:style-name="T23"> (iCount == 2) {</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="8"/></text:span><text:span text:style-name="T26">for</text:span><text:span text:style-name="T23"> (iIndex = 0; iIndex &lt; iCount; iIndex++) {</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="12"/>ptrStr = (char_t*)pIList-&gt;pVTbl-&gt;Item(pIList, iIndex);<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="8"/></text:span><text:span text:style-name="T22">}</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:soft-page-break/><text:span text:style-name="T22"><text:s text:c="8"/></text:span><text:span text:style-name="T25">/* Удаление элемента по индексу */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="8"/></text:span><text:span text:style-name="T23">pIList</text:span><text:span text:style-name="T22">-&gt;</text:span><text:span text:style-name="T23">pVTbl</text:span><text:span text:style-name="T22">-&gt;</text:span><text:span text:style-name="T23">RemoveAt</text:span><text:span text:style-name="T22">(</text:span><text:span text:style-name="T23">pIList</text:span><text:span text:style-name="T22">, 0);</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="8"/></text:span><text:span text:style-name="T25">/* Удаление элемента по указателю */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="8"/></text:span><text:span text:style-name="T23">pIList-&gt;pVTbl-&gt;Remove(pIList, pszStr2);</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>}<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>iCount = pIList-&gt;pVTbl-&gt;Count(pIList);<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T24">/* Формирование списка */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T24">//iIndex = pIList-&gt;pVTbl-&gt;Add(pIList, pszStr1);</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>pIList-&gt;pVTbl-&gt;InsertAt(pIList, 0, pszStr1);<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>pIList-&gt;pVTbl-&gt;InsertAt(pIList, 0, pszStr2);<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>iIndex = pIList-&gt;pVTbl-&gt;IndexOf(pIList, pszStr1);<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T25">/* удаление всех элементов из списка */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T23">pIList-&gt;pVTbl-&gt;Clear(pIList);</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>iCount = pIList-&gt;pVTbl-&gt;Count(pIList);<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"/>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23">Release</text:span><text:span text:style-name="T22">:</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"/>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T25">/* Освобождение интерфейса для работы с интерфейсной шиной */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T26">if</text:span><text:span text:style-name="T23"> (pIBus != 0) {</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="8"/>pIBus-&gt;pVTbl-&gt;Release(pIBus);<text:span text:style-name="T23"/></text:p>
    <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>}<text:span text:style-name="T23"/></text:p>
    <text:p text:style-name="code_5f_cpp"/>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T26">/* Получение интерфейса для работы с интерфейсной шиной */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T24">result = g_pISys-&gt;pVTbl-&gt;QueryInterface(g_pISys, &amp;IID_IEcoInterfaceBus1, (</text:span><text:span text:style-name="T27">void</text:span><text:span text:style-name="T24"> **)&amp;pIBus);</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="4"/></text:span><text:span text:style-name="T27">if</text:span><text:span text:style-name="T23"> (</text:span><text:span text:style-name="T24">result</text:span><text:span text:style-name="T23"> != 0 || </text:span><text:span text:style-name="T24">pIBus</text:span><text:span text:style-name="T23"> == 0) {</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="8"/></text:span><text:span text:style-name="T26">/* Освобождение в случае ошибки */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="8"/></text:span><text:span text:style-name="T27">goto</text:span><text:span text:style-name="T23"> </text:span><text:span text:style-name="T24">Release</text:span><text:span text:style-name="T23">;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T25">/* Освобождение интерфейса работы с памятью */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T26">if</text:span><text:span text:style-name="T23"> (pIMem != 0) {</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="8"/>pIMem-&gt;pVTbl-&gt;Release(pIMem);<text:span text:style-name="T23"/></text:p>
    <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>}<text:span text:style-name="T23"/></text:p>
    <text:p text:style-name="code_5f_cpp"/>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T26">/* Получение интерфейса обработки ошибок */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T24">result = pIBus-&gt;pVTbl-&gt;QueryInterface(pIBus, &amp;IID_IEcoError1, (</text:span><text:span text:style-name="T27">void</text:span><text:span text:style-name="T24"> **)&amp;pIErr);</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="4"/></text:span><text:span text:style-name="T27">if</text:span><text:span text:style-name="T23"> (</text:span><text:span text:style-name="T24">result</text:span><text:span text:style-name="T23"> != 0 || </text:span><text:span text:style-name="T24">pIErr</text:span><text:span text:style-name="T23"> == 0) {</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="8"/></text:span><text:span text:style-name="T26">/* Освобождение в случае ошибки */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="8"/></text:span><text:span text:style-name="T27">goto</text:span><text:span text:style-name="T24"> Release;</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>}<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="4"/>pIErr-&gt;pVTbl-&gt;get_Description(pIErr, (</text:span><text:span text:style-name="T27">void</text:span><text:span text:style-name="T24">*)ptrErrMessage, &amp;iErrSize);</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"/>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T29">#</text:span><text:span text:style-name="T27">ifdef</text:span><text:span text:style-name="T23"> </text:span><text:span text:style-name="T24">ECO</text:span><text:span text:style-name="T23">_</text:span><text:span text:style-name="T24">LIB</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T26">/* Регистрация статического компонента для работы со списком */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T24">result = pIBus-&gt;pVTbl-&gt;RegisterComponent(pIBus, &amp;CID_EcoList1, (IEcoUnknown*)GetIEcoComponentFactoryPtr_53884AFC93C448ECAA929C8D3A562281);</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="4"/></text:span><text:span text:style-name="T27">if</text:span><text:span text:style-name="T23"> (</text:span><text:span text:style-name="T24">result</text:span><text:span text:style-name="T23"> != 0 ) {</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="8"/></text:span><text:span text:style-name="T26">/* Освобождение в случае ошибки */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="8"/></text:span><text:span text:style-name="T27">goto</text:span><text:span text:style-name="T23"> </text:span><text:span text:style-name="T24">Release</text:span><text:span text:style-name="T23">;</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:soft-page-break/><text:s text:c="4"/>}<text:span text:style-name="T23"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T29">#</text:span><text:span text:style-name="T27">endif</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"/>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T26">/* Получение интерфейса управления памятью </text:span><text:span text:style-name="T25">*/</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="4"/>result = pIBus-&gt;pVTbl-&gt;QueryComponent(pIBus, &amp;CID_EcoMemoryManager1, 0, &amp;IID_IEcoMemoryAllocator1, (</text:span><text:span text:style-name="T27">void</text:span><text:span text:style-name="T24">**) &amp;pIMem);</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"/>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="4"/></text:span><text:span text:style-name="T26">/* Проверка */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T27">if</text:span><text:span text:style-name="T23"> (</text:span><text:span text:style-name="T24">result</text:span><text:span text:style-name="T23"> != 0 || </text:span><text:span text:style-name="T24">pIMem</text:span><text:span text:style-name="T23"> == 0) {</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="8"/></text:span><text:span text:style-name="T26">/* Освобождение системного интерфейса в случае ошибки */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="8"/></text:span><text:span text:style-name="T27">goto</text:span><text:span text:style-name="T23"> </text:span><text:span text:style-name="T24">Release</text:span><text:span text:style-name="T23">;</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>}<text:span text:style-name="T23"/></text:p>
-   <text:p text:style-name="code_5f_cpp"/>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T26">/* Получение тестируемого интерфейса */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T24">result = pIBus-&gt;pVTbl-&gt;QueryComponent(pIBus, &amp;CID_EcoList1, 0, &amp;IID_IEcoList1, (</text:span><text:span text:style-name="T27">void</text:span><text:span text:style-name="T24">**) &amp;pIList);</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="4"/></text:span><text:span text:style-name="T27">if</text:span><text:span text:style-name="T24"> (result != 0 || pIList == 0) {</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="8"/>iErrSize = 100;<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="8"/>pIErr-&gt;pVTbl-&gt;get_Description(pIErr, (</text:span><text:span text:style-name="T27">void</text:span><text:span text:style-name="T24">*)ptrErrMessage, &amp;iErrSize);</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="8"/></text:span><text:span text:style-name="T26">/* Освобождение интерфейсов в случае ошибки */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="8"/></text:span><text:span text:style-name="T27">goto</text:span><text:span text:style-name="T23"> </text:span><text:span text:style-name="T24">Release</text:span><text:span text:style-name="T23">;</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>}<text:span text:style-name="T23"/></text:p>
-   <text:p text:style-name="code_5f_cpp"/>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T26">/* Формирование саиска */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T24">iIndex = pIList-&gt;pVTbl-&gt;Add(pIList, pszStr1);</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>iIndex = pIList-&gt;pVTbl-&gt;Add(pIList, pszStr2);<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>iCount = pIList-&gt;pVTbl-&gt;Count(pIList);<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="4"/></text:span><text:span text:style-name="T26">/* Проверка количества элементов списка */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T27">if</text:span><text:span text:style-name="T24"> (iCount == 2) {</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="8"/></text:span><text:span text:style-name="T27">for</text:span><text:span text:style-name="T24"> (iIndex = 0; iIndex &lt; iCount; iIndex++) {</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="12"/>ptrStr = (char_t*)pIList-&gt;pVTbl-&gt;Item(pIList, iIndex);<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="8"/></text:span><text:span text:style-name="T23">}</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:soft-page-break/><text:span text:style-name="T23"><text:s text:c="8"/></text:span><text:span text:style-name="T26">/* Удаление элемента по индексу */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="8"/></text:span><text:span text:style-name="T24">pIList</text:span><text:span text:style-name="T23">-&gt;</text:span><text:span text:style-name="T24">pVTbl</text:span><text:span text:style-name="T23">-&gt;</text:span><text:span text:style-name="T24">RemoveAt</text:span><text:span text:style-name="T23">(</text:span><text:span text:style-name="T24">pIList</text:span><text:span text:style-name="T23">, 0);</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="8"/></text:span><text:span text:style-name="T26">/* Удаление элемента по указателю */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="8"/></text:span><text:span text:style-name="T24">pIList-&gt;pVTbl-&gt;Remove(pIList, pszStr2);</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>}<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>iCount = pIList-&gt;pVTbl-&gt;Count(pIList);<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="4"/></text:span><text:span text:style-name="T25">/* Формирование списка */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="4"/></text:span><text:span text:style-name="T25">//iIndex = pIList-&gt;pVTbl-&gt;Add(pIList, pszStr1);</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>pIList-&gt;pVTbl-&gt;InsertAt(pIList, 0, pszStr1);<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>pIList-&gt;pVTbl-&gt;InsertAt(pIList, 0, pszStr2);<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>iIndex = pIList-&gt;pVTbl-&gt;IndexOf(pIList, pszStr1);<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="4"/></text:span><text:span text:style-name="T26">/* удаление всех элементов из списка */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T24">pIList-&gt;pVTbl-&gt;Clear(pIList);</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>iCount = pIList-&gt;pVTbl-&gt;Count(pIList);<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"/>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24">Release</text:span><text:span text:style-name="T23">:</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"/>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T26">/* Освобождение интерфейса для работы с интерфейсной шиной */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T27">if</text:span><text:span text:style-name="T24"> (pIBus != 0) {</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="8"/>pIBus-&gt;pVTbl-&gt;Release(pIBus);<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>}<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"/>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="4"/></text:span><text:span text:style-name="T26">/* Освобождение интерфейса работы с памятью */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T27">if</text:span><text:span text:style-name="T24"> (pIMem != 0) {</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="8"/>pIMem-&gt;pVTbl-&gt;Release(pIMem);<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>}<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"/>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="4"/></text:span><text:span text:style-name="T26">/* Освобождение тестируемого интерфейса */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T27">if</text:span><text:span text:style-name="T23"> (</text:span><text:span text:style-name="T24">pIList</text:span><text:span text:style-name="T23"> != 0) {</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="8"/></text:span><text:span text:style-name="T24">pIList</text:span><text:span text:style-name="T23">-&gt;</text:span><text:span text:style-name="T24">pVTbl</text:span><text:span text:style-name="T23">-&gt;</text:span><text:span text:style-name="T24">Release</text:span><text:span text:style-name="T23">(</text:span><text:span text:style-name="T24">pIList</text:span><text:span text:style-name="T23">);</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>}<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T25">/* Освобождение тестируемого интерфейса */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T26">if</text:span><text:span text:style-name="T22"> (</text:span><text:span text:style-name="T23">pIList</text:span><text:span text:style-name="T22"> != 0) {</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="8"/></text:span><text:span text:style-name="T23">pIList</text:span><text:span text:style-name="T22">-&gt;</text:span><text:span text:style-name="T23">pVTbl</text:span><text:span text:style-name="T22">-&gt;</text:span><text:span text:style-name="T23">Release</text:span><text:span text:style-name="T22">(</text:span><text:span text:style-name="T23">pIList</text:span><text:span text:style-name="T22">);</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>}<text:span text:style-name="T22"/></text:p>
    <text:p text:style-name="code_5f_cpp"><text:soft-page-break/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T26">/* Освобождение системного интерфейса */</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T27">if</text:span><text:span text:style-name="T24"> (g_pISys != 0) {</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="8"/>g_pISys-&gt;pVTbl-&gt;Release(g_pISys);<text:span text:style-name="T24"/></text:p>
-   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>}<text:span text:style-name="T24"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T25">/* Освобождение системного интерфейса */</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T22"><text:s text:c="4"/></text:span><text:span text:style-name="T26">if</text:span><text:span text:style-name="T23"> (g_pISys != 0) {</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="8"/>g_pISys-&gt;pVTbl-&gt;Release(g_pISys);<text:span text:style-name="T23"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:s text:c="4"/>}<text:span text:style-name="T23"/></text:p>
    <text:p text:style-name="code_5f_cpp"/>
-   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T24"><text:s text:c="4"/></text:span><text:span text:style-name="T27">return</text:span><text:span text:style-name="T24"> result;</text:span></text:p>
-   <text:p text:style-name="code_5f_cpp">}<text:span text:style-name="T24"/></text:p>
+   <text:p text:style-name="code_5f_cpp"><text:span text:style-name="T23"><text:s text:c="4"/></text:span><text:span text:style-name="T26">return</text:span><text:span text:style-name="T23"> result;</text:span></text:p>
+   <text:p text:style-name="code_5f_cpp">}<text:span text:style-name="T23"/></text:p>
    <text:p text:style-name="code_5f_cpp"/>
    <text:p text:style-name="code_5f_cpp"/>
-   <text:p text:style-name="P39" loext:marker-style-name="T31"/>
+   <text:p text:style-name="P39" loext:marker-style-name="T30"/>
   </office:text>
  </office:body>
 </office:document>
