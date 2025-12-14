@@ -141,7 +141,7 @@ def create_meta(file_path, github_server_url, repository_name, commit_sha, origi
         frontmatter_lines.append(f'type: "{component_type.upper()}"')
     
     if marketplace_id:
-        frontmatter_lines.append(f'type: "{marketplace_id.upper()}"')
+        frontmatter_lines.append(f'registryId: "{marketplace_id.upper()}"')
     
     if marketplace_url:
         frontmatter_lines.append(f'registryUrl: "{marketplace_url}"')
