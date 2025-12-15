@@ -1,14 +1,41 @@
-# How to contrubute component specification
+# How to contribute component specification
 
-please follow the guidlines below:
+Please follow the guidelines below:
 
-1. clone the repository and create branch with your component name, like `add/ComponentName`
-2. add new folder inside `components/` named with your component unique CID (Component ID) in UGUID format. If folder exists contact repository maintainers (PeerF)
-3. Use ISO notation for language of the documents: de - Germain, en - English, fr - France, ru for Russian, etc and create a document unique code in `USPD` format (see reference below); add that number to all documents being added, as a new line under the header, like:
-`USPD: Your_USPD` (see generation guide below)
-4. save document in `.fodt` (Flat ODF Format) under name `Your_USPD_number.fodt` and place into corresponding language subfolders (use LibraOffice or similar editor to SaveAs `.fodt`)
-5. create commit with message, like: `new ComponentName spec is added, in EN language`
-6. create GitHub pull request
+1. Clone the repository and create branch with your component name, like `add/ComponentName`
+2. Add new folder inside `components/` named with your component unique CID (Component ID) in UGUID format. If folder exists contact repository maintainers (PeerF)
+3. Use ISO notation for language of the documents: de - German, en - English, fr - French, ru for Russian, etc and create a document unique code in `USPD` format (see reference below)
+4. Fill in the document metadata fields at the top:
+   - **USPD**: Your unique document number (e.g., `US.ECO.00015-01 90`)
+   - **Name**: Component name (e.g., `Eco.Stack1`)
+   - **CID**: Component ID - 32-character hex string (same as folder name)
+   - **Short Description**: Brief description (max 300 characters)
+   - **Category**: Component category (e.g., UTILITY, SYSTEM, etc.)
+   - **Type**: Always `COMPONENT` for components
+5. Save document in `.fodt` (Flat ODF Format) under name `LanguageCode.ECO.XXXXX-YY_90.fodt` (use LibreOffice or similar editor to SaveAs `.fodt`)
+6. Create commit with message, like: `new ComponentName spec is added, in EN language`
+7. Create GitHub pull request
+
+## Automated Processing
+
+After your pull request is merged:
+- Documents are automatically converted to Markdown with VitePress frontmatter
+- Files are deployed to language-specific directories based on filename prefix
+- **USPD Registry** (`USPD_REGISTRY.md`) is automatically updated with your component metadata
+- All metadata from your document appears in the registry for easy discovery
+
+## USPD Registry
+
+The repository maintains an automated registry of all documentation at `USPD_REGISTRY.md`. This registry:
+- Lists all components with their USPD numbers, names, CIDs, and descriptions
+- Updates automatically when documents are added or modified
+- Provides a quick reference for all available documentation
+- Sorted by USPD number for easy navigation
+
+Example registry entry:
+```
+US.ECO.00007-01 : Eco.Stack1 : 18129B1DCF9248D9A7787F9206E2D6DC : implements in memory stack data structure FILO
+```
 
 
 # Reference on creation document unique number
@@ -23,14 +50,18 @@ US.ECO.XXXXX-YY 90 (with a space before "90"), where:
 - XXXXX - ordering number of this document in your organization, 1-99999 (ask maintainers/PeerF for ECO organization)
 - YY is a current document version (revision), 0-99
 
-if you use the USPD code in the filename:
+If you use the USPD code in the filename:
 
+```
 US.ECO.XXXXX-YY_90.fodt # Component specification in English
 RU.ECO.XXXXX-YY_90.fodt # Component specification in Russian
 FR.ECO.XXXXX-YY_90.fodt # Component specification in French
-DE.ECO.XXXXX-YY_90.fodt # Component specification in Germain
+DE.ECO.XXXXX-YY_90.fodt # Component specification in German
+```
 
-## DEtailed explanation
+**Important**: The language prefix in the filename determines which language directory your documentation will be deployed to in the VitePress site.
+
+## Detailed explanation
 
 USPD (Unified Standard for Project Documentation - unique document number) - how to get it.
 

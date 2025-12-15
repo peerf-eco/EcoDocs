@@ -20,6 +20,7 @@ Automated workflow that converts FODT (Flat XML ODT) documentation files to Mark
 - **`.github/workflows/convert_docs_extension.sh`**: Core conversion script (FODT→ODT→Markdown)
 - **`.github/workflows/create_metadata.py`**: Adds VitePress-compatible frontmatter
 - **`.github/workflows/update_state.py`**: Manages conversion state tracking
+- **`.github/workflows/generate_registry.py`**: Generates USPD document registry
 - **`.github/workflows/DocExport.oxt`**: LibreOffice extension for ODT→Markdown conversion
 
 ### Workflow Sequence
@@ -29,6 +30,7 @@ Automated workflow that converts FODT (Flat XML ODT) documentation files to Mark
 4. **Conversion**: Processes files through direct FODT/ODT→Markdown pipeline
 5. **State Update**: Creates new state file with success/failure tracking
 6. **Deployment**: Copies markdown files to language-specific directories and updates state
+7. **Registry Generation**: Creates USPD_REGISTRY.md from all deployed markdown files
 
 ### Conversion Pipeline
 1. **Direct Processing**: LibreOffice DocExport extension handles both .fodt and .odt files directly
@@ -400,7 +402,49 @@ if ls converted_docs/*.md >/dev/null 2>&1; then
 - Eliminates Node.js dependency and related failures
 - Simplifies workflow and reduces potential failure points
 
-**Result**: Cleaner workflow focused on core functionality without confusing "skipping manifest generation" messagesment**: Extended workflow to process .fodt files from multiple source directories
+**Result**: Cleaner workflow focused on core functionality without confusing "skipping manifest generation" messages
+
+### USPD Registry Generation (Current Session)
+**Enhancement**: Automated registry of all documentation with metadata extraction
+
+**Registry File**: `USPD_REGISTRY.md` in source repository root
+
+**Data Source**: Reads from target repository (`docs-vitepress/docs`) where all markdown files have VitePress frontmatter
+
+**Extracted Metadata**:
+- **USPD Number**: From `documentUspd` frontmatter field (e.g., `US.ECO.00007-01`)
+- **Product Name**: From `componentName` frontmatter field
+- **Component CID**: From `CID` frontmatter field (32-character hex)
+- **Description**: From `description` frontmatter field
+
+**Registry Format**:
+```markdown
+# ECOOS DOCUMENTS REGISTRY
+
+## Format USPD number : Product's Name : Component's CID : Short description
+
+RU.ECO.00005-01 : Eco.Memory1 : 1CE95396008F46EAB4374010C8B58383 : implements memory allocation
+US.ECO.00007-01 : Eco.Stack1 : 18129B1DCF9248D9A7787F9206E2D6DC : implements in memory stack data structure FILO
+```
+
+**Processing Logic**:
+1. Reads all `.md` files from `docs-vitepress/docs` (includes all languages and sections)
+2. Parses YAML frontmatter to extract metadata
+3. Sorts entries by USPD number (language code, then numeric sequence)
+4. Generates complete registry with all documents
+5. Commits to source repository with `[skip ci]` to prevent workflow loops
+
+**Why Target Repository**: 
+- Source `.fodt` files don't have frontmatter
+- Target repository has all files with complete metadata
+- Includes both newly converted and existing documents
+- Efficient - no need to parse complex XML from `.fodt` files
+
+**Workflow Integration**:
+- Runs after deployment step when target repository is cloned
+- Only executes when files were converted (`any_changed == 'true'`)
+- Automatically commits changes back to source repository
+- Uses `[skip ci]` flag to prevent triggering another workflow run
 
 
 
@@ -417,6 +461,8 @@ if ls converted_docs/*.md >/dev/null 2>&1; then
 - **File Path Conflicts**: Check for filename collisions when flattening components structure
 - **Language Detection Issues**: Verify filename follows prefix pattern (e.g., `RU.`, `US.`, `EN.`, `FR.`, `DE.`)
 - **Wrong Language Directory**: Check that filename prefix uses supported language codes and proper separators (`.`, `_`, or `-`)
+- **Registry Shows N/A Values**: Verify frontmatter exists in target repository markdown files and fields match expected names
+- **Registry Not Updated**: Check that target repository was cloned before registry generation step
 
 ### Debug Commands
 ```bash
