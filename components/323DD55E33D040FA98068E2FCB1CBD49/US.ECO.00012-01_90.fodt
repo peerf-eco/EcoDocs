@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:rpt="http://openoffice.org/2005/report" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:calcext="urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0" xmlns:drawooo="http://openoffice.org/2010/draw" xmlns:loext="urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:formx="urn:openoffice:names:experimental:ooxml-odf-interop:xmlns:form:1.0" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:css3t="http://www.w3.org/TR/css3-text/" xmlns:officeooo="http://openoffice.org/2009/office" office:version="1.4" office:mimetype="application/vnd.oasis.opendocument.text">
- <office:meta><meta:initial-creator>Vladimir Bashev</meta:initial-creator><meta:editing-cycles>114</meta:editing-cycles><meta:print-date>2024-06-09T17:34:00</meta:print-date><meta:creation-date>2020-10-14T17:45:00</meta:creation-date><dc:date>2025-12-15T19:00:52.476314100</dc:date><meta:editing-duration>P1DT22H49M39S</meta:editing-duration><meta:generator>LibreOffice/25.2.7.2$Windows_X86_64 LibreOffice_project/5cbfd1ab6520636bb5f7b99185aa69bd7456825d</meta:generator><meta:document-statistic meta:table-count="1" meta:image-count="3" meta:object-count="0" meta:page-count="15" meta:paragraph-count="252" meta:word-count="1301" meta:character-count="9756" meta:non-whitespace-character-count="8526"/><meta:user-defined meta:name="AppVersion">14.0000</meta:user-defined><meta:template xlink:type="simple" xlink:actuate="onRequest" xlink:title="Normal.dotm" xlink:href=""/></office:meta>
+ <office:meta><meta:initial-creator>Vladimir Bashev</meta:initial-creator><meta:editing-cycles>115</meta:editing-cycles><meta:print-date>2024-06-09T17:34:00</meta:print-date><meta:creation-date>2020-10-14T17:45:00</meta:creation-date><dc:date>2025-12-15T23:36:18.032696600</dc:date><meta:editing-duration>P1DT22H50M30S</meta:editing-duration><meta:generator>LibreOffice/25.2.7.2$Windows_X86_64 LibreOffice_project/5cbfd1ab6520636bb5f7b99185aa69bd7456825d</meta:generator><meta:document-statistic meta:table-count="1" meta:image-count="3" meta:object-count="0" meta:page-count="15" meta:paragraph-count="252" meta:word-count="1302" meta:character-count="9765" meta:non-whitespace-character-count="8534"/><meta:user-defined meta:name="AppVersion">14.0000</meta:user-defined><meta:template xlink:type="simple" xlink:actuate="onRequest" xlink:title="Normal.dotm" xlink:href=""/></office:meta>
  <office:settings>
   <config:config-item-set config:name="ooo:view-settings">
-   <config:config-item config:name="ViewAreaTop" config:type="long">0</config:config-item>
+   <config:config-item config:name="ViewAreaTop" config:type="long">92549</config:config-item>
    <config:config-item config:name="ViewAreaLeft" config:type="long">0</config:config-item>
    <config:config-item config:name="ViewAreaWidth" config:type="long">20639</config:config-item>
    <config:config-item config:name="ViewAreaHeight" config:type="long">14559</config:config-item>
@@ -14,11 +14,11 @@
     <config:config-item-map-entry>
      <config:config-item config:name="ViewId" config:type="string">view2</config:config-item>
      <config:config-item config:name="ViewLeft" config:type="long">2501</config:config-item>
-     <config:config-item config:name="ViewTop" config:type="long">2501</config:config-item>
+     <config:config-item config:name="ViewTop" config:type="long">34112</config:config-item>
      <config:config-item config:name="VisibleLeft" config:type="long">0</config:config-item>
-     <config:config-item config:name="VisibleTop" config:type="long">0</config:config-item>
+     <config:config-item config:name="VisibleTop" config:type="long">92549</config:config-item>
      <config:config-item config:name="VisibleRight" config:type="long">20638</config:config-item>
-     <config:config-item config:name="VisibleBottom" config:type="long">14557</config:config-item>
+     <config:config-item config:name="VisibleBottom" config:type="long">107107</config:config-item>
      <config:config-item config:name="ZoomType" config:type="short">0</config:config-item>
      <config:config-item config:name="ViewLayoutColumns" config:type="short">1</config:config-item>
      <config:config-item config:name="ViewLayoutBookMode" config:type="boolean">false</config:config-item>
@@ -84,7 +84,7 @@
    <config:config-item config:name="IgnoreTabsAndBlanksForLineCalculation" config:type="boolean">true</config:config-item>
    <config:config-item config:name="IgnoreHiddenCharsForLineCalculation" config:type="boolean">true</config:config-item>
    <config:config-item config:name="TabAtLeftIndentForParagraphsInList" config:type="boolean">true</config:config-item>
-   <config:config-item config:name="Rsid" config:type="int">4971380</config:config-item>
+   <config:config-item config:name="Rsid" config:type="int">4998746</config:config-item>
    <config:config-item config:name="RsidRoot" config:type="int">1179529</config:config-item>
    <config:config-item config:name="LoadReadonly" config:type="boolean">false</config:config-item>
    <config:config-item config:name="ClipAsCharacterAnchoredWriterFlyFrames" config:type="boolean">false</config:config-item>
@@ -183,7 +183,7 @@
  <office:styles>
   <style:default-style style:family="graphic">
    <style:graphic-properties svg:stroke-color="#3465a4" draw:fill-color="#729fcf" fo:wrap-option="no-wrap" draw:shadow-offset-x="0.1181in" draw:shadow-offset-y="0.1181in" draw:start-line-spacing-horizontal="0.1114in" draw:start-line-spacing-vertical="0.1114in" draw:end-line-spacing-horizontal="0.1114in" draw:end-line-spacing-vertical="0.1114in" style:writing-mode="lr-tb" style:flow-with-text="false"/>
-   <style:paragraph-properties style:text-autospace="ideograph-alpha" style:line-break="strict" loext:tab-stop-distance="0in" style:font-independent-line-spacing="false">
+   <style:paragraph-properties style:text-autospace="ideograph-alpha" style:line-break="strict" loext:tab-stop-distance="0in" style:writing-mode="lr-tb" style:font-independent-line-spacing="false">
     <style:tab-stops/>
    </style:paragraph-properties>
    <style:text-properties style:use-window-font-color="true" loext:opacity="0%" style:font-name="Liberation Serif" fo:font-size="12pt" fo:language="en" fo:country="US" style:letter-kerning="true" style:font-name-asian="NSimSun1" style:font-size-asian="10.5pt" style:language-asian="zh" style:country-asian="CN" style:font-name-complex="Arial2" style:font-size-complex="12pt" style:language-complex="hi" style:country-complex="IN"/>
@@ -2178,60 +2178,63 @@
    <style:text-properties fo:font-variant="normal" fo:text-transform="none" fo:color="#0a0a0a" loext:opacity="100%" fo:letter-spacing="normal" fo:font-style="normal" fo:font-weight="normal" officeooo:rsid="003d6ef7" fo:background-color="transparent" loext:char-shading-value="0" loext:padding="0in" loext:border="none"/>
   </style:style>
   <style:style style:name="T16" style:family="text">
-   <style:text-properties fo:color="#6a9955" loext:opacity="100%"/>
+   <style:text-properties fo:font-variant="normal" fo:text-transform="none" fo:color="#0a0a0a" loext:opacity="100%" fo:letter-spacing="normal" fo:font-style="normal" fo:font-weight="normal" officeooo:rsid="004c465a" fo:background-color="transparent" loext:char-shading-value="0" loext:padding="0in" loext:border="none"/>
   </style:style>
   <style:style style:name="T17" style:family="text">
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" fo:background-color="transparent" loext:char-shading-value="0" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
+   <style:text-properties fo:color="#6a9955" loext:opacity="100%"/>
   </style:style>
   <style:style style:name="T18" style:family="text">
-   <style:text-properties fo:font-variant="normal" fo:text-transform="none" fo:color="#000000" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="normal" fo:font-style="normal" style:text-underline-style="none" fo:font-weight="normal" fo:background-color="transparent" loext:char-shading-value="0" style:font-size-asian="12pt" style:font-size-complex="12pt" loext:padding="0in" loext:border="none"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" fo:background-color="transparent" loext:char-shading-value="0" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
   <style:style style:name="T19" style:family="text">
-   <style:text-properties fo:font-variant="normal" fo:text-transform="none" fo:color="#0a0a0a" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="normal" fo:font-style="normal" fo:font-weight="normal" fo:background-color="transparent" loext:char-shading-value="0" style:font-size-asian="12pt" style:font-size-complex="12pt" loext:padding="0in" loext:border="none"/>
+   <style:text-properties fo:font-variant="normal" fo:text-transform="none" fo:color="#000000" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="normal" fo:font-style="normal" style:text-underline-style="none" fo:font-weight="normal" fo:background-color="transparent" loext:char-shading-value="0" style:font-size-asian="12pt" style:font-size-complex="12pt" loext:padding="0in" loext:border="none"/>
   </style:style>
   <style:style style:name="T20" style:family="text">
-   <style:text-properties fo:font-variant="normal" fo:text-transform="none" fo:color="#0a0a0a" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="normal" fo:font-style="normal" fo:font-weight="normal" fo:background-color="transparent" loext:char-shading-value="0" style:font-size-asian="12pt" style:font-size-complex="12pt"/>
+   <style:text-properties fo:font-variant="normal" fo:text-transform="none" fo:color="#0a0a0a" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="normal" fo:font-style="normal" fo:font-weight="normal" fo:background-color="transparent" loext:char-shading-value="0" style:font-size-asian="12pt" style:font-size-complex="12pt" loext:padding="0in" loext:border="none"/>
   </style:style>
   <style:style style:name="T21" style:family="text">
-   <style:text-properties fo:font-variant="normal" fo:text-transform="none" fo:color="#0a0a0a" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="normal" fo:font-style="normal" fo:font-weight="bold" fo:background-color="transparent" loext:char-shading-value="0" style:font-size-asian="12pt" style:font-size-complex="12pt"/>
+   <style:text-properties fo:font-variant="normal" fo:text-transform="none" fo:color="#0a0a0a" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="normal" fo:font-style="normal" fo:font-weight="normal" fo:background-color="transparent" loext:char-shading-value="0" style:font-size-asian="12pt" style:font-size-complex="12pt"/>
   </style:style>
   <style:style style:name="T22" style:family="text">
-   <style:text-properties fo:font-variant="normal" fo:text-transform="none" fo:color="#0a0a0a" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="normal" fo:font-style="normal" fo:font-weight="normal" officeooo:rsid="00460809" fo:background-color="transparent" loext:char-shading-value="0" style:font-size-asian="12pt" style:font-size-complex="12pt"/>
+   <style:text-properties fo:font-variant="normal" fo:text-transform="none" fo:color="#0a0a0a" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="normal" fo:font-style="normal" fo:font-weight="bold" fo:background-color="transparent" loext:char-shading-value="0" style:font-size-asian="12pt" style:font-size-complex="12pt"/>
   </style:style>
   <style:style style:name="T23" style:family="text">
-   <style:text-properties fo:font-variant="normal" fo:text-transform="none" fo:color="#0a0a0a" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="normal" fo:font-style="normal" fo:font-weight="normal" officeooo:rsid="00460809" fo:background-color="transparent" loext:char-shading-value="0" style:font-size-asian="12pt" style:font-size-complex="12pt" loext:padding="0in" loext:border="none"/>
+   <style:text-properties fo:font-variant="normal" fo:text-transform="none" fo:color="#0a0a0a" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="normal" fo:font-style="normal" fo:font-weight="normal" officeooo:rsid="00460809" fo:background-color="transparent" loext:char-shading-value="0" style:font-size-asian="12pt" style:font-size-complex="12pt"/>
   </style:style>
   <style:style style:name="T24" style:family="text">
-   <style:text-properties fo:font-variant="normal" fo:text-transform="none" fo:color="#0a0a0a" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="normal" fo:font-style="normal" fo:font-weight="bold" officeooo:rsid="00460809" fo:background-color="transparent" loext:char-shading-value="0" style:font-size-asian="12pt" style:font-size-complex="12pt" loext:padding="0in" loext:border="none"/>
+   <style:text-properties fo:font-variant="normal" fo:text-transform="none" fo:color="#0a0a0a" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="normal" fo:font-style="normal" fo:font-weight="normal" officeooo:rsid="00460809" fo:background-color="transparent" loext:char-shading-value="0" style:font-size-asian="12pt" style:font-size-complex="12pt" loext:padding="0in" loext:border="none"/>
   </style:style>
   <style:style style:name="T25" style:family="text">
-   <style:text-properties fo:font-variant="normal" fo:text-transform="none" fo:color="#0a0a0a" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="normal" fo:font-style="normal" fo:font-weight="bold" fo:background-color="transparent" loext:char-shading-value="0" style:font-size-asian="12pt" style:font-size-complex="12pt" loext:padding="0in" loext:border="none"/>
+   <style:text-properties fo:font-variant="normal" fo:text-transform="none" fo:color="#0a0a0a" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="normal" fo:font-style="normal" fo:font-weight="bold" officeooo:rsid="00460809" fo:background-color="transparent" loext:char-shading-value="0" style:font-size-asian="12pt" style:font-size-complex="12pt" loext:padding="0in" loext:border="none"/>
   </style:style>
   <style:style style:name="T26" style:family="text">
-   <style:text-properties fo:font-size="12pt" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
+   <style:text-properties fo:font-variant="normal" fo:text-transform="none" fo:color="#0a0a0a" loext:opacity="100%" style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="normal" fo:font-style="normal" fo:font-weight="bold" fo:background-color="transparent" loext:char-shading-value="0" style:font-size-asian="12pt" style:font-size-complex="12pt" loext:padding="0in" loext:border="none"/>
   </style:style>
   <style:style style:name="T27" style:family="text">
-   <style:text-properties fo:font-size="12pt" officeooo:rsid="00211fed" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
+   <style:text-properties fo:font-size="12pt" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
   <style:style style:name="T28" style:family="text">
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
+   <style:text-properties fo:font-size="12pt" officeooo:rsid="00211fed" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
   <style:style style:name="T29" style:family="text">
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" officeooo:rsid="00211fed" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
   <style:style style:name="T30" style:family="text">
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" officeooo:rsid="002f661d" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" officeooo:rsid="00211fed" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
   <style:style style:name="T31" style:family="text">
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="-0.0028in" fo:language="en" fo:country="US" officeooo:rsid="00211fed" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:language="en" fo:country="US" officeooo:rsid="002f661d" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
   <style:style style:name="T32" style:family="text">
-   <style:text-properties officeooo:rsid="00460809"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="12pt" fo:letter-spacing="-0.0028in" fo:language="en" fo:country="US" officeooo:rsid="00211fed" style:font-size-asian="12pt" style:font-name-complex="Times New Roman1" style:font-size-complex="12pt"/>
   </style:style>
   <style:style style:name="T33" style:family="text">
-   <style:text-properties fo:font-style="italic" fo:font-weight="bold" style:font-style-asian="italic" style:font-weight-asian="bold" style:font-style-complex="italic" style:font-weight-complex="bold"/>
+   <style:text-properties officeooo:rsid="00460809"/>
   </style:style>
   <style:style style:name="T34" style:family="text">
+   <style:text-properties fo:font-style="italic" fo:font-weight="bold" style:font-style-asian="italic" style:font-weight-asian="bold" style:font-style-complex="italic" style:font-weight-complex="bold"/>
+  </style:style>
+  <style:style style:name="T35" style:family="text">
    <style:text-properties fo:font-style="italic" style:font-style-asian="italic" style:font-style-complex="italic"/>
   </style:style>
   <style:style style:name="fr1" style:family="graphic" style:parent-style-name="Graphics">
@@ -2401,8 +2404,8 @@
    <text:p text:style-name="P14"><text:span text:style-name="T14">Modified Date:</text:span><text:span text:style-name="T4"> November 25, 2025</text:span></text:p>
    <text:p text:style-name="P15"><text:span text:style-name="T5">Version:</text:span> 1.0</text:p>
    <text:p text:style-name="P15"/>
-   <text:p text:style-name="P16"><text:span text:style-name="T5">Tags:</text:span> <text:span text:style-name="T6">BNF, Backus-Naur, </text:span><text:span text:style-name="T15">syntax of programming languages, g</text:span><text:span text:style-name="T6">rammer</text:span></text:p>
-   <text:p text:style-name="P17"><text:span text:style-name="T16"/></text:p>
+   <text:p text:style-name="P16"><text:span text:style-name="T5">Tags:</text:span> <text:span text:style-name="T6">BNF, Backus-Naur, </text:span><text:span text:style-name="T15">syntax of programming languages, </text:span><text:span text:style-name="T16">computer </text:span><text:span text:style-name="T15">g</text:span><text:span text:style-name="T6">rammer</text:span></text:p>
+   <text:p text:style-name="P17"><text:span text:style-name="T17"/></text:p>
    <text:p text:style-name="P17"/>
    <text:p text:style-name="P18"/>
    <table:table table:name="Таблица1" table:style-name="Таблица1">
@@ -2575,23 +2578,23 @@
    </text:list>
    <text:p text:style-name="P27">This document describes the requirements for the implementation of the Eco.BNF1 component.</text:p>
    <text:h text:style-name="P28" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc72871_228845717"/>1.1. Introduction<text:bookmark-end text:name="__RefHeading___Toc72871_228845717"/></text:h>
-   <text:p text:style-name="Standard"><text:span text:style-name="T17">Description. </text:span><text:span text:style-name="T18">BNF (Backus-Naur Form</text:span><text:span text:style-name="T18">)</text:span><text:span text:style-name="T19"> grammar is a formal notation system for describing the syntax of programming languages and other formal languages using production rules, defining how simple elements (terminals) combine into complex structures (nonterminals) via ::= (is defined as) and | (or). It&apos;s a bedrock for compilers and parsers, providing clear, human-readable definitions for language structure, crucial for defining valid sentences, commands, or data formats, including modern LLM outputs.</text:span><text:span text:style-name="T20"> </text:span></text:p>
+   <text:p text:style-name="Standard"><text:span text:style-name="T18">Description. </text:span><text:span text:style-name="T19">BNF (Backus-Naur Form</text:span><text:span text:style-name="T19">)</text:span><text:span text:style-name="T20"> grammar is a formal notation system for describing the syntax of programming languages and other formal languages using production rules, defining how simple elements (terminals) combine into complex structures (nonterminals) via ::= (is defined as) and | (or). It&apos;s a bedrock for compilers and parsers, providing clear, human-readable definitions for language structure, crucial for defining valid sentences, commands, or data formats, including modern LLM outputs.</text:span><text:span text:style-name="T21"> </text:span></text:p>
    <text:p text:style-name="P29">Key Components:</text:p>
    <text:list text:style-name="L2">
     <text:list-item>
-     <text:p text:style-name="P30"><text:span text:style-name="Strong_20_Emphasis"><text:span text:style-name="T21"><text:s/>Terminals:</text:span></text:span><text:span text:style-name="T20"> Literal symbols or keywords that appear in the language (e.g., </text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T19">+</text:span></text:span><text:span text:style-name="T20">, </text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T19">def</text:span></text:span><text:span text:style-name="T20">, </text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T19">return</text:span></text:span><text:span text:style-name="T20">).</text:span></text:p>
+     <text:p text:style-name="P30"><text:span text:style-name="Strong_20_Emphasis"><text:span text:style-name="T22"><text:s/>Terminals:</text:span></text:span><text:span text:style-name="T21"> Literal symbols or keywords that appear in the language (e.g., </text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T20">+</text:span></text:span><text:span text:style-name="T21">, </text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T20">def</text:span></text:span><text:span text:style-name="T21">, </text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T20">return</text:span></text:span><text:span text:style-name="T21">).</text:span></text:p>
     </text:list-item>
     <text:list-item>
-     <text:p text:style-name="P30"><text:span text:style-name="Strong_20_Emphasis"><text:span text:style-name="T21"><text:s/>Nonterminals (Syntactic Variables):</text:span></text:span><text:span text:style-name="T20"> Placeholders for structures, usually in angle brackets (e.g., </text:span><text:span text:style-name="T22">`</text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T19">&lt;digit&gt;</text:span></text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T23">`</text:span></text:span><text:span text:style-name="T20">, </text:span><text:span text:style-name="T22">`</text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T19">&lt;expression&gt;</text:span></text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T23">`</text:span></text:span><text:span text:style-name="T20">) that get replaced by other symbols or terminals.</text:span></text:p>
+     <text:p text:style-name="P30"><text:span text:style-name="Strong_20_Emphasis"><text:span text:style-name="T22"><text:s/>Nonterminals (Syntactic Variables):</text:span></text:span><text:span text:style-name="T21"> Placeholders for structures, usually in angle brackets (e.g., </text:span><text:span text:style-name="T23">`</text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T20">&lt;digit&gt;</text:span></text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T24">`</text:span></text:span><text:span text:style-name="T21">, </text:span><text:span text:style-name="T23">`</text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T20">&lt;expression&gt;</text:span></text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T24">`</text:span></text:span><text:span text:style-name="T21">) that get replaced by other symbols or terminals.</text:span></text:p>
     </text:list-item>
     <text:list-item>
-     <text:p text:style-name="P30"><text:span text:style-name="Strong_20_Emphasis"><text:span text:style-name="T21"><text:s/>Rules (Productions):</text:span></text:span><text:span text:style-name="T20"> Define relationships, like </text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T19">name </text:span></text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T23">`</text:span></text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T19">::=</text:span></text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T23">`</text:span></text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T19"> expansion</text:span></text:span><text:span text:style-name="T20">.</text:span></text:p>
+     <text:p text:style-name="P30"><text:span text:style-name="Strong_20_Emphasis"><text:span text:style-name="T22"><text:s/>Rules (Productions):</text:span></text:span><text:span text:style-name="T21"> Define relationships, like </text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T20">name </text:span></text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T24">`</text:span></text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T20">::=</text:span></text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T24">`</text:span></text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T20"> expansion</text:span></text:span><text:span text:style-name="T21">.</text:span></text:p>
     </text:list-item>
     <text:list-item>
-     <text:p text:style-name="P30"><text:span text:style-name="Source_20_Text"><text:span text:style-name="T24"><text:s/>`</text:span></text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T25">::=</text:span></text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T24">`</text:span></text:span><text:span text:style-name="Strong_20_Emphasis"><text:span text:style-name="T21"> (is defined as):</text:span></text:span><text:span text:style-name="T20"> Separates a nonterminal from its possible expansions.</text:span></text:p>
+     <text:p text:style-name="P30"><text:span text:style-name="Source_20_Text"><text:span text:style-name="T25"><text:s/>`</text:span></text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T26">::=</text:span></text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T25">`</text:span></text:span><text:span text:style-name="Strong_20_Emphasis"><text:span text:style-name="T22"> (is defined as):</text:span></text:span><text:span text:style-name="T21"> Separates a nonterminal from its possible expansions.</text:span></text:p>
     </text:list-item>
     <text:list-item>
-     <text:p text:style-name="P30"><text:span text:style-name="Source_20_Text"><text:span text:style-name="T24"><text:s/>`</text:span></text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T25">|</text:span></text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T24">`</text:span></text:span><text:span text:style-name="Strong_20_Emphasis"><text:span text:style-name="T21"> (or):</text:span></text:span><text:span text:style-name="T20"> Indicates a choice between options within a rule. </text:span></text:p>
+     <text:p text:style-name="P30"><text:span text:style-name="Source_20_Text"><text:span text:style-name="T25"><text:s/>`</text:span></text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T26">|</text:span></text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T25">`</text:span></text:span><text:span text:style-name="Strong_20_Emphasis"><text:span text:style-name="T22"> (or):</text:span></text:span><text:span text:style-name="T21"> Indicates a choice between options within a rule. </text:span></text:p>
     </text:list-item>
    </text:list>
    <text:p text:style-name="P31"/>
@@ -2599,14 +2602,14 @@
    <text:p text:style-name="P32"/>
    <text:p text:style-name="P33"/>
    <text:h text:style-name="P28" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc72875_228845717"/>1.3. Links<text:bookmark-end text:name="__RefHeading___Toc72875_228845717"/></text:h>
-   <text:p text:style-name="P34"><text:s/><text:span text:style-name="T26">This paragraph contains </text:span><text:span text:style-name="T27">supplementary </text:span><text:span text:style-name="T26">links </text:span><text:span text:style-name="T27">to the component artifacts and</text:span><text:span text:style-name="T26"> information: </text:span></text:p>
-   <text:p text:style-name="Standard"><text:span text:style-name="T28">Available </text:span><text:span text:style-name="T29">at </text:span><text:span text:style-name="T30">marketplace</text:span><text:span text:style-name="T28">: </text:span><text:a xlink:type="simple" xlink:href="https://ecoos.dev/product/component_id" text:style-name="Internet_20_link" text:visited-style-name="Visited_20_Internet_20_Link"><text:span text:style-name="Internet_20_link"><text:span text:style-name="T31">https://ecoos.dev/product/component_id</text:span></text:span></text:a></text:p>
-   <text:p text:style-name="Standard"><text:span text:style-name="Internet_20_link"><text:span text:style-name="T31"/></text:span></text:p>
-   <text:p text:style-name="P35"><text:span text:style-name="Internet_20_link"><text:span text:style-name="T31"/></text:span></text:p>
+   <text:p text:style-name="P34"><text:s/><text:span text:style-name="T27">This paragraph contains </text:span><text:span text:style-name="T28">supplementary </text:span><text:span text:style-name="T27">links </text:span><text:span text:style-name="T28">to the component artifacts and</text:span><text:span text:style-name="T27"> information: </text:span></text:p>
+   <text:p text:style-name="Standard"><text:span text:style-name="T29">Available </text:span><text:span text:style-name="T30">at </text:span><text:span text:style-name="T31">marketplace</text:span><text:span text:style-name="T29">: </text:span><text:a xlink:type="simple" xlink:href="https://ecoos.dev/product/component_id" text:style-name="Internet_20_link" text:visited-style-name="Visited_20_Internet_20_Link"><text:span text:style-name="Internet_20_link"><text:span text:style-name="T32">https://ecoos.dev/product/component_id</text:span></text:span></text:a></text:p>
+   <text:p text:style-name="Standard"><text:span text:style-name="Internet_20_link"><text:span text:style-name="T32"/></text:span></text:p>
+   <text:p text:style-name="P35"><text:span text:style-name="Internet_20_link"><text:span text:style-name="T32"/></text:span></text:p>
    <text:h text:style-name="Heading_20_1" text:outline-level="1" text:is-list-header="true"><text:bookmark-start text:name="__RefHeading___Toc438_1972451902"/>2. Eco.Toolchain.BNF1 Component<text:bookmark-end text:name="__RefHeading___Toc438_1972451902"/></text:h>
    <text:p text:style-name="P27"/>
    <text:p text:style-name="P36">The Eco.BNF1 component </text:p>
-   <text:p text:style-name="P27">The component has the following description <text:span text:style-name="T32">diagram</text:span>:</text:p>
+   <text:p text:style-name="P27">The component has the following description <text:span text:style-name="T33">diagram</text:span>:</text:p>
    <text:p text:style-name="P27"/>
    <text:p text:style-name="P27"/>
    <text:p text:style-name="P27"/>
@@ -8108,23 +8111,23 @@
    <text:p text:style-name="P41">}<text:tab/><text:tab/><text:tab/></text:p>
    <text:h text:style-name="P42" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc442_1972451902"/>3.1.1.<text:tab/> AddRule function<text:bookmark-end text:name="__RefHeading___Toc442_1972451902"/></text:h>
    <text:p text:style-name="P43"/>
-   <text:p text:style-name="P43">The function adds a rule to a BNF instance with the given <text:span text:style-name="T33">Name</text:span> and returns a pointer to the <text:span text:style-name="T33">IEcoToolchainBNF1Rule*</text:span><text:span text:style-name="T34"> </text:span>grammar rule interface. The returned rule is of type ECO_BNF_1_RT_RULENAME.</text:p>
+   <text:p text:style-name="P43">The function adds a rule to a BNF instance with the given <text:span text:style-name="T34">Name</text:span> and returns a pointer to the <text:span text:style-name="T34">IEcoToolchainBNF1Rule*</text:span><text:span text:style-name="T35"> </text:span>grammar rule interface. The returned rule is of type ECO_BNF_1_RT_RULENAME.</text:p>
    <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc444_1972451902"/>3.1.2.<text:tab/> AddComment function<text:bookmark-end text:name="__RefHeading___Toc444_1972451902"/></text:h>
    <text:p text:style-name="P43"/>
-   <text:p text:style-name="P43">The function adds a comment to the BNF instance specified by the <text:span text:style-name="T33">Note</text:span> parameter and returns a pointer to the <text:span text:style-name="T33">IEcoToolchainBNF1Rule*</text:span> grammar rule interface. The returned rule is of type ECO_BNF_1_RT_COMMENT.</text:p>
+   <text:p text:style-name="P43">The function adds a comment to the BNF instance specified by the <text:span text:style-name="T34">Note</text:span> parameter and returns a pointer to the <text:span text:style-name="T34">IEcoToolchainBNF1Rule*</text:span> grammar rule interface. The returned rule is of type ECO_BNF_1_RT_COMMENT.</text:p>
    <text:p text:style-name="P43"/>
    <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc446_1972451902"/>3.1.3.<text:tab/> get_RuleList function<text:bookmark-end text:name="__RefHeading___Toc446_1972451902"/></text:h>
    <text:p text:style-name="P43"/>
-   <text:p text:style-name="P43">The function returns a list of all rules as a pointer to the <text:span text:style-name="T33">IEcoList1*</text:span> list interface. The list element is a pointer to the <text:span text:style-name="T33">IEcoToolchainBNF1Rule*</text:span> grammar rule interface. <text:s/></text:p>
+   <text:p text:style-name="P43">The function returns a list of all rules as a pointer to the <text:span text:style-name="T34">IEcoList1*</text:span> list interface. The list element is a pointer to the <text:span text:style-name="T34">IEcoToolchainBNF1Rule*</text:span> grammar rule interface. <text:s/></text:p>
    <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc448_1972451902"/>3.1.4.<text:tab/> get_Alphabet function<text:bookmark-end text:name="__RefHeading___Toc448_1972451902"/></text:h>
    <text:p text:style-name="P43"/>
-   <text:p text:style-name="P43">The function returns the alphabet of all terminal and non-terminal symbols as a pointer to the interface for working with the list <text:span text:style-name="T33">IEcoList1*</text:span>. A list element is a pointer to a string of <text:span text:style-name="T33">char_t*</text:span> type.</text:p>
+   <text:p text:style-name="P43">The function returns the alphabet of all terminal and non-terminal symbols as a pointer to the interface for working with the list <text:span text:style-name="T34">IEcoList1*</text:span>. A list element is a pointer to a string of <text:span text:style-name="T34">char_t*</text:span> type.</text:p>
    <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc450_1972451902"/>3.1.5.<text:tab/> get_TerminalAlphabet function<text:bookmark-end text:name="__RefHeading___Toc450_1972451902"/></text:h>
    <text:p text:style-name="P43"/>
-   <text:p text:style-name="P43">The function returns the alphabet of all terminal characters as a pointer to the interface for working with the list <text:span text:style-name="T33">IEcoList1*</text:span>. A list element is a pointer to a string of <text:span text:style-name="T33">char_t*</text:span> type.</text:p>
+   <text:p text:style-name="P43">The function returns the alphabet of all terminal characters as a pointer to the interface for working with the list <text:span text:style-name="T34">IEcoList1*</text:span>. A list element is a pointer to a string of <text:span text:style-name="T34">char_t*</text:span> type.</text:p>
    <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc452_1972451902"/>3.1.6.<text:tab/> get_NonTerminalAlphabet function<text:bookmark-end text:name="__RefHeading___Toc452_1972451902"/></text:h>
    <text:p text:style-name="P43"/>
-   <text:p text:style-name="P43">The function returns the alphabet of all non-terminal characters as a pointer to the interface for working with the list <text:span text:style-name="T33">IEcoList1*</text:span>. A list element is a pointer to a string of <text:span text:style-name="T33">char_t*</text:span> type.</text:p>
+   <text:p text:style-name="P43">The function returns the alphabet of all non-terminal characters as a pointer to the interface for working with the list <text:span text:style-name="T34">IEcoList1*</text:span>. A list element is a pointer to a string of <text:span text:style-name="T34">char_t*</text:span> type.</text:p>
    <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc454_1972451902"/>3.1.7.<text:tab/> Clear function<text:bookmark-end text:name="__RefHeading___Toc454_1972451902"/></text:h>
    <text:p text:style-name="P43"/>
    <text:p text:style-name="P43">The function clears the BNF instance by removing all rules.</text:p>
@@ -8194,26 +8197,26 @@
    <text:p text:style-name="P44">The function returns the identifier of the rule.</text:p>
    <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc464_1972451902"/>4.1.3.<text:tab/> AddConcatenation function<text:bookmark-end text:name="__RefHeading___Toc464_1972451902"/></text:h>
    <text:p text:style-name="P44"/>
-   <text:p text:style-name="P44">The function adds the rule name specified by the <text:span text:style-name="T33">Name</text:span> parameter to the ordered sequence of rule names by the <text:span text:style-name="T33">indexSet</text:span> index of the rule set.</text:p>
+   <text:p text:style-name="P44">The function adds the rule name specified by the <text:span text:style-name="T34">Name</text:span> parameter to the ordered sequence of rule names by the <text:span text:style-name="T34">indexSet</text:span> index of the rule set.</text:p>
    <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc466_1972451902"/>4.1.4.<text:tab/> AddAlternative function<text:bookmark-end text:name="__RefHeading___Toc466_1972451902"/></text:h>
    <text:p text:style-name="P44"/>
-   <text:p text:style-name="P44">The function adds the rule name specified by the <text:span text:style-name="T33">Name</text:span> parameter to a new rule set defined by the returned index <text:span text:style-name="T33">indexSet</text:span>.</text:p>
+   <text:p text:style-name="P44">The function adds the rule name specified by the <text:span text:style-name="T34">Name</text:span> parameter to a new rule set defined by the returned index <text:span text:style-name="T34">indexSet</text:span>.</text:p>
    <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc468_1972451902"/>4.1.5.<text:tab/> AddSequenceGroup function<text:bookmark-end text:name="__RefHeading___Toc468_1972451902"/></text:h>
    <text:p text:style-name="P44"/>
-   <text:p text:style-name="P44">The function adds a group for elements enclosed in parentheses, returning a pointer to the <text:span text:style-name="T33">IEcoToolchainBNF1Rule*</text:span> grammar rule interface (interpreted as a single element with strict ordering). The returned rule is of type ECO_BNF_1_RT_SEQUENCE.</text:p>
+   <text:p text:style-name="P44">The function adds a group for elements enclosed in parentheses, returning a pointer to the <text:span text:style-name="T34">IEcoToolchainBNF1Rule*</text:span> grammar rule interface (interpreted as a single element with strict ordering). The returned rule is of type ECO_BNF_1_RT_SEQUENCE.</text:p>
    <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc470_1972451902"/>4.1.6.<text:tab/> AddOptionalSequence function<text:bookmark-end text:name="__RefHeading___Toc470_1972451902"/></text:h>
    <text:p text:style-name="P44"/>
-   <text:p text:style-name="P44">The function adds an optional sequence for elements enclosed in square brackets, returning a pointer to the <text:span text:style-name="T33">IEcoToolchainBNF1Rule*</text:span> grammar rule interface (treated as a single element). The returned rule is of type ECO_BNF_1_RT_SEQUENCE.</text:p>
+   <text:p text:style-name="P44">The function adds an optional sequence for elements enclosed in square brackets, returning a pointer to the <text:span text:style-name="T34">IEcoToolchainBNF1Rule*</text:span> grammar rule interface (treated as a single element). The returned rule is of type ECO_BNF_1_RT_SEQUENCE.</text:p>
    <text:p text:style-name="P44"/>
    <text:p text:style-name="P44"/>
    <text:p text:style-name="P44"/>
    <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc472_1972451902"/>4.1.7.<text:tab/> AddSpecialSequence function<text:bookmark-end text:name="__RefHeading___Toc472_1972451902"/></text:h>
    <text:p text:style-name="P44"/>
-   <text:p text:style-name="P44">The function adds a specialized sequence for elements enclosed in special characters of a user-defined type, returning a pointer to the <text:span text:style-name="T33">IEcoToolchainBNF1Rule*</text:span> grammar rule interface (treated as a single element). The returned rule is of type ECO_BNF_1_RT_SEQUENCE.</text:p>
+   <text:p text:style-name="P44">The function adds a specialized sequence for elements enclosed in special characters of a user-defined type, returning a pointer to the <text:span text:style-name="T34">IEcoToolchainBNF1Rule*</text:span> grammar rule interface (treated as a single element). The returned rule is of type ECO_BNF_1_RT_SEQUENCE.</text:p>
    <text:p text:style-name="P44"/>
    <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc474_1972451902"/>4.1.8. AddValueRangeAlternatives function<text:bookmark-end text:name="__RefHeading___Toc474_1972451902"/></text:h>
    <text:p text:style-name="P44"/>
-   <text:p text:style-name="P44">The function adds ranges of variants of digital values by parameters <text:span text:style-name="T33">start</text:span> start of range and <text:span text:style-name="T33">end</text:span> end of range.</text:p>
+   <text:p text:style-name="P44">The function adds ranges of variants of digital values by parameters <text:span text:style-name="T34">start</text:span> start of range and <text:span text:style-name="T34">end</text:span> end of range.</text:p>
    <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc476_1972451902"/>4.1.9.<text:tab/> AddIncrementalAlternatives function<text:bookmark-end text:name="__RefHeading___Toc476_1972451902"/></text:h>
    <text:p text:style-name="P44"/>
    <text:p text:style-name="P44">The function adds additional rule set options to the initial rule.</text:p>
