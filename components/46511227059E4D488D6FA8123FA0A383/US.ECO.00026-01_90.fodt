@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:rpt="http://openoffice.org/2005/report" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:calcext="urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0" xmlns:drawooo="http://openoffice.org/2010/draw" xmlns:loext="urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:formx="urn:openoffice:names:experimental:ooxml-odf-interop:xmlns:form:1.0" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:css3t="http://www.w3.org/TR/css3-text/" xmlns:officeooo="http://openoffice.org/2009/office" office:version="1.4" office:mimetype="application/vnd.oasis.opendocument.text">
- <office:meta><meta:initial-creator>Vladimir Bashev</meta:initial-creator><meta:editing-cycles>105</meta:editing-cycles><meta:print-date>2024-06-09T17:34:00</meta:print-date><meta:creation-date>2020-10-14T17:45:00</meta:creation-date><dc:date>2025-12-15T00:30:42.739240200</dc:date><meta:editing-duration>P1DT22H17M19S</meta:editing-duration><meta:generator>LibreOffice/25.2.7.2$Windows_X86_64 LibreOffice_project/5cbfd1ab6520636bb5f7b99185aa69bd7456825d</meta:generator><meta:document-statistic meta:table-count="2" meta:image-count="2" meta:object-count="0" meta:page-count="54" meta:paragraph-count="1085" meta:word-count="2838" meta:character-count="28372" meta:non-whitespace-character-count="25790"/><meta:user-defined meta:name="AppVersion">14.0000</meta:user-defined><meta:template xlink:type="simple" xlink:actuate="onRequest" xlink:title="Normal.dotm" xlink:href=""/></office:meta>
+ <office:meta><meta:initial-creator>Vladimir Bashev</meta:initial-creator><meta:editing-cycles>106</meta:editing-cycles><meta:print-date>2024-06-09T17:34:00</meta:print-date><meta:creation-date>2020-10-14T17:45:00</meta:creation-date><dc:date>2025-12-15T19:27:43.654493600</dc:date><meta:editing-duration>P1DT22H18M34S</meta:editing-duration><meta:generator>LibreOffice/25.2.7.2$Windows_X86_64 LibreOffice_project/5cbfd1ab6520636bb5f7b99185aa69bd7456825d</meta:generator><meta:document-statistic meta:table-count="2" meta:image-count="2" meta:object-count="0" meta:page-count="54" meta:paragraph-count="1085" meta:word-count="2838" meta:character-count="28371" meta:non-whitespace-character-count="25789"/><meta:user-defined meta:name="AppVersion">14.0000</meta:user-defined><meta:template xlink:type="simple" xlink:actuate="onRequest" xlink:title="Normal.dotm" xlink:href=""/></office:meta>
  <office:settings>
   <config:config-item-set config:name="ooo:view-settings">
-   <config:config-item config:name="ViewAreaTop" config:type="long">7973</config:config-item>
-   <config:config-item config:name="ViewAreaLeft" config:type="long">2397</config:config-item>
+   <config:config-item config:name="ViewAreaTop" config:type="long">0</config:config-item>
+   <config:config-item config:name="ViewAreaLeft" config:type="long">0</config:config-item>
    <config:config-item config:name="ViewAreaWidth" config:type="long">19607</config:config-item>
    <config:config-item config:name="ViewAreaHeight" config:type="long">13831</config:config-item>
    <config:config-item config:name="ShowRedlineChanges" config:type="boolean">true</config:config-item>
@@ -13,12 +13,12 @@
    <config:config-item-map-indexed config:name="Views">
     <config:config-item-map-entry>
      <config:config-item config:name="ViewId" config:type="string">view2</config:config-item>
-     <config:config-item config:name="ViewLeft" config:type="long">8100</config:config-item>
-     <config:config-item config:name="ViewTop" config:type="long">12102</config:config-item>
-     <config:config-item config:name="VisibleLeft" config:type="long">2397</config:config-item>
-     <config:config-item config:name="VisibleTop" config:type="long">7973</config:config-item>
-     <config:config-item config:name="VisibleRight" config:type="long">22003</config:config-item>
-     <config:config-item config:name="VisibleBottom" config:type="long">21802</config:config-item>
+     <config:config-item config:name="ViewLeft" config:type="long">9266</config:config-item>
+     <config:config-item config:name="ViewTop" config:type="long">8045</config:config-item>
+     <config:config-item config:name="VisibleLeft" config:type="long">0</config:config-item>
+     <config:config-item config:name="VisibleTop" config:type="long">0</config:config-item>
+     <config:config-item config:name="VisibleRight" config:type="long">19606</config:config-item>
+     <config:config-item config:name="VisibleBottom" config:type="long">13829</config:config-item>
      <config:config-item config:name="ZoomType" config:type="short">0</config:config-item>
      <config:config-item config:name="ViewLayoutColumns" config:type="short">1</config:config-item>
      <config:config-item config:name="ViewLayoutBookMode" config:type="boolean">false</config:config-item>
@@ -84,7 +84,7 @@
    <config:config-item config:name="IgnoreTabsAndBlanksForLineCalculation" config:type="boolean">true</config:config-item>
    <config:config-item config:name="IgnoreHiddenCharsForLineCalculation" config:type="boolean">true</config:config-item>
    <config:config-item config:name="TabAtLeftIndentForParagraphsInList" config:type="boolean">true</config:config-item>
-   <config:config-item config:name="Rsid" config:type="int">3872268</config:config-item>
+   <config:config-item config:name="Rsid" config:type="int">3922024</config:config-item>
    <config:config-item config:name="RsidRoot" config:type="int">1179529</config:config-item>
    <config:config-item config:name="LoadReadonly" config:type="boolean">false</config:config-item>
    <config:config-item config:name="ClipAsCharacterAnchoredWriterFlyFrames" config:type="boolean">false</config:config-item>
@@ -184,7 +184,7 @@
  <office:styles>
   <style:default-style style:family="graphic">
    <style:graphic-properties svg:stroke-color="#3465a4" draw:fill-color="#729fcf" fo:wrap-option="no-wrap" draw:shadow-offset-x="0.1181in" draw:shadow-offset-y="0.1181in" draw:start-line-spacing-horizontal="0.1114in" draw:start-line-spacing-vertical="0.1114in" draw:end-line-spacing-horizontal="0.1114in" draw:end-line-spacing-vertical="0.1114in" style:writing-mode="lr-tb" style:flow-with-text="false"/>
-   <style:paragraph-properties style:text-autospace="ideograph-alpha" style:line-break="strict" loext:tab-stop-distance="0in" style:writing-mode="lr-tb" style:font-independent-line-spacing="false">
+   <style:paragraph-properties style:text-autospace="ideograph-alpha" style:line-break="strict" loext:tab-stop-distance="0in" style:font-independent-line-spacing="false">
     <style:tab-stops/>
    </style:paragraph-properties>
    <style:text-properties style:use-window-font-color="true" loext:opacity="0%" style:font-name="Liberation Serif" fo:font-size="12pt" fo:language="en" fo:country="US" style:letter-kerning="true" style:font-name-asian="NSimSun1" style:font-size-asian="10.5pt" style:language-asian="zh" style:country-asian="CN" style:font-name-complex="Arial2" style:font-size-complex="12pt" style:language-complex="hi" style:country-complex="IN"/>
@@ -2093,7 +2093,7 @@
    <style:text-properties style:font-name="Liberation Sans" fo:font-size="10pt" fo:language="en" fo:country="US" style:font-size-asian="10pt" style:font-name-complex="Arial2" style:font-size-complex="10pt"/>
   </style:style>
   <style:style style:name="P13" style:family="paragraph" style:parent-style-name="Standard">
-   <style:text-properties style:font-name="Liberation Sans" fo:font-size="10pt" fo:language="en" fo:country="US" style:font-size-asian="10pt" style:font-size-complex="10pt"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="10pt" fo:language="en" fo:country="US" fo:font-weight="normal" style:font-size-asian="10pt" style:font-weight-asian="normal" style:font-size-complex="10pt" style:font-weight-complex="normal"/>
   </style:style>
   <style:style style:name="P14" style:family="paragraph" style:parent-style-name="Standard">
    <style:paragraph-properties fo:padding-left="0in" fo:padding-right="0in" fo:padding-top="0in" fo:padding-bottom="0.0138in" fo:border-left="none" fo:border-right="none" fo:border-top="none" fo:border-bottom="0.74pt solid #000000"/>
@@ -2443,7 +2443,7 @@
     <style:footnote-sep style:width="0.0071in" style:distance-before-sep="0.0398in" style:distance-after-sep="0.0398in" style:line-style="solid" style:adjustment="left" style:rel-width="25%" style:color="#000000"/>
    </style:page-layout-properties>
    <style:header-style>
-    <style:header-footer-properties fo:min-height="0.4in" fo:margin-left="0in" fo:margin-right="0in" fo:margin-bottom="0.2in" fo:background-color="transparent" style:dynamic-spacing="false" draw:fill="none"/>
+    <style:header-footer-properties fo:min-height="0.4in" fo:margin-left="0in" fo:margin-right="0in" fo:margin-bottom="0.2in" fo:background-color="transparent" style:dynamic-spacing="false" draw:fill="none" draw:fill-color="#729fcf"/>
    </style:header-style>
    <style:footer-style/>
   </style:page-layout>
@@ -2454,7 +2454,7 @@
  <office:master-styles>
   <style:master-page style:name="Standard" style:page-layout-name="pm1" draw:style-name="dp1">
    <style:header>
-    <text:p text:style-name="P1"><draw:frame draw:style-name="fr1" draw:name="Image1" text:anchor-type="char" svg:width="1.8807in" svg:height="0.3339in" draw:z-index="52"><draw:image xlink:href="https://images.ecoos.dev/header-logo.png" xlink:type="simple" xlink:show="embed" xlink:actuate="onLoad" draw:filter-name="&lt;All images&gt;" draw:mime-type="image/png"/>
+    <text:p text:style-name="P1"><draw:frame draw:style-name="fr1" draw:name="Image1" text:anchor-type="char" svg:width="1.8807in" svg:height="0.3339in" draw:z-index="52"><draw:image xlink:href="https://images.ecoos.dev/header-logo.png" xlink:type="simple" xlink:show="embed" xlink:actuate="onLoad" draw:mime-type="image/png"/>
      </draw:frame></text:p>
    </style:header>
   </style:master-page>
@@ -2466,7 +2466,7 @@
     <text:p text:style-name="Header_20_left"/>
    </style:header-left>
    <style:header-first>
-    <text:p text:style-name="Header_20_left"><draw:frame draw:style-name="fr1" draw:name="Image2" text:anchor-type="char" svg:width="2.1165in" svg:height="0.3756in" draw:z-index="53"><draw:image xlink:href="https://images.ecoos.dev/header-logo.png" xlink:type="simple" xlink:show="embed" xlink:actuate="onLoad" draw:filter-name="&lt;All images&gt;" draw:mime-type="image/png"/>
+    <text:p text:style-name="Header_20_left"><draw:frame draw:style-name="fr1" draw:name="Image2" text:anchor-type="char" svg:width="2.1165in" svg:height="0.3756in" draw:z-index="53"><draw:image xlink:href="https://images.ecoos.dev/header-logo.png" xlink:type="simple" xlink:show="embed" xlink:actuate="onLoad" draw:mime-type="image/png"/>
      </draw:frame></text:p>
    </style:header-first>
   </style:master-page>
@@ -2488,14 +2488,14 @@
    <text:p text:style-name="P5"><text:s text:c="2"/></text:p>
    <text:p text:style-name="P6"><text:span text:style-name="T1">USPD:</text:span><text:span text:style-name="T2"> US.ECO.00026-01 90 01 1</text:span></text:p>
    <text:p text:style-name="P7"><text:span text:style-name="T3">Name:</text:span><text:span text:style-name="T4"> Eco.PECOFF1</text:span></text:p>
-   <text:p text:style-name="P8"><text:span text:style-name="T5">Short Description (max 300 char.):</text:span> <text:s/><text:span text:style-name="T6">PE/COFF (Portable Executable/Common Object File Format) is the standard binary file structure for executables</text:span></text:p>
+   <text:p text:style-name="P8"><text:span text:style-name="T5">Short Description (max 300 char.):</text:span> <text:s/><text:span text:style-name="T6">PE/COFF (Portable Executable/Common Object File Format) is the standard binary file structure for executable</text:span></text:p>
    <text:p text:style-name="P9"><text:span text:style-name="T5">Category:</text:span> <text:span text:style-name="T7">SYSTEM</text:span></text:p>
    <text:p text:style-name="P9"><text:span text:style-name="T8">Type:</text:span><text:span text:style-name="T9"> </text:span><text:s/><text:span text:style-name="T10">COMPONENT</text:span></text:p>
    <text:p text:style-name="P7"><text:span text:style-name="T3">CID:</text:span><text:span text:style-name="T4"> 46511227059E4D488D6FA8123FA0A383</text:span></text:p>
    <text:p text:style-name="P10"><text:span text:style-name="T11">Marketplace ID:</text:span><text:span text:style-name="T12"> </text:span><text:span text:style-name="T13">n/a</text:span></text:p>
    <text:p text:style-name="P11"><text:span text:style-name="T5">Marketplace URL:</text:span><text:span text:style-name="T12"> </text:span><text:span text:style-name="T14">n/a</text:span></text:p>
    <text:p text:style-name="P12"><text:span text:style-name="T5">Status:</text:span> Draft</text:p>
-   <text:p text:style-name="P13"><text:span text:style-name="T15">Modified Date:</text:span><text:span text:style-name="T3"> December 3, 2025</text:span></text:p>
+   <text:p text:style-name="P13"><text:span text:style-name="T15">Modified Date:</text:span><text:span text:style-name="T4"> December 3, 2025</text:span></text:p>
    <text:p text:style-name="P14"><text:span text:style-name="T5">Version:</text:span> 1.0</text:p>
    <text:p text:style-name="P14"/>
    <text:p text:style-name="P15"><text:span text:style-name="T5">Tags:</text:span> <text:span text:style-name="T7">executable file format, executable, file header</text:span></text:p>
@@ -2822,7 +2822,7 @@
    </text:list>
    <text:p text:style-name="P26">This document describes the requirements for the implementation of the Eco.PECOFF1 component.</text:p>
    <text:h text:style-name="P27" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc72871_228845717"/>1.1. Introduction<text:bookmark-end text:name="__RefHeading___Toc72871_228845717"/></text:h>
-   <text:p text:style-name="Standard"><text:span text:style-name="T17">Description. </text:span><text:span text:style-name="T18">The PE/COFF (Portable Executable/Common Object File Format) is the standard binary file structure for executables, DLLs, and system files on Windows, built upon the </text:span><text:a xlink:type="simple" xlink:href="https://www.google.com/search?q=COFF+format&amp;newwindow=1&amp;sca_esv=125e8b9873143113&amp;hl=en&amp;sxsrf=AE3TifM5YN0Kcl1eZmHm5drCxpDuTjSY4A%3A1765487756230&amp;ei=jDQ7adrlDdSB9u8PuKa4kQY&amp;ved=2ahUKEwjC9Zf2u7aRAxWohv0HHSKrK5EQgK4QegQIARAE&amp;uact=5&amp;oq=pecoff+file+format&amp;gs_lp=Egxnd3Mtd2l6LXNlcnAiEnBlY29mZiBmaWxlIGZvcm1hdDIGEAAYDRgeMgsQABiABBiGAxiKBTILEAAYgAQYhgMYigUyCxAAGIAEGIYDGIoFMggQABiiBBiJBTIFEAAY7wUyBRAAGO8FMgUQABjvBUjUH1AAWMEacAB4AZABAZgBiAWgAcMcqgEMMC4xMS4zLjEuMC4yuAEDyAEA-AEBmAIQoAKpGcICBBAjGCfCAgoQABiABBhDGIoFwgIFEAAYgATCAgsQABiABBiRAhiKBcICChAuGIAEGEMYigXCAhAQLhiABBjRAxhDGMcBGIoFwgIFEC4YgATCAgcQABiABBgKwgIZEC4YgAQYQxiKBRiXBRjcBBjeBBjgBNgBAcICHxAuGIAEGNEDGEMYxwEYigUYlwUY3AQY3gQY4ATYAQHCAgkQABiABBgKGAvCAgYQABgWGB7CAggQABgWGAoYHsICCBAAGAUYDRgewgIIEAAYgAQYogSYAwDiAwUSATEgQLoGBggBEAEYFJIHDDAuMTEuMy4xLjAuMaAHwGeyBwwwLjExLjMuMS4wLjG4B6kZwgcJMC4yLjcuNi4xyAd4gAgA&amp;sclient=gws-wiz-serp&amp;mstk=AUtExfDyw3RanmUkwaFes5b2g8fLchFe7si0LMV_JgOWcbvCOipL94-KDVXeYUXAYWeDxDnDyXCQb4b_Gch0MM124qwqrscpO9WqSIVQZrViVlIQIvRwukTa661IwQ3CR0ShIMDm7bFC__CBNB_c-1Fg3DWiDSZ8YKQmgABvTxqzB6Z1duwx5xczdfi_Egfoxb-WNUfl9hWBj5KIRDij0o3B9YME9UY4k2M_RglNi4aKyzUxTFkRFgOV4btfzdtv7Fhewqdmsv8bM2ixCBrZXaRRRGXUP4SPVd5edRp8A2RYcnWpGAorDA45FIp8yGZU4Q2R8EUcDe9LUX-Pj79rQem0qHNsMAYP_KbdwxmfkZw2VEqnmPvzASYx5CfrDSWA03uzxesZ5MimcISgImPDXH_UoQ&amp;csui=3" text:style-name="Internet_20_link" text:visited-style-name="Visited_20_Internet_20_Link"><text:span text:style-name="T19">COFF format</text:span></text:a><text:span text:style-name="T18">, containing headers (DOS stub, NT headers, Optional Header, File Header) and section tables that guide the OS loader on mapping code and data (like </text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T20">.text</text:span></text:span><text:span text:style-name="T18">, </text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T20">.data</text:span></text:span><text:span text:style-name="T18">, </text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T20">.rsrc</text:span></text:span><text:span text:style-name="T18">) into memory, supporting dynamic linking, security features, and various Windows extensions. </text:span></text:p>
+   <text:p text:style-name="Standard"><text:span text:style-name="T17">Description. </text:span><text:span text:style-name="T18">The PE/COFF (Portable Executable/Common Object File Format) is the standard binary file structure for executables, DLLs, and system files on Windows, built upon the </text:span><text:span text:style-name="T19">COFF format</text:span><text:span text:style-name="T18">, containing headers (DOS stub, NT headers, Optional Header, File Header) and section tables that guide the OS loader on mapping code and data (like </text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T20">.text</text:span></text:span><text:span text:style-name="T18">, </text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T20">.data</text:span></text:span><text:span text:style-name="T18">, </text:span><text:span text:style-name="Source_20_Text"><text:span text:style-name="T20">.rsrc</text:span></text:span><text:span text:style-name="T18">) into memory, supporting dynamic linking, security features, and various Windows extensions. </text:span></text:p>
    <text:p text:style-name="P28">Core Concepts</text:p>
    <text:list text:style-name="L2">
     <text:list-item>
