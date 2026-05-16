@@ -2,14 +2,14 @@
 
 ## Format USPD number : Product's Name : Component's CID : Short description
 
-US.ECO.00001-01 90 01-1 : Eco.Core1 : N/A : implements core EcoOS API, including microkenel with Interface bus
-RU.ECO.00001-01 90 03-1 : Eco.Core1 : N/A : Tensor Type and Interface
+RU.ECO.00001-01 : IEcoTensor1 : N/A : implements core EcoOS API
+US.ECO.00001-01 : Eco.Core1 : 000000000000000000000000000000AA : implements core EcoOS API, including microkenel with Interface bus
 US.ECO.00002-01 : Eco.System1 : N/A : EcoOS System libraries package
 US.ECO.00003-01 : Eco.InterfaceBus1 : 00000000000000000000000042757331 : implements components registration in kernel, components discovery and calls marshaling
 US.ECO.00004-01 : Eco.MemoryManager1 : 0000000000000000000000004D656D31 : implements computer memory access and management functions
-US.ECO.00005-01 : Eco.FileSystemManagement1 : 00000000000000000000000046534D31 : implements file system management functions
+US.ECO.00013-01 : Eco.Core1 : 000000000000000000000000000000AA : implements core EcoOS API, including microkenel with Interface bus
+US.ECO.00019-01 : Eco.System1 : N/A : EcoOS System libraries package
 US.ECO.00101-01 : Eco.MCP1 : ADC8EA8433CF461BA25499EDD1D86088 : implements MCP protocol specifications including RFC 8707 for token misuse security
-US.ECO.00101-01 : Eco.DateTime1 : 5B2BA17BEA704527BC708F88568FE115 : implements date-time operations
 US.ECO.00102-01 : Eco.Log1 : 97322B6765B74342BBCE38798A0B40B5 : implements core EcoOS API, including microkenel with Interface bus
 US.ECO.00103-01 : Eco.Math.FFT1 : 99A58C5314CC4D0AB0062A865E3EA68D : implements Fast Fourier Transform (FFT) operations
 US.ECO.00104-01 : Eco.Semaphore1 : CCEC626EE92F401B9A88E1944F8F6FC9 : implements Semaphore access logic
