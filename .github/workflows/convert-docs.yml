@@ -167,7 +167,13 @@ jobs:
       run: |
         echo "=== STATE-BASED CHANGE DETECTION ==="
         
-        if [ -n "${LAST_PROCESSED_COMMIT}" ]; then
+        # For manual triggers (workflow_dispatch), process all existing .fodt files
+        # This avoids cross-branch state confusion when dev and main have diverged
+        if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          echo "ℹ️  Manual trigger detected - processing all existing .fodt files (ignoring stored state)"
+          CHANGED_FILES=$(find components libraries guides -name "*.fodt" -type f 2>/dev/null | tr '\n' ' ' | sed 's/ $//')
+          echo "🔍 Debug: All .fodt files found: '$CHANGED_FILES'"
+        elif [ -n "${LAST_PROCESSED_COMMIT}" ]; then
           echo "🔍 Using state-based detection from commit: ${LAST_PROCESSED_COMMIT}"
           
           # Verify the commit exists and try to fetch more history if needed
