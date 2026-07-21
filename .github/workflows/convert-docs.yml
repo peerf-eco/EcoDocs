@@ -7,7 +7,7 @@ on:
       - 'components/**/*.fodt'
       - 'libraries/**/*.fodt'
       - 'guides/**/*.fodt'
-  workflow_dispatch:  # Allow manual triggering
+  workflow_dispatch:  # Allow manual triggering from GitHub UI (use for dev branch)
 
 jobs:
   convert-and-sync:
@@ -190,7 +190,7 @@ jobs:
             for file in $ALL_CHANGED; do
               echo "🔍 Debug: Checking file: '$file'"
               case "$file" in
-                components/**/*.fodt|libraries/**/*.fodt|guides/**/*.fodt)
+                components/*.fodt|components/*/*.fodt|components/*/*/*.fodt|libraries/*.fodt|libraries/*/*.fodt|libraries/*/*/*.fodt|guides/*.fodt|guides/*/*.fodt|guides/*/*/*.fodt)
                   echo "🔍 Debug: File matches pattern: '$file'"
                   CHANGED_FILES="$CHANGED_FILES $file"
                   ;;
@@ -207,9 +207,10 @@ jobs:
             echo "🔍 Debug: Trying to fetch more history..."
             
             # Try progressively deeper fetches until we find the commit
+            CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "main")
             for depth in 100 500 1000; do
-              echo "🔍 Debug: Fetching depth $depth from main..."
-              git fetch --depth=$depth origin main || echo "Failed to fetch depth $depth"
+              echo "🔍 Debug: Fetching depth $depth from ${CURRENT_BRANCH}..."
+              git fetch --depth=$depth origin ${CURRENT_BRANCH} || echo "Failed to fetch depth $depth"
               if git rev-parse --verify "${LAST_PROCESSED_COMMIT}" >/dev/null 2>&1; then
                 echo "✅ Found commit at depth $depth"
                 break
@@ -218,8 +219,8 @@ jobs:
             
             # Final attempt with full history if still not found
             if ! git rev-parse --verify "${LAST_PROCESSED_COMMIT}" >/dev/null 2>&1; then
-              echo "🔍 Debug: Fetching full history from main..."
-              git fetch --unshallow origin main || echo "Failed to fetch full history"
+              echo "🔍 Debug: Fetching full history from ${CURRENT_BRANCH}..."
+              git fetch --unshallow origin ${CURRENT_BRANCH} || echo "Failed to fetch full history"
             fi
             
             if git rev-parse --verify "${LAST_PROCESSED_COMMIT}" >/dev/null 2>&1; then
@@ -235,7 +236,7 @@ jobs:
               for file in $ALL_CHANGED; do
                 echo "🔍 Debug: Checking file: '$file'"
                 case "$file" in
-                  components/**/*.fodt|libraries/**/*.fodt|guides/**/*.fodt)
+                  components/*.fodt|components/*/*.fodt|components/*/*/*.fodt|libraries/*.fodt|libraries/*/*.fodt|libraries/*/*/*.fodt|guides/*.fodt|guides/*/*.fodt|guides/*/*/*.fodt)
                     echo "🔍 Debug: File matches pattern: '$file'"
                     CHANGED_FILES="$CHANGED_FILES $file"
                     ;;
@@ -254,7 +255,7 @@ jobs:
               CHANGED_FILES=""
               for file in $ALL_CHANGED; do
                 case "$file" in
-                  components/**/*.fodt|libraries/**/*.fodt|guides/**/*.fodt)
+                  components/*.fodt|components/*/*.fodt|components/*/*/*.fodt|libraries/*.fodt|libraries/*/*.fodt|libraries/*/*/*.fodt|guides/*.fodt|guides/*/*.fodt|guides/*/*/*.fodt)
                     CHANGED_FILES="$CHANGED_FILES $file"
                     ;;
                 esac
@@ -653,7 +654,6 @@ jobs:
             git config user.email "docs-bot@ecoos.dev"
             git add USPD_REGISTRY.md
             git commit -m "Auto-update USPD registry [skip ci]"
-            git push origin HEAD:main
             echo "✅ Registry pushed to source repository"
           fi
         else
