@@ -277,6 +277,30 @@ RUN locale-gen C.UTF-8
 ```
 **Note**: Most modern Linux containers default to UTF-8, but explicit setting ensures consistency across different base images and environments.
 
+### dev→main Merge Behavior
+
+**Scenario**: You run `workflow_dispatch` on `dev` (which processes and deploys all `.fodt` files), then merge `dev` into `main`.
+
+**What happens on the merge push to `main`**:
+
+1. The merge commit triggers the automatic workflow (path filter matches because `.fodt` files are present in the tree)
+2. **Load State** reads `lastProcessedCommit` from `.conversion-state.json` in the target repo — this is the commit SHA written by the last successful `dev` dispatch run
+3. **Change Detection** runs `git diff <dev-dispatch-commit>..HEAD` on `main`. The merge commit itself introduces no new `.fodt` changes (all files were already present in the merge base), so the diff returns **empty**
+4. **Result**: `any_changed=false` — no conversion runs, no `.md` files are rewritten, no registry update
+
+**Conclusion**: The target repository keeps exactly what the `dev` dispatch already deployed. The merge is a no-op from the workflow's perspective — efficient and correct.
+
+**When the merge WILL trigger conversion**: Only if `main` had `.fodt` commits made directly on `main` after the last `dev` dispatch run. In that case only those specific files are converted and deployed, not the full set.
+
+**Summary table**:
+
+| Scenario | Trigger | Change detection | Files converted |
+|---|---|---|---|
+| Push `.fodt` to `main` | Automatic (push) | `lastProcessedCommit..HEAD` diff | Only modified files |
+| Manual dispatch on `dev` | Manual (UI) | All `.fodt` files via `find` | All files in repo |
+| Merge `dev`→`main` after dispatch | Automatic (push) | `lastProcessedCommit..HEAD` diff → empty | None (already up to date) |
+| First ever run (no state) | Either | All `.fodt` files via `find` | All files in repo |
+
 ### Multi-Directory Support (Current Session)
 **Enhancement**: Extended workflow to process .fodt files from multiple source directories
 
