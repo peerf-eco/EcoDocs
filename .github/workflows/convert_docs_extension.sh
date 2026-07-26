@@ -407,8 +407,9 @@ if [[ ${#source_files[@]} -gt 0 ]]; then
           img_output_dir="$PWD/converted_docs/$lang_code/libraries"
         fi
       elif [[ "$original_file" == guides/* ]]; then
-        # Extract relative path within guides directory
+        # Extract relative path within guides directory, stripping language prefix
         rel_path="${original_file#guides/}"
+        rel_path="${rel_path#*/}"
         rel_dir="$(dirname "$rel_path")"
         if [ "$rel_dir" != "." ]; then
           mkdir -p "$PWD/converted_docs/$lang_code/guides/$rel_dir"
@@ -418,6 +419,20 @@ if [[ ${#source_files[@]} -gt 0 ]]; then
           mkdir -p "$PWD/converted_docs/$lang_code/guides"
           output_file="$PWD/converted_docs/$lang_code/guides/${base_name}.md"
           img_output_dir="$PWD/converted_docs/$lang_code/guides"
+        fi
+      elif [[ "$original_file" == getting_started/* ]]; then
+        # Extract relative path within getting_started directory, stripping language prefix
+        rel_path="${original_file#getting_started/}"
+        rel_path="${rel_path#*/}"
+        rel_dir="$(dirname "$rel_path")"
+        if [ "$rel_dir" != "." ]; then
+          mkdir -p "$PWD/converted_docs/$lang_code/getting_started/$rel_dir"
+          output_file="$PWD/converted_docs/$lang_code/getting_started/$rel_dir/${base_name}.md"
+          img_output_dir="$PWD/converted_docs/$lang_code/getting_started/$rel_dir"
+        else
+          mkdir -p "$PWD/converted_docs/$lang_code/getting_started"
+          output_file="$PWD/converted_docs/$lang_code/getting_started/${base_name}.md"
+          img_output_dir="$PWD/converted_docs/$lang_code/getting_started"
         fi
       else
         # Fallback to flat structure for unknown paths
@@ -459,13 +474,15 @@ if [[ ${#source_files[@]} -gt 0 ]]; then
             echo "ℹ️  No image folder found (this is normal for text-only documents)"
           fi
           
-          # Determine source directory type
-          source_dir_type="components"
-          if [[ "$original_file" == libraries/* ]]; then
-            source_dir_type="libraries"
-          elif [[ "$original_file" == guides/* ]]; then
-            source_dir_type="guides"
-          fi
+# Determine source directory type
+           source_dir_type="components"
+           if [[ "$original_file" == libraries/* ]]; then
+             source_dir_type="libraries"
+           elif [[ "$original_file" == guides/* ]]; then
+             source_dir_type="guides"
+           elif [[ "$original_file" == getting_started/* ]]; then
+             source_dir_type="getting_started"
+           fi
           
           # Add metadata using dedicated Python script
           if [[ -f "$PWD/.github/workflows/create_metadata.py" ]]; then

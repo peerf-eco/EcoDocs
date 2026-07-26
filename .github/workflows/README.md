@@ -75,9 +75,14 @@ ECO.Component.fodt     # No prefix match → en (default)
    - Example: `libraries/auth/US.Library.fodt` → `docs/en/libraries/auth/US.Library.md`
 
 3. **Guides** (preserves structure):
-   - Source: `guides/**/*.fodt`
-   - Target: `docs/{language}/guides/{subfolder}/filename.md`
-   - Example: `guides/tutorials/FR.Guide.fodt` → `docs/fr/guides/tutorials/FR.Guide.md`
+    - Source: `guides/**/*.fodt`
+    - Target: `docs/{language}/guides/{subfolder}/filename.md`
+    - Example: `guides/tutorials/FR.Guide.fodt` → `docs/fr/guides/tutorials/FR.Guide.md`
+
+ 4. **Getting Started** (preserves structure):
+    - Source: `getting_started/**/*.fodt`
+    - Target: `docs/{language}/getting_started/{subfolder}/filename.md`
+    - Example: `getting_started/en/Installation.fodt` → `docs/en/getting_started/Installation.md`
 
 **Image Folder Routing**: Image folders (`img_filename/`) are placed in the same directory as their corresponding markdown file, following the same language routing.
 
@@ -308,6 +313,7 @@ RUN locale-gen C.UTF-8
 - `components/**/*.fodt` - Any nesting level, flattened to `docs/{language}/components/`
 - `libraries/**/*.fodt` - Any nesting level, preserves structure in `docs/{language}/libraries/`
 - `guides/**/*.fodt` - Any nesting level, preserves structure in `docs/{language}/guides/`
+- `getting_started/**/*.fodt` - Any nesting level, preserves structure in `docs/{language}/getting_started/`
 
 **Directory Structure Handling**:
 ```bash
@@ -315,13 +321,14 @@ RUN locale-gen C.UTF-8
 components/subfolder/file.fodt → docs/{language}/components/file.md
 components/deep/nested/file.fodt → docs/{language}/components/file.md
 
-# Libraries & Guides: Preserve nested structure
+# Libraries, Guides & Getting Started: Preserve nested structure
 libraries/subfolder/file.fodt → docs/{language}/libraries/subfolder/file.md
 guides/deep/nested/file.fodt → docs/{language}/guides/deep/nested/file.md
+getting_started/en/Installation.fodt → docs/en/getting_started/Installation.md
 ```
 
 **Implementation Changes**:
-- **Workflow Triggers**: Added `libraries/**/*.fodt` and `guides/**/*.fodt` patterns
+- **Workflow Triggers**: Added `libraries/**/*.fodt`, `guides/**/*.fodt`, and `getting_started/**/*.fodt` patterns
 - **File Detection**: Updated git diff patterns to include new directories
 - **Conversion Script**: Modified output path logic based on source directory
 - **Deployment**: Simplified to copy entire directory trees while maintaining structure
