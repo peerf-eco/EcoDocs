@@ -442,6 +442,13 @@ jobs:
         fi
         echo "=== END CONVERSION VERIFICATION ==="
 
+    - name: Clean Markdown
+      if: steps.changed-files.outputs.any_changed == 'true'
+      run: |
+        echo "=== CLEANING MARKDOWN FILES ==="
+        python3 .github/workflows/clean_markdown.py converted_docs/
+        echo "=== MARKDOWN CLEANUP COMPLETE ==="
+
     - name: Update Conversion State
       id: update-state
       if: steps.changed-files.outputs.any_changed == 'true'

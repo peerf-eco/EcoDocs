@@ -484,6 +484,12 @@ if [[ ${#source_files[@]} -gt 0 ]]; then
              source_dir_type="getting_started"
            fi
           
+          # Clean up excessive symbols before adding metadata
+          if [[ -f "$PWD/.github/workflows/clean_markdown.py" ]]; then
+            echo "🧹 Cleaning markdown content before metadata..."
+            python3 "$PWD/.github/workflows/clean_markdown.py" "$output_file" 2>/dev/null || true
+          fi
+
           # Add metadata using dedicated Python script
           if [[ -f "$PWD/.github/workflows/create_metadata.py" ]]; then
             if [[ -n "${GITHUB_SERVER_URL:-}" && -n "${GITHUB_REPOSITORY:-}" && -n "${GITHUB_SHA:-}" ]]; then

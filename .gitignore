@@ -1,6 +1,8 @@
 # ignore folders
 logs
 logs/*
+__pycache__/
+__pycache__/*
 .vscode
 .idea
 # Ignore all binary files
@@ -25,6 +27,7 @@ logs/*
 *.tar
 *.gz
 *.7z
+*.pyc
 # Allow specific file types
 !*.fodt
 !*.txt
