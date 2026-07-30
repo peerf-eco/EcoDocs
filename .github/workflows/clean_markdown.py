@@ -65,7 +65,7 @@ def process_file(filepath):
             content = f.read()
     except Exception as e:
         print(f"  ❌ Failed to read {filepath}: {e}")
-        return False
+        return False, False
 
     original = content
     cleaned = clean_markdown_content(content)
@@ -75,13 +75,13 @@ def process_file(filepath):
             with open(filepath, 'w', encoding='utf-8', newline='\n') as f:
                 f.write(cleaned)
             print(f"  ✓ Cleaned: {filepath}")
-            return True
+            return True, True
         except Exception as e:
             print(f"  ❌ Failed to write {filepath}: {e}")
-            return False
+            return False, False
     else:
         print(f"  ℹ️  No changes needed: {filepath}")
-        return True
+        return True, False
 
 
 def main():
@@ -114,10 +114,9 @@ def main():
 
     for filepath in sorted(files_to_process):
         print(f"Processing: {filepath}")
-        if process_file(filepath):
-            with open(filepath, 'r', encoding='utf-8') as f:
-                content = f.read()
-            if content.strip():
+        success, changed = process_file(filepath)
+        if success:
+            if changed:
                 cleaned_count += 1
             else:
                 unchanged_count += 1
