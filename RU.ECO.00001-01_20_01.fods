@@ -1,0 +1,1932 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:rpt="http://openoffice.org/2005/report" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:calcext="urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0" xmlns:drawooo="http://openoffice.org/2010/draw" xmlns:loext="urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:formx="urn:openoffice:names:experimental:ooxml-odf-interop:xmlns:form:1.0" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:css3t="http://www.w3.org/TR/css3-text/" xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0" office:version="1.4" office:mimetype="application/vnd.oasis.opendocument.spreadsheet">
+ <office:meta><meta:creation-date>2026-09-29T13:25:03.041076100</meta:creation-date><meta:generator>LibreOffice/26.2.6.3$Windows_X86_64 LibreOffice_project/8221e31b3ac356a1623c672912a3d2b492f7e3d1</meta:generator><dc:date>2026-09-29T16:40:09.452962400</dc:date><meta:editing-duration>PT50M21S</meta:editing-duration><meta:editing-cycles>8</meta:editing-cycles><meta:document-statistic meta:table-count="1" meta:cell-count="451" meta:object-count="0"/></office:meta>
+ <office:settings>
+  <config:config-item-set config:name="ooo:view-settings">
+   <config:config-item config:name="VisibleAreaTop" config:type="int">0</config:config-item>
+   <config:config-item config:name="VisibleAreaLeft" config:type="int">0</config:config-item>
+   <config:config-item config:name="VisibleAreaWidth" config:type="int">24229</config:config-item>
+   <config:config-item config:name="VisibleAreaHeight" config:type="int">104567</config:config-item>
+   <config:config-item-map-indexed config:name="Views">
+    <config:config-item-map-entry>
+     <config:config-item config:name="ViewId" config:type="string">view1</config:config-item>
+     <config:config-item-map-named config:name="Tables">
+      <config:config-item-map-entry config:name="Sheet1">
+       <config:config-item config:name="CursorPositionX" config:type="int">5</config:config-item>
+       <config:config-item config:name="CursorPositionY" config:type="int">136</config:config-item>
+       <config:config-item config:name="ActiveSplitRange" config:type="short">2</config:config-item>
+       <config:config-item config:name="PositionLeft" config:type="int">0</config:config-item>
+       <config:config-item config:name="PositionRight" config:type="int">0</config:config-item>
+       <config:config-item config:name="PositionTop" config:type="int">0</config:config-item>
+       <config:config-item config:name="PositionBottom" config:type="int">126</config:config-item>
+       <config:config-item config:name="ZoomType" config:type="short">0</config:config-item>
+       <config:config-item config:name="ZoomValue" config:type="int">140</config:config-item>
+       <config:config-item config:name="PageViewZoomValue" config:type="int">60</config:config-item>
+       <config:config-item config:name="ShowGrid" config:type="boolean">true</config:config-item>
+       <config:config-item config:name="AnchoredTextOverflowLegacy" config:type="boolean">false</config:config-item>
+       <config:config-item config:name="LegacySingleLineFontwork" config:type="boolean">false</config:config-item>
+       <config:config-item config:name="ConnectorUseSnapRect" config:type="boolean">false</config:config-item>
+       <config:config-item config:name="IgnoreBreakAfterMultilineField" config:type="boolean">false</config:config-item>
+       <config:config-item config:name="UseTrailingEmptyLinesInLayout" config:type="boolean">false</config:config-item>
+      </config:config-item-map-entry>
+     </config:config-item-map-named>
+     <config:config-item config:name="ActiveTable" config:type="string">Sheet1</config:config-item>
+     <config:config-item config:name="HorizontalScrollbarWidth" config:type="int">1987</config:config-item>
+     <config:config-item config:name="ZoomType" config:type="short">0</config:config-item>
+     <config:config-item config:name="ZoomValue" config:type="int">140</config:config-item>
+     <config:config-item config:name="PageViewZoomValue" config:type="int">60</config:config-item>
+     <config:config-item config:name="ShowPageBreakPreview" config:type="boolean">false</config:config-item>
+     <config:config-item config:name="ShowZeroValues" config:type="boolean">true</config:config-item>
+     <config:config-item config:name="ShowNotes" config:type="boolean">true</config:config-item>
+     <config:config-item config:name="ShowNoteAuthor" config:type="boolean">true</config:config-item>
+     <config:config-item config:name="ShowFormulasMarks" config:type="boolean">false</config:config-item>
+     <config:config-item config:name="ShowGrid" config:type="boolean">true</config:config-item>
+     <config:config-item config:name="GridColor" config:type="int">12632256</config:config-item>
+     <config:config-item config:name="ShowPageBreaks" config:type="boolean">true</config:config-item>
+     <config:config-item config:name="HasColumnRowHeaders" config:type="boolean">true</config:config-item>
+     <config:config-item config:name="HasSheetTabs" config:type="boolean">true</config:config-item>
+     <config:config-item config:name="IsOutlineSymbolsSet" config:type="boolean">true</config:config-item>
+     <config:config-item config:name="IsValueHighlightingEnabled" config:type="boolean">false</config:config-item>
+     <config:config-item config:name="IsSnapToRaster" config:type="boolean">false</config:config-item>
+     <config:config-item config:name="RasterIsVisible" config:type="boolean">false</config:config-item>
+     <config:config-item config:name="RasterResolutionX" config:type="int">1270</config:config-item>
+     <config:config-item config:name="RasterResolutionY" config:type="int">1270</config:config-item>
+     <config:config-item config:name="RasterSubdivisionX" config:type="int">1</config:config-item>
+     <config:config-item config:name="RasterSubdivisionY" config:type="int">1</config:config-item>
+     <config:config-item config:name="IsRasterAxisSynchronized" config:type="boolean">true</config:config-item>
+     <config:config-item config:name="FormulaBarHeight" config:type="short">1</config:config-item>
+     <config:config-item config:name="WindowState" config:type="string">733,37,2052,1228;1;,,,;</config:config-item>
+     <config:config-item config:name="AnchoredTextOverflowLegacy" config:type="boolean">false</config:config-item>
+     <config:config-item config:name="LegacySingleLineFontwork" config:type="boolean">false</config:config-item>
+     <config:config-item config:name="ConnectorUseSnapRect" config:type="boolean">false</config:config-item>
+     <config:config-item config:name="IgnoreBreakAfterMultilineField" config:type="boolean">false</config:config-item>
+     <config:config-item config:name="UseTrailingEmptyLinesInLayout" config:type="boolean">false</config:config-item>
+    </config:config-item-map-entry>
+   </config:config-item-map-indexed>
+  </config:config-item-set>
+  <config:config-item-set config:name="ooo:configuration-settings">
+   <config:config-item config:name="AllowPrintJobCancel" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="ApplyUserData" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="AutoCalculate" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="CharacterCompressionType" config:type="short">0</config:config-item>
+   <config:config-item config:name="EmbedAsianScriptFonts" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="EmbedComplexScriptFonts" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="EmbedFonts" config:type="boolean">false</config:config-item>
+   <config:config-item config:name="EmbedLatinScriptFonts" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="EmbedOnlyUsedFonts" config:type="boolean">false</config:config-item>
+   <config:config-item-map-indexed config:name="ForbiddenCharacters">
+    <config:config-item-map-entry>
+     <config:config-item config:name="Language" config:type="string">en</config:config-item>
+     <config:config-item config:name="Country" config:type="string">US</config:config-item>
+     <config:config-item config:name="Variant" config:type="string"/>
+     <config:config-item config:name="BeginLine" config:type="string"/>
+     <config:config-item config:name="EndLine" config:type="string"/>
+    </config:config-item-map-entry>
+    <config:config-item-map-entry>
+     <config:config-item config:name="Language" config:type="string">ru</config:config-item>
+     <config:config-item config:name="Country" config:type="string">RU</config:config-item>
+     <config:config-item config:name="Variant" config:type="string"/>
+     <config:config-item config:name="BeginLine" config:type="string"/>
+     <config:config-item config:name="EndLine" config:type="string"/>
+    </config:config-item-map-entry>
+   </config:config-item-map-indexed>
+   <config:config-item config:name="GridColor" config:type="int">12632256</config:config-item>
+   <config:config-item config:name="HasColumnRowHeaders" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="HasSheetTabs" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="ImagePreferredDPI" config:type="int">0</config:config-item>
+   <config:config-item config:name="IsDocumentShared" config:type="boolean">false</config:config-item>
+   <config:config-item config:name="IsKernAsianPunctuation" config:type="boolean">false</config:config-item>
+   <config:config-item config:name="IsOutlineSymbolsSet" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="IsRasterAxisSynchronized" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="IsSnapToRaster" config:type="boolean">false</config:config-item>
+   <config:config-item config:name="LinkUpdateMode" config:type="short">3</config:config-item>
+   <config:config-item config:name="LoadReadonly" config:type="boolean">false</config:config-item>
+   <config:config-item config:name="ModifyPasswordHash" config:type="int">0</config:config-item>
+   <config:config-item config:name="PrinterName" config:type="string"/>
+   <config:config-item config:name="PrinterPaperFromSetup" config:type="boolean">false</config:config-item>
+   <config:config-item config:name="PrinterSetup" config:type="base64Binary"/>
+   <config:config-item config:name="RasterIsVisible" config:type="boolean">false</config:config-item>
+   <config:config-item config:name="RasterResolutionX" config:type="int">1270</config:config-item>
+   <config:config-item config:name="RasterResolutionY" config:type="int">1270</config:config-item>
+   <config:config-item config:name="RasterSubdivisionX" config:type="int">1</config:config-item>
+   <config:config-item config:name="RasterSubdivisionY" config:type="int">1</config:config-item>
+   <config:config-item config:name="SaveThumbnail" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="SaveVersionOnClose" config:type="boolean">false</config:config-item>
+   <config:config-item config:name="ShowFormulasMarks" config:type="boolean">false</config:config-item>
+   <config:config-item config:name="ShowGrid" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="ShowNoteAuthor" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="ShowNotes" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="ShowPageBreaks" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="ShowZeroValues" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="UpdateFromTemplate" config:type="boolean">true</config:config-item>
+   <config:config-item-map-named config:name="ScriptConfiguration">
+    <config:config-item-map-entry config:name="Sheet1">
+     <config:config-item config:name="CodeName" config:type="string">Sheet1</config:config-item>
+    </config:config-item-map-entry>
+   </config:config-item-map-named>
+  </config:config-item-set>
+ </office:settings>
+ <office:scripts>
+  <office:script script:language="ooo:Basic">
+   <ooo:libraries xmlns:ooo="http://openoffice.org/2004/office" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <ooo:library-embedded ooo:name="Standard"/>
+   </ooo:libraries>
+  </office:script>
+ </office:scripts>
+ <office:font-face-decls>
+  <style:font-face style:name="F" svg:font-family="" style:font-family-generic="roman"/>
+  <style:font-face style:name="Liberation Sans" svg:font-family="&apos;Liberation Sans&apos;" style:font-family-generic="swiss" style:font-pitch="variable"/>
+  <style:font-face style:name="Liberation Serif" svg:font-family="&apos;Liberation Serif&apos;" style:font-family-generic="roman" style:font-pitch="variable"/>
+  <style:font-face style:name="Lucida Sans" svg:font-family="&apos;Lucida Sans&apos;" style:font-family-generic="system" style:font-pitch="variable"/>
+  <style:font-face style:name="Microsoft YaHei" svg:font-family="&apos;Microsoft YaHei&apos;" style:font-family-generic="system" style:font-pitch="variable"/>
+  <style:font-face style:name="Segoe UI" svg:font-family="&apos;Segoe UI&apos;" style:font-family-generic="system" style:font-pitch="variable"/>
+  <style:font-face style:name="Tahoma" svg:font-family="Tahoma" style:font-family-generic="system" style:font-pitch="variable"/>
+ </office:font-face-decls>
+ <office:styles>
+  <style:default-style style:family="table-cell">
+   <style:paragraph-properties style:tab-stop-distance="0.5in"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-size="10pt" fo:language="en" fo:country="US" style:font-name-asian="Microsoft YaHei" style:font-size-asian="10pt" style:language-asian="zh" style:country-asian="CN" style:font-name-complex="Lucida Sans" style:font-size-complex="10pt" style:language-complex="hi" style:country-complex="IN"/>
+  </style:default-style>
+  <style:default-style style:family="graphic">
+   <style:graphic-properties svg:stroke-color="#3465a4" draw:fill-color="#729fcf" fo:wrap-option="no-wrap" draw:shadow-offset-x="0.1181in" draw:shadow-offset-y="0.1181in" style:writing-mode="page"/>
+   <style:paragraph-properties style:text-autospace="ideograph-alpha" style:punctuation-wrap="simple" style:line-break="strict" style:font-independent-line-spacing="false">
+    <style:tab-stops/>
+   </style:paragraph-properties>
+   <style:text-properties style:use-window-font-color="true" loext:opacity="0%" style:font-name="Liberation Serif" fo:font-size="12pt" fo:language="en" fo:country="US" style:letter-kerning="true" style:font-name-asian="Segoe UI" style:font-size-asian="12pt" style:language-asian="zh" style:country-asian="CN" style:font-name-complex="Tahoma" style:font-size-complex="12pt" style:language-complex="hi" style:country-complex="IN"/>
+  </style:default-style>
+  <style:style style:name="Default" style:family="graphic"/>
+  <style:style style:name="Note" style:family="graphic" style:parent-style-name="Default">
+   <style:graphic-properties draw:stroke="solid" draw:marker-start="Arrowheads_20_1" draw:marker-start-width="0.0787in" draw:marker-start-center="false" draw:fill="solid" draw:fill-color="#ffffc0" draw:auto-grow-height="true" draw:auto-grow-width="false" fo:padding-top="0.0394in" fo:padding-bottom="0.0394in" fo:padding-left="0.0394in" fo:padding-right="0.0394in" draw:shadow="visible" draw:shadow-offset-x="0.0394in" draw:shadow-offset-y="0.0394in"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:font-family="&apos;Liberation Sans&apos;" style:font-family-generic="swiss" style:font-pitch="variable" fo:font-size="10pt" style:font-name-asian="Microsoft YaHei" style:font-family-asian="&apos;Microsoft YaHei&apos;" style:font-family-generic-asian="system" style:font-pitch-asian="variable" style:font-size-asian="10pt" style:font-name-complex="Lucida Sans" style:font-family-complex="&apos;Lucida Sans&apos;" style:font-family-generic-complex="system" style:font-pitch-complex="variable" style:font-size-complex="10pt"/>
+  </style:style>
+  <number:number-style style:name="N0">
+   <number:number number:min-integer-digits="1"/>
+  </number:number-style>
+  <style:style style:name="Default" style:family="table-cell"/>
+  <style:style style:name="Heading" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:wrap-option="no-wrap" style:shrink-to-fit="false"/>
+   <style:text-properties fo:font-size="24pt" fo:font-style="normal" fo:font-weight="bold" style:font-size-asian="24pt" style:font-style-asian="normal" style:font-weight-asian="bold" style:font-size-complex="24pt" style:font-style-complex="normal" style:font-weight-complex="bold"/>
+  </style:style>
+  <style:style style:name="Heading_20_1" style:display-name="Heading 1" style:family="table-cell" style:parent-style-name="Heading">
+   <style:table-cell-properties fo:wrap-option="no-wrap" style:shrink-to-fit="false"/>
+   <style:text-properties fo:font-size="18pt" style:font-size-asian="18pt" style:font-size-complex="18pt"/>
+  </style:style>
+  <style:style style:name="Heading_20_2" style:display-name="Heading 2" style:family="table-cell" style:parent-style-name="Heading">
+   <style:table-cell-properties fo:wrap-option="no-wrap" style:shrink-to-fit="false"/>
+   <style:text-properties fo:font-size="12pt" style:font-size-asian="12pt" style:font-size-complex="12pt"/>
+  </style:style>
+  <style:style style:name="Text" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:wrap-option="no-wrap" style:shrink-to-fit="false"/>
+  </style:style>
+  <style:style style:name="Note" style:family="table-cell" style:parent-style-name="Text">
+   <style:table-cell-properties fo:background-color="#ffffcc" style:diagonal-bl-tr="none" style:diagonal-tl-br="none" fo:wrap-option="no-wrap" fo:border="0.74pt solid #808080" style:shrink-to-fit="false"/>
+   <style:text-properties fo:color="#333333"/>
+  </style:style>
+  <style:style style:name="Footnote" style:family="table-cell" style:parent-style-name="Text">
+   <style:table-cell-properties fo:wrap-option="no-wrap" style:shrink-to-fit="false"/>
+   <style:text-properties fo:color="#808080" fo:font-style="italic" style:font-style-asian="italic" style:font-style-complex="italic"/>
+  </style:style>
+  <style:style style:name="Hyperlink" style:family="table-cell" style:parent-style-name="Text">
+   <style:table-cell-properties fo:wrap-option="no-wrap" style:shrink-to-fit="false"/>
+   <style:text-properties fo:color="#0000ee" style:text-underline-style="solid" style:text-underline-width="auto" style:text-underline-color="#0000ee"/>
+  </style:style>
+  <style:style style:name="Status" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:wrap-option="no-wrap" style:shrink-to-fit="false"/>
+  </style:style>
+  <style:style style:name="Good" style:family="table-cell" style:parent-style-name="Status">
+   <style:table-cell-properties fo:background-color="#ccffcc" fo:wrap-option="no-wrap" style:shrink-to-fit="false"/>
+   <style:text-properties fo:color="#006600"/>
+  </style:style>
+  <style:style style:name="Neutral" style:family="table-cell" style:parent-style-name="Status">
+   <style:table-cell-properties fo:background-color="#ffffcc" fo:wrap-option="no-wrap" style:shrink-to-fit="false"/>
+   <style:text-properties fo:color="#996600"/>
+  </style:style>
+  <style:style style:name="Bad" style:family="table-cell" style:parent-style-name="Status">
+   <style:table-cell-properties fo:background-color="#ffcccc" fo:wrap-option="no-wrap" style:shrink-to-fit="false"/>
+   <style:text-properties fo:color="#cc0000"/>
+  </style:style>
+  <style:style style:name="Warning" style:family="table-cell" style:parent-style-name="Status">
+   <style:table-cell-properties fo:wrap-option="no-wrap" style:shrink-to-fit="false"/>
+   <style:text-properties fo:color="#cc0000"/>
+  </style:style>
+  <style:style style:name="Error" style:family="table-cell" style:parent-style-name="Status">
+   <style:table-cell-properties fo:background-color="#cc0000" fo:wrap-option="no-wrap" style:shrink-to-fit="false"/>
+   <style:text-properties fo:color="#ffffff" fo:font-weight="bold" style:font-weight-asian="bold" style:font-weight-complex="bold"/>
+  </style:style>
+  <style:style style:name="Accent" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:wrap-option="no-wrap" style:shrink-to-fit="false"/>
+   <style:text-properties fo:font-weight="bold" style:font-weight-asian="bold" style:font-weight-complex="bold"/>
+  </style:style>
+  <style:style style:name="Accent_20_1" style:display-name="Accent 1" style:family="table-cell" style:parent-style-name="Accent">
+   <style:table-cell-properties fo:background-color="#000000" fo:wrap-option="no-wrap" style:shrink-to-fit="false"/>
+   <style:text-properties fo:color="#ffffff"/>
+  </style:style>
+  <style:style style:name="Accent_20_2" style:display-name="Accent 2" style:family="table-cell" style:parent-style-name="Accent">
+   <style:table-cell-properties fo:background-color="#808080" fo:wrap-option="no-wrap" style:shrink-to-fit="false"/>
+   <style:text-properties fo:color="#ffffff"/>
+  </style:style>
+  <style:style style:name="Accent_20_3" style:display-name="Accent 3" style:family="table-cell" style:parent-style-name="Accent">
+   <style:table-cell-properties fo:background-color="#dddddd" fo:wrap-option="no-wrap" style:shrink-to-fit="false"/>
+  </style:style>
+  <style:style style:name="Result" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:wrap-option="no-wrap" style:shrink-to-fit="false"/>
+   <style:text-properties fo:font-style="italic" style:text-underline-style="solid" style:text-underline-width="auto" style:text-underline-color="font-color" fo:font-weight="bold" style:font-style-asian="italic" style:font-weight-asian="bold" style:font-style-complex="italic" style:font-weight-complex="bold"/>
+  </style:style>
+  <draw:marker draw:name="Arrowheads_20_1" draw:display-name="Arrowheads 1" svg:viewBox="0 0 20 30" svg:d="M10 0l-10 30h20z"/>
+  <loext:theme loext:name="Office">
+   <loext:theme-colors loext:name="LibreOffice">
+    <loext:color loext:name="dark1" loext:color="#000000"/>
+    <loext:color loext:name="light1" loext:color="#ffffff"/>
+    <loext:color loext:name="dark2" loext:color="#000000"/>
+    <loext:color loext:name="light2" loext:color="#ffffff"/>
+    <loext:color loext:name="accent1" loext:color="#18a303"/>
+    <loext:color loext:name="accent2" loext:color="#0369a3"/>
+    <loext:color loext:name="accent3" loext:color="#a33e03"/>
+    <loext:color loext:name="accent4" loext:color="#8e03a3"/>
+    <loext:color loext:name="accent5" loext:color="#c99c00"/>
+    <loext:color loext:name="accent6" loext:color="#c9211e"/>
+    <loext:color loext:name="hyperlink" loext:color="#0000ee"/>
+    <loext:color loext:name="followed-hyperlink" loext:color="#551a8b"/>
+   </loext:theme-colors>
+  </loext:theme>
+ </office:styles>
+ <office:automatic-styles>
+  <style:style style:name="co1" style:family="table-column">
+   <style:table-column-properties fo:break-before="auto" style:column-width="2.2016in"/>
+  </style:style>
+  <style:style style:name="co2" style:family="table-column">
+   <style:table-column-properties fo:break-before="auto" style:column-width="5.0543in"/>
+  </style:style>
+  <style:style style:name="co3" style:family="table-column">
+   <style:table-column-properties fo:break-before="auto" style:column-width="0.8681in"/>
+  </style:style>
+  <style:style style:name="co4" style:family="table-column">
+   <style:table-column-properties fo:break-before="auto" style:column-width="1.4154in"/>
+  </style:style>
+  <style:style style:name="co5" style:family="table-column">
+   <style:table-column-properties fo:break-before="auto" style:column-width="0.889in"/>
+  </style:style>
+  <style:style style:name="ro1" style:family="table-row">
+   <style:table-row-properties style:row-height="0.4437in" fo:break-before="auto" style:use-optimal-row-height="true"/>
+  </style:style>
+  <style:style style:name="ro2" style:family="table-row">
+   <style:table-row-properties style:row-height="0.2409in" fo:break-before="auto" style:use-optimal-row-height="true"/>
+  </style:style>
+  <style:style style:name="ro3" style:family="table-row">
+   <style:table-row-properties style:row-height="0.178in" fo:break-before="auto" style:use-optimal-row-height="true"/>
+  </style:style>
+  <style:style style:name="ta1" style:family="table" style:master-page-name="Default">
+   <style:table-properties table:display="true" style:writing-mode="lr-tb"/>
+  </style:style>
+  <number:number-style style:name="N2">
+   <number:number number:decimal-places="2" number:min-decimal-places="2" number:min-integer-digits="1"/>
+  </number:number-style>
+  <style:style style:name="ce1" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="2.24pt solid #000000" style:text-align-source="fix" style:repeat-content="false" fo:border-left="2.24pt solid #000000" fo:border-right="none" fo:border-top="2.24pt solid #000000" style:vertical-align="middle"/>
+   <style:paragraph-properties fo:text-align="center"/>
+   <style:text-properties style:use-window-font-color="true" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Liberation Serif" fo:font-size="14pt" fo:language="ru" fo:country="RU" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="bold" style:text-underline-mode="continuous" style:text-overline-mode="continuous" style:text-line-through-mode="continuous" style:font-name-asian="Segoe UI" style:font-size-asian="14pt" style:language-asian="none" style:country-asian="none" style:font-style-asian="normal" style:font-weight-asian="bold" style:font-name-complex="Tahoma" style:font-size-complex="14pt" style:language-complex="none" style:country-complex="none" style:font-style-complex="normal" style:font-weight-complex="bold" style:text-emphasize="none" style:font-relief="none" style:text-overline-style="none" style:text-overline-color="font-color"/>
+  </style:style>
+  <style:style style:name="ce2" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="0.51pt solid #000000" style:text-align-source="fix" style:repeat-content="false" fo:border-left="2.24pt solid #000000" fo:border-right="none" fo:border-top="none"/>
+   <style:paragraph-properties fo:text-align="center"/>
+   <style:text-properties style:use-window-font-color="true" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Liberation Serif" fo:font-size="14pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:text-underline-mode="continuous" style:text-overline-mode="continuous" style:text-line-through-mode="continuous" style:font-name-asian="Segoe UI" style:font-size-asian="14pt" style:language-asian="none" style:country-asian="none" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Tahoma" style:font-size-complex="14pt" style:language-complex="none" style:country-complex="none" style:font-style-complex="normal" style:font-weight-complex="normal" style:text-emphasize="none" style:font-relief="none" style:text-overline-style="none" style:text-overline-color="font-color"/>
+  </style:style>
+  <style:style style:name="ce3" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="0.51pt solid #000000" style:text-align-source="fix" style:repeat-content="false" fo:border-left="2.24pt solid #000000" fo:border-right="none" fo:border-top="none"/>
+   <style:paragraph-properties fo:text-align="center"/>
+   <style:text-properties style:use-window-font-color="true" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Liberation Serif" fo:font-size="14pt" fo:language="none" fo:country="none" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:text-underline-mode="continuous" style:text-overline-mode="continuous" style:text-line-through-mode="continuous" style:font-name-asian="Segoe UI" style:font-size-asian="14pt" style:language-asian="none" style:country-asian="none" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Tahoma" style:font-size-complex="14pt" style:language-complex="none" style:country-complex="none" style:font-style-complex="normal" style:font-weight-complex="normal" style:text-emphasize="none" style:font-relief="none" style:text-overline-style="none" style:text-overline-color="font-color"/>
+  </style:style>
+  <style:style style:name="ce4" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="2.24pt solid #000000" style:text-align-source="fix" style:repeat-content="false" fo:border-left="2.24pt solid #000000" fo:border-right="none" fo:border-top="none"/>
+   <style:paragraph-properties fo:text-align="center"/>
+   <style:text-properties style:use-window-font-color="true" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Liberation Serif" fo:font-size="14pt" fo:language="none" fo:country="none" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:text-underline-mode="continuous" style:text-overline-mode="continuous" style:text-line-through-mode="continuous" style:font-name-asian="Segoe UI" style:font-size-asian="14pt" style:language-asian="none" style:country-asian="none" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Tahoma" style:font-size-complex="14pt" style:language-complex="none" style:country-complex="none" style:font-style-complex="normal" style:font-weight-complex="normal" style:text-emphasize="none" style:font-relief="none" style:text-overline-style="none" style:text-overline-color="font-color"/>
+  </style:style>
+  <style:style style:name="ce5" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="0.51pt solid #000000" style:text-align-source="fix" style:repeat-content="false" fo:border-left="2.24pt solid #000000" fo:border-right="none" fo:border-top="none"/>
+   <style:paragraph-properties fo:text-align="center"/>
+   <style:text-properties style:use-window-font-color="true" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Liberation Serif" fo:font-size="14pt" fo:language="ru" fo:country="RU" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:text-underline-mode="continuous" style:text-overline-mode="continuous" style:text-line-through-mode="continuous" style:font-name-asian="Segoe UI" style:font-size-asian="14pt" style:language-asian="none" style:country-asian="none" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Tahoma" style:font-size-complex="14pt" style:language-complex="none" style:country-complex="none" style:font-style-complex="normal" style:font-weight-complex="normal" style:text-emphasize="none" style:font-relief="none" style:text-overline-style="none" style:text-overline-color="font-color"/>
+  </style:style>
+  <style:style style:name="ce6" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties style:text-align-source="fix" style:repeat-content="false" fo:border="2.24pt solid #000000" style:vertical-align="middle"/>
+   <style:paragraph-properties fo:text-align="center"/>
+   <style:text-properties style:use-window-font-color="true" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Liberation Serif" fo:font-size="14pt" fo:language="ru" fo:country="RU" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="bold" style:text-underline-mode="continuous" style:text-overline-mode="continuous" style:text-line-through-mode="continuous" style:font-name-asian="Segoe UI" style:font-size-asian="14pt" style:language-asian="none" style:country-asian="none" style:font-style-asian="normal" style:font-weight-asian="bold" style:font-name-complex="Tahoma" style:font-size-complex="14pt" style:language-complex="none" style:country-complex="none" style:font-style-complex="normal" style:font-weight-complex="bold" style:text-emphasize="none" style:font-relief="none" style:text-overline-style="none" style:text-overline-color="font-color"/>
+  </style:style>
+  <style:style style:name="ce7" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="0.51pt solid #000000" style:text-align-source="fix" style:repeat-content="false" fo:border-left="2.24pt solid #000000" fo:border-right="2.24pt solid #000000" fo:border-top="none"/>
+   <style:paragraph-properties fo:text-align="center"/>
+   <style:text-properties style:use-window-font-color="true" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Liberation Serif" fo:font-size="14pt" fo:language="none" fo:country="none" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:text-underline-mode="continuous" style:text-overline-mode="continuous" style:text-line-through-mode="continuous" style:font-name-asian="Segoe UI" style:font-size-asian="14pt" style:language-asian="none" style:country-asian="none" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Tahoma" style:font-size-complex="14pt" style:language-complex="none" style:country-complex="none" style:font-style-complex="normal" style:font-weight-complex="normal" style:text-emphasize="none" style:font-relief="none" style:text-overline-style="none" style:text-overline-color="font-color"/>
+  </style:style>
+  <style:style style:name="ce8" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="2.24pt solid #000000" style:text-align-source="fix" style:repeat-content="false" fo:border-left="2.24pt solid #000000" fo:border-right="2.24pt solid #000000" fo:border-top="none"/>
+   <style:paragraph-properties fo:text-align="center"/>
+   <style:text-properties style:use-window-font-color="true" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Liberation Serif" fo:font-size="14pt" fo:language="none" fo:country="none" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:text-underline-mode="continuous" style:text-overline-mode="continuous" style:text-line-through-mode="continuous" style:font-name-asian="Segoe UI" style:font-size-asian="14pt" style:language-asian="none" style:country-asian="none" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Tahoma" style:font-size-complex="14pt" style:language-complex="none" style:country-complex="none" style:font-style-complex="normal" style:font-weight-complex="normal" style:text-emphasize="none" style:font-relief="none" style:text-overline-style="none" style:text-overline-color="font-color"/>
+  </style:style>
+  <style:page-layout style:name="pm1">
+   <style:page-layout-properties style:writing-mode="lr-tb"/>
+   <style:header-style>
+    <style:header-footer-properties fo:min-height="0.2953in" fo:margin-left="0in" fo:margin-right="0in" fo:margin-bottom="0.0984in"/>
+   </style:header-style>
+   <style:footer-style>
+    <style:header-footer-properties fo:min-height="0.2953in" fo:margin-left="0in" fo:margin-right="0in" fo:margin-top="0.0984in"/>
+   </style:footer-style>
+  </style:page-layout>
+  <style:page-layout style:name="pm2">
+   <style:page-layout-properties style:writing-mode="lr-tb"/>
+   <style:header-style>
+    <style:header-footer-properties fo:min-height="0.2953in" fo:margin-left="0in" fo:margin-right="0in" fo:margin-bottom="0.0984in" fo:border="1.5pt solid #000000" fo:padding="0.0071in" fo:background-color="#c0c0c0">
+     <style:background-image/>
+    </style:header-footer-properties>
+   </style:header-style>
+   <style:footer-style>
+    <style:header-footer-properties fo:min-height="0.2953in" fo:margin-left="0in" fo:margin-right="0in" fo:margin-top="0.0984in" fo:border="1.5pt solid #000000" fo:padding="0.0071in" fo:background-color="#c0c0c0">
+     <style:background-image/>
+    </style:header-footer-properties>
+   </style:footer-style>
+  </style:page-layout>
+  <style:style style:name="T1" style:family="text">
+   <style:text-properties fo:font-size="14pt" fo:language="en" fo:country="US" style:font-size-asian="14pt" style:font-size-complex="14pt"/>
+  </style:style>
+  <style:style style:name="T2" style:family="text">
+   <style:text-properties fo:font-size="14pt" style:font-size-asian="14pt" style:font-size-complex="14pt"/>
+  </style:style>
+  <style:style style:name="T3" style:family="text">
+   <style:text-properties fo:font-size="14pt" style:font-size-asian="14pt" style:font-size-complex="14pt" fo:language="ru" fo:country="RU"/>
+  </style:style>
+  <style:style style:name="T4" style:family="text">
+   <style:text-properties fo:language="en" fo:country="US"/>
+  </style:style>
+  <style:style style:name="T5" style:family="text">
+   <style:text-properties fo:language="ru" fo:country="RU"/>
+  </style:style>
+  <style:style style:name="T6" style:family="text">
+   <style:text-properties fo:font-size="14pt" fo:language="ru" fo:country="RU" style:font-size-asian="14pt" style:font-size-complex="14pt"/>
+  </style:style>
+ </office:automatic-styles>
+ <office:master-styles>
+  <style:master-page style:name="Default" style:page-layout-name="pm1">
+   <style:header>
+    <text:p><text:sheet-name>???</text:sheet-name></text:p>
+   </style:header>
+   <style:header-left style:display="false"/>
+   <style:header-first style:display="false"/>
+   <style:footer>
+    <text:p>Page <text:page-number>1</text:page-number></text:p>
+   </style:footer>
+   <style:footer-left style:display="false"/>
+   <style:footer-first style:display="false"/>
+  </style:master-page>
+  <style:master-page style:name="Report" style:page-layout-name="pm2">
+   <style:header>
+    <style:region-left>
+     <text:p><text:sheet-name>???</text:sheet-name><text:s/>(<text:title>???</text:title>)</text:p>
+    </style:region-left>
+    <style:region-right>
+     <text:p><text:date style:data-style-name="N2" text:date-value="2026-09-29">00/00/0000</text:date>, <text:time>00:00:00</text:time></text:p>
+    </style:region-right>
+   </style:header>
+   <style:header-left style:display="false"/>
+   <style:header-first style:display="false"/>
+   <style:footer>
+    <text:p>Page <text:page-number>1</text:page-number><text:s/>/ <text:page-count>99</text:page-count></text:p>
+   </style:footer>
+   <style:footer-left style:display="false"/>
+   <style:footer-first style:display="false"/>
+  </style:master-page>
+ </office:master-styles>
+ <office:body>
+  <office:spreadsheet>
+   <table:calculation-settings table:automatic-find-labels="false" table:use-regular-expressions="false" table:use-wildcards="true" table:null-year="1950"/>
+   <table:table table:name="Sheet1" table:style-name="ta1">
+    <office:forms form:automatic-focus="false" form:apply-design-mode="false"/>
+    <table:table-column table:style-name="co1" table:default-cell-style-name="ce2"/>
+    <table:table-column table:style-name="co2" table:default-cell-style-name="ce2"/>
+    <table:table-column table:style-name="co3" table:default-cell-style-name="ce3"/>
+    <table:table-column table:style-name="co4" table:default-cell-style-name="ce7"/>
+    <table:table-row table:style-name="ro1">
+     <table:table-cell table:style-name="ce1" office:value-type="string" calcext:value-type="string">
+      <text:p>Обозначение</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce1" office:value-type="string" calcext:value-type="string">
+      <text:p>Наименование</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce1" office:value-type="string" calcext:value-type="string"><text:p>Кол.</text:p><text:p>Экз.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce6" office:value-type="string" calcext:value-type="string"><text:p>Местона-</text:p><text:p>хождение</text:p>
+     </table:table-cell>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T1">RU.</text:span><text:span text:style-name="T2">ECO.00001-01 </text:span><text:span text:style-name="T3">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация интерфейсов и типов данных</text:span><text:span text:style-name="T2"> Eco.Core1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T1">RU.</text:span><text:span text:style-name="T2">ECO.00001-01 </text:span><text:span text:style-name="T3">90 02</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce5" office:value-type="string" calcext:value-type="string">
+      <text:p>Спецификация компонента <text:s/>???</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T1">RU.</text:span><text:span text:style-name="T2">ECO.00001-01 </text:span><text:span text:style-name="T3">90 03</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce5" office:value-type="string" calcext:value-type="string">
+      <text:p>Спецификация интерфейса и типов данных IEcoTensor1</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T1">RU.</text:span><text:span text:style-name="T2">ECO.00001-01 </text:span><text:span text:style-name="T3">90 04</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce5" office:value-type="string" calcext:value-type="string">
+      <text:p>Спецификация интерфейса и типов данных IEcoSimplex1</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T1">RU.</text:span><text:span text:style-name="T2">ECO.00002-01 </text:span><text:span text:style-name="T3">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация библиотеки</text:span><text:span text:style-name="T2"> Eco.System1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T1">RU.</text:span><text:span text:style-name="T2">ECO.00003-01 </text:span><text:span text:style-name="T3">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.InterfaceBus1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T1">RU.</text:span><text:span text:style-name="T2">ECO.00004-01 </text:span><text:span text:style-name="T3">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.MemoryManager1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T1">RU.</text:span><text:span text:style-name="T2">ECO.00005-01 </text:span><text:span text:style-name="T3">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.FileSystemManagement1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T1">RU.</text:span><text:span text:style-name="T2">ECO.00006-01 </text:span><text:span text:style-name="T3">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.DeviceManager1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T1">RU.</text:span><text:span text:style-name="T2">ECO.00007-01 </text:span><text:span text:style-name="T3">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.InterruptSystem1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T1">RU.</text:span><text:span text:style-name="T2">ECO.00008-01 </text:span><text:span text:style-name="T3">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.TaskScheduler1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00009-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce5" office:value-type="string" calcext:value-type="string">
+      <text:p>Спецификация компонента ???</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00101-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.DateTime1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00102-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Log1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00103-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Math.FFT1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00104-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Semaphore1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.0010<text:span text:style-name="T5">5</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Socket.P02</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.0010<text:span text:style-name="T5">6</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Queue1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.0010<text:span text:style-name="T5">7</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Stack1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.0010<text:span text:style-name="T5">8</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Tree1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.0010<text:span text:style-name="T5">9</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Visitor1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.<text:span text:style-name="T5">00110</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Data1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">11</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Dictionary1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">12</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Vector1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">13</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Mutex1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.<text:span text:style-name="T5">00114</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Timer1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">15</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.EventPoll1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">16</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.EXT2</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">17</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.FAT32 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">18</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Map1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">19</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Set1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">20</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Observer1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.<text:span text:style-name="T5">00121</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.DOMCoreLevel1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">22</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.DOMLevel4</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">23</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.COFF1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">24</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.ELF2 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">25</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.MZEXE1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">26</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.PECOFF1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">27</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.ThreadManager1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">28</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.ProcessManager1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">29</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.List1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">30</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.String1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">31</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Simplex.List1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">32</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Simplex.BinaryTree1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">33</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Matrix1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">34</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Graph1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">35</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Locale.C89</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">36</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Math.C89</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">37</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Signal.C89</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">38</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.StdIO.C89</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">39</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.StdLib.C89</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">40</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.String.C89</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">41</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Time.C89</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">42</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Complex.C99</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">43</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.NTFS1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">44</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.FAT16</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.001<text:span text:style-name="T5">45</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> ???</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00201-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce5" office:value-type="string" calcext:value-type="string">
+      <text:p>Спецификация компонента Eco.TCPUDPSocket1</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.0020<text:span text:style-name="T5">2</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.URL1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00<text:span text:style-name="T5">203</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Streams1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00<text:span text:style-name="T5">204</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.HTTP1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00<text:span text:style-name="T5">205</text:span>-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00501-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.AES1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00502-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.MD5</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00503-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.RSA1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00504-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.SHA3</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00505-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.ASNOne1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00506-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.ASNOne.BER1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00507-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.BaseEncoding1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00508-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.DiffieHellman1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00509-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.PKCS1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00510-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.PKCS5</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00511-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.PKCS7</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00512-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.PKCS8</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00513-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.PKCS9</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00514-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.PKCS10</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00515-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.PKCS11</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00516-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.PKCS12</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00517-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.PKCS15</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00518-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.SSH1.AP</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00519-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.SSH1.CP</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00520-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.PKCS8</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00521-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.ASNOne.PER1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00522-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> ???</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00701-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.GPIO1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00702-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.UART1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00703-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.SPI1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00704-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.I2C1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00705-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.VFB1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00706-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.VBIOS1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00707-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.WatchDog1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00708-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.I2C1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00709-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.ModBus1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00710-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.ModBus1.OPC</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00711-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.ModBus1.SL</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00712-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.ModBus1.TCP</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00713-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.SMHC1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00714-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Keypad1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00715-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.IPCC.Mailbox1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.00716-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> ???</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01001-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.OpenGL1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01002-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.OpenGLES1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01003-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.CGI1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01004-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> EcoTTF1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01005-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.BMP3 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01006-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.SVG1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01007-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.JPEG1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01008-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.PNG1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01009-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Image1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01010-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2">  ???</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01301-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.AST1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01302-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.BLA1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01303-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.BNF1 </text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01304-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.BNF2</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01305-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.BRE1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01306-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.PDA1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01307-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.FSM1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01308-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.Simplex.FSM1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01309-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.LL1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01310-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.LR1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01311-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.LALR1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01312-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.BSA1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01313-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.IDL1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01314-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.IDL1.C</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01315-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.IDL1.CPP</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01316-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.IDL1.Java</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01317-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.IDL1.Python</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01318-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.IDL1.TypeLib</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01319-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.JSON1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01320-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.JSON1.RPC</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01321-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.SE1.Lua</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01322-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.SE1.Python</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01323-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.SEM1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01324-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> ???</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01501-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.GGUF1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01502-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.ONNX1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01503-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.HDF5</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01504-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.LSP1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01505-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.MCP1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01506-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.ONNX1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01507-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.AI.Engine1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01508-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.AI.Inference1</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01509-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> ???</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01801-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.DDB1.Storage</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01802-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.DDB1.Net</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01803-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.DDB1.Client</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01804-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.DDB1.Server</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01805-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> Eco.LZ4</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T4">RU.</text:span>ECO.01806-01 <text:span text:style-name="T5">90 01</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string"><text:p><text:span text:style-name="T6">Спецификация компонента</text:span><text:span text:style-name="T2"> ???</text:span></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+      <text:p>1</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2" table:number-rows-repeated="19">
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="2"/>
+     <table:table-cell table:number-columns-repeated="2"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce4" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce8"/>
+    </table:table-row>
+   </table:table>
+   <table:named-expressions/>
+   <table:database-ranges>
+    <table:database-range table:name="__Anonymous_Sheet_DB__0" table:target-range-address="Sheet1.A1:Sheet1.D42" table:display-filter-buttons="true">
+     <table:sort>
+      <table:sort-by table:field-number="0" table:data-type="automatic"/>
+     </table:sort>
+    </table:database-range>
+   </table:database-ranges>
+  </office:spreadsheet>
+ </office:body>
+</office:document>
